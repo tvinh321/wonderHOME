@@ -60,8 +60,8 @@ session_start();
                 <div class="md:absolute md:-bottom-48 grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150">
                         <img class="w-full h-50" src="assets/images/buy-a-home.jpg" alt="Buy a home">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-2xl mb-2">Mua Nhà</div>
+                        <div class="p-6 pb-12">
+                            <div class="font-bold text-xl mb-2">Mua Nhà</div>
                             <p class="text-gray-700 text-base">
                                 Không chỉ là ngôi nhà, chúng tôi giúp bạn tìm được tổ ấm hoàn hảo cho bạn và gia đình.
                             </p>
@@ -69,8 +69,8 @@ session_start();
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150">
                         <img class="w-full" src="assets/images/sell-a-home.jpg" alt="Sell your home">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-2xl mb-2">Bán Nhà</div>
+                        <div class="p-6 pb-12">
+                            <div class="font-bold text-xl mb-2">Bán Nhà</div>
                             <p class="text-gray-700 text-base">
                                 Chúng tôi kết nối bạn với nhiều khách hàng hơn và điều hướng việc bán nhà của bạn đến thành công.
                             </p>
@@ -78,8 +78,8 @@ session_start();
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150">
                         <img class="w-full" src="assets/images/house-agent.jpg" alt="Find an expert">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-2xl mb-2">Tìm Chuyên Gia</div>
+                        <div class="p-6 pb-12">
+                            <div class="font-bold text-xl mb-2">Tìm Chuyên Gia</div>
                             <p class="text-gray-700 text-base">
                                 Chúng tôi sẽ giúp bạn kết nối với những chuyên gia để đáp ứng tất cả yêu cầu của bạn.
                             </p>
@@ -98,7 +98,7 @@ session_start();
                 <div class="flex justify-center items-center my-24 md:my-8 lg:mt-12 lg:mb-24 h-72 lg:h-48 lg:h-fit">
                     <div class="w-full">
                         <!-- Filter Select Bar with 4 criteria -->
-                        <div class="grid lg:grid-cols-4 md:grid-cols-2 md:gap-4 lg:gap-0 lg:h-20 text-neutral-900 lg:shadow-xl">
+                        <div class="text-md grid lg:grid-cols-4 md:grid-cols-2 md:gap-4 lg:gap-0 lg:h-20 text-neutral-900 lg:shadow-xl">
                             <div class="w-full h-20 mt-4">
                                 <select class="w-full h-full rounded-xl lg:rounded-sm lg:rounded-l-xl p-5 shadow-lg lg:shadow-none">
                                     <option value="0" disabled selected>Vị trí</option>
@@ -313,7 +313,7 @@ session_start();
                 <div class="w-64 h-1 bg-gradient-to-r from-amber-300 to-purple-700 mb-10"></div>
                 <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-12 xs:gap-5 w-full mt-24">
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white">
-                        <p class="text-2xl font-bold h-64 text-center align-middle">"Dễ xài"</p>
+                        <p class="text-2xl p-4 font-bold h-64 text-center align-middle">"Dễ xài"</p>
                         <div class="px-6 py-12 bg-white">
                             <!-- Avatar and name -->
                             <div class="flex items-center">
@@ -326,7 +326,7 @@ session_start();
                         </div>
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white">
-                        <p class="text-2xl font-bold h-64 text-center align-middle">"Tính tương tác cao"</p>
+                        <p class="text-2xl p-4 font-bold h-64 text-center align-middle">"Tính tương tác cao"</p>
                         <div class="px-6 py-12 bg-black">
                             <!-- Avatar and name -->
                             <div class="flex items-center">
@@ -339,7 +339,7 @@ session_start();
                         </div>
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white">
-                        <p class="text-2xl font-bold h-64 text-center align-middle">"Giúp tôi chọn được ngôi nhà phù hợp"</p>
+                        <p class="text-2xl p-4 font-bold h-64 text-center align-middle">"Giúp tôi chọn được ngôi nhà phù hợp"</p>
                         <div class="px-6 py-12 bg-white">
                             <!-- Avatar and name -->
                             <div class="flex items-center">
