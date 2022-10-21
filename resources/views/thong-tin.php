@@ -23,8 +23,9 @@ session_start();
         ?>
 
         <div class="body">
-            <div class="lg:px-32 px-8 lg:pb-16 lg:my-0 pt-24 w-full">
-                <div class="grid-cols-4 space-y-2 lg:space-y-0 lg:grid lg:gap-3 lg:grid-rows-3">
+            <!-- Image gallery  -->
+            <div class="lg:px-32 lg:pb-16 lg:my-0 lg:pt-24 w-full my-10 px-10">
+                <div class="grid-cols-4 space-y-4 md:space-y-0 md:grid md:gap-3 md:grid-rows-3">
                     <div class="w-full col-span-2 row-span-3">
                         <img class="rounded-xl" class="rounded-xl" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
                             alt="image">
@@ -58,24 +59,25 @@ session_start();
                             </span>
                             <span class="text-sm inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold border-b border-t border-r border-neutral-900 rounded-r-lg flex justify-center items-center">
                                 <svg class="mr-2" style="color: rgb(245, 158, 11);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"> <path fill="#f59e0b" d="M464,280H80V100A51.258,51.258,0,0,1,95.113,63.515l.4-.4a51.691,51.691,0,0,1,58.6-10.162,79.1,79.1,0,0,0,11.778,96.627l10.951,10.951-20.157,20.158,22.626,22.626,20.157-20.157h0L311.157,71.471h0l20.157-20.157L308.687,28.687,288.529,48.844,277.578,37.893a79.086,79.086,0,0,0-100.929-8.976A83.61,83.61,0,0,0,72.887,40.485l-.4.4A83.054,83.054,0,0,0,48,100V280H16v32H48v30.7a23.95,23.95,0,0,0,1.232,7.589L79,439.589A23.969,23.969,0,0,0,101.766,456h12.9L103,496h33.333L148,456H356.1l12,40H401.5l-12-40h20.73A23.969,23.969,0,0,0,433,439.589l29.766-89.3A23.982,23.982,0,0,0,464,342.7V312h32V280ZM188.52,60.52a47.025,47.025,0,0,1,66.431,0L265.9,71.471,199.471,137.9,188.52,126.951A47.027,47.027,0,0,1,188.52,60.52ZM432,341.4,404.468,424H107.532L80,341.4V312H432Z" class="ci-primary"></path> </svg>
-                                <span>2 nhà vệ sinh</span>
+                                <span>2 toilet</span>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- House info  -->
             <div class="lg:px-32 px-8 lg:pb-24 lg:my-0 mb-24 py-24 bg-gray-100 w-full">
-                <div class="flex justify-between mb-4">
-                    <div class="w-3/5">
+                <div class="md:flex md:justify-between mb-4 md:gap-x-6">
+                    <div class="md:w-3/5 w-full">
                         <!-- Thông tin nhà  -->
-                        <div class="mb-18 lg:mb-24">
+                        <div class="mb-10 lg:mb-24">
                             <!-- A line w-32 with gradient from amber to purple -->
                             <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
-                            <h1 class="font-bold text-4xl mt-4">Thông tin</h1>
+                            <h1 class="font-bold text-3xl md:text-4xl mt-4">Thông tin</h1>
 
-                            <div class="mx-auto mt-10">
-                                <p class="text-lg mt-10 leading-loose">
+                            <div class="mx-auto md:mt-10 mt-4">
+                                <p class="text-lg leading-loose">
                                     In oculis quidem se esse admonere interesse enim maxime placeat, facere possimus, omnis. Et quidem faciunt, ut labore et accurate disserendum et harum quidem exercitus quid.
                                     In oculis quidem se esse admonere interesse enim maxime placeat, facere possimus, omnis. Et quidem faciunt, ut labore et accurate disserendum et harum quidem exercitus quid.
                                 </p>
@@ -83,10 +85,10 @@ session_start();
                         </div>
 
                         <!-- Tiện nghi nhà  -->
-                        <div class="mb-18 lg:mb-24">
+                        <div class="mb-10 lg:mb-24">
                             <!-- A line w-32 with gradient from amber to purple -->
                             <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
-                            <h1 class="font-bold text-4xl mt-4">Tiện nghi</h1>
+                            <h1 class="font-bold text-3xl md:text-4xl mt-4">Tiện nghi</h1>
 
                             <div class="mx-auto mt-6">
                                 <div class="flex space-x-2 ">
@@ -108,7 +110,7 @@ session_start();
                         <div>
                             <!-- A line w-32 with gradient from amber to purple -->
                             <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
-                            <h1 class="font-bold text-4xl mt-4">Mức phí hàng tháng</h1>
+                            <h1 class="font-bold text-3xl md:text-4xl mt-4">Mức phí hàng tháng</h1>
 
                             <div class="w-full block my-6 p-6 bg-white rounded-lg border border-gray-200 shadow-md">
                                 <h1 class="font-bold text-2xl my-2 text-center">Tính phí vay mua nhà</h1>
@@ -147,7 +149,7 @@ session_start();
                             <div class="p-5">
                                 <div class="flex justify-between items-start ">
                                     <div>
-                                        <h1 class="mb-2 text-3xl font-bold text-neutral-900">41,4 triệu/m2</h1>
+                                        <h1 class="mb-2 text-2xl md:text-3xl font-bold text-neutral-900">41,4 triệu/m2</h1>
                                         <p class="text-md text-neutral-500">~ 8,9 tỷ</p>
                                     </div>
                                     <div class="mt-3">
@@ -263,7 +265,7 @@ session_start();
                 </div>
 
                 <!-- Bảng mức phí hàng tháng -->
-                <div class="flex items-center justify-between">
+                <div class="md:flex md:items-center md:justify-between md:gap-x-6 lg:gap-x-8">
                     <div class="block p-6 max-w-md bg-white rounded-lg border border-gray-200 shadow-md">
                         <div class="text-center italic">
                             <p>Mức phí ước tính hàng tháng</p>
@@ -306,7 +308,7 @@ session_start();
                         <p class="text-sm italic">Đây chỉ là chi phí ước tính nhằm mục đích tham khảo. </br> Chi phí thực tế có thể thay đổi. </p>
                     </div>
 
-                    <div class="block p-6 max-w-md bg-white rounded-lg border border-gray-200 shadow-md">
+                    <div class="mt-6 lg:mt-0 block p-6 max-w-md bg-white rounded-lg border border-gray-200 shadow-md">
                         <div class="text-center italic">
                                 <p>Mức phí ước tính hàng tháng</p>
                                 <p class="text-2xl text-amber-400">xxx triệu</p>
@@ -348,7 +350,7 @@ session_start();
                         <p class="text-sm italic">Đây chỉ là chi phí ước tính nhằm mục đích tham khảo. </br> Chi phí thực tế có thể thay đổi. </p>
                     </div>
 
-                    <div class="block p-6 max-w-md bg-white rounded-lg border border-gray-200 shadow-md">
+                    <div class="mt-6 lg:mt-0 block p-6 max-w-md bg-white rounded-lg border border-gray-200 shadow-md">
                         <div class="text-center italic">
                                 <p>Mức phí ước tính hàng tháng</p>
                                 <p class="text-2xl text-amber-400">xxx triệu</p>
@@ -391,6 +393,54 @@ session_start();
                     </div>
                 </div>
             </div>
+
+            <!-- Post info  -->
+            <div class="grid-cols-3 md:grid md:gap-3 md:p-20 px-10 lg:pb-24 lg:my-0 mb-24 w-full">
+                <!-- Avatar and name  -->
+                <div class="flex items-center justify-center md:flex-col md:gap-0 flex-row gap-x-10 md:mb-0 mb-6">
+                    <img class="lg:w-24 lg:h-24 w-16 h-16 rounded-full" src="assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
+                    <div class="max-w-fit text-center mt-1">
+                        <p>Được đăng bởi</p>
+                        <h1 class="text-neutral-900 font-bold lg:text-2xl text-lg leading-none">Jonathan Reinink</h1>
+                    </div>
+                </div>
+
+                <!-- Post info  -->
+                <div class="grid-cols-2 grid gap-3 text-center md:text-left">
+                    <div>
+                        <p class="text-neutral-500">Ngày đăng</p>
+                        <p class="text-neutral-900 text-lg">17/11/2021</p>
+                    </div>
+                    <div>
+                        <p class="text-neutral-500">Ngày hết hạn</p>
+                        <p class="text-neutral-900 text-lg">17/11/2022</p>
+                    </div>
+                    <div>
+                        <p class="text-neutral-500">Loại tin</p>
+                        <p class="text-neutral-900 text-lg">Tin Vip</p>
+                    </div>
+                    <div>
+                        <p class="text-neutral-500">Mã tin</p>
+                        <p class="text-neutral-900 text-lg">CH123456</p>
+                    </div>
+                </div>
+
+                <!-- Contact  -->
+                <div class="flex items-center justify-center gap-x-12 md:mt-0 mt-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
+                        <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" class="bi bi-messenger" viewBox="0 0 16 16"> <path d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.639.639 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.639.639 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76zm5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z"/> </svg>
+                </div>
+            </div>
+
+            <!-- Similar house -->
         </div>
 
         <?php
