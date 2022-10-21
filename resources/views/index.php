@@ -13,7 +13,7 @@ session_start();
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
-        <link href="http://fonts.cdnfonts.com/css/poetsen-one" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/home.css">
     </head>
 
@@ -37,7 +37,7 @@ session_start();
             <!-- Search Bar -->
             <div class="h-20">
                 <div class="flex justify-center items-center">
-                    <div class="absolute w-10/12 md:w-3/5 shadow-lg">
+                    <div class="absolute w-10/12 md:w-3/5 shadow-lg rounded-xl">
                         <div class="flex justify-between items-center h-full">
                             <div class="flex justify-center items-center w-4/6 lg:w-10/12 h-20">
                                 <input type="text" class="pl-10 w-full h-20 rounded-l-xl text-xl" placeholder="Tìm kiếm">
@@ -56,7 +56,7 @@ session_start();
             </div>
 
             <!-- Grid 3 Content -->
-            <div class="md:relative flex justify-center items-center w-10/12 lg:w-3/5 mx-auto mt-8 md:h-64 2xl:h-96">
+            <div class="md:relative flex justify-center items-center w-10/12 lg:w-3/5 mx-auto mt-8 md:h-56 lg:h-52 4xl:h-96">
                 <div class="md:absolute md:-bottom-48 grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white">
                         <img class="w-full h-50" src="assets/images/buy-a-home.jpg" alt="Buy a home">
@@ -108,7 +108,7 @@ session_start();
                                 </select>
                             </div>
                             <div class="w-full h-20 mt-4">
-                                <select class="w-full h-full rounded-xl lg:rounded-sm lg:rounded-r-xl text-lg p-5 shadow-lg lg:shadow-none">
+                                <select class="w-full h-full rounded-xl lg:rounded-sm lg:rounded-xl-none text-lg p-5 shadow-lg lg:shadow-none">
                                     <option value="0" disabled selected>Kiểu nhà</option>
                                     <option value="1">Nhà riêng</option>
                                     <option value="2">Nhà chung cư / Căn hộ</option>
@@ -302,7 +302,7 @@ session_start();
                 <div class="w-64 h-1 bg-gradient-to-r from-amber-300 to-purple-700 mb-10"></div>
                 <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-12 xs:gap-5 w-full mt-24">
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white">
-                        <p class="text-2xl font-bold h-64 text-center align-middle">"Xịn lắm luôn á"</p>
+                        <p class="text-2xl font-bold h-64 text-center align-middle">"Dễ xài"</p>
                         <div class="px-6 py-12 bg-white">
                             <!-- Avatar and name -->
                             <div class="flex items-center">
@@ -315,7 +315,7 @@ session_start();
                         </div>
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white">
-                        <p class="text-2xl font-bold h-64 text-center align-middle">"Xịn lắm luôn á"</p>
+                        <p class="text-2xl font-bold h-64 text-center align-middle">"Tính tương tác cao"</p>
                         <div class="px-6 py-12 bg-black">
                             <!-- Avatar and name -->
                             <div class="flex items-center">
@@ -328,7 +328,7 @@ session_start();
                         </div>
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white">
-                        <p class="text-2xl font-bold h-64 text-center align-middle">"Xịn lắm luôn á"</p>
+                        <p class="text-2xl font-bold h-64 text-center align-middle">"Giúp tôi chọn được ngôi nhà phù hợp"</p>
                         <div class="px-6 py-12 bg-white">
                             <!-- Avatar and name -->
                             <div class="flex items-center">

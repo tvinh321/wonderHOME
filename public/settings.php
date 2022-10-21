@@ -10,7 +10,7 @@
     $NAVLINK_VIE = array(["Mua nhà", "dich-vu/".$SERVICES[0]], ["Bán nhà", "dich-vu/".$SERVICES[1]], ["Tìm chuyên gia", "dich-vu/".$SERVICES[2]], ["Hướng dẫn", ""]); 
 
     //Font
-    $FONT_FAMILY = "Poetsen One";
+    $FONT_FAMILY = "Lexend";
 
     //color palette
     $PRIMARY_BLACK = "171717";
