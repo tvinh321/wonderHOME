@@ -24,7 +24,7 @@ session_start();
 
         <div class="body">
             <!-- Image gallery  -->
-            <div class="lg:px-32 lg:pb-16 lg:my-0 lg:pt-24 w-full my-10 px-10">
+            <div class="lg:px-32 lg:pb-16 lg:my-0 lg:pt-24 w-full my-10 px-8">
                 <div class="grid-cols-4 space-y-4 md:space-y-0 md:grid md:gap-3 md:grid-rows-2">
                     <div class="w-full col-span-2 row-span-2">
                         <img class="rounded-xl" class="rounded-xl" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
@@ -49,7 +49,7 @@ session_start();
                     </div>
                 </div>
                 <div class="w-full rounded pt-2">
-                    <div class="flex justify-items-end">
+                    <div class="mt-4 flex justify-items-end">
                         <span class="text-sm inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold border-b border-t border-l border-neutral-900 rounded-l-lg flex justify-center items-center">
                             <svg class="mr-2 fill-amber-400" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,7V5h-3V2h-2v3h-4V2h-2v3H7V2H5v3H2v2h3v4H2v2h3v4H2v2h3v3h2v-3h4v3h2v-3h4v3h2v-3h3v-2h-3v-4h3v-2h-3V7H22z M7,7h4v4 H7V7z M7,17v-4h4v4H7z M17,17h-4v-4h4V17z M17,11h-4V7h4V11z"/></svg>
                             <span>215 m2</span>
