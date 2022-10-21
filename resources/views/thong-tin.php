@@ -11,7 +11,7 @@ session_start();
     <head>
         <title>wonderHOME - Biến tổ ấm trong mơ thành hiện thực</title>
         <meta charset = "UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=0.9">
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet">
     </head>
@@ -24,25 +24,21 @@ session_start();
 
         <div class="body">
             <!-- Image gallery  -->
-            <div class="lg:px-32 lg:pb-16 lg:my-0 lg:pt-24 w-full my-10 px-8">
+            <div class="lg:px-32 lg:pb-16 lg:my-0 lg:pt-16 w-full my-10 px-8">
                 <div class="grid-cols-4 space-y-4 md:space-y-0 md:grid md:gap-3 md:grid-rows-2">
                     <div class="w-full col-span-2 row-span-2">
-                        <img class="rounded-xl" class="rounded-xl" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
-                            alt="image">
+                        <img class="rounded-xl md:h-full md:object-cover" src="assets/images/Room5.jpg" alt="Room 1">
                     </div>
                 
                     <div class="w-full rounded">
-                        <img class="rounded-xl" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
-                            alt="image">
+                        <img class="rounded-xl" src="assets/images/Room2.jpg" alt="Room 2">
                     </div>
                     
                     <div class="w-full rounded">
-                        <img class="rounded-xl" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
-                            alt="image">
+                        <img class="rounded-xl" src="assets/images/Room3.jpg" alt="Room 3">
                     </div>
                     <div class="w-full rounded">
-                        <img class="rounded-xl" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=989&q=80"
-                            alt="image">
+                        <img class="rounded-xl" src="assets/images/Room4.jpg" alt="Room 4">
                     </div>
                     <div class="w-full rounded bg-gray-200 flex items-center justify-center">
                         <span class="text-2xl text-neutral-600">+ 6 ảnh khác</span>
@@ -133,7 +129,7 @@ session_start();
                                 </div>
                                 </div>
                                 <div class="flex flex-col mt-4">
-                                    <button class="bg-amber-400 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded">
+                                    <button class="bg-amber-400 hover:bg-amber-500 text-white font-bold py-2 px-4 rounded">
                                         Xem kết quả
                                     </button>
                                 </div>
@@ -170,29 +166,29 @@ session_start();
                                 </div>
                                 <form>
                                 <div  class='flex bg-white justify-start md:justify-center rounded-lg overflow-x-scroll py-4 px-2 mb-6'>
-                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-300	 cursor-pointer justify-center w-16'>
+                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150	 cursor-pointer justify-center w-16'>
                                         <div class='flex items-center px-4 py-4'>
                                             <div class='text-center'>
-                                            <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-300'> Sun </p>
-                                            <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-300'> 11 </p>
+                                            <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Sun </p>
+                                            <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 11 </p>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-300	 cursor-pointer justify-center w-16'>
+                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150	 cursor-pointer justify-center w-16'>
                                         <div class='flex items-center px-4 py-4'>
                                             <div class='text-center'>
-                                            <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-300'> Mon </p>
-                                            <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-300'> 12 </p>
+                                            <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Mon </p>
+                                            <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 12 </p>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-300	 cursor-pointer justify-center w-16'>
+                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150	 cursor-pointer justify-center w-16'>
                                         <div class='flex items-center px-4 py-4'>
                                             <div class='text-center'>
-                                            <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-300'> Tue </p>
-                                            <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-300'> 13</p>
+                                            <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Tue </p>
+                                            <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 13</p>
                                             </div>
                                         </div>
                                     </div>
@@ -210,29 +206,29 @@ session_start();
                                             </div>
                                         </div>
                                     
-                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-300 content-center	 cursor-pointer justify-center w-16'>
+                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150 content-center	 cursor-pointer justify-center w-16'>
                                             <div class='flex items-center px-4 py-4'>
                                                 <div class='text-center'>
-                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-300'> Thu </p>
-                                                <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-300'> 15 </p>
+                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Thu </p>
+                                                <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 15 </p>
                                                 </div>
                                             </div>
                                         </div>
                                     
-                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-300	 cursor-pointer justify-center w-16'>
+                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150	 cursor-pointer justify-center w-16'>
                                             <div class='flex items-center px-4 py-4'>
                                                 <div class='text-center'>
-                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-300'> Fri </p>
-                                                <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-300'> 16 </p>
+                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Fri </p>
+                                                <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 16 </p>
                                                 </div>
                                             </div>
                                         </div>
                                         
-                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-300	 cursor-pointer justify-center w-16'>
+                                    <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150	 cursor-pointer justify-center w-16'>
                                             <div class='flex items-center px-4 py-4'>
                                                 <div class='text-center'>
-                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-300'> Sat </p>
-                                                <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-300'> 17 </p>
+                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Sat </p>
+                                                <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 17 </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -255,7 +251,7 @@ session_start();
                                             <textarea id="message" rows="4" class="bg-gray-50 block p-2.5 w-full text-sm text-neutral-900 rounded-lg border border-gray-300 focus:ring-amber-500 focus:border-blue-500" placeholder="Ghi chú..."></textarea>
                                         </div>
                                     </div> 
-                                    <button type="submit" class="mt-2 text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg w-full px-5 py-2.5 text-center">Đặt lịch</button>
+                                    <button type="submit" class="mt-2 text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg w-full px-5 py-2.5 text-center font-bold">Đặt lịch</button>
                                 </form>
                             </div>
                         </div>

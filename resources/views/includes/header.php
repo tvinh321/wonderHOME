@@ -30,25 +30,25 @@
           <div class="flex space-x-4">
             <?php 
               foreach ($NAVLINK_VIE as &$value) 
-              echo "<a href='$value[1]' class='text-neutral-900 hover:bg-neutral-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>$value[0]</a>";
+              echo "<a href='$value[1]' class='text-neutral-900 hover:bg-neutral-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-all duration-150'>$value[0]</a>";
             ?>  
           </div>
         </div>
       </div>
       <div class="flex justify-center items-center">
-        <a href="">
+        <a href="/">
           <img class="inline-block w-[200px]" src="assets/images/logo.png" alt="wonderHOME">
         </a>  
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-4 md:pr-0">
-        <button type="button" class="hidden md:inline rounded-full p-1 mr-4 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+        <button type="button" class="hidden md:inline rounded-full p-1 mr-4 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-150">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"> <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/> </svg>
         </button>
         
 
         <button class="hidden md:flex group mr-4 text-amber-300 border border-amber-300 hover:border-transparent hover:bg-amber-300 font-bold py-2 px-4 rounded inline-flex items-center">
-          <span class="text-sm group-hover:text-white mr-1">Đăng tin</span>
-          <svg class="fill-amber-300 group-hover:fill-white xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M17,19.22H5V7h7V5H5C3.9,5,3,5.9,3,7v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-7h-2V19.22z"/><path d="M19,2h-2v3h-3c0.01,0.01,0,2,0,2h3v2.99c0.01,0.01,2,0,2,0V7h3V5h-3V2z"/><rect height="2" width="8" x="7" y="9"/><polygon points="7,12 7,14 15,14 15,12 12,12"/><rect height="2" width="8" x="7" y="15"/></svg>
+          <span class="text-sm group-hover:text-white mr-1 transition-all duration-150">Đăng tin</span>
+          <svg class="transition-all duration-150 fill-amber-300 group-hover:fill-white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M17,19.22H5V7h7V5H5C3.9,5,3,5.9,3,7v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-7h-2V19.22z"/><path d="M19,2h-2v3h-3c0.01,0.01,0,2,0,2h3v2.99c0.01,0.01,2,0,2,0V7h3V5h-3V2z"/><rect height="2" width="8" x="7" y="9"/><polygon points="7,12 7,14 15,14 15,12 12,12"/><rect height="2" width="8" x="7" y="15"/></svg>
         </button>
 
         <?php  if ($login) { ?>
@@ -62,7 +62,7 @@
           <!--
             Dropdown menu, show/hide based on menu state.
 
-            Entering: "transition ease-out duration-100"
+            Entering: "transition ease-out duration-150"
               From: "transform opacity-0 scale-95"
               To: "transform opacity-100 scale-100"
             Leaving: "transition ease-in duration-75"
@@ -77,8 +77,8 @@
         </div>
       <?php } else { ?>
         <button class="group mr-4 bg-amber-300 text-neutral-900 hover:bg-amber-300 font-bold py-2 px-4 rounded inline-flex items-center">
-          <span class="hidden md:inline text-sm group-hover:text-white mr-1">Đăng ký / Đăng nhập</span>
-          <svg class="fill-neutral-900 group-hover:fill-white" xmlns="http://www.w3.org/2000/svg"  width="20" height="20" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M12 17c3.662 0 6.865 1.575 8.607 3.925l-1.842.871C17.347 20.116 14.847 19 12 19c-2.847 0-5.347 1.116-6.765 2.796l-1.841-.872C5.136 18.574 8.338 17 12 17zm0-15a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/> </g> </svg>  
+          <span class="hidden md:inline text-sm group-hover:text-white mr-1 transition-all duration-150">Đăng ký / Đăng nhập</span>
+          <svg class="fill-neutral-900 group-hover:fill-white transition-all duration-150" xmlns="http://www.w3.org/2000/svg"  width="20" height="20" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M12 17c3.662 0 6.865 1.575 8.607 3.925l-1.842.871C17.347 20.116 14.847 19 12 19c-2.847 0-5.347 1.116-6.765 2.796l-1.841-.872C5.136 18.574 8.338 17 12 17zm0-15a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/> </g> </svg>  
         </button>
       <?php } ?>
       </div>

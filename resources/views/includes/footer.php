@@ -1,4 +1,4 @@
-<footer class="p-16 bg-neutral-900 mt-14">
+<footer class="p-16 bg-neutral-900">
     <div>
         <div class="mb-4 flex items-center justify-between">
             <h1 class="text-lg pr-12 md:p-0 md:text-3xl font-bold text-white">Biến tổ ấm trong mơ <span class="text-amber-300">thành hiện thực</span></h1>
