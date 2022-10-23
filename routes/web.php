@@ -20,3 +20,9 @@ Route::get('/', function () {
 Route::get('/thong-tin', function () {
     return view('thong-tin');
 });
+
+Route::get('/add-example', [App\Http\Controllers\PropertyController::class, 'addExample']);
+
+Route::get('/properties', [App\Http\Controllers\PropertyController::class, 'index']);
+
+Route::get('/property/{id}', [App\Http\Controllers\PropertyController::class, 'show']);
