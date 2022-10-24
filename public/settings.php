@@ -4,10 +4,10 @@
 
     //available pages
     $PAGES = ["home"];
-    $SERVICES = ["mua-nha", "ban-nha", "tim-chuyen-gia"];
+    $SERVICES = ["nha-dat-ban", "tim-chuyen-gia", "huong-dan"];
     $PROPERTY = ["thong-tin"];
 
-    $NAVLINK_VIE = array(["Mua nhà", "dich-vu/".$SERVICES[0]], ["Bán nhà", "dich-vu/".$SERVICES[1]], ["Tìm chuyên gia", "dich-vu/".$SERVICES[2]], ["Hướng dẫn", ""]); 
+    $NAVLINK_VIE = array(["Nhà đất bán", "dich-vu/".$SERVICES[0]], ["Tìm chuyên gia", "dich-vu/".$SERVICES[1]], ["Hướng dẫn", "dich-vu/".$SERVICES[2]]); 
 
     //Font
     $FONT_FAMILY = "Lexend";

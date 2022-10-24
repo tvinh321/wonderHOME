@@ -39,14 +39,14 @@ session_start();
                 <div class="flex justify-center items-center">
                     <div class="absolute w-10/12 md:w-3/5 shadow-lg rounded-xl">
                         <div class="flex justify-between items-center h-full">
-                            <div class="flex justify-center items-center w-4/6 lg:w-10/12 h-20">
-                                <input type="text" class="pl-10 w-full h-20 rounded-l-xl text-xl" placeholder="Tìm kiếm">
+                            <div class="flex justify-center items-center w-4/5 lg:w-10/12 md:h-16 h-12">
+                                <input type="text" class="pl-10 w-full md:h-16 h-12 rounded-l-xl text-lg" placeholder="Tìm kiếm...">
                             </div>
-                            <div class="flex justify-center items-center w-2/6 lg:w-2/12 h-20">
+                            <div class="flex justify-center items-center w-2/6 lg:w-2/12 md:h-16 h-12">
                                 <button class="w-full h-full bg-amber-400 text-neutral-900 rounded-r-xl text-lg font-bold hover:bg-amber-300 transition-all duration-150">
                                 <div class="flex items-center justify-center">
-                                        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"> <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/> </svg>
-                                        <span>Tìm kiếm</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"> <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/> </svg>
+                                        <span class="ml-2 hidden md:inline">Tìm kiếm</span>
                                 </div>
                                 </button>
                             </div>
@@ -92,51 +92,7 @@ session_start();
             <div class="lg:px-48 px-8 lg:pt-80 lg:pb-36 md:my-64 lg:my-0 my-24 py-24 bg-gray-100 w-full">
                 <!-- A line w-32 with gradient from amber to purple -->
                 <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
-                <h1 class="font-bold text-4xl mt-4">Tìm nhà theo sở thích của bạn</h1>
-
-                <!-- Advanced Search Bar -->
-                <div class="flex justify-center items-center my-24 md:my-8 lg:mt-12 lg:mb-24 h-72 lg:h-48 lg:h-fit">
-                    <div class="w-full">
-                        <!-- Filter Select Bar with 4 criteria -->
-                        <div class="text-md grid lg:grid-cols-4 md:grid-cols-2 md:gap-4 lg:gap-0 lg:h-20 text-neutral-900 lg:shadow-xl">
-                            <div class="w-full h-20 mt-4">
-                                <select class="w-full h-full rounded-xl lg:rounded-sm lg:rounded-l-xl p-5 shadow-lg lg:shadow-none">
-                                    <option value="0" disabled selected>Vị trí</option>
-                                    <option value="1">Hà Nội</option>
-                                    <option value="2">Hồ Chí Minh</option>
-                                    <option value="3">Đà Nẵng</option>
-                                </select>
-                            </div>
-                            <div class="w-full h-20 mt-4">
-                                <select class="w-full h-full rounded-xl lg:rounded-sm lg:rounded-xl-none text-lg p-5 shadow-lg lg:shadow-none">
-                                    <option value="0" disabled selected>Kiểu nhà</option>
-                                    <option value="1">Nhà riêng</option>
-                                    <option value="2">Nhà chung cư / Căn hộ</option>
-                                    <option value="3">Nhà biệt thự</option>
-                                </select>
-                            </div>
-                            <div class="w-full h-20 mt-4">
-                                <select class="w-full h-full rounded-xl lg:rounded-sm text-lg p-5 shadow-lg lg:shadow-none">
-                                    <option value="0" disabled selected>Mức giá</option>
-                                    <option value="1">Dưới 500 triệu</option>
-                                    <option value="2">500 triệu - 1 tỷ</option>
-                                    <option value="3">1 tỷ - 3 tỷ</option>
-                                    <option value="4">3 tỷ - 5 tỷ</option>
-                                    <option value="5">5 tỷ - 10 tỷ</option>
-                                    <option value="6">Trên 10 tỷ</option>
-                                    <option value="7">Thỏa thuận</option>
-                                </select>
-                            </div>
-                            <div class="w-full h-20 mt-4">
-                                <select class="w-full h-full rounded-xl lg:rounded-sm lg:rounded-r-xl text-lg p-5 shadow-lg lg:shadow-none">
-                                    <option value="0" disabled selected>Tiêu chí khác</option>
-                                    <option value="1">Mặt tiền</option>
-                                    <option value="2">Chính chủ</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h1 class="font-bold text-3xl mt-4">Bất động sản dành cho bạn</h1>
 
                 <!-- House Selection with Grids 3 columns, 2 rows -->
                 <div class="mx-auto mt-16">
@@ -289,7 +245,7 @@ session_start();
                 </div>
                 <div class="w-full lg:w-1/2 px-12 py-24 flex justify-center flex-col">
                     <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
-                    <h1 class="font-bold mt-4" style="font-size:50px;">Tiêu đề</h1>
+                    <h1 class="font-bold mt-4" style="font-size:40px;">Tiêu đề</h1>
                     <p class="text-xl mt-4 leading-relaxed text-gray-700">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae odit voluptatem neque sed laboriosam aliquam sapiente, nam enim, cum asperiores eum fugit ea nihil? Eaque facilis placeat ipsa debitis beatae? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae odit voluptatem neque sed laboriosam aliquam sapiente, nam enim, cum asperiores eum fugit ea nihil? Eaque facilis placeat ipsa debitis beatae?</p>
                     <button class="flex items-center justify-center mt-8 bg-black px-8 py-4 text-gray-200 rounded-tr-xl w-fit hover:bg-amber-400 hover:text-black transition-all duration-150">
                         <p class="font-bold">Đọc tiếp</p>
@@ -300,7 +256,7 @@ session_start();
             <div class="bg-black flex flex-col justify-center items-center py-24">
                 <div class="px-8 xl:w-1/3 flex flex-col justify-center items-center">
                     <div class="w-32 h-1 bg-gradient-to-r from-amber-400 to-black"></div>
-                    <h1 class="font-bold mt-4 text-gray-100" style="font-size:50px;">Tiêu đề</h1>
+                    <h1 class="font-bold mt-4 text-gray-100" style="font-size:40px;">Tiêu đề</h1>
                     <p class="text-xl mt-4 leading-relaxed text-gray-400 font-light text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae odit voluptatem neque sed laboriosam aliquam sapiente, nam enim, cum asperiores eum fugit ea nihil? Eaque facilis placeat ipsa debitis beatae? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae odit voluptatem neque sed laboriosam aliquam sapiente, nam enim, cum asperiores eum fugit ea nihil? Eaque facilis placeat ipsa debitis beatae?</p>
                     <button class="flex items-center justify-center mt-8 bg-amber-400 px-8 py-4 text-neutral-900 rounded-tr-xl w-fit hover:bg-amber-300 transition-all duration-150">
                         <p class="font-bold">Đọc tiếp</p>
