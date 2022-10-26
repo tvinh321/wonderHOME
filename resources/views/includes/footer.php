@@ -1,3 +1,6 @@
+<?php
+    require("back-to-top.php");
+?>
 <footer class="p-16 bg-neutral-900">
     <div>
         <div class="mb-4 flex items-center justify-between">
