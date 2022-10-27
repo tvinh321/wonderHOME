@@ -13,6 +13,7 @@ session_start();
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/home.css">
     </head>
@@ -35,28 +36,98 @@ session_start();
             </div>
 
             <!-- Search Bar -->
-            <div class="h-20">
-                <div class="flex justify-center items-center">
-                    <div class="absolute w-10/12 md:w-3/5 shadow-lg rounded-xl">
-                        <div class="flex justify-between items-center h-full">
-                            <div class="flex justify-center items-center w-4/5 lg:w-10/12 md:h-16 h-12">
-                                <input type="text" class="pl-10 w-full md:h-16 h-12 rounded-l-xl text-lg" placeholder="Tìm kiếm...">
-                            </div>
-                            <div class="flex justify-center items-center w-2/6 lg:w-2/12 md:h-16 h-12">
-                                <button class="w-full h-full bg-amber-400 text-neutral-900 rounded-r-xl text-lg font-bold hover:bg-amber-300 transition-all duration-150">
-                                <div class="flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"> <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/> </svg>
-                                        <span class="ml-2 hidden md:inline">Tìm kiếm</span>
+            
+            <div class="flex justify-center items-center">
+                <div class="z-50 absolute p-5 w-11/12 md:w-4/5 shadow-lg rounded-xl bg-white">        
+                    <div class="relative">
+                        <div class="flex items-center justify-between gap-5">                    
+                            <form class="w-5/6">
+                                <div x-data="{ open: false }" class="flex">
+                                    <label for="search-dropdown" class="text-sm font-medium text-neutral-500 sr-only">Loại nhà</label>
+                                    <button @click="open = !open" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100" type="button">Loại nhà đất <svg aria-hidden="true" class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
+                                    <div x-show="open" @click.away="open = false" class="absolute top-12 z-50 w-44 bg-white rounded divide-gray-100 shadow">
+                                        <ul class="py-1 text-sm text-neutral-900" aria-labelledby="dropdown-button">
+                                            <li class="w-full rounded-t-lg border-b border-gray-200">
+                                                <div class="flex items-center pl-3">
+                                                    <input id="house-checkbox" type="checkbox" value="" class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2">
+                                                    <label for="house-checkbox" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Nhà riêng</label>
+                                                </div>
+                                            </li>
+                                            <li class="w-full rounded-t-lg border-b border-gray-200">
+                                                <div class="flex items-center pl-3">
+                                                    <input id="villa-checkbox" type="checkbox" value="" class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2">
+                                                    <label for="villa-checkbox" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Biệt thự</label>
+                                                </div>
+                                            </li>
+                                            <li class="w-full rounded-t-lg border-b border-gray-200">
+                                                <div class="flex items-center pl-3">
+                                                    <input id="apartment-checkbox" type="checkbox" value="" class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2">
+                                                    <label for="apartment-checkbox" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Căn hộ cao cấp</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="relative w-full">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                        </div>
+                                        <input type="search" id="search-dropdown" class="block p-4 pl-10 w-full z-20 text-sm text-gray-900 rounded-r-lg border-l-gray-50 border-l-2 border border-neutral-300" placeholder="Tìm nhà cho bạn..." required>
+                                        <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2">Tìm</button>
+                                    </div>                                 
                                 </div>
-                                </button>
+                            </form>
+
+                            <span class="flex items-center justify-end gap-2 w-1/5 text-right">
+                                <svg style="color: rgb(255, 191, 36);" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16"> <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" fill="#ffbf24"></path> </svg>
+                                <span @click="show = !show" class="text-amber-500 underline">Bộ lọc</span>
+                            </span>
+                        </div>
+
+
+                        <div class="hidden">
+                            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">                               
+                                <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                <option value="" selected>Toàn quốc</option>
+                                <option value="fully-furnished">Fully Furnished</option>
+                                <option value="partially-furnished">Partially Furnished</option>
+                                <option value="not-furnished">Not Furnished</option>
+                                </select>
+
+                                <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                <option value="" selected disabled>Mức giá</option>
+                                <option value="1000">RM 1000</option>
+                                <option value="2000">RM 2000</option>
+                                <option value="3000">RM 3000</option>
+                                <option value="4000">RM 4000</option>
+                                </select>
+
+                                <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                <option value="" selected disabled>Diện tích</option>
+                                <option value="200">200 sq.ft</option>
+                                <option value="400">400 sq.ft</option>
+                                <option value="600">600 sq.ft</option>
+                                <option value="800 sq.ft">800</option>
+                                <option value="1000 sq.ft">1000</option>
+                                <option value="1200 sq.ft">1200</option>
+                                </select>
+
+                                <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                <option value="">Bộ lọc khác</option>
+                                <option value="1">1 bedroom</option>
+                                <option value="2">2 bedrooms</option>
+                                <option value="3">3 bedrooms</option>
+                                <option value="4">4 bedrooms</option>
+                                <option value="5">5 bedrooms</option>
+                                </select>                        
                             </div>
                         </div>
                     </div>
+                    </div>                     
                 </div>
             </div>
 
             <!-- Grid 3 Content -->
-            <div class="md:relative flex justify-center items-center w-10/12 lg:w-3/5 mx-auto mt-8 md:h-56 lg:h-52 4xl:h-96">
+            <div class="md:relative flex justify-center items-center w-10/12 lg:w-3/5 mx-auto mt-32 md:h-56 lg:h-52 4xl:h-96">
                 <div class="md:absolute md:-bottom-48 grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150">
                         <img class="w-full h-50" src="assets/images/buy-a-home.jpg" alt="Buy a home">
@@ -81,7 +152,7 @@ session_start();
                         <div class="p-6 pb-12">
                             <div class="font-bold text-xl mb-2">Tìm Chuyên Gia</div>
                             <p class="text-gray-700 text-base">
-                                Chúng tôi sẽ giúp bạn kết nối với những chuyên gia để đáp ứng tất cả yêu cầu của bạn.
+                                Chúng tôi giúp bạn kết nối với những chuyên gia để đáp ứng yêu cầu của bạn.
                             </p>
                         </div>
                     </div>
@@ -315,5 +386,6 @@ session_start();
             // footer
             require("includes/footer.php");
         ?>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     </body>
 </html>
