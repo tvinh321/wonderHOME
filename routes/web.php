@@ -21,8 +21,18 @@ Route::get('/thong-tin', function () {
     return view('thong-tin');
 });
 
-Route::get('/add-example', [App\Http\Controllers\PropertyController::class, 'addExample']);
 
-Route::get('/properties', [App\Http\Controllers\PropertyController::class, 'index']);
+// Get cities
+Route::get('/api/cities', [App\Http\Controllers\LocationController::class, 'getCities']);
 
-Route::get('/property/{id}', [App\Http\Controllers\PropertyController::class, 'show']);
+// Get districts
+Route::get('/api/districts/{city_id}', [App\Http\Controllers\LocationController::class, 'getDistricts']);
+
+// Get wards
+Route::get('/api/wards/{district_id}', [App\Http\Controllers\LocationController::class, 'getWards']);
+
+// Get properties
+Route::get('/api/properties', [App\Http\Controllers\PropertiesController::class, 'getProperties']);
+
+// Get property
+Route::get('/api/property/{id}', [App\Http\Controllers\PropertiesController::class, 'getProperty']);
