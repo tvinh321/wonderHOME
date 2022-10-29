@@ -76,10 +76,12 @@
           </div>
         </div>
       <?php } else { ?>
-        <button class="group mr-4 bg-amber-300 text-neutral-900 hover:bg-amber-300 font-bold py-2 px-4 rounded inline-flex items-center">
-          <span class="hidden md:inline text-sm group-hover:text-white mr-1 transition-all duration-150">Đăng ký / Đăng nhập</span>
-          <svg class="fill-neutral-900 group-hover:fill-white transition-all duration-150" xmlns="http://www.w3.org/2000/svg"  width="20" height="20" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M12 17c3.662 0 6.865 1.575 8.607 3.925l-1.842.871C17.347 20.116 14.847 19 12 19c-2.847 0-5.347 1.116-6.765 2.796l-1.841-.872C5.136 18.574 8.338 17 12 17zm0-15a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/> </g> </svg>  
-        </button>
+        <a href="/dang-nhap">
+          <button class="group mr-4 bg-amber-300 text-neutral-900 hover:bg-amber-300 font-bold py-2 px-4 rounded inline-flex items-center">
+            <span class="hidden md:inline text-sm group-hover:text-white mr-1 transition-all duration-150">Đăng ký / Đăng nhập</span>
+            <svg class="fill-neutral-900 group-hover:fill-white transition-all duration-150" xmlns="http://www.w3.org/2000/svg"  width="20" height="20" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M12 17c3.662 0 6.865 1.575 8.607 3.925l-1.842.871C17.347 20.116 14.847 19 12 19c-2.847 0-5.347 1.116-6.765 2.796l-1.841-.872C5.136 18.574 8.338 17 12 17zm0-15a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"/> </g> </svg>  
+          </button>
+      </a>
       <?php } ?>
       </div>
     </div>

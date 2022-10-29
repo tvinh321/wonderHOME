@@ -21,6 +21,10 @@ Route::get('/thong-tin', function () {
     return view('thong-tin');
 });
 
+Route::get('/dang-nhap', function () {
+    return view('dang-nhap');
+});
+
 
 // Get cities
 Route::get('/api/cities', [App\Http\Controllers\LocationController::class, 'getCities']);
