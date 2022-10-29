@@ -34,7 +34,7 @@ session_start();
                 </div>
 
                 <!-- Image gallery  -->
-                <div class="grid-cols-4 space-y-4 md:space-y-0 md:grid md:gap-3 md:grid-rows-2">
+                <div class="grid-cols-4 space-y-4 md:space-y-0 md:grid md:gap-2 md:grid-rows-2">
                     <div class="w-full col-span-2 row-span-2">
                         <img class="rounded-xl md:h-full md:object-cover" src="assets/images/Room5.jpg" alt="Room 1">
                     </div>
@@ -55,17 +55,17 @@ session_start();
                 </div>
                 <div class="w-full rounded pt-2">
                     <div class="mt-4 flex justify-items-end">
-                        <span class="text-sm inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold border-b border-t border-l border-neutral-900 rounded-l-lg justify-center items-center">
-                            <svg class="mr-2 fill-amber-400" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,7V5h-3V2h-2v3h-4V2h-2v3H7V2H5v3H2v2h3v4H2v2h3v4H2v2h3v3h2v-3h4v3h2v-3h4v3h2v-3h3v-2h-3v-4h3v-2h-3V7H22z M7,7h4v4 H7V7z M7,17v-4h4v4H7z M17,17h-4v-4h4V17z M17,11h-4V7h4V11z"/></svg>
-                            <span>215 m2</span>
+                        <span class="text-sm flex py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border-b border-t border-l border-neutral-900 rounded-l-lg justify-center items-center">
+                            <svg class="mr-2 fill-amber-400" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7,6A1,1,0,1,0,8,7,1,1,0,0,0,7,6Zm14.71,5.78L12.23,2.32A1,1,0,0,0,11.5,2h-6a1,1,0,0,0-.71.29L2.29,4.78A1,1,0,0,0,2,5.49v6a1.05,1.05,0,0,0,.29.71l9.49,9.5a1.05,1.05,0,0,0,.71.29,1,1,0,0,0,.71-.29l8.51-8.51a1,1,0,0,0,.29-.71A1.05,1.05,0,0,0,21.71,11.78Zm-9.22,7.81L4,11.09V5.9L5.9,4h5.18l8.5,8.49Z"/></svg>    
+                            <span>5.8 tỷ</span>
                         </span>
-                        <span class="text-sm inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold border border-neutral-900 justify-center items-center">
+                        <span class="text-sm flex py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border border-neutral-900 justify-center items-center">
+                            <svg class="mr-2 fill-amber-400" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,7V5h-3V2h-2v3h-4V2h-2v3H7V2H5v3H2v2h3v4H2v2h3v4H2v2h3v3h2v-3h4v3h2v-3h4v3h2v-3h3v-2h-3v-4h3v-2h-3V7H22z M7,7h4v4 H7V7z M7,17v-4h4v4H7z M17,17h-4v-4h4V17z M17,11h-4V7h4V11z"/></svg>
+                            <span>118 m2</span>
+                        </span>
+                        <span class="text-sm flex py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border-b border-t border-r border-neutral-900 rounded-r-lg justify-center items-center">
                             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><title>ionicons-v5-g</title><path d="M384,240H96V136a40.12,40.12,0,0,1,40-40H376a40.12,40.12,0,0,1,40,40V240Z" style="fill:none;stroke:#f59e0b;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M48,416V304a64.19,64.19,0,0,1,64-64H400a64.19,64.19,0,0,1,64,64V416" style="fill:none;stroke:#f59e0b;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M48,416v-8a24.07,24.07,0,0,1,24-24H440a24.07,24.07,0,0,1,24,24v8" style="fill:none;stroke:#f59e0b;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M112,240V224a32.09,32.09,0,0,1,32-32h80a32.09,32.09,0,0,1,32,32v16" style="fill:none;stroke:#f59e0b;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M256,240V224a32.09,32.09,0,0,1,32-32h80a32.09,32.09,0,0,1,32,32v16" style="fill:none;stroke:#f59e0b;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
                             <span>3 phòng ngủ</span>
-                        </span>
-                        <span class="text-sm inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold border-b border-t border-r border-neutral-900 rounded-r-lg justify-center items-center">
-                            <svg class="mr-2" style="color: rgb(245, 158, 11);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"> <path fill="#f59e0b" d="M464,280H80V100A51.258,51.258,0,0,1,95.113,63.515l.4-.4a51.691,51.691,0,0,1,58.6-10.162,79.1,79.1,0,0,0,11.778,96.627l10.951,10.951-20.157,20.158,22.626,22.626,20.157-20.157h0L311.157,71.471h0l20.157-20.157L308.687,28.687,288.529,48.844,277.578,37.893a79.086,79.086,0,0,0-100.929-8.976A83.61,83.61,0,0,0,72.887,40.485l-.4.4A83.054,83.054,0,0,0,48,100V280H16v32H48v30.7a23.95,23.95,0,0,0,1.232,7.589L79,439.589A23.969,23.969,0,0,0,101.766,456h12.9L103,496h33.333L148,456H356.1l12,40H401.5l-12-40h20.73A23.969,23.969,0,0,0,433,439.589l29.766-89.3A23.982,23.982,0,0,0,464,342.7V312h32V280ZM188.52,60.52a47.025,47.025,0,0,1,66.431,0L265.9,71.471,199.471,137.9,188.52,126.951A47.027,47.027,0,0,1,188.52,60.52ZM432,341.4,404.468,424H107.532L80,341.4V312H432Z" class="ci-primary"></path> </svg>
-                            <span>2 toilet</span>
                         </span>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ session_start();
             <!-- House info  -->
             <div class="lg:px-32 px-8 lg:pb-24 lg:my-0 mb-24 py-24 bg-gray-100 w-full">
                 <div class="md:flex md:justify-between mb-4 md:gap-x-6">
-                    <div class="md:w-3/4 md:px-8 w-full">
+                    <div class="md:w-4/5 md:px-8 w-full">
                         <!-- Thông tin nhà  -->
                         <div class="mb-10 lg:mb-24">
                             <!-- A line w-32 with gradient from amber to purple -->
@@ -87,10 +87,83 @@ session_start();
                                     In oculis quidem se esse admonere interesse enim maxime placeat, facere possimus, omnis. Et quidem faciunt, ut labore et accurate disserendum et harum quidem exercitus quid.
                                 </p>
                             </div>
+
+                            <div class="text-sm grid-cols-2 space-y-4 gap-y-3 md:space-y-0 md:grid md:gap-x-20 md:my-10 my-6 fill-neutral-800 text-neutral-800">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="mr-2" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,7V5h-3V2h-2v3h-4V2h-2v3H7V2H5v3H2v2h3v4H2v2h3v4H2v2h3v3h2v-3h4v3h2v-3h4v3h2v-3h3v-2h-3v-4h3v-2h-3V7H22z M7,7h4v4 H7V7z M7,17v-4h4v4H7z M17,17h-4v-4h4V17z M17,11h-4V7h4V11z"/></svg>
+                                        <span>Diện tích</span>
+                                    </div>
+                                    <p>
+                                        118 m2
+                                    </p>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2 w-1/2">
+                                        <svg class="mr-2" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7,6A1,1,0,1,0,8,7,1,1,0,0,0,7,6Zm14.71,5.78L12.23,2.32A1,1,0,0,0,11.5,2h-6a1,1,0,0,0-.71.29L2.29,4.78A1,1,0,0,0,2,5.49v6a1.05,1.05,0,0,0,.29.71l9.49,9.5a1.05,1.05,0,0,0,.71.29,1,1,0,0,0,.71-.29l8.51-8.51a1,1,0,0,0,.29-.71A1.05,1.05,0,0,0,21.71,11.78Zm-9.22,7.81L4,11.09V5.9L5.9,4h5.18l8.5,8.49Z"/></svg>    
+                                        <span>Mức giá</span>
+                                    </div>
+                                    <p class="w-1/2 text-right">
+                                        5.8 tỷ
+                                    </p>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2 w-1/2">
+                                        <svg class="mr-2" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10,10v2H8v-2H10z M16,12v-2h-2v2H16z M21,14v8H3v-8h1v-4c0-4.42,3.58-8,8-8s8,3.58,8,8v4H21z M7,16H5v4h2V16z M11,16H9v4h2 V16z M11,4.08C8.16,4.56,6,7.03,6,10v4h5V4.08z M13,14h5v-4c0-2.97-2.16-5.44-5-5.92V14z M15,16h-2v4h2V16z M19,16h-2v4h2V16z"/></svg>
+                                        <span>Ban công</span>
+                                    </div>
+                                    <p class="w-1/2 text-right">
+                                        Đông-Bắc
+                                    </p>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2 w-1/2">
+                                        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><title>ionicons-v5-g</title><path d="M384,240H96V136a40.12,40.12,0,0,1,40-40H376a40.12,40.12,0,0,1,40,40V240Z" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M48,416V304a64.19,64.19,0,0,1,64-64H400a64.19,64.19,0,0,1,64,64V416" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M48,416v-8a24.07,24.07,0,0,1,24-24H440a24.07,24.07,0,0,1,24,24v8" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M112,240V224a32.09,32.09,0,0,1,32-32h80a32.09,32.09,0,0,1,32,32v16" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><path d="M256,240V224a32.09,32.09,0,0,1,32-32h80a32.09,32.09,0,0,1,32,32v16" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+                                        <span>Phòng ngủ</span>
+                                    </div>
+                                    <p class="w-1/2 text-right">
+                                        3 phòng
+                                    </p>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-x-2 w-1/2">
+                                    <svg class="mr-2" style="color: rgb(23, 23, 23);" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"> <path fill="#171717" d="M464,280H80V100A51.258,51.258,0,0,1,95.113,63.515l.4-.4a51.691,51.691,0,0,1,58.6-10.162,79.1,79.1,0,0,0,11.778,96.627l10.951,10.951-20.157,20.158,22.626,22.626,20.157-20.157h0L311.157,71.471h0l20.157-20.157L308.687,28.687,288.529,48.844,277.578,37.893a79.086,79.086,0,0,0-100.929-8.976A83.61,83.61,0,0,0,72.887,40.485l-.4.4A83.054,83.054,0,0,0,48,100V280H16v32H48v30.7a23.95,23.95,0,0,0,1.232,7.589L79,439.589A23.969,23.969,0,0,0,101.766,456h12.9L103,496h33.333L148,456H356.1l12,40H401.5l-12-40h20.73A23.969,23.969,0,0,0,433,439.589l29.766-89.3A23.982,23.982,0,0,0,464,342.7V312h32V280ZM188.52,60.52a47.025,47.025,0,0,1,66.431,0L265.9,71.471,199.471,137.9,188.52,126.951A47.027,47.027,0,0,1,188.52,60.52ZM432,341.4,404.468,424H107.532L80,341.4V312H432Z" class="ci-primary"></path> </svg>
+                                        <span>Phòng tắm</span>
+                                    </div>
+                                    <p class="w-1/2 text-right">
+                                        2 phòng
+                                    </p>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-x-2 w-1/2">
+                                        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-armchair-2" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"/> <path d="M5 10v-4a3 3 0 0 1 3 -3h8a3 3 0 0 1 3 3v4" /> <path d="M16 15v-2a3 3 0 1 1 3 3v3h-14v-3a3 3 0 1 1 3 -3v2" /> <path d="M8 12h8" /> <path d="M7 19v2" /> <path d="M17 19v2" /> </svg>  
+                                        <span>Nội thất</span>
+                                    </div>
+                                    <p class="w-1/2 text-right">
+                                        Mới 100% chưa qua sử dụng
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div>
+                               <div class="flex items-center justify-between">
+                                    <h5 class="font-bold text-lg">Hồ sơ pháp lý</h5>
+                                    <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline bg-green-500 text-white rounded-full">Đã xác minh</span>
+                               </div>
+                               <div class="leading-7 mt-3">
+                                    <p>Các loại giấy tờ đã xác minh:</p>
+                                    <ul class="list-disc pl-6">
+                                        <li>Căn cước công dân chủ sở hữu</li>
+                                        <li>Sổ đỏ</li>
+                                        <li>Sổ hồng</li>
+                                    </ul>
+                                    Để biết thêm thông tin về giấy tờ pháp lý, quý khách có thể <span class="underline text-amber-500">yêu cầu cung cấp giấy tờ pháp lý</span> từ người đăng tin.
+                               </div>
+                            </div>
                         </div>
 
                         <!-- Tiện nghi nhà  -->
-                        <div class="mb-10 lg:mb-24">
+                        <div class="mb-10 lg:mb-20">
                             <!-- A line w-32 with gradient from amber to purple -->
                             <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
                             <h1 class="font-bold text-2xl mt-4">Tiện nghi</h1>
@@ -106,12 +179,11 @@ session_start();
                                     <span class="w-12 h-12 flex items-center justify-center py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border border-neutral-400 rounded-md">
                                         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"> <path fill="var(--ci-primary-color, currentColor)" d="M382.825,304.576a131.562,131.562,0,0,0-253.65,0l-18.248,66.15A80,80,0,0,0,188.046,472H323.954a80,80,0,0,0,77.119-101.274Zm-20.682,116.5A47.638,47.638,0,0,1,323.954,440H188.046a48,48,0,0,1-46.272-60.765l18.248-66.149a99.563,99.563,0,0,1,191.956,0l18.248,66.149A47.636,47.636,0,0,1,362.143,421.08Z" class="ci-primary"/> <path fill="var(--ci-primary-color, currentColor)" d="M146.1,230.31c2.784-17.4-.908-36.027-10.4-52.463S111.92,148.9,95.463,142.611c-17.624-6.731-35.6-5.659-50.634,3.017C14.942,162.884,7.077,205.413,27.3,240.433c9.489,16.436,23.778,28.95,40.235,35.236a64.058,64.058,0,0,0,22.863,4.371,55.133,55.133,0,0,0,27.771-7.389C133.194,263.974,143.114,248.937,146.1,230.31Zm-31.6-5.058c-1.43,8.929-5.81,15.92-12.333,19.686S87.4,249,78.95,245.775c-9.613-3.671-18.115-11.251-23.941-21.342-11.2-19.4-8.538-42.8,5.82-51.092a23.483,23.483,0,0,1,11.847-3.058A31.951,31.951,0,0,1,84.044,172.5c9.613,3.673,18.115,11.252,23.941,21.343S116.124,215.091,114.5,225.252Z" class="ci-primary"/> <path fill="var(--ci-primary-color, currentColor)" d="M149.566,164.017c11.362,9.083,24.337,13.813,37.458,13.812a54.965,54.965,0,0,0,11.689-1.261c33.723-7.331,54.17-45.443,45.58-84.958h0c-4.03-18.546-13.828-34.817-27.588-45.818-14.735-11.78-32.189-16.239-49.147-12.551-33.722,7.33-54.169,45.442-45.58,84.957C126.009,136.745,135.807,153.016,149.566,164.017Zm24.788-99.506a22.258,22.258,0,0,1,4.732-.5c5.948,0,12.066,2.327,17.637,6.781,8.037,6.425,13.826,16.234,16.3,27.621h0c4.76,21.895-4.906,43.368-21.107,46.89-7.361,1.6-15.305-.628-22.367-6.275-8.037-6.426-13.826-16.235-16.3-27.621C148.488,89.506,158.154,68.033,174.354,64.511Z" class="ci-primary"/> <path fill="var(--ci-primary-color, currentColor)" d="M467.171,145.628c-15.028-8.676-33.013-9.748-50.634-3.017-16.457,6.287-30.746,18.8-40.235,35.236s-13.182,35.067-10.4,52.463c2.982,18.627,12.9,33.664,27.931,42.341a55.123,55.123,0,0,0,27.771,7.389,64.054,64.054,0,0,0,22.863-4.371c16.457-6.286,30.746-18.8,40.235-35.236C504.923,205.413,497.058,162.884,467.171,145.628Zm-10.18,78.805c-5.826,10.091-14.328,17.671-23.941,21.342-8.446,3.228-16.692,2.931-23.215-.837s-10.9-10.757-12.333-19.686c-1.626-10.161.686-21.314,6.513-31.4s14.328-17.67,23.941-21.343a31.955,31.955,0,0,1,11.368-2.221,23.483,23.483,0,0,1,11.847,3.058C465.529,181.631,468.194,205.028,456.991,224.433Z" class="ci-primary"/> <path fill="var(--ci-primary-color, currentColor)" d="M313.287,176.568a54.965,54.965,0,0,0,11.689,1.261c13.12,0,26.1-4.729,37.458-13.812,13.759-11,23.557-27.272,27.588-45.818,8.589-39.515-11.858-77.627-45.58-84.957-16.957-3.686-34.412.77-49.147,12.551-13.76,11-23.558,27.272-27.588,45.817C259.117,131.125,279.564,169.237,313.287,176.568Zm-14.31-78.16h0c2.474-11.387,8.263-21.2,16.3-27.621,5.572-4.454,11.689-6.781,17.637-6.781a22.258,22.258,0,0,1,4.732.5c16.2,3.522,25.866,25,21.107,46.89-2.476,11.387-8.265,21.2-16.3,27.622-7.061,5.646-15,7.874-22.367,6.275C303.883,141.776,294.217,120.3,298.977,98.408Z" class="ci-primary"/> </svg>
                                     </span>
-                                    
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Bản đồ  -->
+                         <!-- Bản đồ  -->
                         <div class="mb-10 lg:mb-24">
                             <!-- A line w-32 with gradient from amber to purple -->
                             <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
@@ -121,11 +193,10 @@ session_start();
                             <iframe class="w-full h-1/4" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no" src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=%C4%B0zmir+(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed"></iframe>
                             </div>
                         </div>
-                    </div>
-
+                    </div> 
                     
-                    <div class="max-w-sm w-full h-full md:pl-6">
-                        <div class="rounded-lg bg-white border border-gray-200 shadow-md py-8">
+                    <div class="max-w-sm w-full h-auto md:pl-6">
+                        <div class="h-full rounded-lg bg-white border border-gray-200 shadow-md py-8">
                             <div class="flex items-center justify-center md:flex-col md:gap-0 flex-row gap-x-10 md:mb-0 mb-6">
                                 <img class="w-16 h-16 rounded-full" src="assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
                                 <div class="max-w-fit text-center mt-1">

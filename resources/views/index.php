@@ -13,6 +13,7 @@ session_start();
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/home.css">
     </head>
@@ -35,28 +36,98 @@ session_start();
             </div>
 
             <!-- Search Bar -->
-            <div class="h-20">
-                <div class="flex justify-center items-center">
-                    <div class="absolute w-10/12 md:w-3/5 shadow-lg rounded-xl">
-                        <div class="flex justify-between items-center h-full">
-                            <div class="flex justify-center items-center w-4/5 lg:w-10/12 md:h-16 h-12">
-                                <input type="text" class="pl-10 w-full md:h-16 h-12 rounded-l-xl text-lg" placeholder="Tìm kiếm...">
-                            </div>
-                            <div class="flex justify-center items-center w-2/6 lg:w-2/12 md:h-16 h-12">
-                                <button class="w-full h-full bg-amber-400 text-neutral-900 rounded-r-xl text-lg font-bold hover:bg-amber-300 transition-all duration-150">
-                                <div class="flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"> <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/> </svg>
-                                        <span class="ml-2 hidden md:inline">Tìm kiếm</span>
+            
+            <div class="flex justify-center items-center">
+                <div class="z-50 absolute p-5 w-11/12 md:w-4/5 shadow-lg rounded-xl bg-white">        
+                    <div class="relative">
+                        <div class="flex items-center justify-between gap-5">                    
+                            <form class="w-5/6">
+                                <div x-data="{ open: false }" class="flex">
+                                    <label for="search-dropdown" class="text-sm font-medium text-neutral-500 sr-only">Loại nhà</label>
+                                    <button @click="open = !open" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100" type="button">Loại nhà đất <svg aria-hidden="true" class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
+                                    <div x-show="open" @click.away="open = false" class="absolute top-12 z-50 w-44 bg-white rounded divide-gray-100 shadow">
+                                        <ul class="py-1 text-sm text-neutral-900" aria-labelledby="dropdown-button">
+                                            <li class="w-full rounded-t-lg border-b border-gray-200">
+                                                <div class="flex items-center pl-3">
+                                                    <input id="house-checkbox" type="checkbox" value="" class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2">
+                                                    <label for="house-checkbox" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Nhà riêng</label>
+                                                </div>
+                                            </li>
+                                            <li class="w-full rounded-t-lg border-b border-gray-200">
+                                                <div class="flex items-center pl-3">
+                                                    <input id="villa-checkbox" type="checkbox" value="" class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2">
+                                                    <label for="villa-checkbox" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Biệt thự</label>
+                                                </div>
+                                            </li>
+                                            <li class="w-full rounded-t-lg border-b border-gray-200">
+                                                <div class="flex items-center pl-3">
+                                                    <input id="apartment-checkbox" type="checkbox" value="" class="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2">
+                                                    <label for="apartment-checkbox" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Căn hộ cao cấp</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="relative w-full">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                        </div>
+                                        <input type="search" id="search-dropdown" class="block p-4 pl-10 w-full z-20 text-sm text-gray-900 rounded-r-lg border-l-gray-50 border-l-2 border border-neutral-300" placeholder="Tìm nhà cho bạn..." required>
+                                        <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2">Tìm</button>
+                                    </div>                                 
                                 </div>
-                                </button>
+                            </form>
+
+                            <span class="flex items-center justify-end gap-2 w-1/5 text-right">
+                                <svg style="color: rgb(255, 191, 36);" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16"> <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" fill="#ffbf24"></path> </svg>
+                                <span onclick="showFilter()" class="text-amber-500 underline">Bộ lọc</span>
+                            </span>
+                        </div>
+
+
+                        <div id="filterFields" class="hidden">
+                            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">                               
+                                <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                <option value="" selected>Toàn quốc</option>
+                                <option value="fully-furnished">Fully Furnished</option>
+                                <option value="partially-furnished">Partially Furnished</option>
+                                <option value="not-furnished">Not Furnished</option>
+                                </select>
+
+                                <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                <option value="" selected disabled>Mức giá</option>
+                                <option value="1000">RM 1000</option>
+                                <option value="2000">RM 2000</option>
+                                <option value="3000">RM 3000</option>
+                                <option value="4000">RM 4000</option>
+                                </select>
+
+                                <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                <option value="" selected disabled>Diện tích</option>
+                                <option value="200">200 sq.ft</option>
+                                <option value="400">400 sq.ft</option>
+                                <option value="600">600 sq.ft</option>
+                                <option value="800 sq.ft">800</option>
+                                <option value="1000 sq.ft">1000</option>
+                                <option value="1200 sq.ft">1200</option>
+                                </select>
+
+                                <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                <option value="">Bộ lọc khác</option>
+                                <option value="1">1 bedroom</option>
+                                <option value="2">2 bedrooms</option>
+                                <option value="3">3 bedrooms</option>
+                                <option value="4">4 bedrooms</option>
+                                <option value="5">5 bedrooms</option>
+                                </select>                        
                             </div>
                         </div>
                     </div>
+                    </div>                     
                 </div>
             </div>
 
             <!-- Grid 3 Content -->
-            <div class="md:relative flex justify-center items-center w-10/12 lg:w-3/5 mx-auto mt-8 md:h-56 lg:h-52 4xl:h-96">
+            <div class="md:relative flex justify-center items-center w-10/12 lg:w-3/5 mx-auto mt-32 md:h-56 lg:h-52 4xl:h-96">
                 <div class="md:absolute md:-bottom-48 grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150">
                         <img class="w-full h-50" src="assets/images/buy-a-home.jpg" alt="Buy a home">
@@ -81,7 +152,7 @@ session_start();
                         <div class="p-6 pb-12">
                             <div class="font-bold text-xl mb-2">Tìm Chuyên Gia</div>
                             <p class="text-gray-700 text-base">
-                                Chúng tôi sẽ giúp bạn kết nối với những chuyên gia để đáp ứng tất cả yêu cầu của bạn.
+                                Chúng tôi giúp bạn kết nối với những chuyên gia để đáp ứng yêu cầu của bạn.
                             </p>
                         </div>
                     </div>
@@ -241,15 +312,47 @@ session_start();
             <!-- Image on the left, title on the right -->
             <div class="flex flex-col lg:flex-row">
                 <div class="w-full lg:w-1/2">
-                    <img style="height:100%;" src="assets/images/HouseLeft.jpeg" alt="Sunset in the mountains">
+                    <img style="height:100%;" src="assets/images/family.jpg" alt="Sunset in the mountains">
                 </div>
-                <div class="w-full lg:w-1/2 px-12 py-24 flex justify-center flex-col">
+                <div class="w-full lg:w-1/2 px-12 py-20 flex justify-center flex-col">
                     <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
-                    <h1 class="font-bold mt-4" style="font-size:40px;">Tiêu đề</h1>
-                    <p class="text-xl mt-4 leading-relaxed text-gray-700">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae odit voluptatem neque sed laboriosam aliquam sapiente, nam enim, cum asperiores eum fugit ea nihil? Eaque facilis placeat ipsa debitis beatae? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae odit voluptatem neque sed laboriosam aliquam sapiente, nam enim, cum asperiores eum fugit ea nihil? Eaque facilis placeat ipsa debitis beatae?</p>
-                    <button class="flex items-center justify-center mt-8 bg-black px-8 py-4 text-gray-200 rounded-tr-xl w-fit hover:bg-amber-400 hover:text-black transition-all duration-150">
-                        <p class="font-bold">Đọc tiếp</p>
-                    </button>
+                    <h1 class="font-bold mt-4 text-2xl">wonder<span class="text-amber-400">HOME</span></h1>
+                    <h1 class="font-bold mt-4 text-3xl leading-relaxed">Những ngôi nhà chất lượng cho khách hàng</h1>
+                    <div class="flex items-center justify-center max-w-screen-sm mx-auto">
+                        <div class="container mx-auto flex flex-col justify-center items-stretch py-2 sm:py-8" x-data="{tab: 1}">
+                            <div class="flex justify-start -space-x-px z-10">
+                                <a href="!#0" @click.prevent="tab = 1" :class="{'cursor-default border-b-0 bg-white': tab === 1, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 1}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none rounded-tl-lg border border-gray-400 outline-none shadow-none">Giới thiệu
+                                </a>
+                                <a href="!#0" @click.prevent="tab = 2" :class="{'cursor-default border-b-0 bg-white': tab === 2, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 2}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none  border border-gray-400 outline-none shadow-none">Nhiệm vụ
+                                </a>
+                                <!-- focus:outline-none focus:shadow-outline  -->
+                                <a href="!#0" @click.prevent="tab = 3" :class="{'cursor-default border-b-0 bg-white': tab === 3, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 3}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none border border-gray-400 rounded-tr-md outline-none shadow-none">Cam kết
+                                </a>
+                            </div>
+
+                            <div x-show="tab === 1" class="z-0 -mt-px px-6 py-8 
+                                border border-neutral-400 rounded-md rounded-tl-none 
+                                bg-gradient-to-b from-white via-gray-100 to-gray-200">
+                                <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Về chúng tôi - wonderHOME</h1>
+                                <p class="mt-4 text-base leading-relaxed">
+                                    wonderHOME là công ty Dịch vụ bất động sản hoạt động trên nền tảng công nghệ hiện đại giúp người dùng trải nghiệm giao dịch bất động sản tốt nhất. wonderHOME chuẩn hóa quy trình giao dịch và cung cấp giải pháp tối ưu giúp cho giao dịch mua bán nhà đất và bất động sản an toàn, hiệu quả và tiết kiệm thời gian.
+                                </p>
+                            </div>
+                            <div x-show="tab === 2" class="z-0 -mt-px px-6 py-8 
+                                border border-gray-400 rounded-md rounded-tl-none 
+                                bg-gradient-to-br from-white via-white to-yellow-100">
+                                <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Mang đến bất động sản "thật" cho bạn</h1>
+                                <p class="mt-4 text-base leading-snug">Lorem ipsum dolor sit maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
+                            </div>
+                            <div x-show="tab === 3" class="z-0 -mt-px px-6 py-8 
+                                border border-gray-400 rounded-md rounded-tl-none 
+                                bg-gradient-to-bl from-white via-white to-blue-100">
+                                <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Đảm bảo an toàn cho bạn</h1>
+                                <p class="mt-4 text-base leading-snug">Lorem ipsum dolor sit amet consectet officia maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -315,5 +418,22 @@ session_start();
             // footer
             require("includes/footer.php");
         ?>
+        <!-- from node_modules -->
+        <script src="node_modules/@material-tailwind/html/scripts/tabs.js"></script>
+        <!-- from cdn -->
+        <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+        <script>
+            function showFilter() {
+                var x = document.getElementById("filterFields");
+                if (x.classList.contains("hidden")) {
+                    x.classList.remove("hidden");
+                    x.classList.add("inline-block");
+                } else {
+                    x.classList.add("hidden");
+                    x.classList.remove("inline-block");
+                }
+                }
+        </script>
     </body>
 </html>
