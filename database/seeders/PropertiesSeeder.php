@@ -7,6 +7,24 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
+/* $table->uuid('id')->primary()->default(Str::orderedUuid());
+    $table->string('title', 255);
+    $table->timestamp('created_at');
+    $table->string('location', 64);
+    $table->text('description');
+    $table->smallInteger('num_of_bedrooms');
+    $table->smallInteger('num_of_toilets');
+    $table->smallInteger('direction');
+    $table->integer('price');
+    $table->smallInteger('priority');
+    $table->float('facade');
+    $table->float('area');
+    $table->date('expire_date');
+    $table->smallInteger('juridical_status');
+    $table->uuid('Juridicals_id');
+    $table->uuid('Users_id');
+    $table->uuid('Wards_id'); */
+
 class PropertiesSeeder extends Seeder
 {
     /**
@@ -46,22 +64,23 @@ class PropertiesSeeder extends Seeder
             $title = ['Bán nhà ', 'Bán căn hộ ', 'Bán căn hộ chung cư ', 'Bán nhà mặt tiền '][array_rand([0, 1, 2, 3])];
 
             DB::table('properties')->insert([
-                'id' => Str::uuid(),
+                'id' => Str::orderedUuid(),
                 'title' => $title . (number_format( (float) ($price / 1000000000), 1, '.', '')) . ' tỷ ' . $area . 'm2',
                 'created_at' => now(),
                 'location' => $loca,
-                'description' => 'Mô tả',
+                'description' => 'Đây là mô tả',
                 'num_of_bedrooms' => rand(1, 5),
                 'num_of_toilets' => rand(1, 5),
-                'direction' => rand(1, 4),
+                'direction' => rand(1, 16),
                 'price' => $price,
                 'priority' => rand(1, 5),
                 'facade' => rand(20, 100),
                 'area' => $area,
                 'expire_date' => now()->addDays(rand(50, 100)),
-                'Wards_id' => $ward->id,
+                'juridical_status' => rand(-1, 1),
                 'Juridicals_id' => $juridical->id,
                 'Users_id' => $user->id,
+                'Wards_id' => $ward->id,
             ]);
         }
     }

@@ -5,9 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /* CREATE TABLE Favorites (
-    Users_id int  NOT NULL,
     Properties_id int  NOT NULL,
-    CONSTRAINT Favorites_pk PRIMARY KEY (Users_id,Properties_id)
+    Users_id int  NOT NULL,
+    CONSTRAINT Properties_Users_pk PRIMARY KEY (Properties_id,Users_id)
 ); */
 
 return new class extends Migration
@@ -20,9 +20,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->uuid('Users_id');
             $table->uuid('Properties_id');
-            $table->primary(['Users_id', 'Properties_id']);
+            $table->uuid('Users_id');
+            $table->primary(['Properties_id', 'Users_id']);
         });
     }
 

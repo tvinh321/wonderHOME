@@ -17,22 +17,16 @@ class JuridicalsSeeder extends Seeder
     public function run()
     {
         DB::table('juridicals')->insert([
-            'id' => Str::uuid(),
-            'type' => 'Sổ Hồng/ Sổ Đỏ',
-            'path' => 'https://www.google.com',
-            'status' => 1
+            'type' => 'Sổ đỏ'
         ]);
         DB::table('juridicals')->insert([
-            'id' => Str::uuid(),
-            'type' => 'Sổ Xanh',
-            'path' => 'https://www.google.com',
-            'status' => 1
+            'type' => 'Sổ hồng'
         ]);
         DB::table('juridicals')->insert([
-            'id' => Str::uuid(),
-            'type' => 'Sổ Trắng',
-            'path' => 'https://www.google.com',
-            'status' => 0
+            'type' => 'Sổ xanh'
+        ]);
+        DB::table('juridicals')->insert([
+            'type' => 'Sổ trắng'
         ]);
     }
 }

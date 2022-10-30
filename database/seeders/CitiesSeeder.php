@@ -17,15 +17,12 @@ class CitiesSeeder extends Seeder
     public function run()
     {
         DB::table('cities')->insert([
-            'id' => Str::uuid(),
             'name' => 'Hà Nội'
         ]);
         DB::table('cities')->insert([
-            'id' => Str::uuid(),
             'name' => 'Hồ Chí Minh'
         ]);
         DB::table('cities')->insert([
-            'id' => Str::uuid(),
             'name' => 'Đà Nẵng'
         ]);
     }

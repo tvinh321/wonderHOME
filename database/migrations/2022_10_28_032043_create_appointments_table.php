@@ -21,11 +21,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('appointments', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->dateTime('from_time');
-            $table->dateTime('to_time');
-            $table->uuid('buyer');
-            $table->uuid('seller');
+            $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
+            $table->timestamp('from_time');
+            $table->timestamp('to_time');
         });
     }
 

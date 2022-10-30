@@ -21,7 +21,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('districts', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
             $table->string('name', 32);
             $table->uuid('Cities_id');
         });
