@@ -87,10 +87,10 @@ session_start();
                         <div id="filterFields" class="hidden">
                             <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">                               
                                 <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                                <option value="" selected>Toàn quốc</option>
-                                <option value="fully-furnished">Fully Furnished</option>
-                                <option value="partially-furnished">Partially Furnished</option>
-                                <option value="not-furnished">Not Furnished</option>
+                                    <option value="" selected>Toàn quốc</option>
+                                    <option value="fully-furnished">Fully Furnished</option>
+                                    <option value="partially-furnished">Partially Furnished</option>
+                                    <option value="not-furnished">Not Furnished</option>
                                 </select>
 
                                 <select class="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
