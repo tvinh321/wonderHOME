@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 /* CREATE TABLE Juridicals (
     id int  NOT NULL,
-    path varchar(256)  NOT NULL,
-    status smallint  NOT NULL,
+    type varchar(32)  NOT NULL,
     CONSTRAINT Juridicals_pk PRIMARY KEY (id)
 ); */
 
@@ -21,10 +20,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('juridicals', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
             $table->string('type', 32);
-            $table->string('path', 256);
-            $table->smallInteger('status');
         });
     }
 

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 /* CREATE TABLE Reports (
     id int  NOT NULL,
     content Text()  NOT NULL,
-    Users_id int  NOT NULL,
+    Properties_id int  NOT NULL,
     CONSTRAINT Reports_pk PRIMARY KEY (id)
 ); */
 
@@ -21,9 +21,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reports', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
             $table->text('content');
-            $table->uuid('Users_id');
+            $table->uuid('Properties_id');
         });
     }
 

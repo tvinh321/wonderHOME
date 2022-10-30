@@ -6,9 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 /* CREATE TABLE Files (
     id int  NOT NULL,
-    path varchar(256)  NOT NULL,
     type varchar(16)  NOT NULL,
-    Properties_id int  NOT NULL,
+    content Binary()  NOT NULL,
+    Properties_id int  NULL,
+    Blogs_id int  NULL,
+    Messages_id int  NULL,
     CONSTRAINT Files_pk PRIMARY KEY (id)
 ); */
 
@@ -22,10 +24,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('files', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('path', 256);
+            $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
             $table->string('type', 16);
-            $table->uuid('Properties_id');
+            $table->binary('content');
+            $table->uuid('Properties_id')->nullable();
+            $table->uuid('Blogs_id')->nullable();
+            $table->uuid('Messages_id')->nullable();
         });
     }
 

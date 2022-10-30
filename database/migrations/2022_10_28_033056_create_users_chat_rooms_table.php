@@ -4,11 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/* CREATE TABLE CallRequests (
-    id int  NOT NULL,
-    phone varchar(14)  NOT NULL,
+/* CREATE TABLE Users_ChatRooms (
     Users_id int  NOT NULL,
-    CONSTRAINT CallRequests_pk PRIMARY KEY (id)
+    ChatRooms_id int  NOT NULL,
+    CONSTRAINT Users_ChatRooms_pk PRIMARY KEY (Users_id,ChatRooms_id)
 ); */
 
 return new class extends Migration
@@ -20,10 +19,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('call_requests', function (Blueprint $table) {
-            $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
-            $table->string('phone', 14);
+        Schema::create('users_chat_rooms', function (Blueprint $table) {
             $table->uuid('Users_id');
+            $table->uuid('ChatRooms_id');
+            $table->primary(['Users_id', 'ChatRooms_id']);
         });
     }
 
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('call_requests');
+        Schema::dropIfExists('users_chat_rooms');
     }
 };

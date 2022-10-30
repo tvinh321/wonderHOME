@@ -18,7 +18,7 @@ session_start();
         <link rel="stylesheet" type="text/css" href="assets/css/home.css">
     </head>
 
-    <body>
+    <body class="pt-16 md:pt-0">
         <?php
             // header
             require("includes/header.php");
@@ -35,13 +35,27 @@ session_start();
                 </div>
             </div>
 
+            <!-- Top Screen Search Bar for Mobile -->
+            <div class="fixed top-0 w-full bg-white py-2 md:hidden">
+                <div class="flex flex-row justify-center items-center">
+                    <div class="flex flex-row justify-center items-center bg-white rounded-full w-11/12 h-12">
+                        <div class="flex flex-row justify-center items-center w-1/12">
+                            <i class="fas fa-search text-gray-400"></i>
+                        </div>
+                        <div class="flex flex-row justify-center items-center w-11/12">
+                            <input type="text" class="w-full h-full bg-transparent focus:outline-none" placeholder="Tìm kiếm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Search Bar -->
-            
-            <div class="flex justify-center items-center">
+            <div class="md:flex justify-center items-center hidden">
                 <div class="z-50 absolute p-5 w-11/12 md:w-4/5 shadow-lg rounded-xl bg-white">        
                     <div class="relative">
                         <div class="flex items-center justify-between gap-5">                    
-                            <form class="w-5/6">
+                            <form class="w-11/12 my-0">
                                 <div x-data="{ open: false }" class="flex">
                                     <label for="search-dropdown" class="text-sm font-medium text-neutral-500 sr-only">Loại nhà</label>
                                     <button @click="open = !open" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100" type="button">Loại nhà đất <svg aria-hidden="true" class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
@@ -77,9 +91,9 @@ session_start();
                                 </div>
                             </form>
 
-                            <span class="flex items-center justify-end gap-2 w-1/5 text-right">
+                            <span class="flex items-center justify-center gap-2 w-fit text-right">
                                 <svg style="color: rgb(255, 191, 36);" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16"> <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" fill="#ffbf24"></path> </svg>
-                                <span onclick="showFilter()" class="text-amber-500 underline">Bộ lọc</span>
+                                <span onclick="showFilter()" class="text-amber-500 underline w-12">Bộ lọc</span>
                             </span>
                         </div>
 
@@ -160,7 +174,7 @@ session_start();
             </div>
 
             <!-- Advanced House Search -->
-            <div class="lg:px-48 px-8 lg:pt-80 lg:pb-36 md:my-64 lg:my-0 my-24 py-24 bg-gray-100 w-full">
+            <div class="lg:px-48 px-8 lg:pt-80 lg:pb-36 md:mt-64 mb-0 lg:my-0 my-24 py-24 bg-gray-100 w-full">
                 <!-- A line w-32 with gradient from amber to purple -->
                 <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
                 <h1 class="font-bold text-3xl mt-4">Bất động sản dành cho bạn</h1>
@@ -310,47 +324,48 @@ session_start();
             </div>
 
             <!-- Image on the left, title on the right -->
-            <div class="flex flex-col lg:flex-row">
+            <div class="flex flex-col lg:flex-row lg:h-[700px]">
                 <div class="w-full lg:w-1/2">
-                    <img style="height:100%;" src="assets/images/family.jpg" alt="Sunset in the mountains">
+                    <img class="object-cover w-full lg:h-full" src="assets/images/family.jpg" alt="Sunset in the mountains">
                 </div>
-                <div class="w-full lg:w-1/2 px-12 py-20 flex justify-center flex-col">
-                    <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
+                <div class="w-full lg:w-1/2 px-12 flex py-24 flex-col">
+                    <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700 pt-1"></div>
                     <h1 class="font-bold mt-4 text-2xl">wonder<span class="text-amber-400">HOME</span></h1>
                     <h1 class="font-bold mt-4 text-3xl leading-relaxed">Những ngôi nhà chất lượng cho khách hàng</h1>
                     <div class="flex items-center justify-center max-w-screen-sm mx-auto">
                         <div class="container mx-auto flex flex-col justify-center items-stretch py-2 sm:py-8" x-data="{tab: 1}">
                             <div class="flex justify-start -space-x-px z-10">
-                                <a href="!#0" @click.prevent="tab = 1" :class="{'cursor-default border-b-0 bg-white': tab === 1, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 1}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none rounded-tl-lg border border-gray-400 outline-none shadow-none">Giới thiệu
+                                <a href="!#0" @click.prevent="tab = 1" :class="{'cursor-default border-b-0 bg-white': tab === 1, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 1}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none rounded-tl-lg border border-gray-400 outline-none shadow-none transition-all duration-300">Giới thiệu
                                 </a>
-                                <a href="!#0" @click.prevent="tab = 2" :class="{'cursor-default border-b-0 bg-white': tab === 2, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 2}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none  border border-gray-400 outline-none shadow-none">Nhiệm vụ
+                                <a href="!#0" @click.prevent="tab = 2" :class="{'cursor-default border-b-0 bg-white': tab === 2, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 2}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none  border border-gray-400 outline-none shadow-none transition-all duration-300">Nhiệm vụ
                                 </a>
                                 <!-- focus:outline-none focus:shadow-outline  -->
-                                <a href="!#0" @click.prevent="tab = 3" :class="{'cursor-default border-b-0 bg-white': tab === 3, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 3}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none border border-gray-400 rounded-tr-md outline-none shadow-none">Cam kết
+                                <a href="!#0" @click.prevent="tab = 3" :class="{'cursor-default border-b-0 bg-white': tab === 3, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 3}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none border border-gray-400 rounded-tr-md outline-none shadow-none transition-all duration-300">Cam kết
                                 </a>
                             </div>
 
-                            <div x-show="tab === 1" class="z-0 -mt-px px-6 py-8 
-                                border border-neutral-400 rounded-md rounded-tl-none 
-                                bg-gradient-to-b from-white via-gray-100 to-gray-200">
-                                <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Về chúng tôi - wonderHOME</h1>
-                                <p class="mt-4 text-base leading-relaxed">
-                                    wonderHOME là công ty Dịch vụ bất động sản hoạt động trên nền tảng công nghệ hiện đại giúp người dùng trải nghiệm giao dịch bất động sản tốt nhất. wonderHOME chuẩn hóa quy trình giao dịch và cung cấp giải pháp tối ưu giúp cho giao dịch mua bán nhà đất và bất động sản an toàn, hiệu quả và tiết kiệm thời gian.
-                                </p>
+                            <div class="transition-all duration-300">
+                                <div x-show="tab === 1" class="z-0 -mt-px px-6 py-8 
+                                    border border-neutral-400 rounded-md rounded-tl-none 
+                                    bg-gradient-to-b from-white via-gray-100 to-gray-200 transition-all duration-300">
+                                    <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Về chúng tôi - wonderHOME</h1>
+                                    <p class="mt-4 text-base leading-relaxed">
+                                        wonderHOME là công ty Dịch vụ bất động sản hoạt động trên nền tảng công nghệ hiện đại giúp người dùng trải nghiệm giao dịch bất động sản tốt nhất. wonderHOME chuẩn hóa quy trình giao dịch và cung cấp giải pháp tối ưu giúp cho giao dịch mua bán nhà đất và bất động sản an toàn, hiệu quả và tiết kiệm thời gian.
+                                    </p>
+                                </div>
+                                <div x-show="tab === 2" class="z-0 -mt-px px-6 py-8 
+                                    border border-gray-400 rounded-md rounded-tl-none 
+                                    bg-gradient-to-br from-white via-white to-yellow-100 transition-all duration-300">
+                                    <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Mang đến bất động sản "thật" cho bạn</h1>
+                                    <p class="mt-4 text-base leading-snug">Lorem ipsum dolor sit maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
+                                </div>
+                                <div x-show="tab === 3" class="z-0 -mt-px px-6 py-8 
+                                    border border-gray-400 rounded-md rounded-tl-none 
+                                    bg-gradient-to-bl from-white via-white to-blue-100 transition-all duration-300">
+                                    <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Đảm bảo an toàn cho bạn</h1>
+                                    <p class="mt-4 text-base leading-snug">Lorem ipsum dolor sit amet consectet officia maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
+                                </div>
                             </div>
-                            <div x-show="tab === 2" class="z-0 -mt-px px-6 py-8 
-                                border border-gray-400 rounded-md rounded-tl-none 
-                                bg-gradient-to-br from-white via-white to-yellow-100">
-                                <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Mang đến bất động sản "thật" cho bạn</h1>
-                                <p class="mt-4 text-base leading-snug">Lorem ipsum dolor sit maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
-                            </div>
-                            <div x-show="tab === 3" class="z-0 -mt-px px-6 py-8 
-                                border border-gray-400 rounded-md rounded-tl-none 
-                                bg-gradient-to-bl from-white via-white to-blue-100">
-                                <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Đảm bảo an toàn cho bạn</h1>
-                                <p class="mt-4 text-base leading-snug">Lorem ipsum dolor sit amet consectet officia maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
-                            </div>
-
                         </div>
                     </div>
                 </div>

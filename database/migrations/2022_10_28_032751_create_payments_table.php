@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 /* CREATE TABLE Payments (
     id int  NOT NULL,
-    datetime timestamp  NOT NULL,
+    paid_at timestamp  NOT NULL,
     method varchar(32)  NOT NULL,
     Users_id int  NOT NULL,
+    Properties_id int  NOT NULL,
     CONSTRAINT Payments_pk PRIMARY KEY (id)
 ); */
 
@@ -22,10 +23,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->timestamp('datetime');
+            $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
+            $table->timestamp('paid_at');
             $table->string('method', 32);
             $table->uuid('Users_id');
+            $table->uuid('Properties_id');
         });
     }
 

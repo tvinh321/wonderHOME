@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 /* CREATE TABLE ChatRooms (
     id int  NOT NULL,
-    Users_id int  NOT NULL,
     CONSTRAINT ChatRooms_pk PRIMARY KEY (id)
 ); */
 
@@ -20,8 +19,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('chat_rooms', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('Users_id');
+            $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
         });
     }
 

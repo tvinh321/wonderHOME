@@ -23,7 +23,7 @@ session_start();
         ?>
 
         <div class="body">
-            <div class="lg:px-32 lg:pb-14 lg:my-0 lg:pt-14 w-full my-8 px-8">
+            <div class="lg:px-32 lg:pb-14 lg:my-0 lg:pt-14 w-full py-8 px-8">
                 <div class="my-6">
                     <h1 class="font-bold text-3xl mb-2">
                         Căn hộ 3PN COSMO CITY
@@ -72,7 +72,7 @@ session_start();
             </div>
 
             <!-- House info  -->
-            <div class="lg:px-32 px-8 lg:pb-24 lg:my-0 mb-24 py-24 bg-gray-100 w-full">
+            <div class="lg:px-32 px-8 md:pb-64 xl:pb-48 py-24 bg-gray-100 w-full">
                 <div class="md:flex md:justify-between mb-4 md:gap-x-6">
                     <div class="md:w-4/5 md:px-8 w-full">
                         <!-- Thông tin nhà  -->
@@ -196,7 +196,7 @@ session_start();
                     </div> 
                     
                     <div class="max-w-sm w-full h-auto md:pl-6">
-                        <div class="h-full rounded-lg bg-white border border-gray-200 shadow-md py-8">
+                        <div class="h-fit rounded-lg bg-white border border-gray-200 shadow-md py-8">
                             <div class="flex items-center justify-center md:flex-col md:gap-0 flex-row gap-x-10 md:mb-0 mb-6">
                                 <img class="w-16 h-16 rounded-full" src="assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
                                 <div class="max-w-fit text-center mt-1">
