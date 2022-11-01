@@ -321,18 +321,8 @@
                 </div>
             </div>
 
-            <!-- Image on the left, title on the right -->
-            <div class="flex flex-col lg:flex-row lg:h-[700px]">
-                <div class="w-full lg:w-1/2">
-                    <img class="object-cover w-full lg:h-full" src="assets/images/family.jpg" alt="Sunset in the mountains">
-                </div>
-                <div class="w-full lg:w-1/2 px-12 flex py-24 flex-col">
-                    <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700 pt-1"></div>
-                    <h1 class="font-bold mt-4 text-2xl">wonder<span class="text-amber-400">HOME</span></h1>
-                    <h1 class="font-bold mt-4 text-3xl leading-relaxed">Những ngôi nhà chất lượng cho khách hàng</h1>              
-                    <?php require("components/home/about-tab.php"); ?>
-                </div>
-            </div>
+            <!-- Giới thiệu -->
+            <?php require("components/home/GioiThieu.php"); ?>
 
             <div class="bg-black flex flex-col justify-center items-center py-24">
                 <div class="px-8 xl:w-1/3 flex flex-col justify-center items-center">
