@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <?php
     require_once("../public/settings.php");
@@ -12,9 +12,7 @@ session_start();
         <title>wonderHOME - Biến tổ ấm trong mơ thành hiện thực</title>
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet">
+        <?php require_once("../public/imports.php"); ?>
         <link rel="stylesheet" type="text/css" href="assets/css/home.css">
     </head>
 
@@ -331,43 +329,8 @@ session_start();
                 <div class="w-full lg:w-1/2 px-12 flex py-24 flex-col">
                     <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700 pt-1"></div>
                     <h1 class="font-bold mt-4 text-2xl">wonder<span class="text-amber-400">HOME</span></h1>
-                    <h1 class="font-bold mt-4 text-3xl leading-relaxed">Những ngôi nhà chất lượng cho khách hàng</h1>
-                    <div class="flex items-center justify-center max-w-screen-sm mx-auto">
-                        <div class="container mx-auto flex flex-col justify-center items-stretch py-2 sm:py-8" x-data="{tab: 1}">
-                            <div class="flex justify-start -space-x-px z-10">
-                                <a href="!#0" @click.prevent="tab = 1" :class="{'cursor-default border-b-0 bg-white': tab === 1, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 1}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none rounded-tl-lg border border-gray-400 outline-none shadow-none transition-all duration-300">Giới thiệu
-                                </a>
-                                <a href="!#0" @click.prevent="tab = 2" :class="{'cursor-default border-b-0 bg-white': tab === 2, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 2}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none  border border-gray-400 outline-none shadow-none transition-all duration-300">Nhiệm vụ
-                                </a>
-                                <!-- focus:outline-none focus:shadow-outline  -->
-                                <a href="!#0" @click.prevent="tab = 3" :class="{'cursor-default border-b-0 bg-white': tab === 3, 'text-gray-600 bg-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:shadow-outline': tab !== 3}" class="block align-middle px-6 py-4 text-neutral-900 text-sm font-semibold leading-none border border-gray-400 rounded-tr-md outline-none shadow-none transition-all duration-300">Cam kết
-                                </a>
-                            </div>
-
-                            <div class="transition-all duration-300">
-                                <div x-show="tab === 1" class="z-0 -mt-px px-6 py-8 
-                                    border border-neutral-400 rounded-md rounded-tl-none 
-                                    bg-gradient-to-b from-white via-gray-100 to-gray-200 transition-all duration-300">
-                                    <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Về chúng tôi - wonderHOME</h1>
-                                    <p class="mt-4 text-base leading-relaxed">
-                                        wonderHOME là công ty Dịch vụ bất động sản hoạt động trên nền tảng công nghệ hiện đại giúp người dùng trải nghiệm giao dịch bất động sản tốt nhất. wonderHOME chuẩn hóa quy trình giao dịch và cung cấp giải pháp tối ưu giúp cho giao dịch mua bán nhà đất và bất động sản an toàn, hiệu quả và tiết kiệm thời gian.
-                                    </p>
-                                </div>
-                                <div x-show="tab === 2" class="z-0 -mt-px px-6 py-8 
-                                    border border-gray-400 rounded-md rounded-tl-none 
-                                    bg-gradient-to-br from-white via-white to-yellow-100 transition-all duration-300">
-                                    <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Mang đến bất động sản "thật" cho bạn</h1>
-                                    <p class="mt-4 text-base leading-snug">Lorem ipsum dolor sit maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
-                                </div>
-                                <div x-show="tab === 3" class="z-0 -mt-px px-6 py-8 
-                                    border border-gray-400 rounded-md rounded-tl-none 
-                                    bg-gradient-to-bl from-white via-white to-blue-100 transition-all duration-300">
-                                    <h1 class="text-neutral-900 text-2xl font-bold leading-tighter">Đảm bảo an toàn cho bạn</h1>
-                                    <p class="mt-4 text-base leading-snug">Lorem ipsum dolor sit amet consectet officia maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h1 class="font-bold mt-4 text-3xl leading-relaxed">Những ngôi nhà chất lượng cho khách hàng</h1>              
+                    <?php require("components/home/about-tab.php"); ?>
                 </div>
             </div>
 
@@ -433,11 +396,6 @@ session_start();
             // footer
             require("includes/footer.php");
         ?>
-        <!-- from node_modules -->
-        <script src="node_modules/@material-tailwind/html/scripts/tabs.js"></script>
-        <!-- from cdn -->
-        <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
         <script>
             function showFilter() {
                 var x = document.getElementById("filterFields");

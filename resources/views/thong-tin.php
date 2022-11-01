@@ -12,8 +12,7 @@ session_start();
         <title>wonderHOME - Biến tổ ấm trong mơ thành hiện thực</title>
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=0.9">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet">
+        <?php require_once("../public/imports.php"); ?>
     </head>
 
     <body>
