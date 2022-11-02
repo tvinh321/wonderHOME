@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             DistrictsSeeder::class,
             WardsSeeder::class,
             JuridicalsSeeder::class,
+            PropertyTypesSeeder::class,
             UsersSeeder::class,
             PropertiesSeeder::class,
         ]);

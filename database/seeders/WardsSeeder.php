@@ -62,7 +62,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -88,7 +88,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -115,7 +115,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -143,7 +143,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -172,7 +172,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -201,7 +201,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -226,7 +226,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -257,7 +257,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -286,7 +286,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -317,7 +317,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -343,7 +343,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -368,7 +368,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -403,7 +403,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -434,7 +434,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -462,7 +462,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -492,7 +492,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -518,7 +518,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -549,7 +549,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -571,7 +571,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
         
@@ -607,7 +607,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -634,7 +634,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
 
@@ -656,7 +656,7 @@ class WardsSeeder extends Seeder
             DB::table('wards')->insert([
                 'id' => Str::uuid(),
                 'name' => $ward,
-                'Districts_id' => $district->id,
+                'districts_id' => $district->id,
             ]);
         }
     }

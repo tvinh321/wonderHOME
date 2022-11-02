@@ -37,6 +37,7 @@ class PropertiesSeeder extends Seeder
         $wards = DB::table('wards')->get();
         $juridicals = DB::table('juridicals')->get();
         $users = DB::table('users')->get();
+        $property_types = DB::table('property_types')->get();
         $location = [
             '12 Nguyễn Trãi',
             '234 Nguyễn Trãi',
@@ -53,13 +54,14 @@ class PropertiesSeeder extends Seeder
             $ward = $wards->random();
             $juridical = $juridicals->random();
             $user = $users->random();
+            $property_type = $property_types->random();
             $loc = $location[array_rand($location)];
 
             $price = [1400000000, 2000000000, 2220000000, 4000000000, 5000000000][array_rand([0, 1, 2, 3, 4])];
             $area = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200][array_rand([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])];
             // Location = loc + ward + district + city
-            $district = DB::table('districts')->where('id', $ward->Districts_id)->first();
-            $city = DB::table('cities')->where('id', $district->Cities_id)->first();
+            $district = DB::table('districts')->where('id', $ward->districts_id)->first();
+            $city = DB::table('cities')->where('id', $district->cities_id)->first();
             $loca = $loc . ', ' . $ward->name . ', ' . $district->name . ', ' . $city->name;
             $title = ['Bán nhà ', 'Bán căn hộ ', 'Bán căn hộ chung cư ', 'Bán nhà mặt tiền '][array_rand([0, 1, 2, 3])];
 
@@ -78,9 +80,11 @@ class PropertiesSeeder extends Seeder
                 'area' => $area,
                 'expire_date' => now()->addDays(rand(50, 100)),
                 'juridical_status' => rand(-1, 1),
-                'Juridicals_id' => $juridical->id,
-                'Users_id' => $user->id,
-                'Wards_id' => $ward->id,
+                'furniture' => rand(1, 2),
+                'juridicals_id' => $juridical->id,
+                'users_id' => $user->id,
+                'wards_id' => $ward->id,
+                'property_types_id' => $property_type->id,
             ]);
         }
     }
