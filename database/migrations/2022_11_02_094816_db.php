@@ -271,16 +271,19 @@ return new class extends Migration
 
         /* CREATE TABLE users (
             id int  NOT NULL,
+            full_name varchar(128)  NOT NULL,
             avatar Binary()  NOT NULL,
             username varchar(32)  NOT NULL,
-            password varchar(128)  NOT NULL,
             email varchar(254)  NOT NULL,
-            full_name varchar(128)  NOT NULL,
-            phone varchar(11)  NOT NULL,
+            password varchar(128)  NOT NULL,
+            gender smallint  NOT NULL,
+            dob date  NOT NULL,
             register_at timestamp  NOT NULL,
             last_active timestamp  NOT NULL,
-            identity_number varchar(12)  NOT NULL,
             role smallint  NOT NULL,
+            location int  NULL,
+            identity_number varchar(12)  NULL,
+            phone varchar(11)  NULL,
             description Text()  NULL,
             company varchar(128)  NULL,
             registration_number varchar(15)  NULL,
@@ -288,16 +291,19 @@ return new class extends Migration
         ); */
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
-            $table->binary('avatar');
-            $table->string('username', 32);
-            $table->string('password', 128);
-            $table->string('email', 254);
             $table->string('full_name', 128);
-            $table->string('phone', 11);
+            $table->string('username', 32);
+            $table->string('email', 254);
+            $table->string('password', 128);
+            $table->smallInteger('gender');
+            $table->date('dob');
             $table->timestamp('register_at');
             $table->timestamp('last_active');
-            $table->string('identity_number', 12);
             $table->smallInteger('role');
+            $table->binary('avatar')->nullable();
+            $table->uuid('location')->nullable();
+            $table->string('identity_number', 12)->nullable();
+            $table->string('phone', 11)->nullable();
             $table->text('description')->nullable();
             $table->string('company', 128)->nullable();
             $table->string('registration_number', 15)->nullable();

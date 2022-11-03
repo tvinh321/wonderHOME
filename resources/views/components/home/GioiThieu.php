@@ -1,6 +1,6 @@
 <div class="flex flex-col lg:flex-row lg:h-[700px]">
-    <div class="w-full lg:w-1/2">
-        <img class="object-cover w-full lg:h-full" src="assets/images/family.jpg" alt="Sunset in the mountains">
+    <div class="w-full h-[400px] md:h-auto lg:w-1/2">
+        <img class="object-cover w-full h-full" src="assets/images/family.jpg" alt="Sunset in the mountains">
     </div>
     <div class="w-full lg:w-1/2 px-12 flex py-24 flex-col">
         <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700 pt-1"></div>
@@ -16,9 +16,9 @@
         return (
             <div class="container mx-auto flex flex-col justify-center items-stretch py-2 sm:py-8">
                 <div class="flex justify-start -space-x-px z-10">
-                    <a onClick={() => setTab(1)} className={`${tab === 1 ? "bg-amber-500 text-white" : " focus:outline-none focus:shadow-outline text-neutral-900"} block align-middle px-6 py-4 text-sm font-semibold leading-none rounded-tl-lg border border-b-0 border-gray-400 outline-none shadow-none transition-all duration-300`}>Giới thiệu</a>
-                    <a onClick={() => setTab(2)} className={`${tab === 2 ? "bg-amber-500 text-white" : " focus:outline-none focus:shadow-outline text-neutral-900"} block align-middle px-6 py-4 text-sm font-semibold leading-none border border-b-0 border-gray-400 outline-none shadow-none transition-all duration-300`}>Nhiệm vụ</a>
-                    <a onClick={() => setTab(3)} className={`${tab === 3 ? "bg-amber-500 text-white" : " focus:outline-none focus:shadow-outline text-neutral-900"} block align-middle px-6 py-4 text-sm font-semibold leading-none rounded-tr-lg border border-b-0 border-gray-400 outline-none shadow-none transition-all duration-300`}>Cam kết</a>
+                    <a onClick={() => setTab(1)} className={`${tab === 1 ? "bg-amber-500 text-white" : " focus:outline-none focus:shadow-outline text-neutral-900"} block align-middle px-6 py-4 text-sm font-semibold leading-none rounded-tl-lg border border-b-0 border-gray-400 outline-none shadow-none transition-all duration-300 cursor-pointer`}>Giới thiệu</a>
+                    <a onClick={() => setTab(2)} className={`${tab === 2 ? "bg-amber-500 text-white" : " focus:outline-none focus:shadow-outline text-neutral-900"} block align-middle px-6 py-4 text-sm font-semibold leading-none border border-b-0 border-gray-400 outline-none shadow-none transition-all duration-300 cursor-pointer`}>Nhiệm vụ</a>
+                    <a onClick={() => setTab(3)} className={`${tab === 3 ? "bg-amber-500 text-white" : " focus:outline-none focus:shadow-outline text-neutral-900"} block align-middle px-6 py-4 text-sm font-semibold leading-none rounded-tr-lg border border-b-0 border-gray-400 outline-none shadow-none transition-all duration-300 cursor-pointer`}>Cam kết</a>
                 </div>
 
                 <div className="transition-all duration-300">

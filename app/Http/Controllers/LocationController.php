@@ -18,7 +18,7 @@ class LocationController extends Controller
     // Get districts
     public function getDistricts($city_id)
     {
-        $districts = DB::table('districts')->where('Cities_id', $city_id)->select('id', 'name')->get();
+        $districts = DB::table('districts')->where('cities_id', $city_id)->select('id', 'name')->get();
 
         return $districts;
     }
@@ -26,7 +26,7 @@ class LocationController extends Controller
     // Get wards
     public function getWards($district_id)
     {
-        $wards = DB::table('wards')->where('Districts_id', $district_id)->select('id', 'name')->get();
+        $wards = DB::table('wards')->where('districts_id', $district_id)->select('id', 'name')->get();
 
         return $wards;
     }

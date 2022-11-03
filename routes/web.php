@@ -36,7 +36,22 @@ Route::get('/api/districts/{city_id}', [App\Http\Controllers\LocationController:
 Route::get('/api/wards/{district_id}', [App\Http\Controllers\LocationController::class, 'getWards']);
 
 // Get properties
-Route::get('/api/properties', [App\Http\Controllers\PropertiesController::class, 'getProperties']);
+Route::post('/api/properties', [App\Http\Controllers\PropertiesController::class, 'getProperties']);
 
 // Get property
 Route::get('/api/property/{id}', [App\Http\Controllers\PropertiesController::class, 'getProperty']);
+
+// Get 6 highest priority properties (for Landing Page)
+Route::get('/api/properties/highest-priority', [App\Http\Controllers\PropertiesController::class, 'getHighestPriorityProperties']);
+
+// Check register email exist
+Route::post('/api/register/checkEmail', [App\Http\Controllers\UsersController::class, 'checkRegisterEmailExist']);
+
+// Register
+Route::post('/api/register', [App\Http\Controllers\UsersController::class, 'register']);
+
+// Login
+Route::post('/api/login', [App\Http\Controllers\UsersController::class, 'login']);
+
+// Get Types
+Route::get('/api/types', [App\Http\Controllers\PropertiesController::class, 'getPropertyTypes']);

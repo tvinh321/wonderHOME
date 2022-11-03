@@ -34,163 +34,179 @@ session_start();
                   <img src="assets/images/login.png"/> 
                 </div>
                 <!-- Col -->
-                <div class="w-full lg:w-1/2  p-5 rounded-lg lg:rounded-l-none">
-                <!-- Form đăng nhập  -->
-                  <div :class="{'hidden': !showSignin, 'block':showSignin }">
-                    <h3 class="pt-4 text-md text-center text-neutral-500">Rất vui được gặp lại bạn!</h3>
-                    <h3 class="pt-1 text-center text-2xl">Đăng nhập để tiếp tục</h3>
-                    <form class="px-8 pt-6 pb-8 mb-4  rounded">
-                      <div class="mb-4">
-                        <label class="block mb-2 text-sm font-bold text-neutral-700" for="username">
+                <div id="login-register" class="w-full lg:w-1/2  p-5 rounded-lg lg:rounded-l-none"></div>
+
+                <script type="text/babel">
+                  const LoginRegister = () => {
+                    const [screen, setScreen] = React.useState("signin");
+                    const [registerScreen, setRegisterScreen] = React.useState(1);
+
+                    const [citiesList, setCitiesList] = React.useState();
+                    const [districtsList, setDistrictsList] = React.useState();
+                    const [wardsList, setWardsList] = React.useState();
+
+                    const [city, setCity] = React.useState("");
+                    const [district, setDistrict] = React.useState("");
+                    const [ward, setWard] = React.useState("");
+
+                    React.useEffect(() => {
+                      axios.get("/api/cities")
+                          .then(res => {
+                              setCitiesList(res.data);
+                          })
+                          .catch(err => {
+                              console.log(err);
+                          })
+                  }, []);
+
+                  React.useEffect(() => {
+                      axios.get("/api/districts/" + city)
+                          .then(res => {
+                              setDistrictsList(res.data);
+                          })
+                          .catch(err => {
+                              console.log(err);
+                          })
+                  }, [city]);
+
+                  React.useEffect(() => {
+                      axios.get("/api/wards/" + district)
+                          .then(res => {
+                              setWardsList(res.data);
+                          })
+                          .catch(err => {
+                              console.log(err);
+                          })
+                  }, [district]);
+
+                    return (
+                      <div>
+                      {screen == "signin" && <div>
+                    <h3 className="pt-4 text-md text-center text-neutral-500">Rất vui được gặp lại bạn!</h3>
+                    <h3 className="pt-1 text-center text-2xl">Đăng nhập để tiếp tục</h3>
+                    <form className="px-8 pt-6 pb-8 mb-4  rounded">
+                      <div className="mb-4">
+                        <label className="block mb-2 text-sm font-bold text-neutral-700" htmlFor="username">
                           Tên đăng nhập
                         </label>
                         <input
-                          class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                          className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                           id="username"
                           type="text"
                           placeholder=""
                         />
                       </div>
 
-                      <div class="mb-4">
-                      <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
-                        Mật khẩu
-                      </label>
-                      <input
-                        class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border  rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                        id="password"
-                        type="password"
-                        placeholder=""
-                      />
-                    </div>
+                      <div className="mb-4">
+                        <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password">
+                          Mật khẩu
+                        </label>
+                        <input
+                          className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border  rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                          id="password"
+                          type="password"
+                          placeholder=""
+                        />
+                      </div>
                       
-                      <div class="mb-4">
-                        <input class="mr-2 leading-tight" type="checkbox" id="checkbox_id" />
-                        <label class="text-sm" for="checkbox_id">
+                      <div className="mb-4">
+                        <input className="mr-2 leading-tight" type="checkbox" id="checkbox_id" />
+                        <label className="text-sm" htmlFor="checkbox_id">
                           Ghi nhớ đăng nhập
                         </label>
                       </div>
-                      <div class="mb-6 text-center">
+                      <div className="mb-6 text-center">
                         <button
-                          class="w-full px-4 py-2 font-bold text-white bg-amber-500 rounded-full hover:bg-amber-700 focus:outline-none focus:shadow-outline"
+                          className="w-full px-4 py-2 font-bold text-white bg-amber-500 rounded-full hover:bg-amber-700 focus:outline-none focus:shadow-outline"
                           type="button"
+                          onClick={() => {
+                            axios.post("/api/login", {
+                              username: document.getElementById("username").value,
+                              password: document.getElementById("password").value
+                            }).then((response) => {
+                              if (response.data.status == "success") {
+                                localStorage.setItem("token", response.data.token);
+                                localStorage.setItem("user", response.data.user);
+                                window.location.href = "/";
+                              } else {
+                                alert("Sai tài khoản hoặc mật khẩu");
+                              }
+                            });
+                          }}
                         >
                           Đăng nhập
                         </button>
                       </div>
-                      <hr class="mb-6 border-t" />
-                      <div class="text-center mb-2">
+                      <hr className="mb-6 border-t" />
+                      <div className="text-center mb-2">
                         <div
-                          class="inline-block text-sm text-neutral-700 align-baselin"
+                          className="inline-block text-sm text-neutral-700 align-baselin"
                         >
-                          Chưa có tài khoản? <a @click="showSignin = false" class="underline text-amber-400 hover:text-amber-800">Tạo ngay</a>
+                          Chưa có tài khoản? <a onClick={() => setScreen('register')} className="underline text-amber-400 hover:text-amber-800 cursor-pointer">Tạo ngay</a>
                         </div>
                       </div>
-                      <div class="text-center">
+                      <div className="text-center">
                         <a
-                          class="inline-block text-sm text-amber-500 align-baseline hover:text-amber-800"
+                          className="inline-block text-sm text-amber-500 align-baseline hover:text-amber-800 cursor-pointer"
                         >
                           Quên mật khẩu
                         </a>
                       </div>
                     </form>
-                  </div>  
-                
-                  <!-- Form đăng ký  -->
-                  <div :class="{'hidden': showSignin, 'block': !showSignin }">
+                  </div>}
+                  {screen == "register" && 
+                    <div>
                   <h3 class="pt-4 text-md text-center text-neutral-500">Xin chào bạn mới!</h3>
                     <h3 class="pt-1 text-center text-2xl">Đăng ký để tiếp tục</h3>
                     <div class="text-center my-2">
                         <div
                           class="inline-block text-sm text-neutral-700 align-baselin"
                         >
-                          Đã có tài khoản? <a @click="showSignin = true" class="underline text-amber-400 hover:text-amber-800">Đăng nhập</a>
+                          Đã có tài khoản? <a onClick={() => {setScreen('signin')}} class="underline text-amber-400 hover:text-amber-800 cursor-pointer">Đăng nhập</a>
                         </div>
                       </div>
                     <div x-data="multiStepForm()" x-cloak class="px-8 pt-6 pb-8 mb-4 rounded">
-                        <!-- Final step  -->
-                        <div x-show.transition="step === 'complete'">
-                          <div class="p-10 flex items-center shadow justify-between">
-                            <div>
-                              <svg class="mb-4 h-20 w-20 text-green-500 mx-auto" viewBox="0 0 20 20" fill="currentColor">  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                              <h2 class="text-xl mb-4 text-neutral-800 text-center font-bold">Đăng ký thành công</h2>
-                              <div class="text-neutral-600 mb-8">
-                                Cám ơn bạn đã trở thành thành viên của wonderHOME.com. Chúng tôi vừa gửi mail xác nhận qua tài khoản email bạn cung cấp. Vui lòng bấm vào đường link để kích hoạt tài khoản.
-                              </div>
-                              <button
-                                @click="step = 1"
-                                class="w-40 block mx-auto focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-neutral-600 hover:bg-neutral-100 font-medium border" 
-                              >Đăng nhập</button>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div x-show.transition="step != 'complete'">	
-                          <!-- Top Navigation -->
+                        <div>	
                           <div class="border-b-2 py-4">
                             <div class="uppercase tracking-wide text-xs font-bold text-neutral-500 mb-1 leading-tight" x-text="`Bước: ${step}/3`"></div>
                             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                               <div class="flex-initial w-3/4">
-                                <div x-show="step === 1">
-                                  <div class="text-md font-bold text-neutral-700 leading-tight">Thông tin cá nhân</div>
-                                </div>
-                                
-                                <div x-show="step === 2">
+                                {
+                                  registerScreen == 2
+                                  ? <div>
                                   <div class="text-md font-bold text-neutral-700 leading-tight">Tài khoản</div>
                                 </div>
+                                : <div>
+                                  <div class="text-md font-bold text-neutral-700 leading-tight">Thông tin cá nhân</div>
+                                </div>
+                                }
                               </div>
 
                               <div class="flex items-center md:w-64">
                                 <div class="w-full rounded-full mr-2">
-                                  <div class="rounded-full bg-amber-500 text-xs leading-none h-2 text-center text-white" :style="'width: '+ parseInt(step / 3 * 100) +'%'"></div>
+                                  <div class="rounded-full bg-amber-500 text-xs leading-none h-2 text-center text-white"></div>
                                 </div>
                                 <div class="text-xs w-10 text-neutral-600" x-text="parseInt(step / 3 * 100) +'%'"></div>
                               </div>
                             </div>
                           </div>
-                          <!-- /Top Navigation -->
 
-                          <!-- Step Content -->
                           <div class="py-10">	
-                            <div x-show.transition.in="step === 1">
-                              <!-- <div class="mb-5 text-center">
-                                <div class="mx-auto w-32 h-32 border rounded-full relative bg-neutral-100 mb-4 shadow-inset">
-                                  <img id="image" class="object-cover w-full h-32 rounded-full" :src="image" />
-                                </div>
-                                
-                                <label 
-                                  for="fileInput"
-                                  type="button"
-                                  class="cursor-pointer inine-flex justify-between items-center focus:outline-none border py-2 px-4 rounded-lg shadow-sm text-left text-neutral-600 hover:bg-neutral-100 font-medium"
-                                >
-                                  <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex flex-shrink-0 w-6 h-6 -mt-1 mr-1" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="0" y="0" width="24" height="24" stroke="none"></rect>
-                                    <path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
-                                    <circle cx="12" cy="13" r="3" />
-                                  </svg>						
-                                  Browse Photo
-                                </label>
-
-                                <div class="mx-auto w-48 text-neutral-500 text-xs text-center mt-1">Click to add profile picture</div>
-
-                                <input name="photo" id="fileInput" accept="image/*" class="hidden" type="file" @change="let file = document.getElementById('fileInput').files[0]; 
-                                  var reader = new FileReader();
-                                  reader.onload = (e) => image = e.target.result;
-                                  reader.readAsDataURL(file);">
-                              </div> -->
-
-                              <div class="mb-5 flex items-center justify-between gap-x-4">
+                            {
+                              registerScreen == 1
+                              ? <div>
+                              <div class="mb-5 grid md:grid-cols-2 gap-2 items-center justify-between gap-x-4">
                                 <div>
                                   <label for="lastname" class="block mb-2 text-sm font-bold text-neutral-700" >Họ</label>
                                   <input type="text"
                                     class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    placeholder="">
+                                    placeholder=""/>
                                 </div>
                                 <div>
                                   <label for="firstname" class="block mb-2 text-sm font-bold text-neutral-700">Tên</label>
                                   <input type="text"
                                     class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    placeholder="">
+                                    placeholder=""/>
                                 </div>
                               </div>
                    
@@ -229,67 +245,71 @@ session_start();
                                   <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                     <svg aria-hidden="true" class="w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                                   </div>
-                                  <input datepicker datepicker-autohide type="text" class="w-full px-3 pl-10 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"" placeholder="dd/MM/YYYY">
+                                  <input datepicker datepicker-autohide type="text" class="w-full px-3 pl-10 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="dd/MM/YYYY"/>
                                 </div>
                               </div>
-                       
 
                               <div class="mb-5">
                                 <label for="email" class="block mb-2 text-sm font-bold text-neutral-700">Email</label>
                                 <input type="email"
                                   class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                  placeholder="">
+                                  placeholder=""/>
                               </div>
 
                               <div class="mb-5">
                                 <label for="phone" class="block mb-2 text-sm font-bold text-neutral-700">Số điện thoại</label>
                                 <input type="phone"
                                   class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                  placeholder="">
+                                  placeholder=""/>
                               </div>
 
                               <div class="mb-5">
                                 <label for="address" class="block mb-2 text-sm font-bold text-neutral-700">Địa chỉ</label>
                                 <input type="adress"
                                   class="mb-4 w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                  placeholder="">
-                                <div class="flex items-center justify-between">                             
-                                  <div>       
-                                    <select id="city" class="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm">
+                                  placeholder=""/>
+                                <div class="grid md:grid-cols-3 gap-2 items-center justify-between">                             
+                                  <div class="w-full">       
+                                    <select id="city" class="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm" onChange={(e) => {
+                                      setCity(e.target.value)
+                                    }}>
                                       <option selected disabled>Tỉnh/Thành</option>
-                                      <option value="hcm">Hồ Chí Minh</option>
-                                      <option value="hn">Hà Nội</option>
-                                      <option value="other">Khác</option>
+                                      {citiesList && citiesList.map((city) => (
+                                        <option value={city.id}>{city.name}</option>
+                                      ))}
                                     </select>
                                   </div>
 
-                                  <div>       
-                                    <select id="district" class="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm">
+                                  <div class="w-full">       
+                                    <select id="district" class="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm" onChange={(e) => {
+                                      setDistrict(e.target.value)
+                                    }}>
                                       <option selected disabled>Quận/Huyện</option>
-                                      <option value="1">Quận 1</option>
-                                      <option value="2">Quận 2</option>
-                                      <option value="3">Quận 3</option>
+                                      {districtsList && districtsList.map((district) => (
+                                        <option value={district.id}>{district.name}</option>
+                                      ))}
                                     </select>
                                   </div>
 
-                                  <div>       
-                                    <select id="ward" class="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm">
+                                  <div class="w-full">       
+                                    <select id="ward" class="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm" onChange={(e) => {
+                                      setWard(e.target.value)
+                                    }}>
                                       <option selected disabled>Phường/Xã</option>
-                                      <option value="1">Phường 1</option>
-                                      <option value="2">Phường 2</option>
-                                      <option value="3">Phường 3</option>
+                                      {wardsList && wardsList.map((ward) => (
+                                        <option value={ward.id}>{ward.name}</option>
+                                      ))}
                                     </select>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-
-                            <div x-show.transition.in="step === 2">
+                              </div>
+                              :                             <div>
                                 <div class="mb-5">
                                   <label for="username" class="block mb-2 text-sm font-bold text-neutral-700" >Tên đăng nhập</label>
                                   <input type="text"
                                     class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    placeholder="">
+                                    placeholder=""/>
                                 </div>
                               <div class="mb-5">
                                 <label for="password" class="block mb-2 text-sm font-bold text-neutral-700">Thiết lập mật khẩu</label>
@@ -302,68 +322,28 @@ session_start();
                                     <li>ký tự đặc biệt</li>
                                   </ul>	
                                 </div>
-
-                                <div class="relative">
-                                  <input
-                                    :type="togglePassword ? 'text' : 'password'"
-                                    @keydown="checkPasswordStrength()"
-                                    x-model="password"
-                                    class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    placeholder="Mật khẩu...">
-
-                                  <div class="absolute right-0 bottom-0 top-0 px-3 py-3 cursor-pointer" 
-                                    @click="togglePassword = !togglePassword"
-                                  >	
-                                    <svg :class="{'hidden': !togglePassword, 'block': togglePassword }" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current text-neutral-500" viewBox="0 0 24 24"><path d="M12 19c.946 0 1.81-.103 2.598-.281l-1.757-1.757C12.568 16.983 12.291 17 12 17c-5.351 0-7.424-3.846-7.926-5 .204-.47.674-1.381 1.508-2.297L4.184 8.305c-1.538 1.667-2.121 3.346-2.132 3.379-.069.205-.069.428 0 .633C2.073 12.383 4.367 19 12 19zM12 5c-1.837 0-3.346.396-4.604.981L3.707 2.293 2.293 3.707l18 18 1.414-1.414-3.319-3.319c2.614-1.951 3.547-4.615 3.561-4.657.069-.205.069-.428 0-.633C21.927 11.617 19.633 5 12 5zM16.972 15.558l-2.28-2.28C14.882 12.888 15 12.459 15 12c0-1.641-1.359-3-3-3-.459 0-.888.118-1.277.309L8.915 7.501C9.796 7.193 10.814 7 12 7c5.351 0 7.424 3.846 7.926 5C19.624 12.692 18.76 14.342 16.972 15.558z"/></svg>
-
-                                    <svg :class="{'hidden': togglePassword, 'block': !togglePassword }" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current text-neutral-500" viewBox="0 0 24 24"><path d="M12,9c-1.642,0-3,1.359-3,3c0,1.642,1.358,3,3,3c1.641,0,3-1.358,3-3C15,10.359,13.641,9,12,9z"/><path d="M12,5c-7.633,0-9.927,6.617-9.948,6.684L1.946,12l0.105,0.316C2.073,12.383,4.367,19,12,19s9.927-6.617,9.948-6.684 L22.054,12l-0.105-0.316C21.927,11.617,19.633,5,12,5z M12,17c-5.351,0-7.424-3.846-7.926-5C4.578,10.842,6.652,7,12,7 c5.351,0,7.424,3.846,7.926,5C19.422,13.158,17.348,17,12,17z"/></svg>
-                                  </div>
-                                </div>
-                                
-                                <div class="flex items-center mt-4 h-3">
-                                  <div class="w-2/3 flex justify-between h-2">	
-                                    <div :class="{ 'bg-red-400': passwordStrengthText == 'Mật khẩu yếu' ||  passwordStrengthText == 'Mật khẩu mạnh' || passwordStrengthText == 'Mật khẩu rất mạnh' }" class="h-2 rounded-full mr-1 w-1/3 bg-neutral-300"></div>
-                                    <div :class="{ 'bg-orange-400': passwordStrengthText == 'Mật khẩu mạnh' || passwordStrengthText == 'Mật khẩu rất mạnh' }" class="h-2 rounded-full mr-1 w-1/3 bg-neutral-300"></div>
-                                    <div :class="{ 'bg-green-400': passwordStrengthText == 'Mật khẩu rất mạnh' }" class="h-2 rounded-full w-1/3 bg-neutral-300"></div>
-                                  </div>
-                                  <div x-text="passwordStrengthText" class="text-neutral-500 font-medium text-sm ml-3 leading-none"></div>
-                                </div>
+                                <input type="password"
+                                  class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                  placeholder=""/>
+                              </div>
+                              <div class="mb-5">
+                                <label for="password" class="block mb-2 text-sm font-bold text-neutral-700">Xác nhận mật khẩu</label>
+                                <input type="password"
+                                  class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                  placeholder=""/>
                               </div>
                             </div>
+                            }
                           </div>
-                          <!-- / Step Content -->
+                          </div>
                         </div>
-                        <!-- Bottom Navigation -->	
-                        <div x-show="step != 'complete'">
-                          <div class="mx-auto px-4">
-                            <div class="flex justify-between">
-                              <div class="w-1/2">
-                                <button
-                                  x-show="step > 1"
-                                  @click="step--"
-                                  class="w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-neutral-600  hover:bg-neutral-100 font-medium border" 
-                                >Previous</button>
-                              </div>
+                        </div>}
+                      </div>
+                    )
+                  }
 
-                              <div class="w-1/2 text-right">
-                                <button
-                                  x-show="step < 2"
-                                  @click="step++"
-                                  class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium" 
-                                >Next</button>
-
-                                <button
-                                  @click="step = 'complete'"
-                                  x-show="step === 2"
-                                  class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium" 
-                                >Complete</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>	
-                    </div>
-                  </div> 
-                </div>
+                  ReactDOM.render(<LoginRegister />, document.getElementById('login-register'))
+                </script>
               </div>
             </div>
           </div>
