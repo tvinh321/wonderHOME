@@ -55,3 +55,15 @@ Route::post('/api/login', [App\Http\Controllers\UsersController::class, 'login']
 
 // Get Types
 Route::get('/api/types', [App\Http\Controllers\PropertiesController::class, 'getPropertyTypes']);
+
+Route::get('/react', function () {
+    return view('app');
+});
+
+Route::get('/react/{any}', function () {
+    return view('app');
+})->where('any', '.*');
+
+// Route::get('/{any}', function () {
+//     return view('app');
+// })->where('any', '^(?!api\/)[\/\w\.-]*');

@@ -24,7 +24,7 @@
 
         <div class="body">
             <!-- Intro -->
-            <div class="mt-5 bg-center bg-cover bg-no-repeat bg-[url('assets/images/Landing.jpg')] body-div" style="height:46rem;">
+            <div class="mt-5 bg-center bg-cover bg-no-repeat body-div" style="height:46rem;background-image:url('assets/images/Landing.jpg');">
                 <div class="h-full lg:w-3/5 justify-center items-center flex flex-col text-gray-100">
                     <div class="w-10/12">
                         <h1 class="font-bold text-4xl md:text-6xl leading-loose md:leading-relaxed">LỰA CHỌN TỔ ẤM CỦA RIÊNG BẠN</h1>
