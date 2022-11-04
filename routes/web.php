@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/thong-tin', function () {
+Route::get('/thong-tin/{house_id}', function () {
     return view('thong-tin');
 });
 

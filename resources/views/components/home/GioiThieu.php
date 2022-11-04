@@ -1,6 +1,6 @@
 <div class="flex flex-col lg:flex-row lg:h-[700px]">
     <div class="w-full h-[400px] md:h-auto lg:w-1/2">
-        <img class="object-cover w-full h-full" src="assets/images/family.jpg" alt="Sunset in the mountains">
+        <img class="object-cover w-full h-full" src="/assets/images/family.jpg" alt="Sunset in the mountains">
     </div>
     <div class="w-full lg:w-1/2 px-12 flex py-24 flex-col">
         <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700 pt-1"></div>

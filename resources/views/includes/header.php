@@ -37,7 +37,7 @@
       </div>
       <div class="flex justify-center items-center">
         <a href="/">
-          <img class="inline-block w-[200px]" src="assets/images/logo.png" alt="wonderHOME">
+          <img class="inline-block w-[200px]" src="/assets/images/logo.png" alt="wonderHOME">
         </a>  
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-4 md:pr-0">

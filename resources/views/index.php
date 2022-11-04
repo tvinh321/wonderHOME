@@ -13,7 +13,7 @@
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php require_once("../public/imports.php"); ?>
-        <link rel="stylesheet" type="text/css" href="assets/css/home.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/home.css">
     </head>
 
     <body class="pt-16 md:pt-0">
@@ -293,33 +293,33 @@
                                                 
 
                                                 <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                                                <option value="" selected disabled>Mức giá</option>
-                                                <option value="1">Dưới 1 tỷ</option>
-                                                <option value="2">1 tỷ - 2 tỷ</option>
-                                                <option value="3">2 tỷ - 3 tỷ</option>
-                                                <option value="4">3 tỷ - 5 tỷ</option>
-                                                <option value="5">5 tỷ - 7 tỷ</option>
-                                                <option value="6">7 tỷ - 10 tỷ</option>
-                                                <option value="7">Trên 10 tỷ</option>
+                                                    <option value="" selected disabled>Mức giá</option>
+                                                    <option value="1">Dưới 1 tỷ</option>
+                                                    <option value="2">1 tỷ - 2 tỷ</option>
+                                                    <option value="3">2 tỷ - 3 tỷ</option>
+                                                    <option value="4">3 tỷ - 5 tỷ</option>
+                                                    <option value="5">5 tỷ - 7 tỷ</option>
+                                                    <option value="6">7 tỷ - 10 tỷ</option>
+                                                    <option value="7">Trên 10 tỷ</option>
                                                 </select>
 
                                                 <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                                                <option value="" selected disabled>Diện tích</option>
-                                                <option value="1">Dưới 30m2</option>
-                                                <option value="2">30m2 - 50m2</option>
-                                                <option value="3">50m2 - 80m2</option>
-                                                <option value="4">80m2 - 100m2</option>
-                                                <option value="5">100m2 - 150m2</option>
-                                                <option value="6">Trên 150m2</option>
+                                                    <option value="" selected disabled>Diện tích</option>
+                                                    <option value="1">Dưới 30m2</option>
+                                                    <option value="2">30m2 - 50m2</option>
+                                                    <option value="3">50m2 - 80m2</option>
+                                                    <option value="4">80m2 - 100m2</option>
+                                                    <option value="5">100m2 - 150m2</option>
+                                                    <option value="6">Trên 150m2</option>
                                                 </select>
 
                                                 <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                                                <option value="">Số phòng ngủ</option>
-                                                <option value="1">1 phòng</option>
-                                                <option value="2">2 phòng</option>
-                                                <option value="3">3 phòng</option>
-                                                <option value="4">4 phòng</option>
-                                                <option value="5">5 phòng</option>
+                                                    <option value="">Số phòng ngủ</option>
+                                                    <option value="1">1 phòng</option>
+                                                    <option value="2">2 phòng</option>
+                                                    <option value="3">3 phòng</option>
+                                                    <option value="4">4 phòng</option>
+                                                    <option value="5">5 phòng</option>
                                                 </select>                        
                                             </div>
                                         </div>
@@ -337,7 +337,7 @@
             <div class="md:relative flex justify-center items-center w-10/12 lg:w-3/5 mx-auto mt-32 md:h-56 lg:h-52 4xl:h-96">
                 <div class="md:absolute md:-bottom-48 grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150">
-                        <img class="w-full h-50" src="assets/images/buy-a-home.jpg" alt="Buy a home">
+                        <img class="w-full h-50" src="/assets/images/buy-a-home.jpg" alt="Buy a home">
                         <div class="p-6 pb-12">
                             <div class="font-bold text-xl mb-2">Mua Nhà</div>
                             <p class="text-gray-700 text-base">
@@ -346,7 +346,7 @@
                         </div>
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150">
-                        <img class="w-full" src="assets/images/sell-a-home.jpg" alt="Sell your home">
+                        <img class="w-full" src="/assets/images/sell-a-home.jpg" alt="Sell your home">
                         <div class="p-6 pb-12">
                             <div class="font-bold text-xl mb-2">Bán Nhà</div>
                             <p class="text-gray-700 text-base">
@@ -355,7 +355,7 @@
                         </div>
                     </div>
                     <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150">
-                        <img class="w-full" src="assets/images/house-agent.jpg" alt="Find an expert">
+                        <img class="w-full" src="/assets/images/house-agent.jpg" alt="Find an expert">
                         <div class="p-6 pb-12">
                             <div class="font-bold text-xl mb-2">Tìm Chuyên Gia</div>
                             <p class="text-gray-700 text-base">
@@ -392,15 +392,15 @@
                                 return (<div className="grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-10">
                                     {houseList ? houseList.map((house, index) => {
                                         return (
-                                            <a href="/thong-tin">
+                                            <a href={`/thong-tin/${house.id}`}>
                                                 <div className="rounded-lg overflow-hidden shadow-lg hover:scale-110 transition-all duration-150 h-full relative h-[450px]">
                                                     <div className="h-56">
                                                         <img className="object-cover h-full w-full" src={`assets/images/Room${index + 1}.jpg`} alt="Sunset in the mountains" />
                                                     </div>
                                                     <div className="px-6 py-4">
-                                                        <div className="font-bold text-2lg mb-2 mt-2">{house.title}</div>
+                                                        <div className="font-bold text-xl leading-relaxed mt-2">{house.title}</div>
                                                     </div>
-                                                    <div className="grid grid-cols-3 h-16 absolute bottom-0 w-full">
+                                                    <div className="grid grid-cols-3 h-10 absolute bottom-0 w-full">
                                                         <div className="border border-gray-200 flex justify-center items-center">
                                                             <svg className="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><title>ionicons-v5-g</title><path d="M384,240H96V136a40.12,40.12,0,0,1,40-40H376a40.12,40.12,0,0,1,40,40V240Z" style={{ fill:'none', stroke:'#000',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px' }}/><path d="M48,416V304a64.19,64.19,0,0,1,64-64H400a64.19,64.19,0,0,1,64,64V416" style={{ fill:'none', stroke:'#000',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px' }}/><path d="M48,416v-8a24.07,24.07,0,0,1,24-24H440a24.07,24.07,0,0,1,24,24v8" style={{ fill:'none', stroke:'#000',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px' }}/><path d="M112,240V224a32.09,32.09,0,0,1,32-32h80a32.09,32.09,0,0,1,32,32v16" style={{ fill:'none', stroke:'#000',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px' }}/><path d="M256,240V224a32.09,32.09,0,0,1,32-32h80a32.09,32.09,0,0,1,32,32v16" style={{ fill:'none', stroke:'#000',strokeLinecap:'round',strokeLinejoin:'round',strokeWidth:'32px' }}/></svg>
                                                             <p className="font-bold text-lg">{house.num_of_bedrooms}</p>
@@ -468,7 +468,7 @@
                         <div class="px-6 py-12 bg-neutral-100">
                             <!-- Avatar and name -->
                             <div class="flex items-center">
-                                <img class="w-10 h-10 rounded-full mr-4" src="assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
+                                <img class="w-10 h-10 rounded-full mr-4" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
                                 <div class="text-md">
                                     <p class="text-neutral-900 leading-none">Nguyễn Thị Thuý Loan</p>
                                     <p class="text-gray-600">12/1/2021</p>
@@ -490,7 +490,7 @@
                         <div class="px-6 py-12 bg-black">
                             <!-- Avatar and name -->
                             <div class="flex items-center">
-                                <img class="w-10 h-10 rounded-full mr-4" src="assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
+                                <img class="w-10 h-10 rounded-full mr-4" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
                                 <div class="text-md">
                                     <p class="text-gray-100 leading-none">Nguyễn Thị Thuý Loan</p>
                                     <p class="text-gray-400">12/1/2021</p>
@@ -512,7 +512,7 @@
                         <div class="px-6 py-12 bg-white">
                             <!-- Avatar and name -->
                             <div class="flex items-center">
-                                <img class="w-10 h-10 rounded-full mr-4" src="assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
+                                <img class="w-10 h-10 rounded-full mr-4" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
                                 <div class="text-md">
                                     <p class="text-neutral-900 leading-none">Nguyễn Thị Thuý Loan</p>
                                     <p class="text-gray-600">12/1/2021</p>

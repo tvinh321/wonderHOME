@@ -9,7 +9,7 @@
         </div>
         <div class="mb-6">
             <a href="" class="flex items-center justify-center md:justify-between">
-                <img class="inline-block w-[200px]" src="assets/images/white-logo.png" alt="wonderHOME">
+                <img class="inline-block w-[200px]" src="/assets/images/white-logo.png" alt="wonderHOME">
             </a>
         </div>
     </div>

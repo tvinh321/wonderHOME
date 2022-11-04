@@ -31,7 +31,7 @@ session_start();
                 <div
                   class="w-full h-auto hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
                 >
-                  <img src="assets/images/login.png"/> 
+                  <img src="/assets/images/login.png"/> 
                 </div>
                 <!-- Col -->
                 <div id="form-container" class="w-full lg:w-1/2  p-5 rounded-lg lg:rounded-l-none"></div>
@@ -312,7 +312,9 @@ session_start();
                                 <div>
                                   <div class="mb-5">
                                     <label for="username" class="block mb-2 text-sm font-bold text-neutral-700" >Tên đăng nhập</label>
-                                    <input type="text"
+                                    <input 
+                                      type="text"
+                                      id="username"
                                       class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                       placeholder=""/>
                                   </div>
@@ -327,7 +329,8 @@ session_start();
                                         <li>ký tự đặc biệt</li>
                                       </ul>	
                                     </div>
-                                    <input type="password"
+                                    <input 
+                                      type="password"
                                       class="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                       placeholder=""/>
                                   </div>

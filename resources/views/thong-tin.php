@@ -35,18 +35,18 @@ session_start();
                 <!-- Image gallery  -->
                 <div class="grid-cols-4 space-y-4 md:space-y-0 md:grid md:gap-2 md:grid-rows-2">
                     <div class="w-full col-span-2 row-span-2">
-                        <img class="rounded-xl md:h-full md:object-cover" src="assets/images/Room5.jpg" alt="Room 1">
+                        <img class="rounded-xl md:h-full md:object-cover" src="/assets/images/Room5.jpg" alt="Room 1">
                     </div>
                 
                     <div class="w-full rounded">
-                        <img class="rounded-xl" src="assets/images/Room2.jpg" alt="Room 2">
+                        <img class="rounded-xl" src="/assets/images/Room2.jpg" alt="Room 2">
                     </div>
                     
                     <div class="w-full rounded">
-                        <img class="rounded-xl" src="assets/images/Room3.jpg" alt="Room 3">
+                        <img class="rounded-xl" src="/assets/images/Room3.jpg" alt="Room 3">
                     </div>
                     <div class="w-full rounded">
-                        <img class="rounded-xl" src="assets/images/Room4.jpg" alt="Room 4">
+                        <img class="rounded-xl" src="/assets/images/Room4.jpg" alt="Room 4">
                     </div>
                     <div class="w-full rounded bg-gray-200 flex items-center justify-center">
                         <span class="text-2xl text-neutral-600">+ 6 ảnh khác</span>
@@ -197,7 +197,7 @@ session_start();
                     <div class="max-w-sm w-full h-auto md:pl-6">
                         <div class="h-fit rounded-lg bg-white border border-gray-200 shadow-md py-8">
                             <div class="flex items-center justify-center md:flex-col md:gap-0 flex-row gap-x-10 md:mb-0 mb-6">
-                                <img class="w-16 h-16 rounded-full" src="assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
+                                <img class="w-16 h-16 rounded-full" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
                                 <div class="max-w-fit text-center mt-1">
                                     <p class="text-neutral-500 text-sm">Được đăng bởi</p>
                                     <h1 class="text-neutral-900 font-bold text-lg leading-none">Jonathan Reinink</h1>
