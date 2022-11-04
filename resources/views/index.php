@@ -184,8 +184,6 @@
                                                                             } else {
                                                                                 setType(type.filter(item => item != typeItem.name));
                                                                             }
-
-                                                                            console.log(type);
                                                                         }} />
                                                                         <label htmlFor="house-checkbox" className="py-3 ml-2 w-full text-sm font-medium text-gray-900">{typeItem.name}</label>
                                                                     </div>
