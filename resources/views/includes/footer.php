@@ -4,7 +4,7 @@
 <footer class="p-16 bg-neutral-900">
     <div>
         <div class="mb-4 flex items-center justify-between">
-            <h1 class="text-lg pr-12 md:p-0 md:text-3xl font-bold text-white">Biến tổ ấm trong mơ <span class="text-amber-300">thành hiện thực</span></h1>
+            <h1 class="text-lg pr-12 md:p-0 md:text-2xl font-bold text-white">Biến tổ ấm trong mơ <span class="text-amber-300">thành hiện thực</span></h1>
             <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0h24v24H0z"/> <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"/> </g> </svg>
         </div>
         <div class="mb-6">
