@@ -71,7 +71,7 @@ session_start();
             </div>
 
             <!-- House info  -->
-            <div class="lg:px-32 px-8 md:pb-64 xl:pb-48 py-24 bg-gray-100 w-full">
+            <div class="lg:px-32 px-8 md:pb-32 xl:pb-48 py-24 bg-gray-100 w-full">
                 <div class="md:flex md:justify-between mb-4 md:gap-x-6">
                     <div class="md:w-4/5 md:px-8 w-full">
                         <!-- Thông tin nhà  -->
@@ -81,9 +81,33 @@ session_start();
                             <h1 class="font-bold text-2xl mt-4">Thông tin</h1>
 
                             <div class="mx-auto md:mt-6 mt-4">
-                                <p class="text-lg leading-loose">
-                                    In oculis quidem se esse admonere interesse enim maxime placeat, facere possimus, omnis. Et quidem faciunt, ut labore et accurate disserendum et harum quidem exercitus quid.
-                                    In oculis quidem se esse admonere interesse enim maxime placeat, facere possimus, omnis. Et quidem faciunt, ut labore et accurate disserendum et harum quidem exercitus quid.
+                                <p class="leading-loose whitespace-pre-wrap text-justify">Chủ đầu tư Hibrand Việt Nam (Phòng bán hàng dự án, tại tầng 1 - Tòa A chung cư Cosmos City - ngã ba phố Văn Khê và phố Phúc La, có hình ảnh kèm theo) bán những căn hộ còn lại của chung cư cao cấp Cosmos City, Văn Phú, Hà Đông, Hà Nội tại vị trí trung tâm, đắc địa còn lại duy nhất của quận Hà Đông, nằm trên 250m mặt tiền phố Văn Khê và phố Phú La, mặt sau hướng vườn hoa nội khu rộng 10.000m², là phần đẹp nhất của khu đô thị Văn Phú rộng 94,3ha. Cosmos City cách BRT chỉ 50m, cách UBND quận 500m, cách trường chuyên Nguyễn Huệ, Ban Mai, Tiểu học, THCS Phú La 300 m, trường Marie Curie cơ sở Hà Đông 200m; giáp trụ sở UBND và Công an phường Phú La...
+Đặc biệt, do chỉ cách ga La Khê đường tàu điện trên cao Cát Linh - Hà Đông có 200m nên từ dự án chỉ mất 23 phút đã có mặt tại Cát Linh; 15 phút có mặt tại Ngã tư Sở...
+
+Cosmos City được xây dựng theo công nghệ hiện đại nhất của Hàn Quốc (đúc bê tông cả tòa nhà, các phòng không có cột nên các phòng đều vuông);
+
+Chủ đầu tư đang bàn giao nhà cho khách hàng bắt đầu từ ngày 15/7 năm 2022. Hiện tại các cư dân đã bắt đầu vào ở.
+Các căn hộ có 1 PN, 2 PN và 3PN với diện tích thông thủy từ 47,32m² - 68,44m² - 77,91m² - 84,01m² - 85,55m² - 87,79m² - 100,89m² - 111,76m² - 117,36m².
+
+Căn hộ bàn giao nội thất cao cấp, đầy đủ bao gồm: Sàn gỗ và hệ thống cửa thông phòng nhập khẩu; khóa từ thông minh; điều hòa âm trần; thiết bị vệ sinh ToTo; tủ bếp và thiết bị bếp nhập khẩu; tủ quần áo, tủ giày liền tường; hệ thống ánh sáng được bố trí khoa học với các thiết bị cao cấp...
+
+Tiến độ thanh toán và chính sách bán hàng linh hoạt, bảo đảm quyền lợi cho khách hàng, cụ thể như sau:
+1. Đối với khách hành vay ngân hàng:
+Tiến độ thanh toán chia làm 4 đợt:
+Đợt 1: 25% GTCH (và ký HĐMB).
+Đợt 2: 25% GTCH (trong vòng 30 ngày kể từ ngày ký HĐMB).
+Đợt 3: 45% GTCH khi nhận bàn giao căn hộ.
+Đợt 4: 5% GTCH khi cấp sổ hồng cho căn hộ.
+Riêng đối với các căn hộ thuộc Toà A: Chủ đầu tư hỗ trợ lãi suất cho vay 0% trong vòng 12 tháng kể từ ngày ký HĐMB; giải ngân song song ngay từ đợt đầu tiên theo tỷ lệ khách hàng nộp 30%, ngân hàng cho vay tối đa 70% số tiền cần nộp của mỗi đợt; thời gian cho vay tối đa 30 năm và tài sản thế chấp bằng chính căn hộ Cosmos City.
+
+2. Đối với khách hàng không vay ngân hàng hoặc tự vay ngân hàng thương mại:
+Đợt 1: 20% GTCH (và ký HĐMB).
+Đợt 2: 10% GTCH (trong vòng 30 ngày kể từ ngày ký HĐMB).
+Đợt 3: 20% GTCH (trong vòng 60 ngày kể từ ngày ký HĐMB).
+Đợt 4: 45% GTCH khi bàn giao căn hộ.
+Đợt 5: 5% GTCH khi cấp sổ hồng cho căn hộ.
+
+* Thông tin chi tiết cụ thể, khách hàng đến Phòng bán hàng của Chủ đầu tư Hibrand Việt Nam tại tầng 1, Tòa A chung cư Cosmos City (ngã ba phố Văn Khê và phố Phúc La) để được tư vấn mua những căn hộ cuối cùng của dự án và tham quan trực tiếp căn nhà cần mua mới cảm nhận được sự khác biệt của dự án với phân khúc cùng khu vực..
                                 </p>
                             </div>
 
@@ -189,7 +213,7 @@ session_start();
                             <h1 class="font-bold text-2xl mt-4">Xem trên bản đồ</h1>
 
                             <div class="mx-auto md:mt-6 mt-4">
-                            <iframe class="w-full h-1/4" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no" src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=%C4%B0zmir+(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed"></iframe>
+                                <iframe class="w-full h-96" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no" src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=%C4%B0zmir+(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed"></iframe>
                             </div>
                         </div>
                     </div> 
@@ -200,7 +224,7 @@ session_start();
                                 <img class="w-16 h-16 rounded-full" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink">
                                 <div class="max-w-fit text-center mt-1">
                                     <p class="text-neutral-500 text-sm">Được đăng bởi</p>
-                                    <h1 class="text-neutral-900 font-bold text-lg leading-none">Jonathan Reinink</h1>
+                                    <h1 class="text-neutral-900 font-bold text-lg leading-none">Nguyễn Thị Thuý Loan</h1>
                                 </div>
                             </div>
                             <div class="p-5">                            
@@ -230,7 +254,7 @@ session_start();
                                     <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150	 cursor-pointer justify-center w-16'>
                                         <div class='flex items-center px-4 py-4'>
                                             <div class='text-center'>
-                                            <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Mon </p>
+                                            <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> T2 </p>
                                             <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 12 </p>
                                             </div>
                                         </div>
@@ -239,7 +263,7 @@ session_start();
                                     <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150	 cursor-pointer justify-center w-16'>
                                         <div class='flex items-center px-4 py-4'>
                                             <div class='text-center'>
-                                            <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Tue </p>
+                                            <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> T3 </p>
                                             <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 13</p>
                                             </div>
                                         </div>
@@ -252,7 +276,7 @@ session_start();
                                         </span>
                                             <div class='flex items-center px-4 py-4'>
                                                 <div class='text-center'>
-                                                <p class='text-purple-900 text-sm'> Wed </p>
+                                                <p class='text-purple-900 text-sm'> T4 </p>
                                                 <p class='text-purple-900  mt-3 font-bold'> 14 </p>
                                                 </div>
                                             </div>
@@ -261,7 +285,7 @@ session_start();
                                     <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150 content-center	 cursor-pointer justify-center w-16'>
                                             <div class='flex items-center px-4 py-4'>
                                                 <div class='text-center'>
-                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Thu </p>
+                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> T5 </p>
                                                 <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 15 </p>
                                                 </div>
                                             </div>
@@ -270,7 +294,7 @@ session_start();
                                     <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150	 cursor-pointer justify-center w-16'>
                                             <div class='flex items-center px-4 py-4'>
                                                 <div class='text-center'>
-                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Fri </p>
+                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> T6 </p>
                                                 <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 16 </p>
                                                 </div>
                                             </div>
@@ -279,7 +303,7 @@ session_start();
                                     <div class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-150	 cursor-pointer justify-center w-16'>
                                             <div class='flex items-center px-4 py-4'>
                                                 <div class='text-center'>
-                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> Sat </p>
+                                                <p class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-150'> T7 </p>
                                                 <p class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-150'> 17 </p>
                                                 </div>
                                             </div>
