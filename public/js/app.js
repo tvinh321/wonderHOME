@@ -6348,11 +6348,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/Header */ "./resources/js/Components/Header.jsx");
 /* harmony import */ var _Components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/Footer */ "./resources/js/Components/Footer.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6361,18 +6369,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Details() {
+  var _house$files, _house$files$images;
+  var houseId = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)();
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState2 = _slicedToArray(_useState, 2),
+    house = _useState2[0],
+    setHouse = _useState2[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/property/" + houseId.id).then(function (response) {
+      setHouse(response.data);
+      console.log(response.data);
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("body", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), house ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("body", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "lg:px-32 lg:pb-14 lg:my-0 lg:pt-14 w-full py-8 px-8",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "my-6",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
             className: "font-bold text-3xl mb-2",
-            children: "C\u0103n h\u1ED9 3PN COSMO CITY"
+            children: house.title
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
             className: "text-neutral-500 text-sm",
-            children: "D\u1EF1 \xE1n Cosmo City, \u0110\u01B0\u1EDDng Nguy\u1EC5n Th\u1ECB Th\u1EADp, Ph\u01B0\u1EDDng T\xE2n Ph\xFA, Qu\u1EADn 7, H\u1ED3 Ch\xED Minh"
+            children: house.location
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "grid-cols-4 space-y-4 md:space-y-0 md:grid md:gap-2 md:grid-rows-2",
@@ -6383,33 +6405,21 @@ function Details() {
               src: "/assets/images/Room5.jpg",
               alt: "Room 1"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "w-full rounded",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-              className: "rounded-xl",
-              src: "/assets/images/Room2.jpg",
-              alt: "Room 2"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "w-full rounded",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-              className: "rounded-xl",
-              src: "/assets/images/Room3.jpg",
-              alt: "Room 3"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "w-full rounded",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-              className: "rounded-xl",
-              src: "/assets/images/Room4.jpg",
-              alt: "Room 4"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "w-full rounded bg-gray-200 flex items-center justify-center",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-              className: "text-2xl text-neutral-600",
-              children: "+ 6 \u1EA3nh kh\xE1c"
-            })
+          }), (_house$files = house.files) === null || _house$files === void 0 ? void 0 : (_house$files$images = _house$files.images) === null || _house$files$images === void 0 ? void 0 : _house$files$images.map(function (image, index) {
+            return index < 3 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "w-full rounded",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                className: "rounded-xl",
+                src: "/assets/images/Room".concat(index + 1, ".jpg"),
+                alt: "Room ".concat(index + 1)
+              })
+            }) : house.files.images.length - 3 > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "w-full rounded bg-gray-200 flex items-center justify-center",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                className: "text-2xl text-neutral-600",
+                children: "+ ".concat(house.files.images.length - 3, " \u1EA3nh kh\xE1c")
+              })
+            }) : null;
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "w-full rounded pt-2",
@@ -6426,8 +6436,8 @@ function Details() {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
                   d: "M7,6A1,1,0,1,0,8,7,1,1,0,0,0,7,6Zm14.71,5.78L12.23,2.32A1,1,0,0,0,11.5,2h-6a1,1,0,0,0-.71.29L2.29,4.78A1,1,0,0,0,2,5.49v6a1.05,1.05,0,0,0,.29.71l9.49,9.5a1.05,1.05,0,0,0,.71.29,1,1,0,0,0,.71-.29l8.51-8.51a1,1,0,0,0,.29-.71A1.05,1.05,0,0,0,21.71,11.78Zm-9.22,7.81L4,11.09V5.9L5.9,4h5.18l8.5,8.49Z"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                children: "5.8 t\u1EF7"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                children: [(house.price / 1000000000).toFixed(1), " ", "t\u1EF7"]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
               className: "text-sm flex py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border border-neutral-900 justify-center items-center",
@@ -6440,8 +6450,10 @@ function Details() {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
                   d: "M22,7V5h-3V2h-2v3h-4V2h-2v3H7V2H5v3H2v2h3v4H2v2h3v4H2v2h3v3h2v-3h4v3h2v-3h4v3h2v-3h3v-2h-3v-4h3v-2h-3V7H22z M7,7h4v4 H7V7z M7,17v-4h4v4H7z M17,17h-4v-4h4V17z M17,11h-4V7h4V11z"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                children: "118 m2"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                children: [house.area, " m", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("sup", {
+                  children: "2"
+                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
               className: "text-sm flex py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border-b border-t border-r border-neutral-900 rounded-r-lg justify-center items-center",
@@ -6499,8 +6511,8 @@ function Details() {
                     strokeWidth: "32px"
                   }
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                children: "3 ph\xF2ng ng\u1EE7"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                children: [house.num_of_bedrooms, " ph\xF2ng ng\u1EE7"]
               })]
             })]
           })
@@ -6522,7 +6534,7 @@ function Details() {
                 className: "mx-auto md:mt-6 mt-4",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
                   className: "leading-loose whitespace-pre-wrap text-justify",
-                  children: "Ch\u1EE7 \u0111\u1EA7u t\u01B0 Hibrand Vi\u1EC7t Nam (Ph\xF2ng b\xE1n h\xE0ng d\u1EF1 \xE1n, t\u1EA1i t\u1EA7ng 1 - T\xF2a A chung c\u01B0 Cosmos City - ng\xE3 ba ph\u1ED1 V\u0103n Kh\xEA v\xE0 ph\u1ED1 Ph\xFAc La, c\xF3 h\xECnh \u1EA3nh k\xE8m theo) b\xE1n nh\u1EEFng c\u0103n h\u1ED9 c\xF2n l\u1EA1i c\u1EE7a chung c\u01B0 cao c\u1EA5p Cosmos City, V\u0103n Ph\xFA, H\xE0 \u0110\xF4ng, H\xE0 N\u1ED9i t\u1EA1i v\u1ECB tr\xED trung t\xE2m, \u0111\u1EAFc \u0111\u1ECBa c\xF2n l\u1EA1i duy nh\u1EA5t c\u1EE7a qu\u1EADn H\xE0 \u0110\xF4ng, n\u1EB1m tr\xEAn 250m m\u1EB7t ti\u1EC1n ph\u1ED1 V\u0103n Kh\xEA v\xE0 ph\u1ED1 Ph\xFA La, m\u1EB7t sau h\u01B0\u1EDBng v\u01B0\u1EDDn hoa n\u1ED9i khu r\u1ED9ng 10.000m\xB2, l\xE0 ph\u1EA7n \u0111\u1EB9p nh\u1EA5t c\u1EE7a khu \u0111\xF4 th\u1ECB V\u0103n Ph\xFA r\u1ED9ng 94,3ha. Cosmos City c\xE1ch BRT ch\u1EC9 50m, c\xE1ch UBND qu\u1EADn 500m, c\xE1ch tr\u01B0\u1EDDng chuy\xEAn Nguy\u1EC5n Hu\u1EC7, Ban Mai, Ti\u1EC3u h\u1ECDc, THCS Ph\xFA La 300 m, tr\u01B0\u1EDDng Marie Curie c\u01A1 s\u1EDF H\xE0 \u0110\xF4ng 200m; gi\xE1p tr\u1EE5 s\u1EDF UBND v\xE0 C\xF4ng an ph\u01B0\u1EDDng Ph\xFA La... \u0110\u1EB7c bi\u1EC7t, do ch\u1EC9 c\xE1ch ga La Kh\xEA \u0111\u01B0\u1EDDng t\xE0u \u0111i\u1EC7n tr\xEAn cao C\xE1t Linh - H\xE0 \u0110\xF4ng c\xF3 200m n\xEAn t\u1EEB d\u1EF1 \xE1n ch\u1EC9 m\u1EA5t 23 ph\xFAt \u0111\xE3 c\xF3 m\u1EB7t t\u1EA1i C\xE1t Linh; 15 ph\xFAt c\xF3 m\u1EB7t t\u1EA1i Ng\xE3 t\u01B0 S\u1EDF... Cosmos City \u0111\u01B0\u1EE3c x\xE2y d\u1EF1ng theo c\xF4ng ngh\u1EC7 hi\u1EC7n \u0111\u1EA1i nh\u1EA5t c\u1EE7a H\xE0n Qu\u1ED1c (\u0111\xFAc b\xEA t\xF4ng c\u1EA3 t\xF2a nh\xE0, c\xE1c ph\xF2ng kh\xF4ng c\xF3 c\u1ED9t n\xEAn c\xE1c ph\xF2ng \u0111\u1EC1u vu\xF4ng); Ch\u1EE7 \u0111\u1EA7u t\u01B0 \u0111ang b\xE0n giao nh\xE0 cho kh\xE1ch h\xE0ng b\u1EAFt \u0111\u1EA7u t\u1EEB ng\xE0y 15/7 n\u0103m 2022. Hi\u1EC7n t\u1EA1i c\xE1c c\u01B0 d\xE2n \u0111\xE3 b\u1EAFt \u0111\u1EA7u v\xE0o \u1EDF. C\xE1c c\u0103n h\u1ED9 c\xF3 1 PN, 2 PN v\xE0 3PN v\u1EDBi di\u1EC7n t\xEDch th\xF4ng th\u1EE7y t\u1EEB 47,32m\xB2 - 68,44m\xB2 - 77,91m\xB2 - 84,01m\xB2 - 85,55m\xB2 - 87,79m\xB2 - 100,89m\xB2 - 111,76m\xB2 - 117,36m\xB2. C\u0103n h\u1ED9 b\xE0n giao n\u1ED9i th\u1EA5t cao c\u1EA5p, \u0111\u1EA7y \u0111\u1EE7 bao g\u1ED3m: S\xE0n g\u1ED7 v\xE0 h\u1EC7 th\u1ED1ng c\u1EEDa th\xF4ng ph\xF2ng nh\u1EADp kh\u1EA9u; kh\xF3a t\u1EEB th\xF4ng minh; \u0111i\u1EC1u h\xF2a \xE2m tr\u1EA7n; thi\u1EBFt b\u1ECB v\u1EC7 sinh ToTo; t\u1EE7 b\u1EBFp v\xE0 thi\u1EBFt b\u1ECB b\u1EBFp nh\u1EADp kh\u1EA9u; t\u1EE7 qu\u1EA7n \xE1o, t\u1EE7 gi\xE0y li\u1EC1n t\u01B0\u1EDDng; h\u1EC7 th\u1ED1ng \xE1nh s\xE1ng \u0111\u01B0\u1EE3c b\u1ED1 tr\xED khoa h\u1ECDc v\u1EDBi c\xE1c thi\u1EBFt b\u1ECB cao c\u1EA5p... Ti\u1EBFn \u0111\u1ED9 thanh to\xE1n v\xE0 ch\xEDnh s\xE1ch b\xE1n h\xE0ng linh ho\u1EA1t, b\u1EA3o \u0111\u1EA3m quy\u1EC1n l\u1EE3i cho kh\xE1ch h\xE0ng, c\u1EE5 th\u1EC3 nh\u01B0 sau: 1. \u0110\u1ED1i v\u1EDBi kh\xE1ch h\xE0nh vay ng\xE2n h\xE0ng: Ti\u1EBFn \u0111\u1ED9 thanh to\xE1n chia l\xE0m 4 \u0111\u1EE3t: \u0110\u1EE3t 1: 25% GTCH (v\xE0 k\xFD H\u0110MB). \u0110\u1EE3t 2: 25% GTCH (trong v\xF2ng 30 ng\xE0y k\u1EC3 t\u1EEB ng\xE0y k\xFD H\u0110MB). \u0110\u1EE3t 3: 45% GTCH khi nh\u1EADn b\xE0n giao c\u0103n h\u1ED9. \u0110\u1EE3t 4: 5% GTCH khi c\u1EA5p s\u1ED5 h\u1ED3ng cho c\u0103n h\u1ED9. Ri\xEAng \u0111\u1ED1i v\u1EDBi c\xE1c c\u0103n h\u1ED9 thu\u1ED9c To\xE0 A: Ch\u1EE7 \u0111\u1EA7u t\u01B0 h\u1ED7 tr\u1EE3 l\xE3i su\u1EA5t cho vay 0% trong v\xF2ng 12 th\xE1ng k\u1EC3 t\u1EEB ng\xE0y k\xFD H\u0110MB; gi\u1EA3i ng\xE2n song song ngay t\u1EEB \u0111\u1EE3t \u0111\u1EA7u ti\xEAn theo t\u1EF7 l\u1EC7 kh\xE1ch h\xE0ng n\u1ED9p 30%, ng\xE2n h\xE0ng cho vay t\u1ED1i \u0111a 70% s\u1ED1 ti\u1EC1n c\u1EA7n n\u1ED9p c\u1EE7a m\u1ED7i \u0111\u1EE3t; th\u1EDDi gian cho vay t\u1ED1i \u0111a 30 n\u0103m v\xE0 t\xE0i s\u1EA3n th\u1EBF ch\u1EA5p b\u1EB1ng ch\xEDnh c\u0103n h\u1ED9 Cosmos City. 2. \u0110\u1ED1i v\u1EDBi kh\xE1ch h\xE0ng kh\xF4ng vay ng\xE2n h\xE0ng ho\u1EB7c t\u1EF1 vay ng\xE2n h\xE0ng th\u01B0\u01A1ng m\u1EA1i: \u0110\u1EE3t 1: 20% GTCH (v\xE0 k\xFD H\u0110MB). \u0110\u1EE3t 2: 10% GTCH (trong v\xF2ng 30 ng\xE0y k\u1EC3 t\u1EEB ng\xE0y k\xFD H\u0110MB). \u0110\u1EE3t 3: 20% GTCH (trong v\xF2ng 60 ng\xE0y k\u1EC3 t\u1EEB ng\xE0y k\xFD H\u0110MB). \u0110\u1EE3t 4: 45% GTCH khi b\xE0n giao c\u0103n h\u1ED9. \u0110\u1EE3t 5: 5% GTCH khi c\u1EA5p s\u1ED5 h\u1ED3ng cho c\u0103n h\u1ED9. * Th\xF4ng tin chi ti\u1EBFt c\u1EE5 th\u1EC3, kh\xE1ch h\xE0ng \u0111\u1EBFn Ph\xF2ng b\xE1n h\xE0ng c\u1EE7a Ch\u1EE7 \u0111\u1EA7u t\u01B0 Hibrand Vi\u1EC7t Nam t\u1EA1i t\u1EA7ng 1, T\xF2a A chung c\u01B0 Cosmos City (ng\xE3 ba ph\u1ED1 V\u0103n Kh\xEA v\xE0 ph\u1ED1 Ph\xFAc La) \u0111\u1EC3 \u0111\u01B0\u1EE3c t\u01B0 v\u1EA5n mua nh\u1EEFng c\u0103n h\u1ED9 cu\u1ED1i c\xF9ng c\u1EE7a d\u1EF1 \xE1n v\xE0 tham quan tr\u1EF1c ti\u1EBFp c\u0103n nh\xE0 c\u1EA7n mua m\u1EDBi c\u1EA3m nh\u1EADn \u0111\u01B0\u1EE3c s\u1EF1 kh\xE1c bi\u1EC7t c\u1EE7a d\u1EF1 \xE1n v\u1EDBi ph\xE2n kh\xFAc c\xF9ng khu v\u1EF1c.."
+                  children: house.description
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "text-sm grid-cols-2 space-y-4 gap-y-3 md:space-y-0 md:grid md:gap-x-20 md:my-10 my-6 fill-neutral-800 text-neutral-800",
@@ -6542,8 +6554,10 @@ function Details() {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                       children: "Di\u1EC7n t\xEDch"
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-                    children: "118 m2"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                    children: [house.area, " m", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("sup", {
+                      children: "2"
+                    })]
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "flex items-center justify-between",
@@ -6561,9 +6575,9 @@ function Details() {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                       children: "M\u1EE9c gi\xE1"
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
                     className: "w-1/2 text-right",
-                    children: "5.8 t\u1EF7"
+                    children: [(house.price / 1000000000).toFixed(1), " ", "t\u1EF7"]
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "flex items-center justify-between",
@@ -6646,9 +6660,9 @@ function Details() {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                       children: "Ph\xF2ng ng\u1EE7"
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
                     className: "w-1/2 text-right",
-                    children: "3 ph\xF2ng"
+                    children: [house.num_of_bedrooms, " ph\xF2ng"]
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "flex items-center justify-between",
@@ -6671,9 +6685,9 @@ function Details() {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                       children: "Ph\xF2ng t\u1EAFm"
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
                     className: "w-1/2 text-right",
-                    children: "2 ph\xF2ng"
+                    children: [house.num_of_toilets, " ph\xF2ng"]
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "flex items-center justify-between",
@@ -7078,6 +7092,29 @@ function Details() {
             })]
           })]
         })
+      })]
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "flex items-center",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
+        className: "animate-spin -ml-1 mr-3 h-5 w-5 text-gray-900",
+        xmlns: "http://www.w3.org/2000/svg",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
+          className: "opacity-25",
+          cx: "12",
+          cy: "12",
+          r: "10",
+          stroke: "currentColor",
+          strokeWidth: "4"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+          className: "opacity-75",
+          fill: "currentColor",
+          d: "M4 12a8 8 0 018-8v8z"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+        className: "text-gray-900",
+        children: "\u0110ang t\u1EA3i..."
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
   });
@@ -7726,7 +7763,7 @@ function Home() {
             className: "grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-8",
             children: houseList ? houseList.map(function (house, index) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                href: "/react/details/id=".concat(house.id),
+                href: "/react/details/".concat(house.id),
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                   className: "rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-150 border border-gray-300 relative h-[380px] bg-white",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {

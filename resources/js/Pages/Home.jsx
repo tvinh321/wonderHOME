@@ -371,7 +371,7 @@ export default function Home() {
                     <div className="grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-8">
                     {houseList ? houseList.map((house, index) => {
                         return (
-                            <a href={`/react/details/id=${house.id}`} key={index}>
+                            <a href={`/react/details/${house.id}`} key={index}>
                                 <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-150 border border-gray-300 relative h-[380px] bg-white">
                                     <div className="h-48">
                                         <img className="object-cover h-full w-full" src={`assets/images/Room${index + 1}.jpg`} alt="Sunset in the mountains" />
