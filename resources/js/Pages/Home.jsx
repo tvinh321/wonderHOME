@@ -130,25 +130,25 @@ export default function Home() {
         <>
             <Header />
 
-            <body>
-            <div class="mt-5 bg-center bg-cover bg-no-repeat body-div" style={{ height: '32rem', backgroundImage: "url('assets/images/Landing.jpg')" }}>
-                <div class="h-full lg:w-3/5 justify-center items-center flex flex-col text-gray-100">
-                    <div class="w-10/12">
-                        <h1 class="font-bold text-3xl md:text-4xl leading-loose md:leading-relaxed">LỰA CHỌN TỔ ẤM CỦA RIÊNG BẠN</h1>
-                        <h3 class="mt-10 leading-loose">Những ngôi nhà trong mơ đang chờ bạn sở hữu! Ở wonderHOME, nhà đẹp của bạn, thành công của chúng tôi.</h3>
+            <div>
+            <div className="mt-5 bg-center bg-cover bg-no-repeat body-div" style={{ height: '32rem', backgroundImage: "url('assets/images/Landing.jpg')" }}>
+                <div className="h-full lg:w-3/5 justify-center items-center flex flex-col text-gray-100">
+                    <div className="w-10/12">
+                        <h1 className="font-bold text-3xl md:text-4xl leading-loose md:leading-relaxed">LỰA CHỌN TỔ ẤM CỦA RIÊNG BẠN</h1>
+                        <h3 className="mt-10 leading-loose">Những ngôi nhà trong mơ đang chờ bạn sở hữu! Ở wonderHOME, nhà đẹp của bạn, thành công của chúng tôi.</h3>
                     </div>
                 </div>
             </div>
 
             {/* <!-- Top Screen Search Bar for Mobile --> */}
-            <div class="fixed top-0 w-full bg-white py-2 md:hidden z-[1000]">
-                <div class="flex flex-row justify-center items-center">
-                    <div class="flex flex-row justify-center items-center bg-white rounded-full w-11/12 h-12">
-                        <div class="flex flex-row justify-center items-center w-1/12">
-                            <i class="fas fa-search text-gray-400"></i>
+            <div className="fixed top-0 w-full bg-white py-2 md:hidden z-[1000]">
+                <div className="flex flex-row justify-center items-center">
+                    <div className="flex flex-row justify-center items-center bg-white rounded-full w-11/12 h-12">
+                        <div className="flex flex-row justify-center items-center w-1/12">
+                            <i className="fas fa-search text-gray-400"></i>
                         </div>
-                        <div class="flex flex-row justify-center items-center w-11/12">
-                            <input type="text" class="w-full h-full bg-transparent focus:outline-none" placeholder="Tìm kiếm" />
+                        <div className="flex flex-row justify-center items-center w-11/12">
+                            <input type="text" className="w-full h-full bg-transparent focus:outline-none" placeholder="Tìm kiếm" />
                         </div>
                     </div>
                 </div>
@@ -156,9 +156,9 @@ export default function Home() {
 
 
             {/* <!-- Search Bar --> */}
-            <div class="md:flex justify-center items-center hidden">
-                <div class="z-50 absolute p-5 w-11/12 md:w-4/5 shadow-lg rounded-xl bg-white">        
-                    <div class="relative" id="search-bar"></div>
+            <div className="md:flex justify-center items-center hidden">
+                <div className="z-50 absolute p-5 w-11/12 md:w-4/5 shadow-lg rounded-xl bg-white">        
+                    <div className="relative" id="search-bar"></div>
                     
                     {/* First Script */}
                     <div className="flex items-center justify-between gap-5">                    
@@ -173,7 +173,7 @@ export default function Home() {
                                         {
                                             typesList 
                                             ? typesList.map((typeItem, index) => {
-                                                return (<li className="w-full rounded-t-lg border-b border-gray-200">
+                                                return (<li className="w-full rounded-t-lg border-b border-gray-200" key={index}>
                                                     <div className="flex items-center pl-3">
                                                         <input id="house-checkbox" type="checkbox" value="" className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2" onClick={(e) => {
                                                             if (e.target.checked) {
@@ -325,31 +325,31 @@ export default function Home() {
             </div>
 
             {/* <!-- Grid 3 Content --> */}
-            <div class="md:relative flex justify-center items-center w-10/12 lg:w-8/12 mx-auto mt-32 md:h-40 lg:h-44 4xl:h-80">
-                <div class="md:absolute md:-bottom-48 grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
-                        <img class="w-full h-44 object-cover" src="/assets/images/buy-a-home.jpg" alt="Buy a home" />
-                        <div class="p-6 pb-12">
-                            <div class="font-bold text-xl mb-2">Mua Nhà</div>
-                            <p class="text-gray-700 text-sm leading-relaxed">
+            <div className="md:relative flex justify-center items-center w-10/12 lg:w-8/12 mx-auto mt-32 md:h-40 lg:h-44 4xl:h-80">
+                <div className="md:absolute md:-bottom-48 grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
+                        <img className="w-full h-44 object-cover" src="/assets/images/buy-a-home.jpg" alt="Buy a home" />
+                        <div className="p-6 pb-12">
+                            <div className="font-bold text-xl mb-2">Mua Nhà</div>
+                            <p className="text-gray-700 text-sm leading-relaxed">
                                 Không chỉ là ngôi nhà, chúng tôi giúp bạn tìm được tổ ấm hoàn hảo cho bạn và gia đình.
                             </p>
                         </div>
                     </div>
-                    <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
-                        <img class="w-full h-44 object-cover" src="/assets/images/sell-a-home.jpg" alt="Sell your home" />
-                        <div class="p-6 pb-12">
-                            <div class="font-bold text-xl mb-2">Bán Nhà</div>
-                            <p class="text-gray-700 text-sm leading-relaxed">
+                    <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
+                        <img className="w-full h-44 object-cover" src="/assets/images/sell-a-home.jpg" alt="Sell your home" />
+                        <div className="p-6 pb-12">
+                            <div className="font-bold text-xl mb-2">Bán Nhà</div>
+                            <p className="text-gray-700 text-sm leading-relaxed">
                                 Chúng tôi kết nối bạn với nhiều khách hàng hơn và điều hướng việc bán nhà của bạn đến thành công.
                             </p>
                         </div>
                     </div>
-                    <div class="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
-                        <img class="w-full h-44 object-cover" src="/assets/images/house-agent.jpg" alt="Find an expert" />
-                        <div class="p-6 pb-12">
-                            <div class="font-bold text-xl mb-2">Tìm Chuyên Gia</div>
-                            <p class="text-gray-700 text-sm leading-relaxed">
+                    <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
+                        <img className="w-full h-44 object-cover" src="/assets/images/house-agent.jpg" alt="Find an expert" />
+                        <div className="p-6 pb-12">
+                            <div className="font-bold text-xl mb-2">Tìm Chuyên Gia</div>
+                            <p className="text-gray-700 text-sm leading-relaxed">
                                 Chúng tôi giúp bạn kết nối với những chuyên gia để đáp ứng yêu cầu của bạn.
                             </p>
                         </div>
@@ -358,20 +358,20 @@ export default function Home() {
             </div>
 
             {/* <!-- Advanced House Search --> */}
-            <div class="lg:px-48 px-8 lg:pt-72 lg:pb-36 md:mt-64 mb-0 lg:my-0 my-24 py-24 bg-gray-100 w-full">
+            <div className="lg:px-48 px-8 lg:pt-72 lg:pb-36 md:mt-64 mb-0 lg:my-0 my-24 py-24 bg-gray-100 w-full">
                 {/* <!-- A line w-32 with gradient from amber to purple --> */}
-                <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
-                <h1 class="font-bold text-3xl mt-4">Bất động sản dành cho bạn</h1>
+                <div className="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700"></div>
+                <h1 className="font-bold text-3xl mt-4">Bất động sản dành cho bạn</h1>
 
                 {/* <!-- House Selection with Grids 3 columns, 2 rows --> */}
-                <div class="mx-auto mt-16">
+                <div className="mx-auto mt-16">
                     <div id="priority-house"></div>
 
                     {/* Second Script */}
                     <div className="grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-8">
                     {houseList ? houseList.map((house, index) => {
                         return (
-                            <a href={`/thong-tin/${house.id}`}>
+                            <a href={`/thong-tin/${house.id}`} key={index}>
                                 <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-150 border border-gray-300 relative h-[380px] bg-white">
                                     <div className="h-48">
                                         <img className="object-cover h-full w-full" src={`assets/images/Room${index + 1}.jpg`} alt="Sunset in the mountains" />
@@ -403,7 +403,7 @@ export default function Home() {
                         // Loading Spinner
                         <div className="flex items-center">
                             <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
                             </svg>
                             <p className="text-gray-900">Đang tải...</p>
@@ -414,17 +414,17 @@ export default function Home() {
             </div>
 
             {/* <!-- Giới thiệu --> */}
-            <div class="flex flex-col lg:flex-row lg:h-[700px]">
-                <div class="w-full h-[400px] md:h-auto lg:w-1/2">
-                    <img class="object-cover w-full h-full" src="/assets/images/family.jpg" alt="Sunset in the mountains" />
+            <div className="flex flex-col lg:flex-row lg:h-[700px]">
+                <div className="w-full h-[400px] md:h-auto lg:w-1/2">
+                    <img className="object-cover w-full h-full" src="/assets/images/family.jpg" alt="Sunset in the mountains" />
                 </div>
-                <div class="w-full lg:w-1/2 px-12 flex py-24 flex-col">
-                    <div class="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700 pt-1"></div>
-                    <h1 class="font-bold mt-4 text-2xl">wonder<span class="text-amber-400">HOME</span></h1>
-                    <h1 class="font-bold mt-4 text-2xl leading-relaxed">Những ngôi nhà chất lượng cho khách hàng</h1>              
-                    <div id="aboutTabContainer" class="flex items-center justify-center max-w-screen-sm mx-auto">
-                    <div class="container mx-auto flex flex-col justify-center items-stretch py-2 sm:py-8">
-                        <div class="flex justify-start -space-x-px z-10">
+                <div className="w-full lg:w-1/2 px-12 flex py-24 flex-col">
+                    <div className="w-32 h-1 bg-gradient-to-r from-amber-300 to-purple-700 pt-1"></div>
+                    <h1 className="font-bold mt-4 text-2xl">wonder<span className="text-amber-400">HOME</span></h1>
+                    <h1 className="font-bold mt-4 text-2xl leading-relaxed">Những ngôi nhà chất lượng cho khách hàng</h1>              
+                    <div id="aboutTabContainer" className="flex items-center justify-center max-w-screen-sm mx-auto">
+                    <div className="container mx-auto flex flex-col justify-center items-stretch py-2 sm:py-8">
+                        <div className="flex justify-start -space-x-px z-10">
                             <a onClick={() => setTab(1)} className={`${tab === 1 ? "bg-amber-500 text-white" : " focus:outline-none focus:shadow-outline text-neutral-900"} block align-middle px-6 py-4 text-sm font-semibold leading-none rounded-tl-lg border border-b-0 border-gray-400 outline-none shadow-none transition-all duration-300 cursor-pointer`}>Giới thiệu</a>
                             <a onClick={() => setTab(2)} className={`${tab === 2 ? "bg-amber-500 text-white" : " focus:outline-none focus:shadow-outline text-neutral-900"} block align-middle px-6 py-4 text-sm font-semibold leading-none border border-b-0 border-gray-400 outline-none shadow-none transition-all duration-300 cursor-pointer`}>Nhiệm vụ</a>
                             <a onClick={() => setTab(3)} className={`${tab === 3 ? "bg-amber-500 text-white" : " focus:outline-none focus:shadow-outline text-neutral-900"} block align-middle px-6 py-4 text-sm font-semibold leading-none rounded-tr-lg border border-b-0 border-gray-400 outline-none shadow-none transition-all duration-300 cursor-pointer`}>Cam kết</a>
@@ -432,18 +432,18 @@ export default function Home() {
 
                         <div className="transition-all duration-300">
                             <div className={`${tab === 1 ? "block" : "hidden"} z-0 -mt-px px-6 py-8 border border-neutral-400 rounded-md rounded-tl-none bg-gradient-to-b from-white via-gray-100 to-gray-200 transition-all duration-300`}>
-                                <h1 class="text-amber-500 text-xl font-bold leading-tighter">Về chúng tôi - wonderHOME</h1>
-                                <p class="mt-4 text-sm leading-relaxed">
+                                <h1 className="text-amber-500 text-xl font-bold leading-tighter">Về chúng tôi - wonderHOME</h1>
+                                <p className="mt-4 text-sm leading-relaxed">
                                     wonderHOME là công ty Dịch vụ bất động sản hoạt động trên nền tảng công nghệ hiện đại giúp người dùng trải nghiệm giao dịch bất động sản tốt nhất. wonderHOME chuẩn hóa quy trình giao dịch và cung cấp giải pháp tối ưu giúp cho giao dịch mua bán nhà đất và bất động sản an toàn, hiệu quả và tiết kiệm thời gian.
                                 </p>
                             </div>
                             <div className={`${tab === 2 ? "block" : "hidden"} z-0 -mt-px px-6 py-8 border border-neutral-400 rounded-md rounded-tl-none bg-gradient-to-b from-white via-gray-100 to-gray-200 transition-all duration-300`}>
-                                <h1 class="text-amber-500 text-xl font-bold leading-tighter">Mang đến bất động sản "thật" cho bạn</h1>
-                                <p class="mt-4 text-sm leading-relaxed">Lorem ipsum dolor sit maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
+                                <h1 className="text-amber-500 text-xl font-bold leading-tighter">Mang đến bất động sản "thật" cho bạn</h1>
+                                <p className="mt-4 text-sm leading-relaxed">Lorem ipsum dolor sit maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
                             </div>
                             <div className={`${tab === 3 ? "block" : "hidden"} z-0 -mt-px px-6 py-8 border border-neutral-400 rounded-md rounded-tl-none bg-gradient-to-b from-white via-gray-100 to-gray-200 transition-all duration-300`}>
-                                <h1 class="text-amber-500 text-xl font-bold leading-tighter">Đảm bảo an toàn cho bạn</h1>
-                                <p class="mt-4 text-sm leading-relaxed">Lorem ipsum dolor sit amet consectet officia maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
+                                <h1 className="text-amber-500 text-xl font-bold leading-tighter">Đảm bảo an toàn cho bạn</h1>
+                                <p className="mt-4 text-sm leading-relaxed">Lorem ipsum dolor sit amet consectet officia maiores ipsum illum enim repudiandae quaerat tenetur sunt dolore, voluptatem blanditiis quo doloremque commodi illo? Fugiat reiciendis aliquam omnis aperiam beatae? Officia, quas consequuntur numquam laboriosam dolorem totam est, vitae at nam iste autem inventore eveniet amet ex minima in asperiores debitis repudiandae eligendi. Sint esse dolorem est aperiam. Delectus!</p>
                             </div>
                         </div>
                     </div>
@@ -451,90 +451,90 @@ export default function Home() {
                 </div>
             </div>
 
-            <div class="bg-black flex flex-col justify-center items-center py-16">
-                <div class="px-8 xl:w-1/3 flex flex-col justify-center items-center">
-                    <div class="w-32 h-1 bg-gradient-to-r from-amber-400 to-black"></div>
-                    <h1 class="font-bold mt-4 text-gray-100 text-center" style= {{ fontSize: '28px' }}>Cần hỗ trợ trong việc mua bán nhà ?</h1>
-                    <p class="mt-4 leading-relaxed text-gray-400 font-light text-center">wonderHOME có đội ngũ những chuyên gia trong lĩnh vực sẵn sàng hỗ trợ bạn trong tư vấn, mua bán và những vấn đề pháp lý. Hãy liên hệ ngay với chúng tôi!</p>
-                    <button class="flex items-center justify-center mt-8 bg-amber-400 px-8 py-4 text-neutral-900 rounded-tr-xl w-fit hover:bg-amber-300 transition-all duration-150">
-                        <p class="font-bold text-sm">Tìm hiểu</p>
+            <div className="bg-black flex flex-col justify-center items-center py-16">
+                <div className="px-8 xl:w-1/3 flex flex-col justify-center items-center">
+                    <div className="w-32 h-1 bg-gradient-to-r from-amber-400 to-black"></div>
+                    <h1 className="font-bold mt-4 text-gray-100 text-center" style= {{ fontSize: '28px' }}>Cần hỗ trợ trong việc mua bán nhà ?</h1>
+                    <p className="mt-4 leading-relaxed text-gray-400 font-light text-center">wonderHOME có đội ngũ những chuyên gia trong lĩnh vực sẵn sàng hỗ trợ bạn trong tư vấn, mua bán và những vấn đề pháp lý. Hãy liên hệ ngay với chúng tôi!</p>
+                    <button className="flex items-center justify-center mt-8 bg-amber-400 px-8 py-4 text-neutral-900 rounded-tr-xl w-fit hover:bg-amber-300 transition-all duration-150">
+                        <p className="font-bold text-sm">Tìm hiểu</p>
                     </button>
                 </div>
             </div>
 
             {/* <!-- 3 grid --> */}
-            <div class="flex flex-col justify-center items-center w-10/12 md:w-4/5 mx-auto mt-16 mb-24">
-                <div class="w-64 h-1 bg-gradient-to-r from-amber-300 to-purple-700 mb-10"></div>
-                <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-12 xs:gap-5 w-full mt-24">
-                    <div class="rounded-lg overflow-hidden shadow-lg bg-white">
-                        <div class="h-56">
-                            <p class="text-lg p-4 h-1/2 font-semibold text-center align-middle">"Dễ xài"</p>
-                            <div class="flex justify-center items-center gap-x-1">
-                                <svg style= {{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style= {{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style= {{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style= {{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+            <div className="flex flex-col justify-center items-center w-10/12 md:w-4/5 mx-auto mt-16 mb-24">
+                <div className="w-64 h-1 bg-gradient-to-r from-amber-300 to-purple-700 mb-10"></div>
+                <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-12 xs:gap-5 w-full mt-24">
+                    <div className="rounded-lg overflow-hidden shadow-lg bg-white">
+                        <div className="h-56">
+                            <p className="text-lg p-4 h-1/2 font-semibold text-center align-middle">"Dễ xài"</p>
+                            <div className="flex justify-center items-center gap-x-1">
+                                <svg style= {{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style= {{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style= {{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style= {{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
                             </div>
                         </div>
                         
-                        <div class="px-4 py-8 bg-neutral-100">
+                        <div className="px-4 py-8 bg-neutral-100">
                             {/* <!-- Avatar and name --> */}
-                            <div class="flex items-center">
-                                <img class="w-10 h-10 rounded-full mr-4" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink" />
-                                <div class="text-sm">
-                                    <p class="text-neutral-900 leading-none">Nguyễn Thị Thuý Loan</p>
-                                    <p class="text-gray-600">12/1/2021</p>
+                            <div className="flex items-center">
+                                <img className="w-10 h-10 rounded-full mr-4" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink" />
+                                <div className="text-sm">
+                                    <p className="text-neutral-900 leading-none">Nguyễn Thị Thuý Loan</p>
+                                    <p className="text-gray-600">12/1/2021</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="rounded-lg overflow-hidden shadow-lg bg-white">
-                        <div class="h-56">
-                            <p class="text-lg p-4 h-1/2 font-semibold text-center align-middle">"Đội ngũ hỗ trợ rất chuyên nghiệp"</p>
-                            <div class="flex justify-center items-center gap-x-1">
-                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                    <div className="rounded-lg overflow-hidden shadow-lg bg-white">
+                        <div className="h-56">
+                            <p className="text-lg p-4 h-1/2 font-semibold text-center align-middle">"Đội ngũ hỗ trợ rất chuyên nghiệp"</p>
+                            <div className="flex justify-center items-center gap-x-1">
+                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
                             </div>
                         </div>
-                        <div class="px-4 py-8 bg-black">
+                        <div className="px-4 py-8 bg-black">
                             {/* <!-- Avatar and name --> */}
-                            <div class="flex items-center">
-                                <img class="w-10 h-10 rounded-full mr-4" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink" />
-                                <div class="text-sm">
-                                    <p class="text-gray-100 leading-none">Nguyễn Thị Thuý Loan</p>
-                                    <p class="text-gray-400">12/1/2021</p>
+                            <div className="flex items-center">
+                                <img className="w-10 h-10 rounded-full mr-4" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink" />
+                                <div className="text-sm">
+                                    <p className="text-gray-100 leading-none">Nguyễn Thị Thuý Loan</p>
+                                    <p className="text-gray-400">12/1/2021</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="rounded-lg overflow-hidden shadow-lg bg-white">
-                        <div class="h-56">
-                            <p class="text-lg p-4 h-1/2 font-semibold text-center align-middle">"Giúp tôi chọn được ngôi nhà phù hợp"</p>
-                            <div class="flex justify-center items-center gap-x-1">
-                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
-                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-half" viewBox="0 0 16 16"> <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z" fill="#ffbf24"></path> </svg>
+                    <div className="rounded-lg overflow-hidden shadow-lg bg-white">
+                        <div className="h-56">
+                            <p className="text-lg p-4 h-1/2 font-semibold text-center align-middle">"Giúp tôi chọn được ngôi nhà phù hợp"</p>
+                            <div className="flex justify-center items-center gap-x-1">
+                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" fill="#ffbf24"></path> </svg>
+                                <svg style={{ color: 'rgb(255, 191, 36)' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-half" viewBox="0 0 16 16"> <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z" fill="#ffbf24"></path> </svg>
                             </div>
                         </div>
-                        <div class="px-4 py-8 bg-white">
+                        <div className="px-4 py-8 bg-white">
                             {/* <!-- Avatar and name --> */}
-                            <div class="flex items-center">
-                                <img class="w-10 h-10 rounded-full mr-4" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink" />
-                                <div class="text-sm">
-                                    <p class="text-neutral-900 leading-none">Nguyễn Thị Thuý Loan</p>
-                                    <p class="text-gray-600">12/1/2021</p>
+                            <div className="flex items-center">
+                                <img className="w-10 h-10 rounded-full mr-4" src="/assets/images/Avatar Image.png" alt="Avatar of Jonathan Reinink" />
+                                <div className="text-sm">
+                                    <p className="text-neutral-900 leading-none">Nguyễn Thị Thuý Loan</p>
+                                    <p className="text-gray-600">12/1/2021</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </body>
+            </div>
 
             <Footer />
         </>
