@@ -111,24 +111,36 @@ export default function Header() {
                                 </svg>
                             </button>
 
-                            <button className="hidden md:flex group mr-4 text-amber-300 border border-amber-300 hover:border-transparent hover:bg-amber-300 font-bold py-2 px-4 rounded items-center">
-                                <span className="text-sm group-hover:text-white mr-1 transition-all duration-150">
-                                    Đăng tin
-                                </span>
-                                <svg
-                                    className="transition-all duration-150 fill-amber-300 group-hover:fill-white"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path d="M17,19.22H5V7h7V5H5C3.9,5,3,5.9,3,7v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-7h-2V19.22z" />
-                                    <path d="M19,2h-2v3h-3c0.01,0.01,0,2,0,2h3v2.99c0.01,0.01,2,0,2,0V7h3V5h-3V2z" />
-                                    <rect height="2" width="8" x="7" y="9" />
-                                    <polygon points="7,12 7,14 15,14 15,12 12,12" />
-                                    <rect height="2" width="8" x="7" y="15" />
-                                </svg>
-                            </button>
+                            <a href="/react/dang-tin">
+                                <button className="hidden md:flex group mr-4 text-amber-300 border border-amber-300 hover:border-transparent hover:bg-amber-300 font-bold py-2 px-4 rounded items-center">
+                                    <span className="text-sm group-hover:text-white mr-1 transition-all duration-150">
+                                        Đăng tin
+                                    </span>
+                                    <svg
+                                        className="transition-all duration-150 fill-amber-300 group-hover:fill-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path d="M17,19.22H5V7h7V5H5C3.9,5,3,5.9,3,7v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-7h-2V19.22z" />
+                                        <path d="M19,2h-2v3h-3c0.01,0.01,0,2,0,2h3v2.99c0.01,0.01,2,0,2,0V7h3V5h-3V2z" />
+                                        <rect
+                                            height="2"
+                                            width="8"
+                                            x="7"
+                                            y="9"
+                                        />
+                                        <polygon points="7,12 7,14 15,14 15,12 12,12" />
+                                        <rect
+                                            height="2"
+                                            width="8"
+                                            x="7"
+                                            y="15"
+                                        />
+                                    </svg>
+                                </button>
+                            </a>
                             {isLoggedIn ? (
                                 <div className="relative ml-3">
                                     <div>
@@ -187,7 +199,7 @@ export default function Header() {
                                     </div>
                                 </div>
                             ) : (
-                                <a href="/react/login-and-register">
+                                <a href="/react/dang-nhap">
                                     <button className="group mr-4 bg-amber-300 text-neutral-900 hover:bg-amber-300 font-bold py-2 px-4 rounded inline-flex items-center">
                                         <span className="hidden md:inline text-sm group-hover:text-white mr-1 transition-all duration-150">
                                             Đăng ký / Đăng nhập
