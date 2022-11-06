@@ -6214,7 +6214,7 @@ function Header() {
                 }), " "]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-              href: "/react/dang-tin",
+              href: "/dang-tin",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
                 className: "hidden md:flex group mr-4 text-amber-300 border border-amber-300 hover:border-transparent hover:bg-amber-300 font-bold py-2 px-4 rounded items-center",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
@@ -6293,7 +6293,7 @@ function Header() {
                 })]
               })]
             }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-              href: "/react/dang-nhap",
+              href: "/dang-nhap",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
                 className: "group mr-4 bg-amber-300 text-neutral-900 hover:bg-amber-300 font-bold py-2 px-4 rounded inline-flex items-center",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
@@ -6961,7 +6961,7 @@ function UploadForm() {
     _useState14 = _slicedToArray(_useState13, 2),
     address = _useState14[0],
     setAddress = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(3),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState16 = _slicedToArray(_useState15, 2),
     registerStep = _useState16[0],
     setRegisterStep = _useState16[1];
@@ -9037,7 +9037,7 @@ function Home() {
             className: "grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-8",
             children: houseList ? houseList.map(function (house, index) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                href: "/react/thong-tin/".concat(house.id),
+                href: "/thong-tin/".concat(house.id),
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                   className: "rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-150 border border-gray-300 relative h-[380px] bg-white",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -9747,16 +9747,16 @@ function App() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
-        path: "/react",
+        path: "/",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Pages_Home__WEBPACK_IMPORTED_MODULE_1__["default"], {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
-        path: "/react/dang-nhap",
+        path: "/dang-nhap",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Pages_LoginRegister__WEBPACK_IMPORTED_MODULE_3__["default"], {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
-        path: "/react/thong-tin/:id",
+        path: "/thong-tin/:id",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Pages_Details__WEBPACK_IMPORTED_MODULE_2__["default"], {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
-        path: "/react/dang-tin",
+        path: "/dang-tin",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Pages_PostUpload__WEBPACK_IMPORTED_MODULE_4__["default"], {})
       })]
     })

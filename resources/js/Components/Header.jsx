@@ -111,7 +111,7 @@ export default function Header() {
                                 </svg>
                             </button>
 
-                            <a href="/react/dang-tin">
+                            <a href="/dang-tin">
                                 <button className="hidden md:flex group mr-4 text-amber-300 border border-amber-300 hover:border-transparent hover:bg-amber-300 font-bold py-2 px-4 rounded items-center">
                                     <span className="text-sm group-hover:text-white mr-1 transition-all duration-150">
                                         Đăng tin
@@ -199,7 +199,7 @@ export default function Header() {
                                     </div>
                                 </div>
                             ) : (
-                                <a href="/react/dang-nhap">
+                                <a href="/dang-nhap">
                                     <button className="group mr-4 bg-amber-300 text-neutral-900 hover:bg-amber-300 font-bold py-2 px-4 rounded inline-flex items-center">
                                         <span className="hidden md:inline text-sm group-hover:text-white mr-1 transition-all duration-150">
                                             Đăng ký / Đăng nhập

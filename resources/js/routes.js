@@ -9,10 +9,10 @@ export function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/react" element={<Home />} />
-                <Route path="/react/dang-nhap" element={<LoginRegister />} />
-                <Route path="/react/thong-tin/:id" element={<Details />} />
-                <Route path="/react/dang-tin" element={<PostUpload />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/dang-nhap" element={<LoginRegister />} />
+                <Route path="/thong-tin/:id" element={<Details />} />
+                <Route path="/dang-tin" element={<PostUpload />} />
             </Routes>
         </Router>
     );

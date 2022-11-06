@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/old', function () {
     return view('index');
 });
 
-Route::get('/thong-tin/{house_id}', function () {
+Route::get('/old/thong-tin/{house_id}', function () {
     return view('thong-tin');
 });
 
-Route::get('/dang-nhap', function () {
+Route::get('/old/dang-nhap', function () {
     return view('dang-nhap');
 });
 
@@ -60,7 +60,7 @@ Route::get('/react', function () {
     return view('app');
 });
 
-Route::get('/react/{any}', function () {
+Route::get('/{any}', function () {
     return view('app');
 })->where('any', '.*');
 

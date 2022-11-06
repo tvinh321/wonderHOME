@@ -12,7 +12,7 @@ export default function UploadForm() {
     const [ward, setWard] = useState("");
     const [address, setAddress] = useState("");
 
-    const [registerStep, setRegisterStep] = useState(3);
+    const [registerStep, setRegisterStep] = useState(1);
     const lastStep = 3;
 
     useEffect(() => {
