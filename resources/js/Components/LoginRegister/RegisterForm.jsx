@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
-import DatePicker from "react-datepicker";
 import axios from "axios";
+import PasswordInputStrengthMeter from "./PasswordInputWithStrengthMeter";
 
 export default function RegisterForm({ setIsLoginForm }) {
     const [registerStep, setRegisterStep] = useState(1);
-    const [citiesList, setCitiesList] = React.useState();
-    const [districtsList, setDistrictsList] = React.useState();
-    const [wardsList, setWardsList] = React.useState();
+    const [citiesList, setCitiesList] = useState([]);
+    const [districtsList, setDistrictsList] = useState([]);
+    const [wardsList, setWardsList] = useState([]);
 
-    const [city, setCity] = React.useState("");
-    const [district, setDistrict] = React.useState("");
-    const [ward, setWard] = React.useState("");
+    const [city, setCity] = useState("");
+    const [district, setDistrict] = useState("");
+    const [ward, setWard] = useState("");
     const lastStep = 3;
 
-    React.useEffect(() => {
+    useEffect(() => {
         axios
             .get("/api/cities")
             .then((res) => {
@@ -24,26 +24,28 @@ export default function RegisterForm({ setIsLoginForm }) {
             });
     }, []);
 
-    React.useEffect(() => {
-        axios
-            .get("/api/districts/" + city)
-            .then((res) => {
-                setDistrictsList(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+    useEffect(() => {
+        city &&
+            axios
+                .get("/api/districts/" + city)
+                .then((res) => {
+                    setDistrictsList(res.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
     }, [city]);
 
-    React.useEffect(() => {
-        axios
-            .get("/api/wards/" + district)
-            .then((res) => {
-                setWardsList(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+    useEffect(() => {
+        district &&
+            axios
+                .get("/api/wards/" + district)
+                .then((res) => {
+                    setWardsList(res.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
     }, [district]);
 
     return (
@@ -363,11 +365,7 @@ export default function RegisterForm({ setIsLoginForm }) {
                                         <li>ký tự đặc biệt</li>
                                     </ul>
                                 </div>
-                                <input
-                                    type="password"
-                                    className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    placeholder=""
-                                />
+                                <PasswordInputStrengthMeter />
                             </div>
                             <div className="mb-5">
                                 <label
