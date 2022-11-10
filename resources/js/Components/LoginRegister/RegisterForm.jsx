@@ -349,37 +349,7 @@ export default function RegisterForm({ setIsLoginForm }) {
                                     placeholder=""
                                 />
                             </div>
-                            <div className="mb-5">
-                                <label
-                                    for="password"
-                                    className="block mb-2 text-sm font-bold text-neutral-700"
-                                >
-                                    Thiết lập mật khẩu
-                                </label>
-                                <div className="text-neutral-600 mt-2 mb-4 text-sm font-bold">
-                                    Vui lòng tạo mật khẩu bao gồm các ký tự sau:
-                                    <ul className="list-disc text-sm ml-4 mt-2">
-                                        <li>chữ thường</li>
-                                        <li>số</li>
-                                        <li>chữ in hoa</li>
-                                        <li>ký tự đặc biệt</li>
-                                    </ul>
-                                </div>
-                                <PasswordInputStrengthMeter />
-                            </div>
-                            <div className="mb-5">
-                                <label
-                                    for="password"
-                                    className="block mb-2 text-sm font-bold text-neutral-700"
-                                >
-                                    Xác nhận mật khẩu
-                                </label>
-                                <input
-                                    type="password"
-                                    className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    placeholder=""
-                                />
-                            </div>
+                            <PasswordInputStrengthMeter />
                         </div>
                     ) : (
                         <div className="p-10 flex items-center shadow justify-between">
