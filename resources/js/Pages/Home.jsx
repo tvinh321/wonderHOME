@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './css/Home.css';
+import './css/home.css'
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
@@ -57,7 +57,7 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
-        axios.get("/api/districts/" + city)
+        if (city) axios.get("/api/districts/" + city)
             .then(res => {
                 setDistrictsList(res.data);
             })
@@ -67,7 +67,7 @@ export default function Home() {
     }, [city]);
 
     useEffect(() => {
-        axios.get("/api/wards/" + district)
+        if (district) axios.get("/api/wards/" + district)
             .then(res => {
                 setWardsList(res.data);
             })
@@ -168,7 +168,7 @@ export default function Home() {
                                 <button className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100" type="button" onClick={() => setShowPropertyTypes(prev => !prev)}>Loại nhà đất <svg aria-hidden="true" className="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg></button>
                                 {
                                     showPropertyTypes &&
-                                    <div className="absolute top-12 z-50 w-44 bg-white rounded divide-gray-100 shadow">
+                                    <div className="absolute top-20 z-50 w-44 bg-white rounded divide-gray-100 shadow">
                                     <ul className="py-1 text-sm text-neutral-900" aria-labelledby="dropdown-button">
                                         {
                                             typesList 
@@ -224,7 +224,7 @@ export default function Home() {
                                 {
                                     showLocation && 
                                     // Pick 1 city and 1 district and 1 ward
-                                    <div className="absolute top-[115px] z-50 w-64 bg-white rounded divide-gray-100 shadow">
+                                    <div className="absolute top-[140px] z-50 w-64 bg-white rounded divide-gray-100 shadow">
                                         <select onChange={(e) => {
                                             setCity(e.target.value);
                                             setDistrict("");

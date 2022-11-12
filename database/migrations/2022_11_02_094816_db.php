@@ -101,7 +101,7 @@ return new class extends Migration
             CONSTRAINT conveniences_pk PRIMARY KEY (id)
         ); */
         Schema::create('conveniences', function (Blueprint $table) {
-            $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
+            $table->increments('id');
             $table->string('name', 32);
         });
 
@@ -112,7 +112,7 @@ return new class extends Migration
         ); */
         Schema::create('conveniences_properties', function (Blueprint $table) {
             $table->uuid('id')->default(DB::raw('gen_random_uuid()'));
-            $table->uuid('conveniences_id');
+            $table->integer('conveniences_id');
             $table->uuid('properties_id');
             $table->primary(['conveniences_id', 'properties_id']);
         });
@@ -142,9 +142,9 @@ return new class extends Migration
             $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
             $table->string('type', 16);
             $table->binary('content');
-            $table->uuid('properties_id');
-            $table->uuid('blogs_id');
-            $table->uuid('messages_id');
+            $table->uuid('properties_id')->nullable();
+            $table->uuid('blogs_id')->nullable();
+            $table->uuid('messages_id')->nullable();
         });
 
         /* CREATE TABLE juridicals (

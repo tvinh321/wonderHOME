@@ -35,14 +35,17 @@ Route::get('/api/districts/{city_id}', [App\Http\Controllers\LocationController:
 // Get wards
 Route::get('/api/wards/{district_id}', [App\Http\Controllers\LocationController::class, 'getWards']);
 
-// Get properties
-Route::post('/api/properties', [App\Http\Controllers\PropertiesController::class, 'getProperties']);
-
 // Get property
-Route::get('/api/property/{id}', [App\Http\Controllers\PropertiesController::class, 'getProperty']);
+Route::get('/api/property/{id}', [App\Http\Controllers\PropertiesController::class, 'getPropertyById']);
 
 // Get 6 highest priority properties (for Landing Page)
 Route::get('/api/properties/highest-priority', [App\Http\Controllers\PropertiesController::class, 'getHighestPriorityProperties']);
+
+// Post new property
+Route::post('/api/property', [App\Http\Controllers\PropertiesController::class, 'postProperty']);
+
+// Upload file
+Route::post('/api/upload', [App\Http\Controllers\FilesController::class, 'uploadFiles']);
 
 // Check register email exist
 Route::post('/api/register/checkEmail', [App\Http\Controllers\UsersController::class, 'checkRegisterEmailExist']);
@@ -56,13 +59,13 @@ Route::post('/api/login', [App\Http\Controllers\UsersController::class, 'login']
 // Get Types
 Route::get('/api/types', [App\Http\Controllers\PropertiesController::class, 'getPropertyTypes']);
 
-Route::get('/react', function () {
+Route::get('/', function () {
     return view('app');
 });
 
 Route::get('/{any}', function () {
     return view('app');
-})->where('any', '.*');
+})->where('any', '^(?!api\/)[\/\w\.-]*');
 
 // Route::get('/{any}', function () {
 //     return view('app');

@@ -66,7 +66,6 @@ class PropertiesSeeder extends Seeder
             $title = ['Bán nhà ', 'Bán căn hộ ', 'Bán căn hộ chung cư ', 'Bán nhà mặt tiền '][array_rand([0, 1, 2, 3])];
 
             DB::table('properties')->insert([
-                'id' => Str::orderedUuid(),
                 'title' => $title . (number_format( (float) ($price / 1000000000), 1, '.', '')) . ' tỷ ' . $area . 'm2',
                 'created_at' => now(),
                 'location' => $loca,
