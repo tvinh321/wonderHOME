@@ -1,43 +1,75 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import ReactPannellum from "react-pannellum";
+import YouTube from "react-youtube";
+import "../../Pages/css/Details.css";
 
 export default function Gallery({ files, bedNumb, price, area }) {
-    const { images, video } = files || {};
+    const { images, videos, panaromas } = files || {};
+    const videoURL = "https://www.youtube.com/shorts/7iwkESlek3k";
+    const videoCode = (url) => {
+        return url.includes("watch")
+            ? url.split("v=")[1].split("&")[0]
+            : url.split("shorts/")[1];
+    };
     return (
         <>
-            <div className="grid-cols-4 space-y-4 md:space-y-0 md:grid md:gap-2 md:grid-rows-2">
-                <div className="w-full col-span-2 row-span-2">
+            <div className="flex items-center justify-between gap-x-4">
+                <div className="w-1/2">
                     {/* https://www.npmjs.com/package/react-pannellum */}
                     <ReactPannellum
                         id="1"
                         className="rounded-xl md:h-full"
                         sceneId="firstScene"
-                        imageSource="/images/panoram.jpg"
+                        imageSource={
+                            panaromas ? panaromas[0].url : "/images/panoram.jpg"
+                        }
                         config={{ autoLoad: true }}
+                        style={{
+                            width: "100%",
+                            height: "400px",
+                            background: "#171717",
+                        }}
                     />
                 </div>
-
-                {images?.map((image, index) => {
-                    return index < 3 ? (
-                        <div className="w-full rounded">
-                            <img
-                                className="rounded-xl"
-                                src={
-                                    image
-                                        ? image
-                                        : "/assets/images/Room${index + 1}.jpg"
-                                }
-                                alt={`Room ${index + 1}`}
-                            />
-                        </div>
-                    ) : images.length - 3 > 0 ? (
-                        <div className="w-full rounded bg-gray-200 flex items-center justify-center">
-                            <span className="text-2xl text-neutral-600">
-                                {`+ ${files.images.length - 3} ảnh khác`}
-                            </span>
-                        </div>
-                    ) : null;
+                <div className="youtubeContainer w-1/2">
+                    <YouTube
+                        videoId={videoCode(videoURL)}
+                        className="rounded-xl md:h-full"
+                        containerClassName="embed embed-youtube"
+                        onStateChange={(e) => checkElapsedTime(e)}
+                        opts={{ width: "100%", height: "400px" }}
+                    />
+                </div>
+            </div>
+            <div className="w-full mt-6 grid-cols-4 space-y-4 space-x-4 md:space-y-0 md:grid md:gap-2 md:grid-rows-1">
+                {(images || ["", "", "", "", ""]).map((image, index) => {
+                    return (
+                        index < 3 && (
+                            <div className="w-full rounded">
+                                <img
+                                    className="rounded-xl"
+                                    src={
+                                        image
+                                            ? image
+                                            : `/assets/images/Room${
+                                                  index + 1
+                                              }.jpg`
+                                    }
+                                    alt={`Room ${index + 1}`}
+                                />
+                            </div>
+                        )
+                    );
                 })}
+                {(images || ["", "", "", "", ""]).length - 3 > 0 && (
+                    <div className="w-full rounded bg-gray-200 flex items-center justify-center">
+                        <span className="text-2xl text-neutral-600">
+                            {`+ ${
+                                (images || ["", "", "", "", ""]).length - 3
+                            } ảnh khác`}
+                        </span>
+                    </div>
+                )}
             </div>
 
             <div className="w-full rounded pt-2">
