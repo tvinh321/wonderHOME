@@ -181,6 +181,7 @@ export default function PasswordInputWithStrengMeter() {
                 <input
                     type={showPasswordField ? "text" : "password"}
                     id="password"
+                    required
                     className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     placeholder=""
                     onChange={(e) => {
@@ -257,6 +258,7 @@ export default function PasswordInputWithStrengMeter() {
                     type="password"
                     className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     placeholder=""
+                    required
                     onChange={(e) => {
                         if (e.target.value === passwordValue.password) {
                             setIsConfirmedPassword(true);

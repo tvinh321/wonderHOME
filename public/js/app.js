@@ -6728,6 +6728,7 @@ function PasswordInputWithStrengMeter() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: showPasswordField ? "text" : "password",
         id: "password",
+        required: true,
         className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
         placeholder: "",
         onChange: function onChange(e) {
@@ -6797,6 +6798,7 @@ function PasswordInputWithStrengMeter() {
         type: "password",
         className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
         placeholder: "",
+        required: true,
         onChange: function onChange(e) {
           if (e.target.value === passwordValue.password) {
             setIsConfirmedPassword(true);
@@ -6873,6 +6875,21 @@ function RegisterForm(_ref) {
     _useState14 = _slicedToArray(_useState13, 2),
     ward = _useState14[0],
     setWard = _useState14[1];
+  var initialFormValue = {
+    firstName: "",
+    lastName: "",
+    gender: "",
+    username: "",
+    password: "",
+    dob: "",
+    email: "",
+    phone: "",
+    address: ""
+  };
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialFormValue),
+    _useState16 = _slicedToArray(_useState15, 2),
+    formValue = _useState16[0],
+    setFormValue = _useState16[1];
   var lastStep = 3;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/cities").then(function (res) {
@@ -6895,6 +6912,30 @@ function RegisterForm(_ref) {
       console.log(err);
     });
   }, [district]);
+  var handleGoNextStep = function handleGoNextStep() {
+    // for (let i in formValue) {
+    //     if (!formValue[i] || formValue[i] === "") {
+    //         alert("Vui lòng điền đầy đủ thông tin");
+    //         return;
+    //     }
+    // }
+    setRegisterStep(registerStep + 1);
+  };
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    var target = e.target;
+    setFormValue({
+      firstName: target.firstName.value,
+      lastName: target.lastName.value,
+      gender: "",
+      username: target.username.value,
+      password: target.password.value,
+      dob: target.dob.value,
+      email: target.email.value,
+      phone: target.phone.value,
+      address: target.address.value
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
       className: "pt-4 text-md text-center text-neutral-500",
@@ -6951,223 +6992,242 @@ function RegisterForm(_ref) {
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "py-10",
-        children: registerStep == 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "mb-5 grid md:grid-cols-2 gap-2 items-center justify-between gap-x-4",
+        children: registerStep !== lastStep ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+          onSubmit: handleSubmit,
+          children: [registerStep === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "mb-5 grid md:grid-cols-2 gap-2 items-center justify-between gap-x-4",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  "for": "lastname",
+                  className: "block mb-2 text-sm font-bold text-neutral-700",
+                  children: "H\u1ECD"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  type: "text",
+                  required: true,
+                  className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
+                  placeholder: ""
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                  "for": "firstname",
+                  className: "block mb-2 text-sm font-bold text-neutral-700",
+                  children: "T\xEAn"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  type: "text",
+                  required: true,
+                  className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
+                  placeholder: ""
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "mb-5",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                "for": "lastname",
+                "for": "gender",
                 className: "block mb-2 text-sm font-bold text-neutral-700",
-                children: "H\u1ECD"
+                children: "Gi\u1EDBi t\xEDnh"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "flex",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                  className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm mr-4",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "text-amber-600 mr-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                      type: "radio",
+                      "x-model": "gender",
+                      value: "Male",
+                      className: "form-radio focus:outline-none focus:shadow-outline"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "select-none text-neutral-700",
+                    children: "Nam"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                  className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "text-amber-600 mr-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                      type: "radio",
+                      "x-model": "gender",
+                      value: "Female",
+                      className: "form-radio focus:outline-none focus:shadow-outline"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "select-none text-neutral-700",
+                    children: "N\u1EEF"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                  className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "text-amber-600 mr-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                      type: "radio",
+                      "x-model": "gender",
+                      value: "Other",
+                      className: "form-radio focus:outline-none focus:shadow-outline"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                    className: "select-none text-neutral-700",
+                    children: "Kh\xE1c"
+                  })]
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "mb-5",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                "for": "dob",
+                className: "block mb-2 text-sm font-bold text-neutral-700",
+                children: "Sinh nh\u1EADt"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "relative",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                  required: true,
+                  type: "date",
+                  className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
+                  placeholder: "Nh\u1EADp theo \u0111\u1ECBnh d\u1EA1ng: ng\xE0y/th\xE1ng/n\u0103m"
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "mb-5",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                "for": "email",
+                className: "block mb-2 text-sm font-bold text-neutral-700",
+                children: "Email"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
+                type: "email",
+                required: true,
                 className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
                 placeholder: ""
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "mb-5",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                "for": "firstname",
+                "for": "phone",
                 className: "block mb-2 text-sm font-bold text-neutral-700",
-                children: "T\xEAn"
+                children: "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                type: "text",
+                type: "phone",
+                required: true,
                 className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
                 placeholder: ""
               })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "mb-5",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              "for": "gender",
-              className: "block mb-2 text-sm font-bold text-neutral-700",
-              children: "Gi\u1EDBi t\xEDnh"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "flex",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm mr-4",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "text-amber-600 mr-3",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "radio",
-                    "x-model": "gender",
-                    value: "Male",
-                    className: "form-radio focus:outline-none focus:shadow-outline"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "select-none text-neutral-700",
-                  children: "Nam"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "text-amber-600 mr-3",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "radio",
-                    "x-model": "gender",
-                    value: "Female",
-                    className: "form-radio focus:outline-none focus:shadow-outline"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "select-none text-neutral-700",
-                  children: "N\u1EEF"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "text-amber-600 mr-3",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                    type: "radio",
-                    "x-model": "gender",
-                    value: "Other",
-                    className: "form-radio focus:outline-none focus:shadow-outline"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                  className: "select-none text-neutral-700",
-                  children: "Kh\xE1c"
-                })]
-              })]
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "mb-5",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              "for": "dob",
-              className: "block mb-2 text-sm font-bold text-neutral-700",
-              children: "Sinh nh\u1EADt"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "relative",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("svg", {
-                  "aria-hidden": "true",
-                  className: "w-5 h-5 text-neutral-300",
-                  fill: "currentColor",
-                  viewBox: "0 0 20 20",
-                  xmlns: "http://www.w3.org/2000/svg",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
-                    fillRule: "evenodd",
-                    d: "M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z",
-                    clipRule: "evenodd"
-                  })
-                })
+              className: "mb-5",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                "for": "address",
+                className: "block mb-2 text-sm font-bold text-neutral-700",
+                children: "\u0110\u1ECBa ch\u1EC9"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                datepicker: true,
-                "datepicker-autohide": true,
-                type: "text",
-                className: "w-full px-3 pl-10 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-                placeholder: "dd/MM/YYYY"
+                type: "adress",
+                className: "mb-4 w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
+                placeholder: ""
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "grid md:grid-cols-3 gap-2 items-center justify-between",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "w-full",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                    defaultValue: 0,
+                    id: "city",
+                    className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
+                    onChange: function onChange(e) {
+                      setCity(e.target.value);
+                    },
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                      value: 0,
+                      disabled: true,
+                      children: "T\u1EC9nh/Th\xE0nh"
+                    }), citiesList && citiesList.map(function (city) {
+                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                        value: city.id,
+                        children: city.name
+                      }, city.id);
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "w-full",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                    defaultValue: 0,
+                    id: "district",
+                    className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
+                    onChange: function onChange(e) {
+                      setDistrict(e.target.value);
+                    },
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                      value: 0,
+                      disabled: true,
+                      children: "Qu\u1EADn/Huy\u1EC7n"
+                    }), districtsList && districtsList.map(function (district) {
+                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                        value: district.id,
+                        children: district.name
+                      }, district.id);
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  className: "w-full",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                    defaultValue: 0,
+                    id: "ward",
+                    className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
+                    onChange: function onChange(e) {
+                      setWard(e.target.value);
+                    },
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                      value: 0,
+                      disabled: true,
+                      children: "Ph\u01B0\u1EDDng/X\xE3"
+                    }), wardsList && wardsList.map(function (ward) {
+                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                        value: ward.id,
+                        children: ward.name
+                      }, ward.id);
+                    })]
+                  })
+                })]
               })]
             })]
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "mb-5",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                "for": "username",
+                className: "block mb-2 text-sm font-bold text-neutral-700",
+                children: "T\xEAn \u0111\u0103ng nh\u1EADp"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                type: "text",
+                required: true,
+                id: "username",
+                className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
+                placeholder: ""
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_PasswordInputWithStrengthMeter__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "mb-5",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              "for": "email",
-              className: "block mb-2 text-sm font-bold text-neutral-700",
-              children: "Email"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-              type: "email",
-              className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-              placeholder: ""
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "mb-5",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              "for": "phone",
-              className: "block mb-2 text-sm font-bold text-neutral-700",
-              children: "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-              type: "phone",
-              className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-              placeholder: ""
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "mb-5",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              "for": "address",
-              className: "block mb-2 text-sm font-bold text-neutral-700",
-              children: "\u0110\u1ECBa ch\u1EC9"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-              type: "adress",
-              className: "mb-4 w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-              placeholder: ""
+            className: "flex justify-between gap-x-4 mt-6",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "w-1/2",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                className: "".concat(registerStep > 1 && registerStep < lastStep ? "visible" : "invisible", " w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-neutral-600  hover:bg-neutral-100 font-medium border"),
+                onClick: function onClick() {
+                  return setRegisterStep(registerStep - 1);
+                },
+                children: "Tr\u1EDF v\u1EC1"
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "grid md:grid-cols-3 gap-2 items-center justify-between",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "w-full",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
-                  defaultValue: 0,
-                  id: "city",
-                  className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
-                  onChange: function onChange(e) {
-                    setCity(e.target.value);
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                    value: 0,
-                    disabled: true,
-                    children: "T\u1EC9nh/Th\xE0nh"
-                  }), citiesList && citiesList.map(function (city) {
-                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                      value: city.id,
-                      children: city.name
-                    }, city.id);
-                  })]
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "w-full",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
-                  defaultValue: 0,
-                  id: "district",
-                  className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
-                  onChange: function onChange(e) {
-                    setDistrict(e.target.value);
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                    value: 0,
-                    disabled: true,
-                    children: "Qu\u1EADn/Huy\u1EC7n"
-                  }), districtsList && districtsList.map(function (district) {
-                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                      value: district.id,
-                      children: district.name
-                    }, district.id);
-                  })]
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-                className: "w-full",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
-                  defaultValue: 0,
-                  id: "ward",
-                  className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
-                  onChange: function onChange(e) {
-                    setWard(e.target.value);
-                  },
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                    value: 0,
-                    disabled: true,
-                    children: "Ph\u01B0\u1EDDng/X\xE3"
-                  }), wardsList && wardsList.map(function (ward) {
-                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                      value: ward.id,
-                      children: ward.name
-                    }, ward.id);
-                  })]
-                })
+              className: "w-1/2 text-right",
+              children: [registerStep < lastStep && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                className: "w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium",
+                type: "button",
+                onClick: handleGoNextStep,
+                children: "Ti\u1EBFp theo"
+              }), registerStep === lastStep && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                className: "w-36 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium",
+                onClick: function onClick() {
+                  return setRegisterStep(registerStep + 1);
+                },
+                children: "Ho\xE0n th\xE0nh"
               })]
             })]
           })]
-        }) : registerStep === 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "mb-5",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-              "for": "username",
-              className: "block mb-2 text-sm font-bold text-neutral-700",
-              children: "T\xEAn \u0111\u0103ng nh\u1EADp"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-              type: "text",
-              id: "username",
-              className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-              placeholder: ""
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_PasswordInputWithStrengthMeter__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "p-10 flex items-center shadow justify-between",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -7196,33 +7256,6 @@ function RegisterForm(_ref) {
             })]
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "flex justify-between",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "w-1/2",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "".concat(registerStep > 1 ? "visible" : "invisible", " w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-neutral-600  hover:bg-neutral-100 font-medium border"),
-            onClick: function onClick() {
-              return setRegisterStep(registerStep - 1);
-            },
-            children: "Tr\u1EDF v\u1EC1"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "w-1/2 text-right",
-          children: [registerStep < lastStep && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium",
-            onClick: function onClick() {
-              return setRegisterStep(registerStep + 1);
-            },
-            children: "Ti\u1EBFp theo"
-          }), registerStep === lastStep && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "w-36 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium",
-            onClick: function onClick() {
-              return setRegisterStep(registerStep + 1);
-            },
-            children: "Ho\xE0n th\xE0nh"
-          })]
-        })]
       })]
     })]
   });
@@ -7269,30 +7302,30 @@ function UploadForm() {
     _useState6 = _slicedToArray(_useState5, 2),
     wardsList = _useState6[0],
     setWardsList = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    typesList = _React$useState2[0],
+    setTypesList = _React$useState2[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState8 = _slicedToArray(_useState7, 2),
-    typesList = _useState8[0],
-    setTypesList = _useState8[1];
+    city = _useState8[0],
+    setCity = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState10 = _slicedToArray(_useState9, 2),
-    city = _useState10[0],
-    setCity = _useState10[1];
+    district = _useState10[0],
+    setDistrict = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState12 = _slicedToArray(_useState11, 2),
-    district = _useState12[0],
-    setDistrict = _useState12[1];
+    ward = _useState12[0],
+    setWard = _useState12[1];
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState14 = _slicedToArray(_useState13, 2),
-    ward = _useState14[0],
-    setWard = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    address = _useState14[0],
+    setAddress = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState16 = _slicedToArray(_useState15, 2),
-    address = _useState16[0],
-    setAddress = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
-    _useState18 = _slicedToArray(_useState17, 2),
-    registerStep = _useState18[0],
-    setRegisterStep = _useState18[1];
+    registerStep = _useState16[0],
+    setRegisterStep = _useState16[1];
   var lastStep = 3;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/cities").then(function (res) {
@@ -12071,7 +12104,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@media screen and (max-width: 600px) {\n    .body-div {\n        box-shadow: 0px -200px 100px 125px rgba(0, 0, 0, 0.81) inset;\n    }\n}\n\n@media screen and (min-width: 600px) {\n    .body-div {\n        box-shadow: 0px -200px 500px 150px rgba(0, 0, 0, 0.81) inset;\n    }\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@media screen and (max-width: 600px) {\r\n    .body-div {\r\n        box-shadow: 0px -200px 100px 125px rgba(0, 0, 0, 0.81) inset;\r\n    }\r\n}\r\n\r\n@media screen and (min-width: 600px) {\r\n    .body-div {\r\n        box-shadow: 0px -200px 500px 150px rgba(0, 0, 0, 0.81) inset;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

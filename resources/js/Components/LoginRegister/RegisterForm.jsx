@@ -11,6 +11,20 @@ export default function RegisterForm({ setIsLoginForm }) {
     const [city, setCity] = useState("");
     const [district, setDistrict] = useState("");
     const [ward, setWard] = useState("");
+
+    const initialFormValue = {
+        firstName: "",
+        lastName: "",
+        gender: "",
+        username: "",
+        password: "",
+        dob: "",
+        email: "",
+        phone: "",
+        address: "",
+    };
+
+    const [formValue, setFormValue] = useState(initialFormValue);
     const lastStep = 3;
 
     useEffect(() => {
@@ -47,6 +61,32 @@ export default function RegisterForm({ setIsLoginForm }) {
                     console.log(err);
                 });
     }, [district]);
+
+    const handleGoNextStep = () => {
+        // for (let i in formValue) {
+        //     if (!formValue[i] || formValue[i] === "") {
+        //         alert("Vui lòng điền đầy đủ thông tin");
+        //         return;
+        //     }
+        // }
+        setRegisterStep(registerStep + 1);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const target = e.target;
+        setFormValue({
+            firstName: target.firstName.value,
+            lastName: target.lastName.value,
+            gender: "",
+            username: target.username.value,
+            password: target.password.value,
+            dob: target.dob.value,
+            email: target.email.value,
+            phone: target.phone.value,
+            address: target.address.value,
+        });
+    };
 
     return (
         <div>
@@ -100,257 +140,311 @@ export default function RegisterForm({ setIsLoginForm }) {
                     </div>
                 </div>
                 <div className="py-10">
-                    {registerStep == 1 ? (
-                        <div>
-                            <div className="mb-5 grid md:grid-cols-2 gap-2 items-center justify-between gap-x-4">
+                    {registerStep !== lastStep ? (
+                        <form onSubmit={handleSubmit}>
+                            {registerStep === 1 ? (
                                 <div>
-                                    <label
-                                        for="lastname"
-                                        className="block mb-2 text-sm font-bold text-neutral-700"
-                                    >
-                                        Họ
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                        placeholder=""
-                                    />
+                                    <div className="mb-5 grid md:grid-cols-2 gap-2 items-center justify-between gap-x-4">
+                                        <div>
+                                            <label
+                                                for="lastname"
+                                                className="block mb-2 text-sm font-bold text-neutral-700"
+                                            >
+                                                Họ
+                                            </label>
+                                            <input
+                                                type="text"
+                                                required
+                                                className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                                placeholder=""
+                                            />
+                                        </div>
+                                        <div>
+                                            <label
+                                                for="firstname"
+                                                className="block mb-2 text-sm font-bold text-neutral-700"
+                                            >
+                                                Tên
+                                            </label>
+                                            <input
+                                                type="text"
+                                                required
+                                                className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                                placeholder=""
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-5">
+                                        <label
+                                            for="gender"
+                                            className="block mb-2 text-sm font-bold text-neutral-700"
+                                        >
+                                            Giới tính
+                                        </label>
+                                        <div className="flex">
+                                            <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm mr-4">
+                                                <div className="text-amber-600 mr-3">
+                                                    <input
+                                                        type="radio"
+                                                        x-model="gender"
+                                                        value="Male"
+                                                        className="form-radio focus:outline-none focus:shadow-outline"
+                                                    />
+                                                </div>
+                                                <div className="select-none text-neutral-700">
+                                                    Nam
+                                                </div>
+                                            </label>
+
+                                            <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm">
+                                                <div className="text-amber-600 mr-3">
+                                                    <input
+                                                        type="radio"
+                                                        x-model="gender"
+                                                        value="Female"
+                                                        className="form-radio focus:outline-none focus:shadow-outline"
+                                                    />
+                                                </div>
+                                                <div className="select-none text-neutral-700">
+                                                    Nữ
+                                                </div>
+                                            </label>
+
+                                            <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm">
+                                                <div className="text-amber-600 mr-3">
+                                                    <input
+                                                        type="radio"
+                                                        x-model="gender"
+                                                        value="Other"
+                                                        className="form-radio focus:outline-none focus:shadow-outline"
+                                                    />
+                                                </div>
+                                                <div className="select-none text-neutral-700">
+                                                    Khác
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-5">
+                                        <label
+                                            for="dob"
+                                            className="block mb-2 text-sm font-bold text-neutral-700"
+                                        >
+                                            Sinh nhật
+                                        </label>
+                                        <div className="relative">
+                                            <input
+                                                required
+                                                type="date"
+                                                className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                                placeholder="Nhập theo định dạng: ngày/tháng/năm"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-5">
+                                        <label
+                                            for="email"
+                                            className="block mb-2 text-sm font-bold text-neutral-700"
+                                        >
+                                            Email
+                                        </label>
+                                        <input
+                                            type="email"
+                                            required
+                                            className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                            placeholder=""
+                                        />
+                                    </div>
+
+                                    <div className="mb-5">
+                                        <label
+                                            for="phone"
+                                            className="block mb-2 text-sm font-bold text-neutral-700"
+                                        >
+                                            Số điện thoại
+                                        </label>
+                                        <input
+                                            type="phone"
+                                            required
+                                            className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                            placeholder=""
+                                        />
+                                    </div>
+
+                                    <div className="mb-5">
+                                        <label
+                                            for="address"
+                                            className="block mb-2 text-sm font-bold text-neutral-700"
+                                        >
+                                            Địa chỉ
+                                        </label>
+                                        <input
+                                            type="adress"
+                                            className="mb-4 w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                            placeholder=""
+                                        />
+                                        <div className="grid md:grid-cols-3 gap-2 items-center justify-between">
+                                            <div className="w-full">
+                                                <select
+                                                    defaultValue={0}
+                                                    id="city"
+                                                    className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
+                                                    onChange={(e) => {
+                                                        setCity(e.target.value);
+                                                    }}
+                                                >
+                                                    <option value={0} disabled>
+                                                        Tỉnh/Thành
+                                                    </option>
+                                                    {citiesList &&
+                                                        citiesList.map(
+                                                            (city) => (
+                                                                <option
+                                                                    value={
+                                                                        city.id
+                                                                    }
+                                                                    key={
+                                                                        city.id
+                                                                    }
+                                                                >
+                                                                    {city.name}
+                                                                </option>
+                                                            )
+                                                        )}
+                                                </select>
+                                            </div>
+
+                                            <div className="w-full">
+                                                <select
+                                                    defaultValue={0}
+                                                    id="district"
+                                                    className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
+                                                    onChange={(e) => {
+                                                        setDistrict(
+                                                            e.target.value
+                                                        );
+                                                    }}
+                                                >
+                                                    <option value={0} disabled>
+                                                        Quận/Huyện
+                                                    </option>
+                                                    {districtsList &&
+                                                        districtsList.map(
+                                                            (district) => (
+                                                                <option
+                                                                    value={
+                                                                        district.id
+                                                                    }
+                                                                    key={
+                                                                        district.id
+                                                                    }
+                                                                >
+                                                                    {
+                                                                        district.name
+                                                                    }
+                                                                </option>
+                                                            )
+                                                        )}
+                                                </select>
+                                            </div>
+
+                                            <div className="w-full">
+                                                <select
+                                                    defaultValue={0}
+                                                    id="ward"
+                                                    className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
+                                                    onChange={(e) => {
+                                                        setWard(e.target.value);
+                                                    }}
+                                                >
+                                                    <option value={0} disabled>
+                                                        Phường/Xã
+                                                    </option>
+                                                    {wardsList &&
+                                                        wardsList.map(
+                                                            (ward) => (
+                                                                <option
+                                                                    value={
+                                                                        ward.id
+                                                                    }
+                                                                    key={
+                                                                        ward.id
+                                                                    }
+                                                                >
+                                                                    {ward.name}
+                                                                </option>
+                                                            )
+                                                        )}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            ) : (
                                 <div>
-                                    <label
-                                        for="firstname"
-                                        className="block mb-2 text-sm font-bold text-neutral-700"
+                                    <div className="mb-5">
+                                        <label
+                                            for="username"
+                                            className="block mb-2 text-sm font-bold text-neutral-700"
+                                        >
+                                            Tên đăng nhập
+                                        </label>
+                                        <input
+                                            type="text"
+                                            required
+                                            id="username"
+                                            className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                            placeholder=""
+                                        />
+                                    </div>
+                                    <PasswordInputStrengthMeter />
+                                </div>
+                            )}
+                            <div className="flex justify-between gap-x-4 mt-6">
+                                <div className="w-1/2">
+                                    <button
+                                        className={`${
+                                            registerStep > 1 &&
+                                            registerStep < lastStep
+                                                ? "visible"
+                                                : "invisible"
+                                        } w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-neutral-600  hover:bg-neutral-100 font-medium border`}
+                                        onClick={() =>
+                                            setRegisterStep(registerStep - 1)
+                                        }
                                     >
-                                        Tên
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                        placeholder=""
-                                    />
+                                        Trở về
+                                    </button>
+                                </div>
+                                <div className="w-1/2 text-right">
+                                    {registerStep < lastStep && (
+                                        <button
+                                            className="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium"
+                                            type="button"
+                                            onClick={handleGoNextStep}
+                                        >
+                                            Tiếp theo
+                                        </button>
+                                    )}
+
+                                    {registerStep === lastStep && (
+                                        <button
+                                            className="w-36 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium"
+                                            onClick={() =>
+                                                setRegisterStep(
+                                                    registerStep + 1
+                                                )
+                                            }
+                                        >
+                                            Hoàn thành
+                                        </button>
+                                    )}
                                 </div>
                             </div>
-
-                            <div className="mb-5">
-                                <label
-                                    for="gender"
-                                    className="block mb-2 text-sm font-bold text-neutral-700"
-                                >
-                                    Giới tính
-                                </label>
-                                <div className="flex">
-                                    <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm mr-4">
-                                        <div className="text-amber-600 mr-3">
-                                            <input
-                                                type="radio"
-                                                x-model="gender"
-                                                value="Male"
-                                                className="form-radio focus:outline-none focus:shadow-outline"
-                                            />
-                                        </div>
-                                        <div className="select-none text-neutral-700">
-                                            Nam
-                                        </div>
-                                    </label>
-
-                                    <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm">
-                                        <div className="text-amber-600 mr-3">
-                                            <input
-                                                type="radio"
-                                                x-model="gender"
-                                                value="Female"
-                                                className="form-radio focus:outline-none focus:shadow-outline"
-                                            />
-                                        </div>
-                                        <div className="select-none text-neutral-700">
-                                            Nữ
-                                        </div>
-                                    </label>
-
-                                    <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm">
-                                        <div className="text-amber-600 mr-3">
-                                            <input
-                                                type="radio"
-                                                x-model="gender"
-                                                value="Other"
-                                                className="form-radio focus:outline-none focus:shadow-outline"
-                                            />
-                                        </div>
-                                        <div className="select-none text-neutral-700">
-                                            Khác
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div className="mb-5">
-                                <label
-                                    for="dob"
-                                    className="block mb-2 text-sm font-bold text-neutral-700"
-                                >
-                                    Sinh nhật
-                                </label>
-                                <div className="relative">
-                                    <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <svg
-                                            aria-hidden="true"
-                                            className="w-5 h-5 text-neutral-300"
-                                            fill="currentColor"
-                                            viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                clipRule="evenodd"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                    <input
-                                        datepicker
-                                        datepicker-autohide
-                                        type="text"
-                                        className="w-full px-3 pl-10 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                        placeholder="dd/MM/YYYY"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="mb-5">
-                                <label
-                                    for="email"
-                                    className="block mb-2 text-sm font-bold text-neutral-700"
-                                >
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    placeholder=""
-                                />
-                            </div>
-
-                            <div className="mb-5">
-                                <label
-                                    for="phone"
-                                    className="block mb-2 text-sm font-bold text-neutral-700"
-                                >
-                                    Số điện thoại
-                                </label>
-                                <input
-                                    type="phone"
-                                    className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    placeholder=""
-                                />
-                            </div>
-
-                            <div className="mb-5">
-                                <label
-                                    for="address"
-                                    className="block mb-2 text-sm font-bold text-neutral-700"
-                                >
-                                    Địa chỉ
-                                </label>
-                                <input
-                                    type="adress"
-                                    className="mb-4 w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    placeholder=""
-                                />
-                                <div className="grid md:grid-cols-3 gap-2 items-center justify-between">
-                                    <div className="w-full">
-                                        <select
-                                            defaultValue={0}
-                                            id="city"
-                                            className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
-                                            onChange={(e) => {
-                                                setCity(e.target.value);
-                                            }}
-                                        >
-                                            <option value={0} disabled>
-                                                Tỉnh/Thành
-                                            </option>
-                                            {citiesList &&
-                                                citiesList.map((city) => (
-                                                    <option
-                                                        value={city.id}
-                                                        key={city.id}
-                                                    >
-                                                        {city.name}
-                                                    </option>
-                                                ))}
-                                        </select>
-                                    </div>
-
-                                    <div className="w-full">
-                                        <select
-                                            defaultValue={0}
-                                            id="district"
-                                            className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
-                                            onChange={(e) => {
-                                                setDistrict(e.target.value);
-                                            }}
-                                        >
-                                            <option value={0} disabled>
-                                                Quận/Huyện
-                                            </option>
-                                            {districtsList &&
-                                                districtsList.map(
-                                                    (district) => (
-                                                        <option
-                                                            value={district.id}
-                                                            key={district.id}
-                                                        >
-                                                            {district.name}
-                                                        </option>
-                                                    )
-                                                )}
-                                        </select>
-                                    </div>
-
-                                    <div className="w-full">
-                                        <select
-                                            defaultValue={0}
-                                            id="ward"
-                                            className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
-                                            onChange={(e) => {
-                                                setWard(e.target.value);
-                                            }}
-                                        >
-                                            <option value={0} disabled>
-                                                Phường/Xã
-                                            </option>
-                                            {wardsList &&
-                                                wardsList.map((ward) => (
-                                                    <option
-                                                        value={ward.id}
-                                                        key={ward.id}
-                                                    >
-                                                        {ward.name}
-                                                    </option>
-                                                ))}
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ) : registerStep === 2 ? (
-                        <div>
-                            <div className="mb-5">
-                                <label
-                                    for="username"
-                                    className="block mb-2 text-sm font-bold text-neutral-700"
-                                >
-                                    Tên đăng nhập
-                                </label>
-                                <input
-                                    type="text"
-                                    id="username"
-                                    className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    placeholder=""
-                                />
-                            </div>
-                            <PasswordInputStrengthMeter />
-                        </div>
+                        </form>
                     ) : (
                         <div className="p-10 flex items-center shadow justify-between">
                             <div>
@@ -388,42 +482,6 @@ export default function RegisterForm({ setIsLoginForm }) {
                             </div>
                         </div>
                     )}
-                </div>
-                <div className="flex justify-between">
-                    <div className="w-1/2">
-                        <button
-                            className={`${
-                                registerStep > 1 ? "visible" : "invisible"
-                            } w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-neutral-600  hover:bg-neutral-100 font-medium border`}
-                            onClick={() => setRegisterStep(registerStep - 1)}
-                        >
-                            Trở về
-                        </button>
-                    </div>
-
-                    <div className="w-1/2 text-right">
-                        {registerStep < lastStep && (
-                            <button
-                                className="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium"
-                                onClick={() =>
-                                    setRegisterStep(registerStep + 1)
-                                }
-                            >
-                                Tiếp theo
-                            </button>
-                        )}
-
-                        {registerStep === lastStep && (
-                            <button
-                                className="w-36 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium"
-                                onClick={() =>
-                                    setRegisterStep(registerStep + 1)
-                                }
-                            >
-                                Hoàn thành
-                            </button>
-                        )}
-                    </div>
                 </div>
             </div>
         </div>
