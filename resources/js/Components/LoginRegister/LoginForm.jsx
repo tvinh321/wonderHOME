@@ -63,8 +63,11 @@ export default function LoginForm({ setIsLoginForm }) {
                 localStorage.setItem("user", response.data.user);
                 window.location.href = "/";
             } else {
-                console.log(response.data.message);
-                setMessage(response.data.message || "Có lỗi xảy ra");
+                const responseMsg =
+                    response.data.message === "User not found"
+                        ? "Người dùng không tồn tại"
+                        : "Đăng nhập thất bại";
+                setMessage(responseMsg);
             }
         }
         setPassword("");
