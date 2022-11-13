@@ -13,18 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/old', function () {
-    return view('index');
-});
-
-Route::get('/old/thong-tin/{house_id}', function () {
-    return view('thong-tin');
-});
-
-Route::get('/old/dang-nhap', function () {
-    return view('dang-nhap');
-});
-
+//Get React page
+Route::get('/{any}', function () {
+    return view('app');
+})->where('any', '^(?!api\/)[\/\w\.-]*');
 
 // Get cities
 Route::get('/api/cities', [App\Http\Controllers\LocationController::class, 'getCities']);
@@ -63,9 +55,7 @@ Route::get('/', function () {
     return view('app');
 });
 
-Route::get('/{any}', function () {
-    return view('app');
-})->where('any', '^(?!api\/)[\/\w\.-]*');
+
 
 // Route::get('/{any}', function () {
 //     return view('app');

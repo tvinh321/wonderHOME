@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import ReactPannellum from "react-pannellum";
 import YouTube from "react-youtube";
-import "../../Pages/css/Details.css";
 
 export default function Gallery({ files, bedNumb, price, area }) {
     const { images, videos, panaromas } = files || {};
@@ -21,7 +20,9 @@ export default function Gallery({ files, bedNumb, price, area }) {
                         className="rounded-xl md:h-full"
                         sceneId="firstScene"
                         imageSource={
-                            panaromas ? panaromas[0].url : "/images/panoram.jpg"
+                            panaromas
+                                ? panaromas[0].url
+                                : "/assets/images/panoram.jpg"
                         }
                         config={{ autoLoad: true }}
                         style={{

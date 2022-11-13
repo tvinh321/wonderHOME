@@ -5869,10 +5869,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_pannellum__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-pannellum */ "./node_modules/react-pannellum/dist/index.js");
-/* harmony import */ var react_youtube__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-youtube */ "./node_modules/react-youtube/dist/YouTube.mjs");
-/* harmony import */ var _Pages_css_Details_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Pages/css/Details.css */ "./resources/js/Pages/css/Details.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
+/* harmony import */ var react_youtube__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-youtube */ "./node_modules/react-youtube/dist/YouTube.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -5892,16 +5890,16 @@ function Gallery(_ref) {
   var videoCode = function videoCode(url) {
     return url.includes("watch") ? url.split("v=")[1].split("&")[0] : url.split("shorts/")[1];
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "flex items-center justify-between gap-x-4",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "w-1/2",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_pannellum__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_pannellum__WEBPACK_IMPORTED_MODULE_1__["default"], {
           id: "1",
           className: "rounded-xl md:h-full",
           sceneId: "firstScene",
-          imageSource: panaromas ? panaromas[0].url : "/images/panoram.jpg",
+          imageSource: panaromas ? panaromas[0].url : "/assets/images/panoram.jpg",
           config: {
             autoLoad: true
           },
@@ -5911,9 +5909,9 @@ function Gallery(_ref) {
             background: "#171717"
           }
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "youtubeContainer w-1/2",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_youtube__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_youtube__WEBPACK_IMPORTED_MODULE_3__["default"], {
           videoId: videoCode(videoURL),
           className: "rounded-xl md:h-full",
           containerClassName: "embed embed-youtube",
@@ -5926,69 +5924,69 @@ function Gallery(_ref) {
           }
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "w-full mt-6 grid-cols-4 space-y-4 space-x-4 md:space-y-0 md:grid md:gap-2 md:grid-rows-1",
       children: [(images || ["", "", "", "", ""]).map(function (image, index) {
-        return index < 3 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        return index < 3 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "w-full rounded",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
             className: "rounded-xl",
             src: image ? image : "/assets/images/Room".concat(index + 1, ".jpg"),
             alt: "Room ".concat(index + 1)
           })
         });
-      }), (images || ["", "", "", "", ""]).length - 3 > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      }), (images || ["", "", "", "", ""]).length - 3 > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "w-full rounded bg-gray-200 flex items-center justify-center",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
           className: "text-2xl text-neutral-600",
           children: "+ ".concat((images || ["", "", "", "", ""]).length - 3, " \u1EA3nh kh\xE1c")
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "w-full rounded pt-2",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "mt-4 flex justify-items-end",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
           className: "text-sm flex py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border-b border-t border-l border-neutral-900 rounded-l-lg justify-center items-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("svg", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
             className: "mr-2 fill-amber-400",
             width: "16",
             height: "16",
             xmlns: "http://www.w3.org/2000/svg",
             viewBox: "0 0 24 24",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
               d: "M7,6A1,1,0,1,0,8,7,1,1,0,0,0,7,6Zm14.71,5.78L12.23,2.32A1,1,0,0,0,11.5,2h-6a1,1,0,0,0-.71.29L2.29,4.78A1,1,0,0,0,2,5.49v6a1.05,1.05,0,0,0,.29.71l9.49,9.5a1.05,1.05,0,0,0,.71.29,1,1,0,0,0,.71-.29l8.51-8.51a1,1,0,0,0,.29-.71A1.05,1.05,0,0,0,21.71,11.78Zm-9.22,7.81L4,11.09V5.9L5.9,4h5.18l8.5,8.49Z"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
             children: [(price / 1000000000).toFixed(1), " t\u1EF7"]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
           className: "text-sm flex py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border border-neutral-900 justify-center items-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("svg", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
             className: "mr-2 fill-amber-400",
             width: "16",
             height: "16",
             xmlns: "http://www.w3.org/2000/svg",
             viewBox: "0 0 24 24",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
               d: "M22,7V5h-3V2h-2v3h-4V2h-2v3H7V2H5v3H2v2h3v4H2v2h3v4H2v2h3v3h2v-3h4v3h2v-3h4v3h2v-3h3v-2h-3v-4h3v-2h-3V7H22z M7,7h4v4 H7V7z M7,17v-4h4v4H7z M17,17h-4v-4h4V17z M17,11h-4V7h4V11z"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-            children: [area, " m", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("sup", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+            children: [area, " m", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("sup", {
               children: "2"
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
           className: "text-sm flex py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border-b border-t border-r border-neutral-900 rounded-r-lg justify-center items-center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("svg", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("svg", {
             className: "mr-2",
             xmlns: "http://www.w3.org/2000/svg",
             width: "16",
             height: "16",
             viewBox: "0 0 512 512",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("title", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("title", {
               children: "ionicons-v5-g"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
               d: "M384,240H96V136a40.12,40.12,0,0,1,40-40H376a40.12,40.12,0,0,1,40,40V240Z",
               style: {
                 fill: "none",
@@ -5997,7 +5995,7 @@ function Gallery(_ref) {
                 strokeLinejoin: "round",
                 strokeWidth: "32px"
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
               d: "M48,416V304a64.19,64.19,0,0,1,64-64H400a64.19,64.19,0,0,1,64,64V416",
               style: {
                 fill: "none",
@@ -6006,7 +6004,7 @@ function Gallery(_ref) {
                 strokeLinejoin: "round",
                 strokeWidth: "32px"
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
               d: "M48,416v-8a24.07,24.07,0,0,1,24-24H440a24.07,24.07,0,0,1,24,24v8",
               style: {
                 fill: "none",
@@ -6015,7 +6013,7 @@ function Gallery(_ref) {
                 strokeLinejoin: "round",
                 strokeWidth: "32px"
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
               d: "M112,240V224a32.09,32.09,0,0,1,32-32h80a32.09,32.09,0,0,1,32,32v16",
               style: {
                 fill: "none",
@@ -6024,7 +6022,7 @@ function Gallery(_ref) {
                 strokeLinejoin: "round",
                 strokeWidth: "32px"
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
               d: "M256,240V224a32.09,32.09,0,0,1,32-32h80a32.09,32.09,0,0,1,32,32v16",
               style: {
                 fill: "none",
@@ -6034,7 +6032,7 @@ function Gallery(_ref) {
                 strokeWidth: "32px"
               }
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
             children: [bedNumb, " ph\xF2ng ng\u1EE7"]
           })]
         })]
@@ -6579,7 +6577,7 @@ function LoginForm(_ref) {
 
   var handleLogin = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-      var digitCheck, lowerCaseCheck, upperCaseCheck, specialCharCheck, response;
+      var digitCheck, lowerCaseCheck, upperCaseCheck, specialCharCheck, response, responseMsg;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -6642,8 +6640,8 @@ function LoginForm(_ref) {
                 localStorage.setItem("user", response.data.user);
                 window.location.href = "/";
               } else {
-                console.log(response.data.message);
-                setMessage(response.data.message || "Có lỗi xảy ra");
+                responseMsg = response.data.message === "User not found" ? "Người dùng không tồn tại" : "Đăng nhập thất bại";
+                setMessage(responseMsg);
               }
               return _context.finish(22);
             case 25:
@@ -8854,7 +8852,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _css_home_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/home.css */ "./resources/js/Pages/css/home.css");
+/* harmony import */ var _css_home_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../css/home.css */ "./resources/css/home.css");
 /* harmony import */ var _Components_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/Header */ "./resources/js/Components/Header.jsx");
 /* harmony import */ var _Components_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/Footer */ "./resources/js/Components/Footer.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -9024,7 +9022,7 @@ function Home() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "mt-5 bg-center bg-cover bg-no-repeat body-div",
         style: {
-          height: '32rem',
+          height: "32rem",
           backgroundImage: "url('assets/images/Landing.jpg')"
         },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -9086,7 +9084,7 @@ function Home() {
                       return !prev;
                     });
                   },
-                  children: ["Lo\u1EA1i nh\xE0 \u0111\u1EA5t ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("svg", {
+                  children: ["Lo\u1EA1i nh\xE0 \u0111\u1EA5t", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("svg", {
                     "aria-hidden": "true",
                     className: "ml-1 w-4 h-4",
                     fill: "currentColor",
@@ -9497,7 +9495,7 @@ function Home() {
                       children: house.title
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
                       className: "text-gray-700 text-sm",
-                      children: [(house.price / 1000000000).toFixed(1), " t\u1EF7 - ", house.area, " m", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("sup", {
+                      children: [(house.price / 1000000000).toFixed(1), " ", "t\u1EF7 - ", house.area, " m", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("sup", {
                         children: "2"
                       })]
                     })]
@@ -9516,47 +9514,47 @@ function Home() {
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
                           d: "M384,240H96V136a40.12,40.12,0,0,1,40-40H376a40.12,40.12,0,0,1,40,40V240Z",
                           style: {
-                            fill: 'none',
-                            stroke: '#000',
-                            strokeLinecap: 'round',
-                            strokeLinejoin: 'round',
-                            strokeWidth: '32px'
+                            fill: "none",
+                            stroke: "#000",
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            strokeWidth: "32px"
                           }
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
                           d: "M48,416V304a64.19,64.19,0,0,1,64-64H400a64.19,64.19,0,0,1,64,64V416",
                           style: {
-                            fill: 'none',
-                            stroke: '#000',
-                            strokeLinecap: 'round',
-                            strokeLinejoin: 'round',
-                            strokeWidth: '32px'
+                            fill: "none",
+                            stroke: "#000",
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            strokeWidth: "32px"
                           }
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
                           d: "M48,416v-8a24.07,24.07,0,0,1,24-24H440a24.07,24.07,0,0,1,24,24v8",
                           style: {
-                            fill: 'none',
-                            stroke: '#000',
-                            strokeLinecap: 'round',
-                            strokeLinejoin: 'round',
-                            strokeWidth: '32px'
+                            fill: "none",
+                            stroke: "#000",
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            strokeWidth: "32px"
                           }
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
                           d: "M112,240V224a32.09,32.09,0,0,1,32-32h80a32.09,32.09,0,0,1,32,32v16",
                           style: {
-                            fill: 'none',
-                            stroke: '#000',
-                            strokeLinecap: 'round',
-                            strokeLinejoin: 'round',
-                            strokeWidth: '32px'
+                            fill: "none",
+                            stroke: "#000",
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            strokeWidth: "32px"
                           }
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
                           d: "M256,240V224a32.09,32.09,0,0,1,32-32h80a32.09,32.09,0,0,1,32,32v16",
                           style: {
-                            fill: 'none',
-                            stroke: '#000',
-                            strokeLinecap: 'round',
-                            strokeLinejoin: 'round',
-                            strokeWidth: '32px'
+                            fill: "none",
+                            stroke: "#000",
+                            strokeLinecap: "round",
+                            strokeLinejoin: "round",
+                            strokeWidth: "32px"
                           }
                         })]
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
@@ -9568,7 +9566,7 @@ function Home() {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                         className: "mr-2",
                         style: {
-                          color: 'rgb(23, 23, 23)'
+                          color: "rgb(23, 23, 23)"
                         },
                         width: "16",
                         height: "16",
@@ -9722,7 +9720,7 @@ function Home() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
             className: "font-bold mt-4 text-gray-100 text-center",
             style: {
-              fontSize: '28px'
+              fontSize: "28px"
             },
             children: "C\u1EA7n h\u1ED7 tr\u1EE3 trong vi\u1EC7c mua b\xE1n nh\xE0 ?"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
@@ -9753,7 +9751,7 @@ function Home() {
                 className: "flex justify-center items-center gap-x-1",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9767,7 +9765,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9781,7 +9779,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9795,7 +9793,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9840,7 +9838,7 @@ function Home() {
                 className: "flex justify-center items-center gap-x-1",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9854,7 +9852,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9868,7 +9866,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9882,7 +9880,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9896,7 +9894,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9941,7 +9939,7 @@ function Home() {
                 className: "flex justify-center items-center gap-x-1",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9955,7 +9953,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9969,7 +9967,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9983,7 +9981,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -9997,7 +9995,7 @@ function Home() {
                   }), " "]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
                   style: {
-                    color: 'rgb(255, 191, 36)'
+                    color: "rgb(255, 191, 36)"
                   },
                   xmlns: "http://www.w3.org/2000/svg",
                   width: "16",
@@ -12169,10 +12167,10 @@ function isnan (val) {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/css/Details.css":
-/*!******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/css/Details.css ***!
-  \******************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/css/home.css":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/css/home.css ***!
+  \******************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12180,31 +12178,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "div.youtubeContainer > iframe {\r\n    border-radius: \"0.75rem\" !important;\r\n}\r\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/css/home.css":
-/*!***************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/css/home.css ***!
-  \***************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
 // Imports
 
@@ -56430,10 +56404,10 @@ module.exports = Sister;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/css/Details.css":
-/*!********************************************!*\
-  !*** ./resources/js/Pages/css/Details.css ***!
-  \********************************************/
+/***/ "./resources/css/home.css":
+/*!********************************!*\
+  !*** ./resources/css/home.css ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -56441,39 +56415,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Details_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Details.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/css/Details.css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Details_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Details_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./resources/js/Pages/css/home.css":
-/*!*****************************************!*\
-  !*** ./resources/js/Pages/css/home.css ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_home_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./home.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/Pages/css/home.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_home_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./home.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/css/home.css");
 
             
 
