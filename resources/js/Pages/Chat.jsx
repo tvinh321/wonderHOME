@@ -45,6 +45,11 @@ const Chat = () => {
             channel.listen('.message.sent', e => {
                 setMessages(messages => [...messages, e]);
             });
+
+            return () => {
+                echo.leave('chat-room.' + chatRoomId);
+                echo.disconnect();
+            };
         }
     }, [chatRoomId]);
 

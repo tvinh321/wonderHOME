@@ -8366,7 +8366,8 @@ var Chat = function Chat() {
         });
       });
       return function () {
-        _channel.leave();
+        echo.leave('chat-room.' + chatRoomId);
+        echo.disconnect();
       };
     }
   }, [chatRoomId]);
