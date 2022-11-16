@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function PasswordInputWithStrengMeter() {
+export default function PasswordInputWithStrengMeter({ password, setPassword }) {
     const minLength = 8;
     const digitReg = new RegExp("[0-9]+"); // should contain at least one digit
     const lowerCaseReg = new RegExp("[a-z]+"); // should contain at least one lower case
@@ -18,6 +18,10 @@ export default function PasswordInputWithStrengMeter() {
 
     const [showPasswordField, setShowPasswordField] = useState(false);
     const [isConfirmedPassword, setIsConfirmedPassword] = useState(false);
+
+    useEffect(() => {
+        setPassword(passwordValue.password);
+    }, [passwordValue]);
 
     const validatePasswordStrong = (value) => {
         if (!value) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "../../css/home.css";
 import Header from "../Components/Header";
@@ -20,13 +20,46 @@ export default function Home() {
     const [area, setArea] = useState([]);
     const [type, setType] = useState([]);
     const [bedroom, setBedroom] = useState("");
-    const [direction, setDirection] = useState(1);
+    const [direction, setDirection] = useState();
 
     const [showFilters, setShowFilters] = useState(false);
     const [showPropertyTypes, setShowPropertyTypes] = useState(false);
     const [showLocation, setShowLocation] = useState(false);
 
+    const propertyTypesRef = useRef();
+    const locationRef = useRef();
+
     const [houseList, setHouseList] = React.useState();
+
+    function useOnClickOutside(ref, handler) {
+        useEffect(
+          () => {
+            const listener = (event) => {
+              // Do nothing if clicking ref's element or descendent elements
+              if (!ref.current || ref.current.contains(event.target)) {
+                return;
+              }
+              handler(event);
+            };
+            document.addEventListener("mousedown", listener);
+            document.addEventListener("touchstart", listener);
+            return () => {
+              document.removeEventListener("mousedown", listener);
+              document.removeEventListener("touchstart", listener);
+            };
+          },
+          // Add ref and handler to effect dependencies
+          // It's worth noting that because the passed-in handler is a new ...
+          // ... function on every render that will cause this effect ...
+          // ... callback/cleanup to run every render. It's not a big deal ...
+          // ... but to optimize you can wrap handler in useCallback before ...
+          // ... passing it into this hook.
+          [ref, handler]
+        );
+      }
+
+    useOnClickOutside(propertyTypesRef, () => setShowPropertyTypes(false));
+    useOnClickOutside(locationRef, () => setShowLocation(false));
 
     useEffect(() => {
         axios
@@ -126,7 +159,7 @@ export default function Home() {
             url += "bedroom=" + bedroom + "&";
         }
 
-        if (direction != 1) {
+        if (direction) {
             url += "direction=" + direction + "&";
         }
 
@@ -134,7 +167,7 @@ export default function Home() {
     };
 
     return (
-        <>
+        <div>
             <Header />
 
             <div>
@@ -217,7 +250,7 @@ export default function Home() {
                                         </svg>
                                     </button>
                                     {showPropertyTypes && (
-                                        <div className="absolute top-20 z-50 w-44 bg-white rounded divide-gray-100 shadow">
+                                        <div className="absolute top-20 z-50 w-44 bg-white rounded divide-gray-100 shadow" ref={propertyTypesRef}>
                                             <ul
                                                 className="py-1 text-sm text-neutral-900"
                                                 aria-labelledby="dropdown-button"
@@ -379,7 +412,7 @@ export default function Home() {
                                     </div>
                                     {showLocation && (
                                         // Pick 1 city and 1 district and 1 ward
-                                        <div className="absolute top-[140px] z-50 w-64 bg-white rounded divide-gray-100 shadow">
+                                        <div className="absolute top-[140px] z-50 w-64 bg-white rounded divide-gray-100 shadow" ref={locationRef}>
                                             <select
                                                 onChange={(e) => {
                                                     setCity(e.target.value);
@@ -1285,6 +1318,6 @@ export default function Home() {
             </div>
 
             <Footer />
-        </>
+        </div>
     );
 }

@@ -6570,6 +6570,10 @@ function LoginForm(_ref) {
     _useState6 = _slicedToArray(_useState5, 2),
     message = _useState6[0],
     setMessage = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    loading = _useState8[0],
+    setLoading = _useState8[1];
   var digitReg = new RegExp("[0-9]+"); // should contain at least one digit
   var lowerCaseReg = new RegExp("[a-z]+"); // should contain at least one lower case
   var upperCaseReg = new RegExp("[A-Z]+"); // should contain at least one upper case
@@ -6577,81 +6581,86 @@ function LoginForm(_ref) {
 
   var handleLogin = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-      var digitCheck, lowerCaseCheck, upperCaseCheck, specialCharCheck, response, responseMsg;
+      var response, responseMsg;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               event.preventDefault();
               setMessage("");
-              if (!(password.length < 8)) {
-                _context.next = 5;
-                break;
-              }
-              setMessage("Mật khẩu phải có ít nhất 8 ký tự");
-              return _context.abrupt("return");
-            case 5:
-              digitCheck = {
-                key: "chữ số",
-                value: digitReg.test(password)
-              };
-              lowerCaseCheck = {
-                key: "chữ thường",
-                value: lowerCaseReg.test(password)
-              };
-              upperCaseCheck = {
-                key: "chữ hoa",
-                value: upperCaseReg.test(password)
-              };
-              specialCharCheck = {
-                key: "ký tự đặc biệt",
-                value: specialCharReg.test(password)
-              };
-              if (!(!lowerCaseCheck.value || !upperCaseCheck.value || !digitCheck.value || !specialCharCheck.value)) {
-                _context.next = 12;
-                break;
-              }
-              setMessage("M\u1EADt kh\u1EA9u c\u1EE7a b\u1EA1n c\xF2n thi\u1EBFu ".concat([lowerCaseCheck, upperCaseCheck, digitCheck, specialCharCheck].map(function (i) {
-                return i.value ? null : i.key;
-              }).filter(function (i) {
-                return i !== null;
-              }).join(", ")));
-              return _context.abrupt("return");
-            case 12:
+
+              // if (password.length < 8) {
+              //     setMessage("Mật khẩu phải có ít nhất 8 ký tự");
+              //     return;
+              // }
+
+              // const digitCheck = { key: "chữ số", value: digitReg.test(password) };
+              // const lowerCaseCheck = {
+              //     key: "chữ thường",
+              //     value: lowerCaseReg.test(password),
+              // };
+              // const upperCaseCheck = {
+              //     key: "chữ hoa",
+              //     value: upperCaseReg.test(password),
+              // };
+              // const specialCharCheck = {
+              //     key: "ký tự đặc biệt",
+              //     value: specialCharReg.test(password),
+              // };
+              // if (
+              //     !lowerCaseCheck.value ||
+              //     !upperCaseCheck.value ||
+              //     !digitCheck.value ||
+              //     !specialCharCheck.value
+              // ) {
+              //     setMessage(
+              //         `Mật khẩu của bạn còn thiếu ${[
+              //             lowerCaseCheck,
+              //             upperCaseCheck,
+              //             digitCheck,
+              //             specialCharCheck,
+              //         ]
+              //             .map((i) => (i.value ? null : i.key))
+              //             .filter((i) => i !== null)
+              //             .join(", ")}`
+              //     );
+              //     return;
+              // }
+              setLoading(true);
               response = null;
-              _context.prev = 13;
-              _context.next = 16;
+              _context.prev = 4;
+              _context.next = 7;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/login", {
                 username: username,
                 password: password
               });
-            case 16:
+            case 7:
               response = _context.sent;
-              _context.next = 22;
+              _context.next = 13;
               break;
-            case 19:
-              _context.prev = 19;
-              _context.t0 = _context["catch"](13);
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](4);
               response = _context.t0.response;
-            case 22:
-              _context.prev = 22;
+            case 13:
+              _context.prev = 13;
               if (response.data.status === "success") {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("user", response.data.user);
+                localStorage.setItem("wonderHome-token", response.data.token);
                 window.location.href = "/";
               } else {
                 responseMsg = response.data.message === "User not found" ? "Người dùng không tồn tại" : "Đăng nhập thất bại";
                 setMessage(responseMsg);
               }
-              return _context.finish(22);
-            case 25:
+              setLoading(false);
+              return _context.finish(13);
+            case 17:
               setPassword("");
-            case 26:
+            case 18:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[13, 19, 22, 25]]);
+      }, _callee, null, [[4, 10, 13, 17]]);
     }));
     return function handleLogin(_x) {
       return _ref2.apply(this, arguments);
@@ -6688,7 +6697,7 @@ function LoginForm(_ref) {
             children: message
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
-          className: "px-8 pt-6 pb-8 mb-4  rounded",
+          className: "md:px-8 pt-6 pb-8 mb-4 rounded",
           onSubmit: handleLogin,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
             className: "mb-4",
@@ -6738,9 +6747,10 @@ function LoginForm(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "mb-6 text-center",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-              className: "w-full px-4 py-2 font-bold text-white bg-amber-500 rounded-full hover:bg-amber-700 focus:outline-none focus:shadow-outline",
+              className: (loading ? "bg-amber-300" : "bg-amber-500 hover:bg-amber-700") + " w-full px-4 py-2 font-bold text-white focus:outline-none focus:shadow-outline rounded-full transition-all duration-200",
               type: "submit",
-              children: "\u0110\u0103ng nh\u1EADp"
+              disabled: loading,
+              children: loading ? "Đang đăng nhập..." : "Đăng nhập"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
             className: "mb-6 border-t"
@@ -6795,7 +6805,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function PasswordInputWithStrengMeter() {
+function PasswordInputWithStrengMeter(_ref) {
+  var password = _ref.password,
+    setPassword = _ref.setPassword;
   var minLength = 8;
   var digitReg = new RegExp("[0-9]+"); // should contain at least one digit
   var lowerCaseReg = new RegExp("[a-z]+"); // should contain at least one lower case
@@ -6821,6 +6833,9 @@ function PasswordInputWithStrengMeter() {
     _useState6 = _slicedToArray(_useState5, 2),
     isConfirmedPassword = _useState6[0],
     setIsConfirmedPassword = _useState6[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setPassword(passwordValue.password);
+  }, [passwordValue]);
   var validatePasswordStrong = function validatePasswordStrong(value) {
     if (!value) {
       setPasswordValue({
@@ -7035,49 +7050,70 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function RegisterForm(_ref) {
   var setIsLoginForm = _ref.setIsLoginForm;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState2 = _slicedToArray(_useState, 2),
-    registerStep = _useState2[0],
-    setRegisterStep = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    firstName = _useState2[0],
+    setFirstName = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState4 = _slicedToArray(_useState3, 2),
-    citiesList = _useState4[0],
-    setCitiesList = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    lastName = _useState4[0],
+    setLastName = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState6 = _slicedToArray(_useState5, 2),
-    districtsList = _useState6[0],
-    setDistrictsList = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    gender = _useState6[0],
+    setGender = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState8 = _slicedToArray(_useState7, 2),
-    wardsList = _useState8[0],
-    setWardsList = _useState8[1];
+    email = _useState8[0],
+    setEmail = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState10 = _slicedToArray(_useState9, 2),
-    city = _useState10[0],
-    setCity = _useState10[1];
+    dob = _useState10[0],
+    setDob = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState12 = _slicedToArray(_useState11, 2),
-    district = _useState12[0],
-    setDistrict = _useState12[1];
+    phone = _useState12[0],
+    setPhone = _useState12[1];
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState14 = _slicedToArray(_useState13, 2),
-    ward = _useState14[0],
-    setWard = _useState14[1];
-  var initialFormValue = {
-    firstName: "",
-    lastName: "",
-    gender: "",
-    username: "",
-    password: "",
-    dob: "",
-    email: "",
-    phone: "",
-    address: ""
-  };
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialFormValue),
+    address = _useState14[0],
+    setAddress = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState16 = _slicedToArray(_useState15, 2),
-    formValue = _useState16[0],
-    setFormValue = _useState16[1];
+    username = _useState16[0],
+    setUsername = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState18 = _slicedToArray(_useState17, 2),
+    password = _useState18[0],
+    setPassword = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState20 = _slicedToArray(_useState19, 2),
+    registerStep = _useState20[0],
+    setRegisterStep = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState22 = _slicedToArray(_useState21, 2),
+    citiesList = _useState22[0],
+    setCitiesList = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState24 = _slicedToArray(_useState23, 2),
+    districtsList = _useState24[0],
+    setDistrictsList = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState26 = _slicedToArray(_useState25, 2),
+    wardsList = _useState26[0],
+    setWardsList = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState28 = _slicedToArray(_useState27, 2),
+    city = _useState28[0],
+    setCity = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState30 = _slicedToArray(_useState29, 2),
+    district = _useState30[0],
+    setDistrict = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState32 = _slicedToArray(_useState31, 2),
+    ward = _useState32[0],
+    setWard = _useState32[1];
   var lastStep = 3;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/cities").then(function (res) {
@@ -7101,27 +7137,48 @@ function RegisterForm(_ref) {
     });
   }, [district]);
   var handleGoNextStep = function handleGoNextStep() {
-    // for (let i in formValue) {
-    //     if (!formValue[i] || formValue[i] === "") {
-    //         alert("Vui lòng điền đầy đủ thông tin");
-    //         return;
-    //     }
-    // }
+    // Check filled data
+    if (registerStep === 1) {
+      if (!firstName || !lastName || !gender || !email || !dob || !phone || !address || !city || !district || !ward) {
+        alert("Please fill all fields");
+        return;
+      }
+    } else if (registerStep === 2) {
+      if (!username || !password) {
+        alert("Please fill all fields");
+        return;
+      }
+    }
     setRegisterStep(registerStep + 1);
   };
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    var target = e.target;
-    setFormValue({
-      firstName: target.firstName.value,
-      lastName: target.lastName.value,
-      gender: "",
-      username: target.username.value,
-      password: target.password.value,
-      dob: target.dob.value,
-      email: target.email.value,
-      phone: target.phone.value,
-      address: target.address.value
+  var handleSubmit = function handleSubmit() {
+    var formValue = {
+      firstName: firstName,
+      lastName: lastName,
+      gender: gender,
+      email: email,
+      dob: dob,
+      phone: phone,
+      location: address + ", " + ward + ", " + district + ", " + city,
+      username: username,
+      password: password
+    };
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", formValue).then(function (res) {
+      setRegisterStep(lastStep + 1);
+    })["catch"](function (err) {
+      if (err.response) {
+        if (err.response.status === 422) {
+          if (err.response.data.message === "Email already exists") {
+            alert("Email đã tồn tại");
+          } else if (err.response.data.message === "Username already exists") {
+            alert("Tên đăng nhập đã tồn tại");
+          }
+        } else if (err.response.status === 400) {
+          alert("Vui lòng điền đầy đủ thông tin");
+        } else {
+          alert("Đăng ký thất bại");
+        }
+      }
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -7144,7 +7201,7 @@ function RegisterForm(_ref) {
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "px-8 pt-6 pb-8 mb-4 rounded w-3/4 mx-auto",
+      className: "md:px-8 px-2 pt-6 pb-8 mb-4 rounded w-3/4 mx-auto",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "border-b-2 py-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -7153,7 +7210,7 @@ function RegisterForm(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "flex flex-col md:flex-row md:items-center md:justify-between",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "flex-initial w-3/4",
+            className: "flex-initial md:w-3/4",
             children: registerStep == 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "text-md font-bold text-neutral-700 leading-tight",
@@ -7166,7 +7223,7 @@ function RegisterForm(_ref) {
               })
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "flex items-center md:w-64",
+            className: "flex items-center mt-4 md:w-64 md:mt-0",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "w-full rounded-full mr-2",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -7181,31 +7238,40 @@ function RegisterForm(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "py-10",
         children: registerStep !== lastStep ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-          onSubmit: handleSubmit,
           children: [registerStep === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "mb-5 grid md:grid-cols-2 gap-2 items-center justify-between gap-x-4",
+              className: "mb-5 grid md:grid-cols-2 gap-2 items-center md:justify-between gap-x-4",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                  "for": "lastname",
+                  "for": "lastName",
                   className: "block mb-2 text-sm font-bold text-neutral-700",
                   children: "H\u1ECD"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                   type: "text",
                   required: true,
                   className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-                  placeholder: ""
+                  placeholder: "",
+                  name: "lastName",
+                  value: lastName,
+                  onChange: function onChange(e) {
+                    return setLastName(e.target.value);
+                  }
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                  "for": "firstname",
+                  "for": "firstName",
                   className: "block mb-2 text-sm font-bold text-neutral-700",
                   children: "T\xEAn"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                   type: "text",
                   required: true,
                   className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-                  placeholder: ""
+                  placeholder: "",
+                  name: "firstName",
+                  value: firstName,
+                  onChange: function onChange(e) {
+                    return setFirstName(e.target.value);
+                  }
                 })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -7215,44 +7281,53 @@ function RegisterForm(_ref) {
                 className: "block mb-2 text-sm font-bold text-neutral-700",
                 children: "Gi\u1EDBi t\xEDnh"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                className: "flex",
+                className: "md:flex",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                  className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm mr-4",
+                  className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-1 md:py-3 md:shadow-sm mr-4",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                     className: "text-amber-600 mr-3",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                       type: "radio",
                       "x-model": "gender",
-                      value: "Male",
-                      className: "form-radio focus:outline-none focus:shadow-outline"
+                      value: 1,
+                      className: "form-radio focus:outline-none focus:shadow-outline",
+                      onClick: function onClick(e) {
+                        setGender(1);
+                      }
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                     className: "select-none text-neutral-700",
                     children: "Nam"
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                  className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm",
+                  className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-1 md:py-3 md:shadow-sm",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                     className: "text-amber-600 mr-3",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                       type: "radio",
                       "x-model": "gender",
-                      value: "Female",
-                      className: "form-radio focus:outline-none focus:shadow-outline"
+                      value: 0,
+                      className: "form-radio focus:outline-none focus:shadow-outline",
+                      onClick: function onClick(e) {
+                        setGender(0);
+                      }
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                     className: "select-none text-neutral-700",
                     children: "N\u1EEF"
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
-                  className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm",
+                  className: "flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-1 md:py-3 md:shadow-sm",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                     className: "text-amber-600 mr-3",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                       type: "radio",
                       "x-model": "gender",
-                      value: "Other",
-                      className: "form-radio focus:outline-none focus:shadow-outline"
+                      value: 2,
+                      className: "form-radio focus:outline-none focus:shadow-outline",
+                      onClick: function onClick(e) {
+                        setGender(2);
+                      }
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                     className: "select-none text-neutral-700",
@@ -7272,7 +7347,12 @@ function RegisterForm(_ref) {
                   required: true,
                   type: "date",
                   className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-                  placeholder: "Nh\u1EADp theo \u0111\u1ECBnh d\u1EA1ng: ng\xE0y/th\xE1ng/n\u0103m"
+                  placeholder: "Nh\u1EADp theo \u0111\u1ECBnh d\u1EA1ng: ng\xE0y/th\xE1ng/n\u0103m",
+                  name: "dob",
+                  value: dob,
+                  onChange: function onChange(e) {
+                    setDob(e.target.value);
+                  }
                 })
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -7285,7 +7365,12 @@ function RegisterForm(_ref) {
                 type: "email",
                 required: true,
                 className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-                placeholder: ""
+                placeholder: "",
+                name: "email",
+                value: email,
+                onChange: function onChange(e) {
+                  setEmail(e.target.value);
+                }
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "mb-5",
@@ -7297,7 +7382,12 @@ function RegisterForm(_ref) {
                 type: "phone",
                 required: true,
                 className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-                placeholder: ""
+                placeholder: "",
+                name: "phone",
+                value: phone,
+                onChange: function onChange(e) {
+                  setPhone(e.target.value);
+                }
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "mb-5",
@@ -7308,9 +7398,14 @@ function RegisterForm(_ref) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                 type: "adress",
                 className: "mb-4 w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-                placeholder: ""
+                placeholder: "",
+                name: "address",
+                value: address,
+                onChange: function onChange(e) {
+                  setAddress(e.target.value);
+                }
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-                className: "grid md:grid-cols-3 gap-2 items-center justify-between",
+                className: "grid md:grid-cols-3 gap-2 items-center md:justify-between",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                   className: "w-full",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
@@ -7386,31 +7481,40 @@ function RegisterForm(_ref) {
                 required: true,
                 id: "username",
                 className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-                placeholder: ""
+                placeholder: "",
+                name: "username",
+                value: username,
+                onChange: function onChange(e) {
+                  setUsername(e.target.value);
+                }
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_PasswordInputWithStrengthMeter__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_PasswordInputWithStrengthMeter__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              password: password,
+              setPassword: setPassword
+            })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "flex justify-between gap-x-4 mt-6",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "w-1/2",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
                 className: "".concat(registerStep > 1 && registerStep < lastStep ? "visible" : "invisible", " w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-neutral-600  hover:bg-neutral-100 font-medium border"),
-                onClick: function onClick() {
-                  return setRegisterStep(registerStep - 1);
+                onClick: function onClick(e) {
+                  e.preventDefault();
+                  setRegisterStep(registerStep - 1);
                 },
                 children: "Tr\u1EDF v\u1EC1"
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "w-1/2 text-right",
-              children: [registerStep < lastStep && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              children: [registerStep === 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
                 className: "w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium",
                 type: "button",
                 onClick: handleGoNextStep,
                 children: "Ti\u1EBFp theo"
-              }), registerStep === lastStep && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              }), registerStep === 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
                 className: "w-36 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium",
                 onClick: function onClick() {
-                  return setRegisterStep(registerStep + 1);
+                  return handleSubmit();
                 },
                 children: "Ho\xE0n th\xE0nh"
               })]
@@ -8873,7 +8977,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 function Home() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState2 = _slicedToArray(_useState, 2),
@@ -8927,7 +9030,7 @@ function Home() {
     _useState26 = _slicedToArray(_useState25, 2),
     bedroom = _useState26[0],
     setBedroom = _useState26[1];
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
     _useState28 = _slicedToArray(_useState27, 2),
     direction = _useState28[0],
     setDirection = _useState28[1];
@@ -8943,10 +9046,42 @@ function Home() {
     _useState34 = _slicedToArray(_useState33, 2),
     showLocation = _useState34[0],
     setShowLocation = _useState34[1];
+  var propertyTypesRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var locationRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(),
     _React$useState2 = _slicedToArray(_React$useState, 2),
     houseList = _React$useState2[0],
     setHouseList = _React$useState2[1];
+  function useOnClickOutside(ref, handler) {
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+      var listener = function listener(event) {
+        // Do nothing if clicking ref's element or descendent elements
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        handler(event);
+      };
+      document.addEventListener("mousedown", listener);
+      document.addEventListener("touchstart", listener);
+      return function () {
+        document.removeEventListener("mousedown", listener);
+        document.removeEventListener("touchstart", listener);
+      };
+    },
+    // Add ref and handler to effect dependencies
+    // It's worth noting that because the passed-in handler is a new ...
+    // ... function on every render that will cause this effect ...
+    // ... callback/cleanup to run every render. It's not a big deal ...
+    // ... but to optimize you can wrap handler in useCallback before ...
+    // ... passing it into this hook.
+    [ref, handler]);
+  }
+  useOnClickOutside(propertyTypesRef, function () {
+    return setShowPropertyTypes(false);
+  });
+  useOnClickOutside(locationRef, function () {
+    return setShowLocation(false);
+  });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/properties/highest-priority").then(function (res) {
       setHouseList(res.data);
@@ -9012,12 +9147,12 @@ function Home() {
     if (bedroom != "") {
       url += "bedroom=" + bedroom + "&";
     }
-    if (direction != 1) {
+    if (direction) {
       url += "direction=" + direction + "&";
     }
     window.location.href = url;
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "mt-5 bg-center bg-cover bg-no-repeat body-div",
@@ -9098,6 +9233,7 @@ function Home() {
                   })]
                 }), showPropertyTypes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                   className: "absolute top-20 z-50 w-44 bg-white rounded divide-gray-100 shadow",
+                  ref: propertyTypesRef,
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
                     className: "py-1 text-sm text-neutral-900",
                     "aria-labelledby": "dropdown-button",
@@ -9223,6 +9359,7 @@ function Home() {
               // Pick 1 city and 1 district and 1 ward
               (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 className: "absolute top-[140px] z-50 w-64 bg-white rounded divide-gray-100 shadow",
+                ref: locationRef,
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
                   onChange: function onChange(e) {
                     setCity(e.target.value);

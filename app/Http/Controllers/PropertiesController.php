@@ -84,7 +84,9 @@ class PropertiesController extends Controller
     // Post property
     public function postProperty(Request $request)
     {
-        DB::table('properties')->insert([
+        $user = $request->user;
+
+        $id = DB::table('properties')->insertGetId([
             'title' => $request->title,
             'location' => $request->location,
             'description' => $request->description,
@@ -101,21 +103,30 @@ class PropertiesController extends Controller
             'juridicals_id' => $request->juridicals_id,
             'property_types_id' => $request->property_types_id,
             'wards_id' => $request->wards_id,
-            'users_id' => $request->users_id,
+            'users_id' => $user,
             'created_at' => now(),
         ]);
 
+        $images = $request->images;
         $videos = $request->videos;
         $conveniences = $request->conveniences;
 
-        if ($videos) {
-            for ($i = 0; $i < count($videos); $i++) {
-                $video = $videos[$i];
-
+        if ($images) {
+            foreach ($images as $image) {
                 DB::table('files')->insert([
+                    'content' => $image,
+                    'type' => 'image',
+                    'properties_id' => $id,
+                ]);
+            }
+        }
+
+        if ($videos) {
+            foreach ($videos as $video) {
+                DB::table('files')->insert([
+                    'content' => $video,
                     'type' => 'video',
-                    'name' => $propertyId . '/video_' . $i,
-                    'properties_id' => $propertyId,
+                    'properties_id' => $id,
                 ]);
             }
         }
@@ -124,7 +135,7 @@ class PropertiesController extends Controller
             foreach ($conveniences as $convenience) {
                 DB::table('conveniences_properties')->insert([
                     'conveniences_id' => $convenience,
-                    'properties_id' => $propertyId,
+                    'properties_id' => $id,
                 ]);
             }
         }
@@ -132,7 +143,7 @@ class PropertiesController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Property posted successfully',
-            'property_id' => $propertyId
+            'property_id' => $id
         ]);
     }
 }

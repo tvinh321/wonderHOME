@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckUser;
+use App\Http\Middleware\CheckAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +36,10 @@ Route::get('/api/property/{id}', [App\Http\Controllers\PropertiesController::cla
 Route::get('/api/properties/highest-priority', [App\Http\Controllers\PropertiesController::class, 'getHighestPriorityProperties']);
 
 // Post new property
-Route::post('/api/property', [App\Http\Controllers\PropertiesController::class, 'postProperty']);
+Route::post('/api/property', [App\Http\Controllers\PropertiesController::class, 'postProperty'])->middleware(CheckUser::class);
 
 // Upload file
-Route::post('/api/upload', [App\Http\Controllers\FilesController::class, 'uploadFiles']);
-
-// Check register email exist
-Route::post('/api/register/checkEmail', [App\Http\Controllers\UsersController::class, 'checkRegisterEmailExist']);
+Route::post('/api/upload', [App\Http\Controllers\FilesController::class, 'uploadFiles'])->middleware(CheckUser::class);
 
 // Register
 Route::post('/api/register', [App\Http\Controllers\UsersController::class, 'register']);

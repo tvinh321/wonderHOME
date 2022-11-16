@@ -3,6 +3,16 @@ import axios from "axios";
 import PasswordInputStrengthMeter from "./PasswordInputWithStrengthMeter";
 
 export default function RegisterForm({ setIsLoginForm }) {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [gender, setGender] = useState(0);
+    const [email, setEmail] = useState("");
+    const [dob, setDob] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
     const [registerStep, setRegisterStep] = useState(1);
     const [citiesList, setCitiesList] = useState([]);
     const [districtsList, setDistrictsList] = useState([]);
@@ -12,19 +22,6 @@ export default function RegisterForm({ setIsLoginForm }) {
     const [district, setDistrict] = useState("");
     const [ward, setWard] = useState("");
 
-    const initialFormValue = {
-        firstName: "",
-        lastName: "",
-        gender: "",
-        username: "",
-        password: "",
-        dob: "",
-        email: "",
-        phone: "",
-        address: "",
-    };
-
-    const [formValue, setFormValue] = useState(initialFormValue);
     const lastStep = 3;
 
     useEffect(() => {
@@ -63,29 +60,56 @@ export default function RegisterForm({ setIsLoginForm }) {
     }, [district]);
 
     const handleGoNextStep = () => {
-        // for (let i in formValue) {
-        //     if (!formValue[i] || formValue[i] === "") {
-        //         alert("Vui lòng điền đầy đủ thông tin");
-        //         return;
-        //     }
-        // }
+        // Check filled data
+        if (registerStep === 1) {
+            if (!firstName || !lastName || !gender || !email || !dob || !phone || !address || !city || !district || !ward) {
+                alert("Please fill all fields");
+                return;
+            }
+        } else if (registerStep === 2) {
+            if (!username || !password) {
+                alert("Please fill all fields");
+                return;
+            }
+        }
         setRegisterStep(registerStep + 1);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const target = e.target;
-        setFormValue({
-            firstName: target.firstName.value,
-            lastName: target.lastName.value,
-            gender: "",
-            username: target.username.value,
-            password: target.password.value,
-            dob: target.dob.value,
-            email: target.email.value,
-            phone: target.phone.value,
-            address: target.address.value,
-        });
+    const handleSubmit = () => {
+        const formValue = {
+            firstName,
+            lastName,
+            gender,
+            email,
+            dob,
+            phone,
+            location: address + ", " + ward + ", " + district + ", " + city,
+            username,
+            password,
+        };
+
+        axios
+            .post("/api/register", formValue)
+            .then((res) => {
+                setRegisterStep(lastStep + 1);
+            })
+            .catch((err) => {
+                if (err.response) {
+                    if (err.response.status === 422) {
+                        if (err.response.data.message === "Email already exists") {
+                            alert("Email đã tồn tại");
+                        } else if (err.response.data.message === "Username already exists") {
+                            alert("Tên đăng nhập đã tồn tại");
+                        }
+                    }
+                    else if (err.response.status === 400) {
+                        alert("Vui lòng điền đầy đủ thông tin");
+                    }
+                    else {
+                        alert("Đăng ký thất bại");
+                    }
+                }
+            });
     };
 
     return (
@@ -107,13 +131,13 @@ export default function RegisterForm({ setIsLoginForm }) {
                     </a>
                 </div>
             </div>
-            <div className="px-8 pt-6 pb-8 mb-4 rounded w-3/4 mx-auto">
+            <div className="md:px-8 px-2 pt-6 pb-8 mb-4 rounded w-3/4 mx-auto">
                 <div className="border-b-2 py-4">
                     <div className="uppercase tracking-wide text-xs font-bold text-neutral-500 mb-1 leading-tight">
                         Bước {registerStep} / {lastStep}
                     </div>
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                        <div className="flex-initial w-3/4">
+                        <div className="flex-initial md:w-3/4">
                             {registerStep == 1 ? (
                                 <div>
                                     <div className="text-md font-bold text-neutral-700 leading-tight">
@@ -128,7 +152,7 @@ export default function RegisterForm({ setIsLoginForm }) {
                                 </div>
                             )}
                         </div>
-                        <div className="flex items-center md:w-64">
+                        <div className="flex items-center mt-4 md:w-64 md:mt-0">
                             <div className="w-full rounded-full mr-2">
                                 <div className="rounded-full bg-amber-500 text-xs leading-none h-2 text-center text-white"></div>
                             </div>
@@ -141,13 +165,13 @@ export default function RegisterForm({ setIsLoginForm }) {
                 </div>
                 <div className="py-10">
                     {registerStep !== lastStep ? (
-                        <form onSubmit={handleSubmit}>
+                        <form>
                             {registerStep === 1 ? (
                                 <div>
-                                    <div className="mb-5 grid md:grid-cols-2 gap-2 items-center justify-between gap-x-4">
+                                    <div className="mb-5 grid md:grid-cols-2 gap-2 items-center md:justify-between gap-x-4">
                                         <div>
                                             <label
-                                                for="lastname"
+                                                for="lastName"
                                                 className="block mb-2 text-sm font-bold text-neutral-700"
                                             >
                                                 Họ
@@ -157,11 +181,16 @@ export default function RegisterForm({ setIsLoginForm }) {
                                                 required
                                                 className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                 placeholder=""
+                                                name="lastName"
+                                                value={lastName}
+                                                onChange={(e) =>
+                                                    setLastName(e.target.value)
+                                                }
                                             />
                                         </div>
                                         <div>
                                             <label
-                                                for="firstname"
+                                                for="firstName"
                                                 className="block mb-2 text-sm font-bold text-neutral-700"
                                             >
                                                 Tên
@@ -171,6 +200,11 @@ export default function RegisterForm({ setIsLoginForm }) {
                                                 required
                                                 className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                 placeholder=""
+                                                name="firstName"
+                                                value={firstName}
+                                                onChange={(e) =>
+                                                    setFirstName(e.target.value)
+                                                }
                                             />
                                         </div>
                                     </div>
@@ -182,14 +216,17 @@ export default function RegisterForm({ setIsLoginForm }) {
                                         >
                                             Giới tính
                                         </label>
-                                        <div className="flex">
-                                            <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm mr-4">
+                                        <div className="md:flex">
+                                            <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-1 md:py-3 md:shadow-sm mr-4">
                                                 <div className="text-amber-600 mr-3">
                                                     <input
                                                         type="radio"
                                                         x-model="gender"
-                                                        value="Male"
+                                                        value={1}
                                                         className="form-radio focus:outline-none focus:shadow-outline"
+                                                        onClick={(e) => {
+                                                            setGender(1);
+                                                        }}
                                                     />
                                                 </div>
                                                 <div className="select-none text-neutral-700">
@@ -197,13 +234,16 @@ export default function RegisterForm({ setIsLoginForm }) {
                                                 </div>
                                             </label>
 
-                                            <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm">
+                                            <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-1 md:py-3 md:shadow-sm">
                                                 <div className="text-amber-600 mr-3">
                                                     <input
                                                         type="radio"
                                                         x-model="gender"
-                                                        value="Female"
+                                                        value={0}
                                                         className="form-radio focus:outline-none focus:shadow-outline"
+                                                        onClick={(e) => {
+                                                            setGender(0);
+                                                        }}
                                                     />
                                                 </div>
                                                 <div className="select-none text-neutral-700">
@@ -211,13 +251,16 @@ export default function RegisterForm({ setIsLoginForm }) {
                                                 </div>
                                             </label>
 
-                                            <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-3 shadow-sm">
+                                            <label className="flex justify-start items-center text-truncate rounded-lg  pl-4 pr-6 py-1 md:py-3 md:shadow-sm">
                                                 <div className="text-amber-600 mr-3">
                                                     <input
                                                         type="radio"
                                                         x-model="gender"
-                                                        value="Other"
+                                                        value={2}
                                                         className="form-radio focus:outline-none focus:shadow-outline"
+                                                        onClick={(e) => {
+                                                            setGender(2);
+                                                        }}
                                                     />
                                                 </div>
                                                 <div className="select-none text-neutral-700">
@@ -240,6 +283,11 @@ export default function RegisterForm({ setIsLoginForm }) {
                                                 type="date"
                                                 className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                 placeholder="Nhập theo định dạng: ngày/tháng/năm"
+                                                name="dob"
+                                                value={dob}
+                                                onChange={(e) => {
+                                                    setDob(e.target.value);
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -256,6 +304,11 @@ export default function RegisterForm({ setIsLoginForm }) {
                                             required
                                             className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                             placeholder=""
+                                            name="email"
+                                            value={email}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                            }}
                                         />
                                     </div>
 
@@ -271,6 +324,11 @@ export default function RegisterForm({ setIsLoginForm }) {
                                             required
                                             className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                             placeholder=""
+                                            name="phone"
+                                            value={phone}
+                                            onChange={(e) => {
+                                                setPhone(e.target.value);
+                                            }}
                                         />
                                     </div>
 
@@ -285,8 +343,13 @@ export default function RegisterForm({ setIsLoginForm }) {
                                             type="adress"
                                             className="mb-4 w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                             placeholder=""
+                                            name="address"
+                                            value={address}
+                                            onChange={(e) => {
+                                                setAddress(e.target.value);
+                                            }}
                                         />
-                                        <div className="grid md:grid-cols-3 gap-2 items-center justify-between">
+                                        <div className="grid md:grid-cols-3 gap-2 items-center md:justify-between">
                                             <div className="w-full">
                                                 <select
                                                     defaultValue={0}
@@ -398,9 +461,14 @@ export default function RegisterForm({ setIsLoginForm }) {
                                             id="username"
                                             className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                             placeholder=""
+                                            name="username"
+                                            value={username}
+                                            onChange={(e) => {
+                                                setUsername(e.target.value);
+                                            }}
                                         />
                                     </div>
-                                    <PasswordInputStrengthMeter />
+                                    <PasswordInputStrengthMeter password={password} setPassword={setPassword} />
                                 </div>
                             )}
                             <div className="flex justify-between gap-x-4 mt-6">
@@ -412,15 +480,16 @@ export default function RegisterForm({ setIsLoginForm }) {
                                                 ? "visible"
                                                 : "invisible"
                                         } w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-neutral-600  hover:bg-neutral-100 font-medium border`}
-                                        onClick={() =>
-                                            setRegisterStep(registerStep - 1)
-                                        }
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setRegisterStep(registerStep - 1);
+                                        }}
                                     >
                                         Trở về
                                     </button>
                                 </div>
                                 <div className="w-1/2 text-right">
-                                    {registerStep < lastStep && (
+                                    {registerStep === 1 && (
                                         <button
                                             className="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium"
                                             type="button"
@@ -430,14 +499,10 @@ export default function RegisterForm({ setIsLoginForm }) {
                                         </button>
                                     )}
 
-                                    {registerStep === lastStep && (
+                                    {registerStep === 2 && (
                                         <button
                                             className="w-36 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium"
-                                            onClick={() =>
-                                                setRegisterStep(
-                                                    registerStep + 1
-                                                )
-                                            }
+                                            onClick={() => handleSubmit()}
                                         >
                                             Hoàn thành
                                         </button>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class UsersController extends Controller
 {
@@ -36,28 +38,11 @@ class UsersController extends Controller
         }
     }
 
-    // Check Register Email Exist
-    public function checkRegisterEmailExist(Request $request)
-    {
-        $email = $request->email;
-
-        $user = DB::table('users')->where('email', $email)->first();
-
-        if ($user) {
-            return response()->json([
-                'message' => 'Email already exists'
-            ], 409);
-        } else {
-            return response()->json([
-                'status' => 'success'
-            ]);
-        }
-    }
-
     // Register
     public function register(Request $request)
     {
-        $fullName = $request->fullName;
+        $firstName = $request->firstName;
+        $lastName = $request->lastName;
         $gender = $request->gender;
         $dob = $request->dob;
         $email = $request->email;
@@ -66,23 +51,48 @@ class UsersController extends Controller
         $username = $request->username;
         $password = $request->password;
 
-        $password = password_hash($password, PASSWORD_DEFAULT);
+        if ($firstName && $lastName && $gender && $dob && $email && $phone && $location && $username && $password) {
+            $user = DB::table('users')->where('email', $email)->first();
+            $user2 = DB::table('users')->where('username', $username)->first();
 
-        $user = DB::table('users')->insert([
-            'full_name' => $fullName,
-            'username' => $username,
-            'password' => $password,
-            'email' => $email,
-            'gender' => $gender,
-            'dob' => $dob,
-            'register_at' => date('Y-m-d H:i:s'),
-            'last_active' => date('Y-m-d H:i:s'),
-            'role' => 1,
-        ]);
+            if ($user) {
+                return response()->json([
+                    'message' => 'Email already exists'
+                ], 422);
+            }
+            elseif ($user2) {
+                return response()->json([
+                    'message' => 'Username already exists'
+                ], 422);
+            }
+            else {
+                $password = password_hash($password, PASSWORD_DEFAULT);
 
-        return response()->json([
-            'message' => 'Register successfully'
-        ], 201);
+                $id = DB::table('users')->insertGetId([
+                    'full_name' => $lastName . ' ' . $firstName,
+                    'username' => $username,
+                    'email' => $email,
+                    'password' => $password,
+                    'phone' => $phone,
+                    'gender' => $gender,
+                    'dob' => $dob,
+                    'location' => $location,
+                    'register_at' => date('Y-m-d H:i:s'),
+                    'last_active' => date('Y-m-d H:i:s'),
+                    'role' => 1
+                ]);
+
+                $user = DB::table('users')->where('id', $id)->first();
+
+                return response()->json([
+                    'status' => 'success'
+                ]);
+            }
+        } else {
+            return response()->json([
+                'message' => 'Please fill all fields'
+            ], 400);
+        }
     }
 
     // Generate token
@@ -96,6 +106,6 @@ class UsersController extends Controller
             'exp' => time() + 60 * 60 // Expiration time
         ];
 
-        return JWT::encode($payload, $key);
+        return JWT::encode($payload, $key, 'HS256');
     }
 }

@@ -5,6 +5,7 @@ export default function LoginForm({ setIsLoginForm }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const digitReg = new RegExp("[0-9]+"); // should contain at least one digit
     const lowerCaseReg = new RegExp("[a-z]+"); // should contain at least one lower case
@@ -15,43 +16,44 @@ export default function LoginForm({ setIsLoginForm }) {
         event.preventDefault();
         setMessage("");
 
-        if (password.length < 8) {
-            setMessage("Mật khẩu phải có ít nhất 8 ký tự");
-            return;
-        }
+        // if (password.length < 8) {
+        //     setMessage("Mật khẩu phải có ít nhất 8 ký tự");
+        //     return;
+        // }
 
-        const digitCheck = { key: "chữ số", value: digitReg.test(password) };
-        const lowerCaseCheck = {
-            key: "chữ thường",
-            value: lowerCaseReg.test(password),
-        };
-        const upperCaseCheck = {
-            key: "chữ hoa",
-            value: upperCaseReg.test(password),
-        };
-        const specialCharCheck = {
-            key: "ký tự đặc biệt",
-            value: specialCharReg.test(password),
-        };
-        if (
-            !lowerCaseCheck.value ||
-            !upperCaseCheck.value ||
-            !digitCheck.value ||
-            !specialCharCheck.value
-        ) {
-            setMessage(
-                `Mật khẩu của bạn còn thiếu ${[
-                    lowerCaseCheck,
-                    upperCaseCheck,
-                    digitCheck,
-                    specialCharCheck,
-                ]
-                    .map((i) => (i.value ? null : i.key))
-                    .filter((i) => i !== null)
-                    .join(", ")}`
-            );
-            return;
-        }
+        // const digitCheck = { key: "chữ số", value: digitReg.test(password) };
+        // const lowerCaseCheck = {
+        //     key: "chữ thường",
+        //     value: lowerCaseReg.test(password),
+        // };
+        // const upperCaseCheck = {
+        //     key: "chữ hoa",
+        //     value: upperCaseReg.test(password),
+        // };
+        // const specialCharCheck = {
+        //     key: "ký tự đặc biệt",
+        //     value: specialCharReg.test(password),
+        // };
+        // if (
+        //     !lowerCaseCheck.value ||
+        //     !upperCaseCheck.value ||
+        //     !digitCheck.value ||
+        //     !specialCharCheck.value
+        // ) {
+        //     setMessage(
+        //         `Mật khẩu của bạn còn thiếu ${[
+        //             lowerCaseCheck,
+        //             upperCaseCheck,
+        //             digitCheck,
+        //             specialCharCheck,
+        //         ]
+        //             .map((i) => (i.value ? null : i.key))
+        //             .filter((i) => i !== null)
+        //             .join(", ")}`
+        //     );
+        //     return;
+        // }
+        setLoading(true);
         let response = null;
         try {
             response = await axios.post("/api/login", { username, password });
@@ -59,8 +61,7 @@ export default function LoginForm({ setIsLoginForm }) {
             response = e.response;
         } finally {
             if (response.data.status === "success") {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("user", response.data.user);
+                localStorage.setItem("wonderHome-token", response.data.token);
                 window.location.href = "/";
             } else {
                 const responseMsg =
@@ -69,6 +70,8 @@ export default function LoginForm({ setIsLoginForm }) {
                         : "Đăng nhập thất bại";
                 setMessage(responseMsg);
             }
+
+            setLoading(false);
         }
         setPassword("");
     };
@@ -103,7 +106,7 @@ export default function LoginForm({ setIsLoginForm }) {
                         </div>
                     )}
                     <form
-                        className="px-8 pt-6 pb-8 mb-4  rounded"
+                        className="md:px-8 pt-6 pb-8 mb-4 rounded"
                         onSubmit={handleLogin}
                     >
                         <div className="mb-4">
@@ -155,10 +158,11 @@ export default function LoginForm({ setIsLoginForm }) {
 
                         <div className="mb-6 text-center">
                             <button
-                                className="w-full px-4 py-2 font-bold text-white bg-amber-500 rounded-full hover:bg-amber-700 focus:outline-none focus:shadow-outline"
+                                className={(loading ? "bg-amber-300" : "bg-amber-500 hover:bg-amber-700") + " w-full px-4 py-2 font-bold text-white focus:outline-none focus:shadow-outline rounded-full transition-all duration-200"}
                                 type="submit"
+                                disabled={loading}
                             >
-                                Đăng nhập
+                                {loading ? "Đang đăng nhập..." : "Đăng nhập"}
                             </button>
                         </div>
                         <hr className="mb-6 border-t" />
