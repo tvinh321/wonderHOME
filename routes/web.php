@@ -54,7 +54,13 @@ Route::get('/', function () {
     return view('app');
 });
 
+Route::post('/api/messages', [App\Http\Controllers\ChatController::class, 'fetchMessages']);
 
+Route::post('/api/send', [App\Http\Controllers\ChatController::class, 'sendMessage']);
+
+Route::get('/api/chatRoom', [App\Http\Controllers\ChatController::class, 'getChatRoom']);
+
+Route::post('/api/createChatRoom', [App\Http\Controllers\ChatController::class, 'createChatRoom']);
 
 // Route::get('/{any}', function () {
 //     return view('app');
