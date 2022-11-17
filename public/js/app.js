@@ -8303,6 +8303,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var usersImage = ['https://i.pravatar.cc/150?img=5', 'https://i.pravatar.cc/150?img=7'];
 var Chat = function Chat() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
@@ -8318,24 +8319,16 @@ var Chat = function Chat() {
     setUser = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(''),
     _useState8 = _slicedToArray(_useState7, 2),
-    channel = _useState8[0],
-    setChannel = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(''),
+    chatRoomId = _useState8[0],
+    setChatRoomId = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
     _useState10 = _slicedToArray(_useState9, 2),
-    chatRoomId = _useState10[0],
-    setChatRoomId = _useState10[1];
+    chatRooms = _useState10[0],
+    setChatRooms = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
     _useState12 = _slicedToArray(_useState11, 2),
-    chatRooms = _useState12[0],
-    setChatRooms = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
-    _useState14 = _slicedToArray(_useState13, 2),
-    users = _useState14[0],
-    setUsers = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(['https://i.pravatar.cc/150?img=1', 'https://i.pravatar.cc/150?img=2']),
-    _useState16 = _slicedToArray(_useState15, 2),
-    usersImage = _useState16[0],
-    setUsersImage = _useState16[1];
+    users = _useState12[0],
+    setUsers = _useState12[1];
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/chatRoom').then(function (response) {
       setChatRooms(response.data.chatRooms);
@@ -8358,9 +8351,8 @@ var Chat = function Chat() {
         forceTLS: true,
         encrypted: true
       });
-      var _channel = echo.channel('chat-room.' + chatRoomId);
-      setChannel(_channel);
-      _channel.listen('.message.sent', function (e) {
+      var channel = echo.channel('chat-room.' + chatRoomId);
+      channel.listen('.message.sent', function (e) {
         setMessages(function (messages) {
           return [].concat(_toConsumableArray(messages), [e]);
         });

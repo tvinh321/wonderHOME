@@ -3,19 +3,18 @@ import Echo from 'laravel-echo';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
+const usersImage = [
+    'https://i.pravatar.cc/150?img=5',
+    'https://i.pravatar.cc/150?img=7',
+]
+
 const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
     const [user, setUser] = useState('');
-    const [channel, setChannel] = useState('');
     const [chatRoomId, setChatRoomId] = useState('');
     const [chatRooms, setChatRooms] = useState([]);
     const [users, setUsers] = useState([]);
-
-    const [usersImage, setUsersImage] = useState([
-        'https://i.pravatar.cc/150?img=1',
-        'https://i.pravatar.cc/150?img=2',
-    ]);
 
     useEffect(() => {
         axios.get('/api/chatRoom').then(response => {
@@ -40,7 +39,6 @@ const Chat = () => {
             });
 
             const channel = echo.channel('chat-room.' + chatRoomId);
-            setChannel(channel);
 
             channel.listen('.message.sent', e => {
                 setMessages(messages => [...messages, e]);
