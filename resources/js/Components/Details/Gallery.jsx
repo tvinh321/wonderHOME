@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from "react";
 import ReactPannellum from "react-pannellum";
 import YouTube from "react-youtube";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function Gallery({ files, bedNumb, price, area }) {
     const { images, videos, panaromas } = files || {};
@@ -12,9 +14,80 @@ export default function Gallery({ files, bedNumb, price, area }) {
     };
     return (
         <>
-            <div className="flex items-center justify-between gap-x-4">
+            <Carousel
+                renderThumbs={(children) => {
+                    // Flatten array
+                    const childrenArray = Array.isArray(children)
+                        ? children.reduce(
+                                (acc, val) => acc.concat(val),
+                                []
+                            )
+                        : children;
+
+                    return childrenArray.map((child, index) => {
+                        if (child.props?.videoId) {
+                            return (
+                                <img
+                                    src={`https://img.youtube.com/vi/${child.props.videoId}/1.jpg`}
+                                    alt=""
+                                />
+                            );
+                        }
+
+                        if (child.props?.imageSource) {
+                            return <img src={child.props.imageSource} alt="" />;
+                        }
+
+                        // If child is image
+                        if (child.props?.src) {
+                            return <img src={child.props.src} alt="" />;
+                        }
+                    });
+                }}
+                centerMode
+                centerSlidePercentage={50}
+            >
+                <ReactPannellum
+                    id="1"
+                    className="rounded-xl h-full w-full"
+                    sceneId="firstScene"
+                    imageSource={
+                        panaromas
+                            ? panaromas[0].url
+                            : "/assets/images/panoram.jpg"
+                    }
+                    config={{ autoLoad: true }}
+                    style={{
+                        background: "#171717",
+                    }}
+                />
+                <YouTube
+                    videoId={videoCode(videoURL)}
+                    className="rounded-xl h-full w-full"
+                    containerClassName="embed embed-youtube"
+                    onStateChange={(e) => checkElapsedTime(e)}
+                    opts={{
+                        height: "100%",
+                    }}
+                />
+                {(images || ["", "", "", "", ""]).map((image, index) => {
+                    return (
+                        <img
+                            className="rounded-xl px-2"
+                            src={
+                                image
+                                    ? image
+                                    : `/assets/images/Room${
+                                            index + 1
+                                        }.jpg`
+                            }
+                            alt={`Room ${index + 1}`}
+                        />
+                    );
+                })}
+            </Carousel>
+            {/* <div className="flex items-center justify-between gap-x-4">
                 <div className="w-1/2">
-                    {/* https://www.npmjs.com/package/react-pannellum */}
                     <ReactPannellum
                         id="1"
                         className="rounded-xl md:h-full"
@@ -71,7 +144,7 @@ export default function Gallery({ files, bedNumb, price, area }) {
                         </span>
                     </div>
                 )}
-            </div>
+            </div> */}
 
             <div className="w-full rounded pt-2">
                 <div className="mt-4 flex justify-items-end">
