@@ -5925,8 +5925,10 @@ function Gallery(_ref) {
           }
         });
       },
-      centerMode: true,
-      centerSlidePercentage: 50,
+      centerMode: true
+      // Depends on mobile or desktop
+      ,
+      centerSlidePercentage: window.screen.width > 768 ? 50 : 100,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_pannellum__WEBPACK_IMPORTED_MODULE_1__["default"], {
         id: "1",
         className: "rounded-xl h-full w-full",
@@ -5950,7 +5952,7 @@ function Gallery(_ref) {
         }
       }), (images || ["", "", "", "", ""]).map(function (image, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-          className: "rounded-xl px-2",
+          className: "rounded-xl px-4",
           src: image ? image : "/assets/images/Room".concat(index + 1, ".jpg"),
           alt: "Room ".concat(index + 1)
         });

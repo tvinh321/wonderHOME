@@ -45,7 +45,8 @@ export default function Gallery({ files, bedNumb, price, area }) {
                     });
                 }}
                 centerMode
-                centerSlidePercentage={50}
+                // Depends on mobile or desktop
+                centerSlidePercentage={window.screen.width > 768 ? 50 : 100}
             >
                 <ReactPannellum
                     id="1"
@@ -73,7 +74,7 @@ export default function Gallery({ files, bedNumb, price, area }) {
                 {(images || ["", "", "", "", ""]).map((image, index) => {
                     return (
                         <img
-                            className="rounded-xl px-2"
+                            className="rounded-xl px-4"
                             src={
                                 image
                                     ? image
