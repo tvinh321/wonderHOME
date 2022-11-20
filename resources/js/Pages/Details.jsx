@@ -5,10 +5,12 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Gallery from "../Components/Details/Gallery";
 import OwnerContact from "../Components/Details/OwnerContact";
+import { QuestionMarkCircleIcon } from "@heroicons/react/24/solid";
 
 export default function Details() {
     const houseId = useParams();
     const [house, setHouse] = useState({});
+    const [modalRequest, setModalReuqest] = useState(false);
 
     useEffect(() => {
         axios
@@ -275,7 +277,12 @@ export default function Details() {
                                             </ul>
                                             Để biết thêm thông tin về giấy tờ
                                             pháp lý, quý khách có thể{" "}
-                                            <span className="underline text-amber-500">
+                                            <span
+                                                className="underline text-amber-500"
+                                                onClick={() => {
+                                                    setModalReuqest(true);
+                                                }}
+                                            >
                                                 yêu cầu cung cấp giấy tờ pháp lý
                                             </span>{" "}
                                             từ người đăng tin.
@@ -384,7 +391,7 @@ export default function Details() {
                                 </div>
                             </div>
 
-                            <OwnerContact/>
+                            <OwnerContact />
                         </div>
                     </div>
                 </body>
@@ -415,6 +422,79 @@ export default function Details() {
             )}
 
             <Footer />
+
+            <div
+                className={`fixed inset-0 z-50 overflow-y-auto ${
+                    modalRequest ? "block" : "hidden"
+                }`}
+            >
+                <div className="flex items-end justify-center min-h-screen pt-8 px-8 pb-32 text-center sm:block sm:p-0">
+                    <div
+                        className="fixed inset-0 transition-opacity"
+                        aria-hidden="true"
+                    >
+                        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                    </div>
+
+                    <span
+                        className="hidden sm:inline-block sm:align-middle sm:h-screen"
+                        aria-hidden="true"
+                    >
+                        &#8203;
+                    </span>
+
+                    <div
+                        className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="modal-headline"
+                    >
+                        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div className="sm:flex sm:items-start">
+                                <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full sm:mx-0 sm:h-10 sm:w-10">
+                                    <QuestionMarkCircleIcon
+                                        className="h-6 w-6 text-amber-400"
+                                        aria-hidden="true"
+                                        width="20"
+                                        height="20"
+                                    />
+                                </div>
+                                <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                    <h3
+                                        className="text-lg leading-6 font-medium text-gray-900"
+                                        id="modal-headline"
+                                    >
+                                        Gửi yêu cầu cung cấp giấy tờ
+                                    </h3>
+                                    <div className="mt-2">
+                                        <p className="text-sm text-gray-500">
+                                            Yêu cầu chủ sở hữu cung cấp giấy tờ
+                                            pháp lý
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex items-center justify-between">
+                            <button
+                                onClick={() => setModalReuqest(false)}
+                                type="button"
+                                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 border-amber-600 text-base font-medium text-neutral-700 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 sm:ml-3 sm:w-auto sm:text-sm"
+                            >
+                                Hủy
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => setModalReuqest(false)}
+                                className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-amber-500 text-base font-medium text-white hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                            >
+                                Gửi yêu cầu
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
