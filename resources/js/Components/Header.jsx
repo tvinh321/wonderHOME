@@ -171,9 +171,7 @@ export default function Header() {
                                         tabindex="-1"
                                         style={{
                                             display: `${
-                                                showDropdown
-                                                    ? "block"
-                                                    : "hidden"
+                                                showDropdown ? "block" : "none"
                                             }`,
                                         }}
                                     >
