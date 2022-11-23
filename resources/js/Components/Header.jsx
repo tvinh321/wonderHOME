@@ -9,7 +9,7 @@ export default function Header() {
 
     // Check if the user is logged in
     useEffect(() => {
-        localStorage.getItem("token")
+        localStorage.getItem("wonderHome-token")
             ? setIsLoggedIn(true)
             : setIsLoggedIn(false);
     }, []);
@@ -111,7 +111,7 @@ export default function Header() {
                                 </svg>
                             </button>
 
-                            <a href="/dang-tin">
+                            <a href={isLoggedIn ? "/dang-tin" : "/dang-nhap"}>
                                 <button className="hidden md:flex group mr-4 text-amber-300 border border-amber-300 hover:border-transparent hover:bg-amber-300 font-bold py-2 px-4 rounded items-center">
                                     <span className="text-sm group-hover:text-white mr-1 transition-all duration-150">
                                         Đăng tin

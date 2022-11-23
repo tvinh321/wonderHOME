@@ -47,6 +47,7 @@ export default function Gallery({ files, bedNumb, price, area }) {
                 centerMode
                 // Depends on mobile or desktop
                 centerSlidePercentage={window.screen.width > 768 ? 50 : 100}
+                swipeable={false}
             >
                 <ReactPannellum
                     id="1"

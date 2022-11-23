@@ -378,15 +378,19 @@ export default function Details() {
                                     </h1>
 
                                     <div className="mx-auto md:mt-6 mt-4">
-                                        <iframe
-                                            className="w-full h-96"
-                                            frameborder="0"
-                                            marginheight="0"
-                                            marginwidth="0"
-                                            title="map"
-                                            scrolling="no"
-                                            src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=%C4%B0zmir+(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed"
-                                        ></iframe>
+                                        {
+                                            house.location && (
+                                                <iframe
+                                                    className="w-full h-96"
+                                                    frameborder="0"
+                                                    marginheight="0"
+                                                    marginwidth="0"
+                                                    title="map"
+                                                    scrolling="no"
+                                                    src={`https://maps.google.com/maps?width=100%&height=600&hl=vi&q=${house.location}&ie=UTF8&t=&z=14&iwloc=B&output=embed`}
+                                                />
+                                            )
+                                        } 
                                     </div>
                                 </div>
                             </div>

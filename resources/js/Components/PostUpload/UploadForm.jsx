@@ -10,6 +10,21 @@ export default function UploadForm() {
     const [district, setDistrict] = useState("");
     const [ward, setWard] = useState("");
     const [address, setAddress] = useState("");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [type, setType] = useState(0);
+    const [price, setPrice] = useState("");
+    const [area, setArea] = useState("");
+    const [bedroom, setBedroom] = useState(0);
+    const [bathroom, setBathroom] = useState(0);
+    const [floors, setFloors] = useState(0);
+    const [conveniences, setConveniences] = useState([]);
+    const [moreDetails, setMoreDetails] = useState("");
+    const [images, setImages] = useState([]);
+    const [video, setVideo] = useState("");
+    const [panoramas, setPanoramas] = useState([]);
+    const [juridicalStatus, setJuridicalStatus] = useState(1);
+    const [juridicalImages, setJuridicalImages] = useState([]);
 
     const [registerStep, setRegisterStep] = useState(1);
     const lastStep = 3;
@@ -73,6 +88,89 @@ export default function UploadForm() {
         return addressShow + wardShow + districtShow + cityShow;
     }, [city, district, ward, address]);
 
+    const handleImages = (e) => {
+        const files = e.target.files;
+        const images = [];
+        for (let i = 0; i < files.length; i++) {
+            images.push(files[i]);
+        }
+        setImages(images);
+    };
+
+    const handlePanomaras = (e) => {
+        const files = e.target.files;
+        const panoramas = [];
+        for (let i = 0; i < files.length; i++) {
+            panoramas.push(files[i]);
+        }
+        setPanoramas(panoramas);
+    };
+
+    const handleJuridicalImages = (e) => {
+        const files = e.target.files;
+        const juridicalImages = [];
+        for (let i = 0; i < files.length; i++) {
+            juridicalImages.push(files[i]);
+        }
+        setJuridicalImages(juridicalImages);
+    };
+
+    const handleUpload = (e) => {
+        e.preventDefault();
+        console.log(city);
+        console.log(district);
+        console.log(ward);
+        console.log(address);
+        console.log(title);
+        console.log(description);
+        console.log(type);
+        console.log(price);
+        console.log(area);
+        console.log(bedroom);
+        console.log(bathroom);
+        console.log(floors);
+        console.log(conveniences);
+        console.log(moreDetails);
+        console.log(images);
+        console.log(video);
+        console.log(juridicalStatus);
+        console.log(juridicalImages);
+        console.log(panoramas);
+
+
+        // const formData = new FormData();
+        // formData.append("city", city);
+        // formData.append("district", district);
+        // formData.append("ward", ward);
+        // formData.append("address", address);
+        // formData.append("title", title);
+        // formData.append("description", description);
+        // formData.append("type", type);
+        // formData.append("price", price);
+        // formData.append("area", area);
+        // formData.append("bedroom", bedroom);
+        // formData.append("bathroom", bathroom);
+        // formData.append("floors", floors);
+        // formData.append("conveniences", conveniences);
+        // formData.append("moreDetails", moreDetails);
+        // formData.append("video", video);
+        // formData.append("juridicalStatus", juridicalStatus);
+        // for (let i = 0; i < images.length; i++) {
+        //     formData.append("images", images[i]);
+        // }
+        // for (let i = 0; i < juridicalImages.length; i++) {
+        //     formData.append("juridicalImages", juridicalImages[i]);
+        // }
+        // axios
+        //     .post("/api/posts", formData)
+        //     .then((res) => {
+        //         console.log(res);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     });
+    };
+
     return (
         <div>
             <div className="px-8 pt-6 mb-8 rounded w-3/4 mx-auto">
@@ -123,7 +221,7 @@ export default function UploadForm() {
                                             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase text-amber-500">
                                                 Địa chỉ bất động sản
                                             </h6>
-                                            <div className="flex flex-wrap mb-4">
+                                            <div className="flex flex-wrap">
                                                 <div className="w-full lg:w-12/12 px-4">
                                                     <div className="relative w-full mb-3">
                                                         <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
@@ -325,7 +423,7 @@ export default function UploadForm() {
                                                         </label>
                                                         <input
                                                             type="text"
-                                                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                            className="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                             placeholder="Số nhà, đường..."
                                                             onChange={(e) => {
                                                                 setAddress(
@@ -338,15 +436,16 @@ export default function UploadForm() {
                                                 </div>
                                             </div>
                                             <div className="relative w-full mb-8 px-4">
-                                                <label className="block uppercase text-blueGray-600 text-xs font-bold">
+                                                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                                     Địa chỉ hiển thị trên tin
                                                     đăng
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                    className="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     placeholder="Số nhà, đường, phường, quận, thành phố..."
                                                     value={handleDisplayAddress}
+                                                    disabled
                                                 />
                                             </div>
                                             <hr className="mt-6 border-b-1 border-blueGray-300" />
@@ -356,9 +455,15 @@ export default function UploadForm() {
                                             <div className="px-4">
                                                 <textarea
                                                     type="text"
-                                                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                    className="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     rows="1"
                                                     placeholder="Vd: Bán căn hộ 3PN dự án COSMO CITY"
+                                                    onChange={(e) => {
+                                                        setTitle(
+                                                            e.target.value
+                                                        );
+                                                    }}
+                                                    value={title}
                                                 />
                                             </div>
 
@@ -373,6 +478,12 @@ export default function UploadForm() {
                                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     rows="4"
                                                     placeholder="Nhập mô tả chung về bất động sản của bạn. Ví dụ: Nhà gần công viên, trường học ..."
+                                                    onChange={(e) => {
+                                                        setDescription(
+                                                            e.target.value
+                                                        );
+                                                    }}
+                                                    value={description}
                                                 />
                                             </div>
                                         </form>
@@ -396,6 +507,10 @@ export default function UploadForm() {
                                                     required
                                                     id="propertyType"
                                                     className="w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
+                                                    onChange={(e) => {
+                                                        setType(e.target.value)
+                                                    }}
+                                                    value={type}
                                                 >
                                                     <option value={0} disabled>
                                                         Vui lòng chọn loại bất
@@ -429,9 +544,15 @@ export default function UploadForm() {
                                                     Diện tích
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     placeholder="Nhập diện tích (m2)"
+                                                    onChange={(e) => {
+                                                        setArea(
+                                                            e.target.value
+                                                        );
+                                                    }}
+                                                    value={area}
                                                 />
                                             </div>
                                             <div className="relative w-full mb-8 px-4">
@@ -442,6 +563,12 @@ export default function UploadForm() {
                                                     type="text"
                                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     placeholder="Nhập mức giá"
+                                                    onChange={(e) => {
+                                                        setPrice(
+                                                            e.target.value
+                                                        );
+                                                    }}
+                                                    value={price}
                                                 />
                                             </div>
                                             <div className="relative w-full mb-8 px-4">
@@ -459,6 +586,12 @@ export default function UploadForm() {
                                                         min="1"
                                                         max="100"
                                                         className="w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                                                        onChange={(e) => {
+                                                            setBedroom(
+                                                                e.target.value
+                                                            );
+                                                        }}
+                                                        value={bedroom}
                                                     />
                                                 </div>
                                                 <div className="flex items-center justify-between">
@@ -475,6 +608,12 @@ export default function UploadForm() {
                                                         min="1"
                                                         max="100"
                                                         className="w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                                                        onChange={(e) => {
+                                                            setBathroom(
+                                                                e.target.value
+                                                            );
+                                                        }}
+                                                        value={bathroom}
                                                     />
                                                 </div>
                                                 <div className="flex items-center justify-between">
@@ -491,6 +630,12 @@ export default function UploadForm() {
                                                         min="1"
                                                         max="100"
                                                         className="w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                                                        onChange={(e) => {
+                                                            setFloors(
+                                                                e.target.value
+                                                            );
+                                                        }}
+                                                        value={floors}
                                                     />
                                                 </div>
                                             </div>
@@ -510,8 +655,11 @@ export default function UploadForm() {
                                                             <input
                                                                 id=""
                                                                 type="checkbox"
-                                                                value=""
+                                                                value={1}
                                                                 className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
+                                                                onChange={() => {
+                                                                    setConveniences(prev => prev.includes(1) ? prev.filter(item => item !== 1) : [...prev, 1])
+                                                                }}
                                                             />
                                                             <label
                                                                 htmlFor="house-checkbox"
@@ -524,8 +672,11 @@ export default function UploadForm() {
                                                             <input
                                                                 id=""
                                                                 type="checkbox"
-                                                                value=""
+                                                                value={2}
                                                                 className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
+                                                                onChange={() => {
+                                                                    setConveniences(prev => prev.includes(2) ? prev.filter(item => item !== 2) : [...prev, 2])
+                                                                }}
                                                             />
                                                             <label
                                                                 htmlFor="house-checkbox"
@@ -538,8 +689,11 @@ export default function UploadForm() {
                                                             <input
                                                                 id=""
                                                                 type="checkbox"
-                                                                value=""
+                                                                value={3}
                                                                 className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
+                                                                onChange={() => {
+                                                                    setConveniences(prev => prev.includes(3) ? prev.filter(item => item !== 3) : [...prev, 3])
+                                                                }}
                                                             />
                                                             <label
                                                                 htmlFor="house-checkbox"
@@ -555,6 +709,18 @@ export default function UploadForm() {
                                                     <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                                         Mô tả bổ sung
                                                     </label>
+                                                    <textarea
+                                                        rows="4"
+                                                        cols="80"
+                                                        className="w-full border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                                                        placeholder="Mô tả bổ sung"
+                                                        value={moreDetails}
+                                                        onChange={(e) => {
+                                                            setMoreDetails(
+                                                                e.target.value
+                                                            );
+                                                        }}
+                                                    ></textarea>
                                                 </div>
                                             </div>
                                         </form>
@@ -581,7 +747,7 @@ export default function UploadForm() {
                                             <div className="px-4 mb-6">
                                                 <div className="flex justify-center items-center w-full">
                                                     <label
-                                                        for="dropzone-file"
+                                                        for="dropzone-image"
                                                         className="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer "
                                                     >
                                                         <div className="flex flex-col justify-center items-center pt-5 pb-6">
@@ -614,9 +780,11 @@ export default function UploadForm() {
                                                             </p>
                                                         </div>
                                                         <input
-                                                            id="dropzone-file"
+                                                            id="dropzone-image"
                                                             type="file"
                                                             className="hidden"
+                                                            onChange={handleImages}
+                                                            multiple
                                                         />
                                                     </label>
                                                 </div>
@@ -632,13 +800,57 @@ export default function UploadForm() {
                                                     maxlength="100"
                                                     placeholder="VD: https://www.youtube.com/watch?v=Y-Dw0NpfRug"
                                                     type="text"
-                                                    value=""
+                                                    value={video}
+                                                    onChange={(e) =>
+                                                        setVideo(e.target.value)
+                                                    }
                                                 />
                                             </div>
                                             <div className="relative w-full mb-6 px-4">
                                                 <p className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                                     Đăng ảnh 360°
                                                 </p>
+                                                <label
+                                                        for="dropzone-pano"
+                                                        className="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer "
+                                                    >
+                                                        <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                                                            <svg
+                                                                aria-hidden="true"
+                                                                className="mb-3 w-10 h-10 text-gray-400"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                viewBox="0 0 24 24"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                            >
+                                                                <path
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth="2"
+                                                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                                                                ></path>
+                                                            </svg>
+                                                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                                                <span className="font-semibold">
+                                                                    Click to
+                                                                    upload
+                                                                </span>{" "}
+                                                                or drag and drop
+                                                            </p>
+                                                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                                                                SVG, PNG, JPG or
+                                                                GIF (MAX.
+                                                                800x400px)
+                                                            </p>
+                                                        </div>
+                                                        <input
+                                                            id="dropzone-pano"
+                                                            type="file"
+                                                            className="hidden"
+                                                            onChange={handlePanomaras}
+                                                            multiple
+                                                        />
+                                                    </label>
                                             </div>
 
                                             <hr className="mt-6 border-b-1 border-blueGray-300" />
@@ -669,6 +881,12 @@ export default function UploadForm() {
                                                     defaultValue={1}
                                                     id="jurisdiction"
                                                     className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
+                                                    onChange={(e) =>
+                                                        setJuridicalStatus(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    value={juridicalStatus}
                                                 >
                                                     <option value={1}>
                                                         Không cung cấp
@@ -756,7 +974,7 @@ export default function UploadForm() {
                                                 <div className="mb-6">
                                                     <div className="flex justify-center items-center w-full">
                                                         <label
-                                                            for="dropzone-file"
+                                                            for="dropzone-juri"
                                                             className="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer "
                                                         >
                                                             <div className="flex flex-col justify-center items-center pt-5 pb-6">
@@ -791,9 +1009,11 @@ export default function UploadForm() {
                                                                 </p>
                                                             </div>
                                                             <input
-                                                                id="dropzone-file"
+                                                                id="dropzone-juri"
                                                                 type="file"
                                                                 className="hidden"
+                                                                onChange={handleJuridicalImages}
+                                                                multiple
                                                             />
                                                         </label>
                                                     </div>
@@ -833,9 +1053,9 @@ export default function UploadForm() {
                         {registerStep === lastStep && (
                             <button
                                 className="w-36 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-amber-500 hover:bg-amber-600 font-medium"
-                                onClick={() =>
-                                    setRegisterStep(registerStep + 1)
-                                }
+                                onClick={(e) => {
+                                    handleUpload(e);
+                                }}
                             >
                                 Đăng tin
                             </button>

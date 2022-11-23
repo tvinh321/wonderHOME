@@ -5,6 +5,7 @@ import Details from "./Pages/Details";
 import LoginRegister from "./Pages/LoginRegister";
 import PostUpload from "./Pages/PostUpload";
 import Chat from "./Pages/Chat";
+import Search from "./Pages/Search";
 
 export function App() {
     return (
@@ -15,6 +16,7 @@ export function App() {
                 <Route path="/thong-tin/:id" element={<Details />} />
                 <Route path="/dang-tin" element={<PostUpload />} />
                 <Route path="/chat" element={<Chat />} />
+                <Route path="/tim-kiem" element={<Search />} />
             </Routes>
         </Router>
     );

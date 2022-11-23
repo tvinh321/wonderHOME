@@ -90,14 +90,14 @@ class PropertiesController extends Controller
             'title' => $request->title,
             'location' => $request->location,
             'description' => $request->description,
-            'num_of_bedrooms' => $request->num_of_bedrooms,
-            'num_of_toilets' => $request->num_of_toilets,
+            'num_of_bedrooms' => $request->bedrooms,
+            'num_of_toilets' => $request->bathrooms,
             'direction' => $request->direction,
             'price' => $request->price,
-            'priority' => $request->priority,
+            'priority' => 10,
             'facade' => $request->facade,
             'area' => $request->area,
-            'expire_date' => $request->expire_date,
+            'expire_date' => now()->addDays(30),
             'juridical_status' => $request->juridical_status,
             'furniture' => $request->furniture,
             'juridicals_id' => $request->juridicals_id,
@@ -110,6 +110,8 @@ class PropertiesController extends Controller
         $images = $request->images;
         $videos = $request->videos;
         $conveniences = $request->conveniences;
+        $panoramas = $request->panoramas;
+        $juridicals = $request->juridicals;
 
         if ($images) {
             foreach ($images as $image) {
@@ -131,6 +133,26 @@ class PropertiesController extends Controller
             }
         }
 
+        if ($panoramas) {
+            foreach ($panoramas as $panorama) {
+                DB::table('files')->insert([
+                    'content' => $panorama,
+                    'type' => 'panorama',
+                    'properties_id' => $id,
+                ]);
+            }
+        }
+
+        if ($juridicals) {
+            foreach ($juridicals as $juridical) {
+                DB::table('files')->insert([
+                    'content' => $juridical,
+                    'type' => 'juridical',
+                    'properties_id' => $id,
+                ]);
+            }
+        }
+
         if ($conveniences) {
             foreach ($conveniences as $convenience) {
                 DB::table('conveniences_properties')->insert([
@@ -144,6 +166,68 @@ class PropertiesController extends Controller
             'status' => 'success',
             'message' => 'Property posted successfully',
             'property_id' => $id
+        ]);
+    }
+    
+    public function queryProperties(Request $request)
+    {
+        $title = $request->title;
+        $ward = $request->ward;
+        $price = $request->price;
+        $area = $request->area;
+        $type = $request->type;
+        $bedroom = $request->bedroom;
+
+        $properties = DB::table('properties')
+        ->join('juridicals', 'properties.juridicals_id', '=', 'juridicals.id')
+        ->join('property_types', 'properties.property_types_id', '=', 'property_types.id')
+        ->join('wards', 'properties.wards_id', '=', 'wards.id')
+        ->join('districts', 'wards.districts_id', '=', 'districts.id')
+        ->join('cities', 'districts.cities_id', '=', 'cities.id')
+        ->select('properties.id', 'properties.title', 'properties.created_at', 'properties.location', 'properties.description', 'properties.num_of_bedrooms', 'properties.num_of_toilets', 'properties.direction', 'properties.price', 'properties.priority', 'properties.facade', 'properties.area', 'properties.expire_date', 'properties.juridical_status', 'properties.furniture')
+        ->where('properties.expire_date', '>', now())
+        ->where('properties.status', '=', 'active');
+
+        if ($title) {
+            $properties = $properties->where('properties.title', 'like', '%' . $title . '%');
+        }
+
+        if ($ward) {
+            $properties = $properties->where('properties.wards_id', '=', $ward);
+        }
+
+        if ($district) {
+            $properties = $properties->where('districts.id', '=', $district);
+        }
+
+        if ($city) {
+            $properties = $properties->where('cities.id', '=', $city);
+        }
+
+        if ($price) {
+            $price = explode('-', $price);
+            $properties = $properties->whereBetween('properties.price', [$price[0], $price[1]]);
+        }
+
+        if ($area) {
+            $area = explode('-', $area);
+            $properties = $properties->whereBetween('properties.area', [$area[0], $area[1]]);
+        }
+
+        if ($type) {
+            $type = explode(',', $type);
+            $properties = $properties->whereIn('properties.property_types_id', $type);
+        }
+
+        if ($bedroom) {
+            $properties = $properties->where('properties.num_of_bedrooms', '=', $bedroom);
+        }
+
+        $properties = $properties->get();
+
+        return response()->json([
+            'status' => 'success',
+            'properties' => $properties
         ]);
     }
 }

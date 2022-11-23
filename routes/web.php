@@ -38,6 +38,9 @@ Route::get('/api/properties/highest-priority', [App\Http\Controllers\PropertiesC
 // Post new property
 Route::post('/api/property', [App\Http\Controllers\PropertiesController::class, 'postProperty'])->middleware(CheckUser::class);
 
+// Query properties
+Route::post('/api/properties', [App\Http\Controllers\PropertiesController::class, 'queryProperties']);
+
 // Upload file
 Route::post('/api/upload', [App\Http\Controllers\FilesController::class, 'uploadFiles'])->middleware(CheckUser::class);
 

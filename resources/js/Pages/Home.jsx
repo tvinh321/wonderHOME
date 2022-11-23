@@ -16,11 +16,10 @@ export default function Home() {
     const [city, setCity] = useState("");
     const [district, setDistrict] = useState("");
     const [ward, setWard] = useState("");
-    const [price, setPrice] = useState([]);
-    const [area, setArea] = useState([]);
-    const [type, setType] = useState([]);
+    const [price, setPrice] = useState("");
+    const [area, setArea] = useState("");
+    const [type, setType] = useState("");
     const [bedroom, setBedroom] = useState("");
-    const [direction, setDirection] = useState();
 
     const [showFilters, setShowFilters] = useState(false);
     const [showPropertyTypes, setShowPropertyTypes] = useState(false);
@@ -116,58 +115,33 @@ export default function Home() {
                 });
     }, [district]);
 
-    const handleSearch = () => {
-        let url = "/search?";
+    const handleSearch = (e) => {
+        e.preventDefault();
 
-        if (title != "") {
-            url += "title=" + title + "&";
+        let url = "/tim-kiem?";
+
+        if (title) url += "title=" + title + "&";
+
+        if (ward) url += "ward=" + ward + "&";
+        else if (district) url += "district=" + district + "&";
+        else if (city) url += "city=" + city + "&";
+
+        if (price) url += "price=" + price + "&";
+        if (area) url += "area=" + area + "&";
+        if (type) url += "type=" + type + "&";
+        if (bedroom) url += "bedroom=" + bedroom + "&";
+
+        if (url[url.length - 1] === "?") {
+            alert("Vui lòng nhập thông tin tìm kiếm");
         }
-
-        if (city != "") {
-            url += "city=" + city + "&";
+        else {
+            url = url.substring(0, url.length - 1);
+            window.location.href = url;
         }
-
-        if (district != "") {
-            url += "district=" + district + "&";
-        }
-
-        if (ward != "") {
-            url += "ward=" + ward + "&";
-        }
-
-        if (price[0] != undefined) {
-            url += "price_min=" + price[0] + "&";
-        }
-
-        if (price[1] != undefined) {
-            url += "price_max=" + price[1] + "&";
-        }
-
-        if (area[0] != undefined) {
-            url += "area_min=" + area[0] + "&";
-        }
-
-        if (area[1] != undefined) {
-            url += "area_max=" + area[1] + "&";
-        }
-
-        if (type.length != 0) {
-            url += "type=" + type + "&";
-        }
-
-        if (bedroom != "") {
-            url += "bedroom=" + bedroom + "&";
-        }
-
-        if (direction) {
-            url += "direction=" + direction + "&";
-        }
-
-        window.location.href = url;
     };
 
     return (
-        <div>
+        <div className="mt-16 md:mt-0">
             <Header />
 
             <div>
@@ -219,18 +193,16 @@ export default function Home() {
                         <div className="flex items-center justify-between gap-5">
                             <form className="w-11/12 my-0">
                                 <div className="flex">
-                                    <label
-                                        htmlFor="search-dropdown"
-                                        className="text-sm font-medium text-neutral-500 sr-only"
-                                    >
-                                        Loại nhà
-                                    </label>
                                     <button
                                         className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
                                         type="button"
                                         onClick={() =>
                                             setShowPropertyTypes(
-                                                (prev) => !prev
+                                                (prev) => {
+                                                    if (prev == false) {
+                                                        return true;
+                                                    }
+                                                }
                                             )
                                         }
                                     >
@@ -280,7 +252,7 @@ export default function Home() {
                                                                                     setType(
                                                                                         [
                                                                                             ...type,
-                                                                                            typeItem.name,
+                                                                                            typeItem.id,
                                                                                         ]
                                                                                     );
                                                                                 } else {
@@ -290,11 +262,16 @@ export default function Home() {
                                                                                                 item
                                                                                             ) =>
                                                                                                 item !=
-                                                                                                typeItem.name
+                                                                                                typeItem.id
                                                                                         )
                                                                                     );
                                                                                 }
                                                                             }}
+                                                                            checked={
+                                                                                type.includes(
+                                                                                    typeItem.id
+                                                                                )
+                                                                            }
                                                                         />
                                                                         <label
                                                                             htmlFor="house-checkbox"
@@ -360,11 +337,13 @@ export default function Home() {
                                             id="search-dropdown"
                                             className="block p-4 pl-10 w-full z-20 text-sm text-gray-900 rounded-r-lg border-l-gray-50 border-l-2 border border-neutral-300"
                                             placeholder="Tìm nhà cho bạn..."
-                                            required
+                                            onChange={(e) => setTitle(e.target.value)}
+                                            value={title}
                                         />
                                         <button
                                             type="submit"
                                             className="text-white absolute right-2.5 bottom-2.5 bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
+                                            onClick={handleSearch}
                                         >
                                             Tìm
                                         </button>
@@ -403,7 +382,7 @@ export default function Home() {
                             <div id="filterFields">
                                 <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
                                     <div
-                                        className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
+                                        className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm cursor-default"
                                         onClick={() =>
                                             setShowLocation((prev) => !prev)
                                         }
@@ -419,6 +398,7 @@ export default function Home() {
                                                     setDistrict("");
                                                     setWard("");
                                                 }}
+                                                value={city}
                                                 className="w-full p-2 text-sm text-gray-900 bg-white border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                                             >
                                                 <option value="">
@@ -470,6 +450,7 @@ export default function Home() {
                                                     setDistrict(e.target.value);
                                                     setWard("");
                                                 }}
+                                                value={district}
                                                 className="w-full p-2 text-sm text-gray-900 bg-white border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                                             >
                                                 <option value="">
@@ -523,6 +504,7 @@ export default function Home() {
                                                 onChange={(e) => {
                                                     setWard(e.target.value);
                                                 }}
+                                                value={ward}
                                                 className="w-full p-2 text-sm text-gray-900 bg-white border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                                             >
                                                 <option value="">
@@ -572,32 +554,45 @@ export default function Home() {
                                         </div>
                                     )}
 
-                                    <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                    <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm" value={price}
+                                            onChange={(e) => {
+                                                setPrice(e.target.value);
+                                            }}>
                                         <option value="" selected disabled>
                                             Mức giá
                                         </option>
-                                        <option value="1">Dưới 1 tỷ</option>
-                                        <option value="2">1 tỷ - 2 tỷ</option>
-                                        <option value="3">2 tỷ - 3 tỷ</option>
-                                        <option value="4">3 tỷ - 5 tỷ</option>
-                                        <option value="5">5 tỷ - 7 tỷ</option>
-                                        <option value="6">7 tỷ - 10 tỷ</option>
-                                        <option value="7">Trên 10 tỷ</option>
+                                        <option value="0-1">Dưới 1 tỷ</option>
+                                        <option value="1-2">1 tỷ - 2 tỷ</option>
+                                        <option value="2-3">2 tỷ - 3 tỷ</option>
+                                        <option value="3-5">3 tỷ - 5 tỷ</option>
+                                        <option value="5-7">5 tỷ - 7 tỷ</option>
+                                        <option value="7-10">7 tỷ - 10 tỷ</option>
+                                        <option value="10-Infi">Trên 10 tỷ</option>
                                     </select>
 
-                                    <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                    <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
+                                        onChange={(e) => {
+                                            setArea(e.target.value);
+                                        }}
+                                        value={area}
+                                    >
                                         <option value="" selected disabled>
                                             Diện tích
                                         </option>
-                                        <option value="1">Dưới 30m2</option>
-                                        <option value="2">30m2 - 50m2</option>
-                                        <option value="3">50m2 - 80m2</option>
-                                        <option value="4">80m2 - 100m2</option>
-                                        <option value="5">100m2 - 150m2</option>
-                                        <option value="6">Trên 150m2</option>
+                                        <option value="0-30">Dưới 30m2</option>
+                                        <option value="30-50">30m2 - 50m2</option>
+                                        <option value="50-80">50m2 - 80m2</option>
+                                        <option value="80-100">80m2 - 100m2</option>
+                                        <option value="100-150">100m2 - 150m2</option>
+                                        <option value="150-Infi">Trên 150m2</option>
                                     </select>
 
-                                    <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                                    <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
+                                        onChange={(e) => {
+                                            setBedroom(e.target.value);
+                                        }}
+                                        value={bedroom}
+                                    >
                                         <option value="">Số phòng ngủ</option>
                                         <option value="1">1 phòng</option>
                                         <option value="2">2 phòng</option>
