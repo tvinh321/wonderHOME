@@ -12,14 +12,26 @@ export default function UploadForm() {
     const [address, setAddress] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+
     const [type, setType] = useState(0);
     const [price, setPrice] = useState("");
     const [area, setArea] = useState("");
-    const [bedroom, setBedroom] = useState(0);
-    const [bathroom, setBathroom] = useState(0);
-    const [floors, setFloors] = useState(0);
     const [conveniences, setConveniences] = useState([]);
     const [moreDetails, setMoreDetails] = useState("");
+
+    const [houseProperties, setHouseProperties] = useState({
+        bedroom: 0,
+        bathroom: 0,
+        floors: 0,
+        interior: "",
+        moreDetails: "",
+    });
+
+    const [landProperties, setLandProperties] = useState({
+        direction: 0,
+        road: "",
+        frontage: "",
+    });
     const [images, setImages] = useState([]);
     const [video, setVideo] = useState("");
     const [panoramas, setPanoramas] = useState([]);
@@ -29,6 +41,16 @@ export default function UploadForm() {
     const [registerStep, setRegisterStep] = useState(1);
     const lastStep = 3;
 
+    const direction = [
+        "Đông",
+        "Tây",
+        "Nam",
+        "Bắc",
+        "Đông Bắc",
+        "Đông Nam",
+        "Tây Nam",
+        "Tây Bắc",
+    ];
     useEffect(() => {
         axios
             .get("/api/cities")
@@ -126,9 +148,6 @@ export default function UploadForm() {
         console.log(type);
         console.log(price);
         console.log(area);
-        console.log(bedroom);
-        console.log(bathroom);
-        console.log(floors);
         console.log(conveniences);
         console.log(moreDetails);
         console.log(images);
@@ -136,7 +155,6 @@ export default function UploadForm() {
         console.log(juridicalStatus);
         console.log(juridicalImages);
         console.log(panoramas);
-
 
         // const formData = new FormData();
         // formData.append("city", city);
@@ -287,6 +305,8 @@ export default function UploadForm() {
                                                         </select>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div className="flex flex-wrap mb-4">
                                                 <div className="w-full lg:w-4/12 px-4">
                                                     <div className="relative w-full mb-3">
                                                         <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
@@ -351,8 +371,6 @@ export default function UploadForm() {
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className="flex flex-wrap mb-4">
                                                 <div className="w-full lg:w-4/12 px-4">
                                                     <div className="relative w-full mb-3">
                                                         <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
@@ -452,7 +470,10 @@ export default function UploadForm() {
                                             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase text-amber-500">
                                                 Tiêu đề bài đăng
                                             </h6>
-                                            <div className="px-4">
+                                            <div className="px-4 mb-8">
+                                                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                                    Tiêu đề
+                                                </label>
                                                 <textarea
                                                     type="text"
                                                     className="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -467,12 +488,10 @@ export default function UploadForm() {
                                                 />
                                             </div>
 
-                                            <hr className="mt-6 border-b-1 border-blueGray-300" />
-
-                                            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase text-amber-500">
-                                                Mô tả bài đăng
-                                            </h6>
                                             <div className="px-4">
+                                                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                                    Mô tả
+                                                </label>
                                                 <textarea
                                                     type="text"
                                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -508,7 +527,10 @@ export default function UploadForm() {
                                                     id="propertyType"
                                                     className="w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
                                                     onChange={(e) => {
-                                                        setType(e.target.value)
+                                                        console.log(
+                                                            e.target.value
+                                                        );
+                                                        setType(e.target.value);
                                                     }}
                                                     value={type}
                                                 >
@@ -518,10 +540,11 @@ export default function UploadForm() {
                                                     </option>
                                                     {typesList &&
                                                         typesList.map(
-                                                            (type) => (
+                                                            (type, index) => (
                                                                 <option
                                                                     value={
-                                                                        type.id
+                                                                        index +
+                                                                        1
                                                                     }
                                                                     key={
                                                                         type.id
@@ -544,13 +567,11 @@ export default function UploadForm() {
                                                     Diện tích
                                                 </label>
                                                 <input
-                                                    type="number"
+                                                    type="text"
                                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     placeholder="Nhập diện tích (m2)"
                                                     onChange={(e) => {
-                                                        setArea(
-                                                            e.target.value
-                                                        );
+                                                        setArea(e.target.value);
                                                     }}
                                                     value={area}
                                                 />
@@ -571,74 +592,238 @@ export default function UploadForm() {
                                                     value={price}
                                                 />
                                             </div>
-                                            <div className="relative w-full mb-8 px-4">
-                                                <div className="flex items-center justify-between">
-                                                    <label
-                                                        htmlFor="house-checkbox"
-                                                        className="py-3 ml-2 w-full font-medium text-sm text-neutral-900"
-                                                    >
-                                                        Số phòng ngủ
-                                                    </label>
-                                                    <input
-                                                        id=""
-                                                        type="number"
-                                                        placeholder="0"
-                                                        min="1"
-                                                        max="100"
-                                                        className="w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
-                                                        onChange={(e) => {
-                                                            setBedroom(
-                                                                e.target.value
-                                                            );
-                                                        }}
-                                                        value={bedroom}
-                                                    />
+                                            {type != 2 ? (
+                                                <div>
+                                                    <div className="relative w-full mb-8 px-4">
+                                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                                            Nội thất
+                                                        </label>
+                                                        <input
+                                                            type="text"
+                                                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                            placeholder="Nhập thông tin về nội thất"
+                                                            onChange={(e) => {
+                                                                setHouseProperties(
+                                                                    {
+                                                                        ...houseProperties,
+                                                                        interior:
+                                                                            e
+                                                                                .target
+                                                                                .value,
+                                                                    }
+                                                                );
+                                                            }}
+                                                            value={
+                                                                houseProperties.interior
+                                                            }
+                                                        />
+                                                    </div>
+
+                                                    <div className="relative w-full mb-8 px-4">
+                                                        <div className="flex items-center justify-between">
+                                                            <label
+                                                                htmlFor="house-checkbox"
+                                                                className="py-3 ml-2 w-full font-medium text-sm text-neutral-900"
+                                                            >
+                                                                Số phòng ngủ
+                                                            </label>
+                                                            <input
+                                                                id=""
+                                                                type="number"
+                                                                placeholder="0"
+                                                                min="1"
+                                                                max="100"
+                                                                className="w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                                                                onChange={(
+                                                                    e
+                                                                ) => {
+                                                                    setHouseProperties(
+                                                                        {
+                                                                            ...houseProperties,
+                                                                            bedroom:
+                                                                                e
+                                                                                    .target
+                                                                                    .value,
+                                                                        }
+                                                                    );
+                                                                }}
+                                                                value={
+                                                                    houseProperties.bedroom
+                                                                }
+                                                            />
+                                                        </div>
+                                                        <div className="flex items-center justify-between">
+                                                            <label
+                                                                htmlFor="house-checkbox"
+                                                                className="py-3 ml-2 w-full text-sm font-medium text-neutral-900"
+                                                            >
+                                                                Số phòng tắm
+                                                            </label>
+                                                            <input
+                                                                id=""
+                                                                type="number"
+                                                                placeholder="0"
+                                                                min="1"
+                                                                max="100"
+                                                                className="w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                                                                onChange={(
+                                                                    e
+                                                                ) => {
+                                                                    setHouseProperties(
+                                                                        {
+                                                                            ...houseProperties,
+                                                                            bathroom:
+                                                                                e
+                                                                                    .target
+                                                                                    .value,
+                                                                        }
+                                                                    );
+                                                                }}
+                                                                value={
+                                                                    houseProperties.bathroom
+                                                                }
+                                                            />
+                                                        </div>
+                                                        <div className="flex items-center justify-between">
+                                                            <label
+                                                                htmlFor="house-checkbox"
+                                                                className="py-3 ml-2 w-full text-sm font-medium text-neutral-900"
+                                                            >
+                                                                Số tầng
+                                                            </label>
+                                                            <input
+                                                                id=""
+                                                                type="number"
+                                                                placeholder="0"
+                                                                min="1"
+                                                                max="100"
+                                                                className="w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                                                                onChange={(
+                                                                    e
+                                                                ) => {
+                                                                    setHouseProperties(
+                                                                        {
+                                                                            ...houseProperties,
+                                                                            floor: e
+                                                                                .target
+                                                                                .value,
+                                                                        }
+                                                                    );
+                                                                }}
+                                                                value={
+                                                                    houseProperties.floor
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div className="flex items-center justify-between">
-                                                    <label
-                                                        htmlFor="house-checkbox"
-                                                        className="py-3 ml-2 w-full text-sm font-medium text-neutral-900"
-                                                    >
-                                                        Số phòng tắm
-                                                    </label>
-                                                    <input
-                                                        id=""
-                                                        type="number"
-                                                        placeholder="0"
-                                                        min="1"
-                                                        max="100"
-                                                        className="w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
-                                                        onChange={(e) => {
-                                                            setBathroom(
-                                                                e.target.value
-                                                            );
-                                                        }}
-                                                        value={bathroom}
-                                                    />
+                                            ) : (
+                                                <div>
+                                                    <div className="relative w-full mb-8 px-4">
+                                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                                            Mặt tiền
+                                                        </label>
+                                                        <input
+                                                            type="text"
+                                                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                            placeholder="Nhập số liệu (m)"
+                                                            onChange={(e) => {
+                                                                setLandProperties(
+                                                                    {
+                                                                        ...landProperties,
+                                                                        frontage:
+                                                                            e
+                                                                                .target
+                                                                                .value,
+                                                                    }
+                                                                );
+                                                            }}
+                                                            value={
+                                                                landProperties.frontage
+                                                            }
+                                                        />
+                                                    </div>
+
+                                                    <div className="relative w-full mb-8 px-4">
+                                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                                            Đường vào
+                                                        </label>
+                                                        <input
+                                                            type="text"
+                                                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                            placeholder="Nhập số liệu (m)"
+                                                            onChange={(e) => {
+                                                                setLandProperties(
+                                                                    {
+                                                                        ...landProperties,
+                                                                        road: e
+                                                                            .target
+                                                                            .value,
+                                                                    }
+                                                                );
+                                                            }}
+                                                            value={
+                                                                landProperties.road
+                                                            }
+                                                        />
+                                                    </div>
+
+                                                    <div className="relative w-full mb-8 px-4">
+                                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                                            Hướng nhà
+                                                        </label>
+                                                        <select
+                                                            defaultValue={0}
+                                                            required
+                                                            id="propertyType"
+                                                            className="w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
+                                                            onChange={(e) => {
+                                                                setLandProperties(
+                                                                    {
+                                                                        ...landProperties,
+                                                                        direction:
+                                                                            e
+                                                                                .target
+                                                                                .value,
+                                                                    }
+                                                                );
+                                                            }}
+                                                            value={
+                                                                landProperties.direction
+                                                            }
+                                                        >
+                                                            <option
+                                                                value={0}
+                                                                disabled
+                                                            >
+                                                                Vui lòng chọn
+                                                                hướng nhà...
+                                                            </option>
+                                                            {direction &&
+                                                                direction.map(
+                                                                    (
+                                                                        dir,
+                                                                        index
+                                                                    ) => (
+                                                                        <option
+                                                                            value={
+                                                                                index +
+                                                                                1
+                                                                            }
+                                                                            key={
+                                                                                type.id
+                                                                            }
+                                                                        >
+                                                                            {
+                                                                                dir
+                                                                            }
+                                                                        </option>
+                                                                    )
+                                                                )}
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                                <div className="flex items-center justify-between">
-                                                    <label
-                                                        htmlFor="house-checkbox"
-                                                        className="py-3 ml-2 w-full text-sm font-medium text-neutral-900"
-                                                    >
-                                                        Số tầng
-                                                    </label>
-                                                    <input
-                                                        id=""
-                                                        type="number"
-                                                        placeholder="0"
-                                                        min="1"
-                                                        max="100"
-                                                        className="w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
-                                                        onChange={(e) => {
-                                                            setFloors(
-                                                                e.target.value
-                                                            );
-                                                        }}
-                                                        value={floors}
-                                                    />
-                                                </div>
-                                            </div>
+                                            )}
 
                                             <hr className="mt-6 border-b-1 border-blueGray-300" />
 
@@ -646,65 +831,121 @@ export default function UploadForm() {
                                                 Thông tin khác
                                             </h6>
                                             <div className="relative w-full mb-8 px-4">
-                                                <div className="relative w-full mb-8 px-4">
-                                                    <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
-                                                        Tiện ích
-                                                    </label>
-                                                    <div className="flex items-center space-x-6">
-                                                        <div className="flex items-center">
-                                                            <input
-                                                                id=""
-                                                                type="checkbox"
-                                                                value={1}
-                                                                className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
-                                                                onChange={() => {
-                                                                    setConveniences(prev => prev.includes(1) ? prev.filter(item => item !== 1) : [...prev, 1])
-                                                                }}
-                                                            />
-                                                            <label
-                                                                htmlFor="house-checkbox"
-                                                                className="py-3 ml-2 w-full text-neutral-900"
-                                                            >
-                                                                Wifi
-                                                            </label>
-                                                        </div>
-                                                        <div className="flex items-center">
-                                                            <input
-                                                                id=""
-                                                                type="checkbox"
-                                                                value={2}
-                                                                className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
-                                                                onChange={() => {
-                                                                    setConveniences(prev => prev.includes(2) ? prev.filter(item => item !== 2) : [...prev, 2])
-                                                                }}
-                                                            />
-                                                            <label
-                                                                htmlFor="house-checkbox"
-                                                                className="py-3 ml-2 w-full text-neutral-900"
-                                                            >
-                                                                Bãi đỗ xe
-                                                            </label>
-                                                        </div>
-                                                        <div className="flex items-center">
-                                                            <input
-                                                                id=""
-                                                                type="checkbox"
-                                                                value={3}
-                                                                className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
-                                                                onChange={() => {
-                                                                    setConveniences(prev => prev.includes(3) ? prev.filter(item => item !== 3) : [...prev, 3])
-                                                                }}
-                                                            />
-                                                            <label
-                                                                htmlFor="house-checkbox"
-                                                                className="py-3 ml-2 w-full text-neutral-900"
-                                                            >
-                                                                Cho phép thú
-                                                                cưng
-                                                            </label>
+                                                {type !== 2 && (
+                                                    <div className="relative w-full mb-8 px-4">
+                                                        <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                                            Tiện ích
+                                                        </label>
+                                                        <div className="flex items-center space-x-6">
+                                                            <div className="flex items-center">
+                                                                <input
+                                                                    id=""
+                                                                    type="checkbox"
+                                                                    value={1}
+                                                                    className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
+                                                                    onChange={() => {
+                                                                        setConveniences(
+                                                                            (
+                                                                                prev
+                                                                            ) =>
+                                                                                prev.includes(
+                                                                                    1
+                                                                                )
+                                                                                    ? prev.filter(
+                                                                                          (
+                                                                                              item
+                                                                                          ) =>
+                                                                                              item !==
+                                                                                              1
+                                                                                      )
+                                                                                    : [
+                                                                                          ...prev,
+                                                                                          1,
+                                                                                      ]
+                                                                        );
+                                                                    }}
+                                                                />
+                                                                <label
+                                                                    htmlFor="house-checkbox"
+                                                                    className="py-3 ml-2 w-full text-neutral-900"
+                                                                >
+                                                                    Wifi
+                                                                </label>
+                                                            </div>
+                                                            <div className="flex items-center">
+                                                                <input
+                                                                    id=""
+                                                                    type="checkbox"
+                                                                    value={2}
+                                                                    className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
+                                                                    onChange={() => {
+                                                                        setConveniences(
+                                                                            (
+                                                                                prev
+                                                                            ) =>
+                                                                                prev.includes(
+                                                                                    2
+                                                                                )
+                                                                                    ? prev.filter(
+                                                                                          (
+                                                                                              item
+                                                                                          ) =>
+                                                                                              item !==
+                                                                                              2
+                                                                                      )
+                                                                                    : [
+                                                                                          ...prev,
+                                                                                          2,
+                                                                                      ]
+                                                                        );
+                                                                    }}
+                                                                />
+                                                                <label
+                                                                    htmlFor="house-checkbox"
+                                                                    className="py-3 ml-2 w-full text-neutral-900"
+                                                                >
+                                                                    Bãi đỗ xe
+                                                                </label>
+                                                            </div>
+                                                            <div className="flex items-center">
+                                                                <input
+                                                                    id=""
+                                                                    type="checkbox"
+                                                                    value={3}
+                                                                    className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
+                                                                    onChange={() => {
+                                                                        setConveniences(
+                                                                            (
+                                                                                prev
+                                                                            ) =>
+                                                                                prev.includes(
+                                                                                    3
+                                                                                )
+                                                                                    ? prev.filter(
+                                                                                          (
+                                                                                              item
+                                                                                          ) =>
+                                                                                              item !==
+                                                                                              3
+                                                                                      )
+                                                                                    : [
+                                                                                          ...prev,
+                                                                                          3,
+                                                                                      ]
+                                                                        );
+                                                                    }}
+                                                                />
+                                                                <label
+                                                                    htmlFor="house-checkbox"
+                                                                    className="py-3 ml-2 w-full text-neutral-900"
+                                                                >
+                                                                    Cho phép thú
+                                                                    cưng
+                                                                </label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                )}
                                                 <div className="relative w-full mb-8 px-4">
                                                     <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                                         Mô tả bổ sung
@@ -783,7 +1024,9 @@ export default function UploadForm() {
                                                             id="dropzone-image"
                                                             type="file"
                                                             className="hidden"
-                                                            onChange={handleImages}
+                                                            onChange={
+                                                                handleImages
+                                                            }
                                                             multiple
                                                         />
                                                     </label>
@@ -811,46 +1054,46 @@ export default function UploadForm() {
                                                     Đăng ảnh 360°
                                                 </p>
                                                 <label
-                                                        for="dropzone-pano"
-                                                        className="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer "
-                                                    >
-                                                        <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                                                            <svg
-                                                                aria-hidden="true"
-                                                                className="mb-3 w-10 h-10 text-gray-400"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                viewBox="0 0 24 24"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                            >
-                                                                <path
-                                                                    strokeLinecap="round"
-                                                                    strokeLinejoin="round"
-                                                                    strokeWidth="2"
-                                                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                                                                ></path>
-                                                            </svg>
-                                                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                                                <span className="font-semibold">
-                                                                    Click to
-                                                                    upload
-                                                                </span>{" "}
-                                                                or drag and drop
-                                                            </p>
-                                                            <p className="text-xs text-gray-500 dark:text-gray-400">
-                                                                SVG, PNG, JPG or
-                                                                GIF (MAX.
-                                                                800x400px)
-                                                            </p>
-                                                        </div>
-                                                        <input
-                                                            id="dropzone-pano"
-                                                            type="file"
-                                                            className="hidden"
-                                                            onChange={handlePanomaras}
-                                                            multiple
-                                                        />
-                                                    </label>
+                                                    for="dropzone-pano"
+                                                    className="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer "
+                                                >
+                                                    <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                                                        <svg
+                                                            aria-hidden="true"
+                                                            className="mb-3 w-10 h-10 text-gray-400"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            viewBox="0 0 24 24"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth="2"
+                                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                                                            ></path>
+                                                        </svg>
+                                                        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                                            <span className="font-semibold">
+                                                                Click to upload
+                                                            </span>{" "}
+                                                            or drag and drop
+                                                        </p>
+                                                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                                                            SVG, PNG, JPG or GIF
+                                                            (MAX. 800x400px)
+                                                        </p>
+                                                    </div>
+                                                    <input
+                                                        id="dropzone-pano"
+                                                        type="file"
+                                                        className="hidden"
+                                                        onChange={
+                                                            handlePanomaras
+                                                        }
+                                                        multiple
+                                                    />
+                                                </label>
                                             </div>
 
                                             <hr className="mt-6 border-b-1 border-blueGray-300" />
@@ -1012,7 +1255,9 @@ export default function UploadForm() {
                                                                 id="dropzone-juri"
                                                                 type="file"
                                                                 className="hidden"
-                                                                onChange={handleJuridicalImages}
+                                                                onChange={
+                                                                    handleJuridicalImages
+                                                                }
                                                                 multiple
                                                             />
                                                         </label>

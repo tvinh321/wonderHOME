@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const SERVICES = ["nha-dat-ban", "tim-chuyen-gia", "huong-dan"];
 const NAVLINK_VIE = ["Nhà đất bán", "Tìm chuyên gia", "Hướng dẫn"];
 
 export default function Header() {
     // Check if the user is logged in
-    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
 
     // Check if the user is logged in
     useEffect(() => {
@@ -150,10 +151,10 @@ export default function Header() {
                                             id="user-menu-button"
                                             aria-expanded="false"
                                             aria-haspopup="true"
+                                            onClick={() => {
+                                                setShowDropdown(!showDropdown);
+                                            }}
                                         >
-                                            <span className="sr-only">
-                                                Open user menu
-                                            </span>
                                             <img
                                                 className="h-12 w-12 rounded-full"
                                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -168,6 +169,13 @@ export default function Header() {
                                         aria-orientation="vertical"
                                         aria-labelledby="user-menu-button"
                                         tabindex="-1"
+                                        style={{
+                                            display: `${
+                                                showDropdown
+                                                    ? "block"
+                                                    : "hidden"
+                                            }`,
+                                        }}
                                     >
                                         <a
                                             href="#"

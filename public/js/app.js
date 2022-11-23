@@ -6770,10 +6770,14 @@ var SERVICES = ["nha-dat-ban", "tim-chuyen-gia", "huong-dan"];
 var NAVLINK_VIE = ["Nhà đất bán", "Tìm chuyên gia", "Hướng dẫn"];
 function Header() {
   // Check if the user is logged in
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(false),
-    _React$useState2 = _slicedToArray(_React$useState, 2),
-    isLoggedIn = _React$useState2[0],
-    setIsLoggedIn = _React$useState2[1];
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isLoggedIn = _useState2[0],
+    setIsLoggedIn = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    showDropdown = _useState4[0],
+    setShowDropdown = _useState4[1];
 
   // Check if the user is logged in
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -6899,20 +6903,20 @@ function Header() {
             }), isLoggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
               className: "relative ml-3",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                   type: "button",
                   className: "flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800",
                   id: "user-menu-button",
                   "aria-expanded": "false",
                   "aria-haspopup": "true",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                    className: "sr-only",
-                    children: "Open user menu"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                  onClick: function onClick() {
+                    setShowDropdown(!showDropdown);
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
                     className: "h-12 w-12 rounded-full",
                     src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
                     alt: ""
-                  })]
+                  })
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                 className: "absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none",
@@ -6920,6 +6924,9 @@ function Header() {
                 "aria-orientation": "vertical",
                 "aria-labelledby": "user-menu-button",
                 tabindex: "-1",
+                style: {
+                  display: "".concat(showDropdown ? "block" : "hidden")
+                },
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                   href: "#",
                   className: "block px-4 py-2 text-sm text-gray-700",
@@ -8038,6 +8045,9 @@ function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableTo
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -8101,51 +8111,58 @@ function UploadForm() {
     _useState24 = _slicedToArray(_useState23, 2),
     area = _useState24[0],
     setArea = _useState24[1];
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState26 = _slicedToArray(_useState25, 2),
-    bedroom = _useState26[0],
-    setBedroom = _useState26[1];
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    conveniences = _useState26[0],
+    setConveniences = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState28 = _slicedToArray(_useState27, 2),
-    bathroom = _useState28[0],
-    setBathroom = _useState28[1];
-  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    moreDetails = _useState28[0],
+    setMoreDetails = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      bedroom: 0,
+      bathroom: 0,
+      floors: 0,
+      interior: "",
+      moreDetails: ""
+    }),
     _useState30 = _slicedToArray(_useState29, 2),
-    floors = _useState30[0],
-    setFloors = _useState30[1];
-  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    houseProperties = _useState30[0],
+    setHouseProperties = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      direction: 0,
+      road: "",
+      frontage: ""
+    }),
     _useState32 = _slicedToArray(_useState31, 2),
-    conveniences = _useState32[0],
-    setConveniences = _useState32[1];
-  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    landProperties = _useState32[0],
+    setLandProperties = _useState32[1];
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState34 = _slicedToArray(_useState33, 2),
-    moreDetails = _useState34[0],
-    setMoreDetails = _useState34[1];
-  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    images = _useState34[0],
+    setImages = _useState34[1];
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState36 = _slicedToArray(_useState35, 2),
-    images = _useState36[0],
-    setImages = _useState36[1];
-  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    video = _useState36[0],
+    setVideo = _useState36[1];
+  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState38 = _slicedToArray(_useState37, 2),
-    video = _useState38[0],
-    setVideo = _useState38[1];
-  var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    panoramas = _useState38[0],
+    setPanoramas = _useState38[1];
+  var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState40 = _slicedToArray(_useState39, 2),
-    panoramas = _useState40[0],
-    setPanoramas = _useState40[1];
-  var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    juridicalStatus = _useState40[0],
+    setJuridicalStatus = _useState40[1];
+  var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState42 = _slicedToArray(_useState41, 2),
-    juridicalStatus = _useState42[0],
-    setJuridicalStatus = _useState42[1];
-  var _useState43 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    juridicalImages = _useState42[0],
+    setJuridicalImages = _useState42[1];
+  var _useState43 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState44 = _slicedToArray(_useState43, 2),
-    juridicalImages = _useState44[0],
-    setJuridicalImages = _useState44[1];
-  var _useState45 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
-    _useState46 = _slicedToArray(_useState45, 2),
-    registerStep = _useState46[0],
-    setRegisterStep = _useState46[1];
+    registerStep = _useState44[0],
+    setRegisterStep = _useState44[1];
   var lastStep = 3;
+  var direction = ["Đông", "Tây", "Nam", "Bắc", "Đông Bắc", "Đông Nam", "Tây Nam", "Tây Bắc"];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/cities").then(function (res) {
       setCitiesList(res.data);
@@ -8222,9 +8239,6 @@ function UploadForm() {
     console.log(type);
     console.log(price);
     console.log(area);
-    console.log(bedroom);
-    console.log(bathroom);
-    console.log(floors);
     console.log(conveniences);
     console.log(moreDetails);
     console.log(images);
@@ -8321,9 +8335,9 @@ function UploadForm() {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h6", {
                     className: "text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase text-amber-500",
                     children: "\u0110\u1ECBa ch\u1EC9 b\u1EA5t \u0111\u1ED9ng s\u1EA3n"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                     className: "flex flex-wrap",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                       className: "w-full lg:w-12/12 px-4",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                         className: "relative w-full mb-3",
@@ -8368,7 +8382,10 @@ function UploadForm() {
                           })]
                         })]
                       })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                    className: "flex flex-wrap mb-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                       className: "w-full lg:w-4/12 px-4",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                         className: "relative w-full mb-3",
@@ -8412,10 +8429,7 @@ function UploadForm() {
                           })]
                         })]
                       })
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                    className: "flex flex-wrap mb-4",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                       className: "w-full lg:w-4/12 px-4",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                         className: "relative w-full mb-3",
@@ -8492,9 +8506,12 @@ function UploadForm() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h6", {
                     className: "text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase text-amber-500",
                     children: "Ti\xEAu \u0111\u1EC1 b\xE0i \u0111\u0103ng"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                    className: "px-4",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                    className: "px-4 mb-8",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                      className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
+                      children: "Ti\xEAu \u0111\u1EC1"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
                       type: "text",
                       className: "border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
                       rows: "1",
@@ -8503,15 +8520,13 @@ function UploadForm() {
                         setTitle(e.target.value);
                       },
                       value: title
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
-                    className: "mt-6 border-b-1 border-blueGray-300"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h6", {
-                    className: "text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase text-amber-500",
-                    children: "M\xF4 t\u1EA3 b\xE0i \u0111\u0103ng"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     className: "px-4",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                      className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
+                      children: "M\xF4 t\u1EA3"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
                       type: "text",
                       className: "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
                       rows: "4",
@@ -8520,7 +8535,7 @@ function UploadForm() {
                         setDescription(e.target.value);
                       },
                       value: description
-                    })
+                    })]
                   })]
                 })
               })
@@ -8546,6 +8561,7 @@ function UploadForm() {
                       id: "propertyType",
                       className: "w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
                       onChange: function onChange(e) {
+                        console.log(e.target.value);
                         setType(e.target.value);
                       },
                       value: type,
@@ -8553,9 +8569,9 @@ function UploadForm() {
                         value: 0,
                         disabled: true,
                         children: "Vui l\xF2ng ch\u1ECDn lo\u1EA1i b\u1EA5t \u0111\u1ED9ng s\u1EA3n..."
-                      }), typesList && typesList.map(function (type) {
+                      }), typesList && typesList.map(function (type, index) {
                         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                          value: type.id,
+                          value: index + 1,
                           children: type.name
                         }, type.id);
                       })]
@@ -8571,7 +8587,7 @@ function UploadForm() {
                       className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
                       children: "Di\u1EC7n t\xEDch"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                      type: "number",
+                      type: "text",
                       className: "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
                       placeholder: "Nh\u1EADp di\u1EC7n t\xEDch (m2)",
                       onChange: function onChange(e) {
@@ -8593,61 +8609,146 @@ function UploadForm() {
                       },
                       value: price
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                    className: "relative w-full mb-8 px-4",
+                  }), type != 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                      className: "flex items-center justify-between",
+                      className: "relative w-full mb-8 px-4",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                        htmlFor: "house-checkbox",
-                        className: "py-3 ml-2 w-full font-medium text-sm text-neutral-900",
-                        children: "S\u1ED1 ph\xF2ng ng\u1EE7"
+                        className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
+                        children: "N\u1ED9i th\u1EA5t"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                        id: "",
-                        type: "number",
-                        placeholder: "0",
-                        min: "1",
-                        max: "100",
-                        className: "w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150",
+                        type: "text",
+                        className: "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
+                        placeholder: "Nh\u1EADp th\xF4ng tin v\u1EC1 n\u1ED9i th\u1EA5t",
                         onChange: function onChange(e) {
-                          setBedroom(e.target.value);
+                          setHouseProperties(_objectSpread(_objectSpread({}, houseProperties), {}, {
+                            interior: e.target.value
+                          }));
                         },
-                        value: bedroom
+                        value: houseProperties.interior
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                      className: "flex items-center justify-between",
+                      className: "relative w-full mb-8 px-4",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                        className: "flex items-center justify-between",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                          htmlFor: "house-checkbox",
+                          className: "py-3 ml-2 w-full font-medium text-sm text-neutral-900",
+                          children: "S\u1ED1 ph\xF2ng ng\u1EE7"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                          id: "",
+                          type: "number",
+                          placeholder: "0",
+                          min: "1",
+                          max: "100",
+                          className: "w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150",
+                          onChange: function onChange(e) {
+                            setHouseProperties(_objectSpread(_objectSpread({}, houseProperties), {}, {
+                              bedroom: e.target.value
+                            }));
+                          },
+                          value: houseProperties.bedroom
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                        className: "flex items-center justify-between",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                          htmlFor: "house-checkbox",
+                          className: "py-3 ml-2 w-full text-sm font-medium text-neutral-900",
+                          children: "S\u1ED1 ph\xF2ng t\u1EAFm"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                          id: "",
+                          type: "number",
+                          placeholder: "0",
+                          min: "1",
+                          max: "100",
+                          className: "w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150",
+                          onChange: function onChange(e) {
+                            setHouseProperties(_objectSpread(_objectSpread({}, houseProperties), {}, {
+                              bathroom: e.target.value
+                            }));
+                          },
+                          value: houseProperties.bathroom
+                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                        className: "flex items-center justify-between",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                          htmlFor: "house-checkbox",
+                          className: "py-3 ml-2 w-full text-sm font-medium text-neutral-900",
+                          children: "S\u1ED1 t\u1EA7ng"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                          id: "",
+                          type: "number",
+                          placeholder: "0",
+                          min: "1",
+                          max: "100",
+                          className: "w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150",
+                          onChange: function onChange(e) {
+                            setHouseProperties(_objectSpread(_objectSpread({}, houseProperties), {}, {
+                              floor: e.target.value
+                            }));
+                          },
+                          value: houseProperties.floor
+                        })]
+                      })]
+                    })]
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                      className: "relative w-full mb-8 px-4",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                        htmlFor: "house-checkbox",
-                        className: "py-3 ml-2 w-full text-sm font-medium text-neutral-900",
-                        children: "S\u1ED1 ph\xF2ng t\u1EAFm"
+                        className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
+                        children: "M\u1EB7t ti\u1EC1n"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                        id: "",
-                        type: "number",
-                        placeholder: "0",
-                        min: "1",
-                        max: "100",
-                        className: "w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150",
+                        type: "text",
+                        className: "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
+                        placeholder: "Nh\u1EADp s\u1ED1 li\u1EC7u (m)",
                         onChange: function onChange(e) {
-                          setBathroom(e.target.value);
+                          setLandProperties(_objectSpread(_objectSpread({}, landProperties), {}, {
+                            frontage: e.target.value
+                          }));
                         },
-                        value: bathroom
+                        value: landProperties.frontage
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                      className: "flex items-center justify-between",
+                      className: "relative w-full mb-8 px-4",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                        htmlFor: "house-checkbox",
-                        className: "py-3 ml-2 w-full text-sm font-medium text-neutral-900",
-                        children: "S\u1ED1 t\u1EA7ng"
+                        className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
+                        children: "\u0110\u01B0\u1EDDng v\xE0o"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                        id: "",
-                        type: "number",
-                        placeholder: "0",
-                        min: "1",
-                        max: "100",
-                        className: "w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150",
+                        type: "text",
+                        className: "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
+                        placeholder: "Nh\u1EADp s\u1ED1 li\u1EC7u (m)",
                         onChange: function onChange(e) {
-                          setFloors(e.target.value);
+                          setLandProperties(_objectSpread(_objectSpread({}, landProperties), {}, {
+                            road: e.target.value
+                          }));
                         },
-                        value: floors
+                        value: landProperties.road
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                      className: "relative w-full mb-8 px-4",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                        className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
+                        children: "H\u01B0\u1EDBng nh\xE0"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+                        defaultValue: 0,
+                        required: true,
+                        id: "propertyType",
+                        className: "w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
+                        onChange: function onChange(e) {
+                          setLandProperties(_objectSpread(_objectSpread({}, landProperties), {}, {
+                            direction: e.target.value
+                          }));
+                        },
+                        value: landProperties.direction,
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                          value: 0,
+                          disabled: true,
+                          children: "Vui l\xF2ng ch\u1ECDn h\u01B0\u1EDBng nh\xE0..."
+                        }), direction && direction.map(function (dir, index) {
+                          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                            value: index + 1,
+                            children: dir
+                          }, type.id);
+                        })]
                       })]
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
@@ -8657,7 +8758,7 @@ function UploadForm() {
                     children: "Th\xF4ng tin kh\xE1c"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     className: "relative w-full mb-8 px-4",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                    children: [type !== 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                       className: "relative w-full mb-8 px-4",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
                         className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
