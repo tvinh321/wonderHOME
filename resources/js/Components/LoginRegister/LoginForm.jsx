@@ -7,11 +7,6 @@ export default function LoginForm({ setIsLoginForm }) {
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const digitReg = new RegExp("[0-9]+"); // should contain at least one digit
-    const lowerCaseReg = new RegExp("[a-z]+"); // should contain at least one lower case
-    const upperCaseReg = new RegExp("[A-Z]+"); // should contain at least one upper case
-    const specialCharReg = new RegExp('[!@#$%^&*(),.?":{}|<>]+'); // should contain at least one special character
-
     const handleLogin = async (event) => {
         event.preventDefault();
         setMessage("");

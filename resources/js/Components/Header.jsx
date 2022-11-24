@@ -168,7 +168,6 @@ export default function Header() {
                                         role="menu"
                                         aria-orientation="vertical"
                                         aria-labelledby="user-menu-button"
-                                        tabindex="-1"
                                         style={{
                                             display: `${
                                                 showDropdown ? "block" : "none"
@@ -179,7 +178,6 @@ export default function Header() {
                                             href="#"
                                             className="block px-4 py-2 text-sm text-gray-700"
                                             role="menuitem"
-                                            tabindex="-1"
                                             id="user-menu-item-0"
                                         >
                                             Cá nhân
@@ -188,7 +186,6 @@ export default function Header() {
                                             href="#"
                                             className="block px-4 py-2 text-sm text-gray-700"
                                             role="menuitem"
-                                            tabindex="-1"
                                             id="user-menu-item-1"
                                         >
                                             Cài đặt
@@ -197,8 +194,11 @@ export default function Header() {
                                             href="#"
                                             className="block px-4 py-2 text-sm text-gray-700"
                                             role="menuitem"
-                                            tabindex="-1"
                                             id="user-menu-item-2"
+                                            onClick={() => {
+                                                localStorage.removeItem("wonderHome-token");
+                                                window.location.reload();
+                                            }}
                                         >
                                             Thoát
                                         </a>

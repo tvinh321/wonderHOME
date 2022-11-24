@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import ReactPannellum from "react-pannellum";
 import YouTube from "react-youtube";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function Gallery({ files, bedNumb, price, area }) {
-    const { images, videos, panaromas } = files || {};
+    const { images, panaromas } = files || {};
     const videoURL = "https://www.youtube.com/shorts/7iwkESlek3k";
     const videoCode = (url) => {
         return url.includes("watch")
@@ -24,7 +24,7 @@ export default function Gallery({ files, bedNumb, price, area }) {
                             )
                         : children;
 
-                    return childrenArray.map((child, index) => {
+                    return childrenArray.map((child) => {
                         if (child.props?.videoId) {
                             return (
                                 <img
@@ -67,7 +67,6 @@ export default function Gallery({ files, bedNumb, price, area }) {
                     videoId={videoCode(videoURL)}
                     className="rounded-xl h-full w-full"
                     containerClassName="embed embed-youtube"
-                    onStateChange={(e) => checkElapsedTime(e)}
                     opts={{
                         height: "100%",
                     }}

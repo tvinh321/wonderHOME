@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function PasswordInputWithStrengMeter({ password, setPassword }) {
+export default function PasswordInputWithStrengMeter({ setPassword }) {
     const minLength = 8;
     const digitReg = new RegExp("[0-9]+"); // should contain at least one digit
     const lowerCaseReg = new RegExp("[a-z]+"); // should contain at least one lower case
@@ -88,24 +88,6 @@ export default function PasswordInputWithStrengMeter({ password, setPassword }) 
                         specialCharCheck,
                     ],
                 });
-            } else if (
-                digitCheck &&
-                lowerCaseCheck &&
-                upperCaseCheck &&
-                specialCharCheck
-            ) {
-                setPasswordValue({
-                    password: value,
-                    strength: 4,
-                    strengthText: "Mật khẩu mạnh",
-                    strengthColor: "green",
-                    strengthCharsValid: [
-                        digitCheck,
-                        lowerCaseCheck,
-                        upperCaseCheck,
-                        specialCharCheck,
-                    ],
-                });
             } else {
                 setPasswordValue({
                     password: value,
@@ -127,7 +109,7 @@ export default function PasswordInputWithStrengMeter({ password, setPassword }) 
         <>
             <div className="mb-5"></div>
             <label
-                for="password"
+                htmlFor="password"
                 className="block mb-2 text-sm font-bold text-neutral-700"
             >
                 Thiết lập mật khẩu
@@ -219,7 +201,7 @@ export default function PasswordInputWithStrengMeter({ password, setPassword }) 
                             width="18"
                             height="18"
                             fill="currentColor"
-                            class="bi bi-eye-fill"
+                            className="bi bi-eye-fill"
                             viewBox="0 0 16 16"
                         >
                             {" "}
@@ -253,7 +235,7 @@ export default function PasswordInputWithStrengMeter({ password, setPassword }) 
             </div>
             <div className="mb-5">
                 <label
-                    for="password"
+                    htmlFor="password"
                     className="block mb-2 text-sm font-bold text-neutral-700"
                 >
                     Xác nhận mật khẩu

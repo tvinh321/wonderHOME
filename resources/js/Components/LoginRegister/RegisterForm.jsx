@@ -90,7 +90,7 @@ export default function RegisterForm({ setIsLoginForm }) {
 
         axios
             .post("/api/register", formValue)
-            .then((res) => {
+            .then(() => {
                 setRegisterStep(lastStep + 1);
             })
             .catch((err) => {
@@ -224,7 +224,7 @@ export default function RegisterForm({ setIsLoginForm }) {
                                                         x-model="gender"
                                                         value={1}
                                                         className="form-radio focus:outline-none focus:shadow-outline"
-                                                        onClick={(e) => {
+                                                        onClick={() => {
                                                             setGender(1);
                                                         }}
                                                     />
@@ -241,7 +241,7 @@ export default function RegisterForm({ setIsLoginForm }) {
                                                         x-model="gender"
                                                         value={0}
                                                         className="form-radio focus:outline-none focus:shadow-outline"
-                                                        onClick={(e) => {
+                                                        onClick={() => {
                                                             setGender(0);
                                                         }}
                                                     />
@@ -258,7 +258,7 @@ export default function RegisterForm({ setIsLoginForm }) {
                                                         x-model="gender"
                                                         value={2}
                                                         className="form-radio focus:outline-none focus:shadow-outline"
-                                                        onClick={(e) => {
+                                                        onClick={() => {
                                                             setGender(2);
                                                         }}
                                                     />

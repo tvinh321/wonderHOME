@@ -5888,7 +5888,6 @@ function Gallery(_ref) {
     area = _ref.area;
   var _ref2 = files || {},
     images = _ref2.images,
-    videos = _ref2.videos,
     panaromas = _ref2.panaromas;
   var videoURL = "https://www.youtube.com/shorts/7iwkESlek3k";
   var videoCode = function videoCode(url) {
@@ -5901,7 +5900,7 @@ function Gallery(_ref) {
         var childrenArray = Array.isArray(children) ? children.reduce(function (acc, val) {
           return acc.concat(val);
         }, []) : children;
-        return childrenArray.map(function (child, index) {
+        return childrenArray.map(function (child) {
           var _child$props, _child$props2, _child$props3;
           if ((_child$props = child.props) !== null && _child$props !== void 0 && _child$props.videoId) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
@@ -5945,9 +5944,6 @@ function Gallery(_ref) {
         videoId: videoCode(videoURL),
         className: "rounded-xl h-full w-full",
         containerClassName: "embed embed-youtube",
-        onStateChange: function onStateChange(e) {
-          return checkElapsedTime(e);
-        },
         opts: {
           height: "100%"
         }
@@ -6923,7 +6919,6 @@ function Header() {
                 role: "menu",
                 "aria-orientation": "vertical",
                 "aria-labelledby": "user-menu-button",
-                tabindex: "-1",
                 style: {
                   display: "".concat(showDropdown ? "block" : "none")
                 },
@@ -6931,22 +6926,23 @@ function Header() {
                   href: "#",
                   className: "block px-4 py-2 text-sm text-gray-700",
                   role: "menuitem",
-                  tabindex: "-1",
                   id: "user-menu-item-0",
                   children: "C\xE1 nh\xE2n"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                   href: "#",
                   className: "block px-4 py-2 text-sm text-gray-700",
                   role: "menuitem",
-                  tabindex: "-1",
                   id: "user-menu-item-1",
                   children: "C\xE0i \u0111\u1EB7t"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                   href: "#",
                   className: "block px-4 py-2 text-sm text-gray-700",
                   role: "menuitem",
-                  tabindex: "-1",
                   id: "user-menu-item-2",
+                  onClick: function onClick() {
+                    localStorage.removeItem("wonderHome-token");
+                    window.location.reload();
+                  },
                   children: "Tho\xE1t"
                 })]
               })]
@@ -7044,11 +7040,6 @@ function LoginForm(_ref) {
     _useState8 = _slicedToArray(_useState7, 2),
     loading = _useState8[0],
     setLoading = _useState8[1];
-  var digitReg = new RegExp("[0-9]+"); // should contain at least one digit
-  var lowerCaseReg = new RegExp("[a-z]+"); // should contain at least one lower case
-  var upperCaseReg = new RegExp("[A-Z]+"); // should contain at least one upper case
-  var specialCharReg = new RegExp('[!@#$%^&*(),.?":{}|<>]+'); // should contain at least one special character
-
   var handleLogin = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
       var response, responseMsg;
@@ -7276,8 +7267,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function PasswordInputWithStrengMeter(_ref) {
-  var password = _ref.password,
-    setPassword = _ref.setPassword;
+  var setPassword = _ref.setPassword;
   var minLength = 8;
   var digitReg = new RegExp("[0-9]+"); // should contain at least one digit
   var lowerCaseReg = new RegExp("[a-z]+"); // should contain at least one lower case
@@ -7344,14 +7334,6 @@ function PasswordInputWithStrengMeter(_ref) {
           strengthColor: "green",
           strengthCharsValid: [digitCheck, lowerCaseCheck, upperCaseCheck, specialCharCheck]
         });
-      } else if (digitCheck && lowerCaseCheck && upperCaseCheck && specialCharCheck) {
-        setPasswordValue({
-          password: value,
-          strength: 4,
-          strengthText: "Mật khẩu mạnh",
-          strengthColor: "green",
-          strengthCharsValid: [digitCheck, lowerCaseCheck, upperCaseCheck, specialCharCheck]
-        });
       } else {
         setPasswordValue({
           password: value,
@@ -7367,7 +7349,7 @@ function PasswordInputWithStrengMeter(_ref) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "mb-5"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-      "for": "password",
+      htmlFor: "password",
       className: "block mb-2 text-sm font-bold text-neutral-700",
       children: "Thi\u1EBFt l\u1EADp m\u1EADt kh\u1EA9u"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -7434,7 +7416,7 @@ function PasswordInputWithStrengMeter(_ref) {
           width: "18",
           height: "18",
           fill: "currentColor",
-          "class": "bi bi-eye-fill",
+          className: "bi bi-eye-fill",
           viewBox: "0 0 16 16",
           children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
             d: "M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"
@@ -7464,7 +7446,7 @@ function PasswordInputWithStrengMeter(_ref) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "mb-5",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
-        "for": "password",
+        htmlFor: "password",
         className: "block mb-2 text-sm font-bold text-neutral-700",
         children: "X\xE1c nh\u1EADn m\u1EADt kh\u1EA9u"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
@@ -7633,7 +7615,7 @@ function RegisterForm(_ref) {
       username: username,
       password: password
     };
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", formValue).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", formValue).then(function () {
       setRegisterStep(lastStep + 1);
     })["catch"](function (err) {
       if (err.response) {
@@ -7761,7 +7743,7 @@ function RegisterForm(_ref) {
                       "x-model": "gender",
                       value: 1,
                       className: "form-radio focus:outline-none focus:shadow-outline",
-                      onClick: function onClick(e) {
+                      onClick: function onClick() {
                         setGender(1);
                       }
                     })
@@ -7778,7 +7760,7 @@ function RegisterForm(_ref) {
                       "x-model": "gender",
                       value: 0,
                       className: "form-radio focus:outline-none focus:shadow-outline",
-                      onClick: function onClick(e) {
+                      onClick: function onClick() {
                         setGender(0);
                       }
                     })
@@ -7795,7 +7777,7 @@ function RegisterForm(_ref) {
                       "x-model": "gender",
                       value: 2,
                       className: "form-radio focus:outline-none focus:shadow-outline",
-                      onClick: function onClick(e) {
+                      onClick: function onClick() {
                         setGender(2);
                       }
                     })
@@ -8054,6 +8036,8 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/no-unknown-property */
 
 
 
@@ -8115,71 +8099,77 @@ function UploadForm() {
     _useState26 = _slicedToArray(_useState25, 2),
     conveniences = _useState26[0],
     setConveniences = _useState26[1];
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState28 = _slicedToArray(_useState27, 2),
-    moreDetails = _useState28[0],
-    setMoreDetails = _useState28[1];
-  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       bedroom: 0,
       bathroom: 0,
       floors: 0,
-      interior: "",
+      interior: 0,
       moreDetails: ""
     }),
-    _useState30 = _slicedToArray(_useState29, 2),
-    houseProperties = _useState30[0],
-    setHouseProperties = _useState30[1];
-  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    _useState28 = _slicedToArray(_useState27, 2),
+    houseProperties = _useState28[0],
+    setHouseProperties = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       direction: 0,
       road: "",
       frontage: ""
     }),
+    _useState30 = _slicedToArray(_useState29, 2),
+    landProperties = _useState30[0],
+    setLandProperties = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState32 = _slicedToArray(_useState31, 2),
-    landProperties = _useState32[0],
-    setLandProperties = _useState32[1];
-  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    images = _useState32[0],
+    setImages = _useState32[1];
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState34 = _slicedToArray(_useState33, 2),
-    images = _useState34[0],
-    setImages = _useState34[1];
-  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    video = _useState34[0],
+    setVideo = _useState34[1];
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState36 = _slicedToArray(_useState35, 2),
-    video = _useState36[0],
-    setVideo = _useState36[1];
-  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    panoramas = _useState36[0],
+    setPanoramas = _useState36[1];
+  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState38 = _slicedToArray(_useState37, 2),
-    panoramas = _useState38[0],
-    setPanoramas = _useState38[1];
-  var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    juridicalStatus = _useState38[0],
+    setJuridicalStatus = _useState38[1];
+  var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState40 = _slicedToArray(_useState39, 2),
-    juridicalStatus = _useState40[0],
-    setJuridicalStatus = _useState40[1];
-  var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    juridicalImages = _useState40[0],
+    setJuridicalImages = _useState40[1];
+  var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState42 = _slicedToArray(_useState41, 2),
-    juridicalImages = _useState42[0],
-    setJuridicalImages = _useState42[1];
-  var _useState43 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
-    _useState44 = _slicedToArray(_useState43, 2),
-    registerStep = _useState44[0],
-    setRegisterStep = _useState44[1];
+    registerStep = _useState42[0],
+    setRegisterStep = _useState42[1];
   var lastStep = 3;
   var direction = ["Đông", "Tây", "Nam", "Bắc", "Đông Bắc", "Đông Nam", "Tây Nam", "Tây Bắc"];
+  var interior = ["Trống", "Đầy đủ"];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/cities").then(function (res) {
-      setCitiesList(res.data);
+      var _res$data;
+      setCitiesList((_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      }));
     })["catch"](function (err) {
       console.log(err);
     });
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/districts/" + city).then(function (res) {
-      setDistrictsList(res.data);
+      var _res$data2;
+      setDistrictsList((_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : _res$data2.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      }));
     })["catch"](function (err) {
       console.log(err);
     });
   }, [city]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/wards/" + district).then(function (res) {
-      setWardsList(res.data);
+      var _res$data3;
+      setWardsList((_res$data3 = res.data) === null || _res$data3 === void 0 ? void 0 : _res$data3.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      }));
     })["catch"](function (err) {
       console.log(err);
     });
@@ -8240,46 +8230,51 @@ function UploadForm() {
     console.log(price);
     console.log(area);
     console.log(conveniences);
-    console.log(moreDetails);
     console.log(images);
     console.log(video);
     console.log(juridicalStatus);
     console.log(juridicalImages);
     console.log(panoramas);
-
-    // const formData = new FormData();
-    // formData.append("city", city);
-    // formData.append("district", district);
-    // formData.append("ward", ward);
-    // formData.append("address", address);
-    // formData.append("title", title);
-    // formData.append("description", description);
-    // formData.append("type", type);
-    // formData.append("price", price);
-    // formData.append("area", area);
-    // formData.append("bedroom", bedroom);
-    // formData.append("bathroom", bathroom);
-    // formData.append("floors", floors);
-    // formData.append("conveniences", conveniences);
-    // formData.append("moreDetails", moreDetails);
-    // formData.append("video", video);
-    // formData.append("juridicalStatus", juridicalStatus);
-    // for (let i = 0; i < images.length; i++) {
-    //     formData.append("images", images[i]);
-    // }
-    // for (let i = 0; i < juridicalImages.length; i++) {
-    //     formData.append("juridicalImages", juridicalImages[i]);
-    // }
-    // axios
-    //     .post("/api/posts", formData)
-    //     .then((res) => {
-    //         console.log(res);
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
+    console.log(houseProperties);
+    console.log(landProperties);
+    var formData = new FormData();
+    formData.append("ward", ward);
+    formData.append("address", address);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("type", type);
+    formData.append("price", price);
+    formData.append("area", area);
+    formData.append("conveniences", conveniences);
+    formData.append("video", video);
+    formData.append("juridicalStatus", juridicalStatus);
+    formData.append("panoramas", panoramas);
+    if (type === 2) {
+      formData.append("direction", landProperties.direction);
+      formData.append("road", landProperties.road);
+      formData.append("frontage", landProperties.frontage);
+    } else {
+      formData.append("bedroom", houseProperties.bedroom);
+      formData.append("bathroom", houseProperties.bathroom);
+      formData.append("floors", houseProperties.floors);
+      formData.append("interior", houseProperties.interior);
+      formData.append("moreDetails", houseProperties.moreDetails);
+    }
+    for (var i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+    }
+    for (var _i2 = 0; _i2 < juridicalImages.length; _i2++) {
+      formData.append("juridicalImages", juridicalImages[_i2]);
+    }
+    for (var _i3 = 0; _i3 < panoramas.length; _i3++) {
+      formData.append("panoramas", panoramas[_i3]);
+    }
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/properties", formData).then(function (res) {
+      console.log(res);
+    })["catch"](function (err) {
+      console.log(err);
+    });
   };
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "px-8 pt-6 mb-8 rounded w-3/4 mx-auto",
@@ -8354,7 +8349,7 @@ function UploadForm() {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                             value: "",
                             children: "T\u1EC9nh/Th\xE0nh ph\u1ED1"
-                          }), citiesList ? citiesList.map(function (cityItem, index) {
+                          }), citiesList ? citiesList.map(function (cityItem) {
                             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                               value: cityItem.id,
                               children: cityItem.name
@@ -8401,7 +8396,7 @@ function UploadForm() {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                             value: "",
                             children: "Qu\u1EADn/Huy\u1EC7n"
-                          }), districtsList ? districtsList.map(function (districtItem, index) {
+                          }), districtsList ? districtsList.map(function (districtItem) {
                             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                               value: districtItem.id,
                               children: districtItem.name
@@ -8444,7 +8439,7 @@ function UploadForm() {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                             value: "",
                             children: "Ph\u01B0\u1EDDng/X\xE3"
-                          }), wardsList ? wardsList.map(function (wardItem, index) {
+                          }), wardsList ? wardsList.map(function (wardItem) {
                             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                               value: wardItem.id,
                               children: wardItem.name
@@ -8561,7 +8556,6 @@ function UploadForm() {
                       id: "propertyType",
                       className: "w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
                       onChange: function onChange(e) {
-                        console.log(e.target.value);
                         setType(e.target.value);
                       },
                       value: type,
@@ -8615,16 +8609,27 @@ function UploadForm() {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
                         className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
                         children: "N\u1ED9i th\u1EA5t"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                        type: "text",
-                        className: "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
-                        placeholder: "Nh\u1EADp th\xF4ng tin v\u1EC1 n\u1ED9i th\u1EA5t",
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+                        defaultValue: 0,
+                        required: true,
+                        id: "interior",
+                        className: "w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
                         onChange: function onChange(e) {
                           setHouseProperties(_objectSpread(_objectSpread({}, houseProperties), {}, {
-                            interior: e.target.value
+                            interior: Number(e.target.value)
                           }));
                         },
-                        value: houseProperties.interior
+                        value: houseProperties.interior,
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                          value: 0,
+                          disabled: true,
+                          children: "Vui l\xF2ng ch\u1ECDn n\u1ED9i th\u1EA5t..."
+                        }), interior && interior.map(function (interior, index) {
+                          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                            value: index + 1,
+                            children: interior
+                          }, interior.id);
+                        })]
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                       className: "relative w-full mb-8 px-4",
@@ -8643,7 +8648,7 @@ function UploadForm() {
                           className: "w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150",
                           onChange: function onChange(e) {
                             setHouseProperties(_objectSpread(_objectSpread({}, houseProperties), {}, {
-                              bedroom: e.target.value
+                              bedroom: Number(e.target.value)
                             }));
                           },
                           value: houseProperties.bedroom
@@ -8663,7 +8668,7 @@ function UploadForm() {
                           className: "w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150",
                           onChange: function onChange(e) {
                             setHouseProperties(_objectSpread(_objectSpread({}, houseProperties), {}, {
-                              bathroom: e.target.value
+                              bathroom: Number(e.target.value)
                             }));
                           },
                           value: houseProperties.bathroom
@@ -8683,10 +8688,10 @@ function UploadForm() {
                           className: "w-1/4 text-center border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150",
                           onChange: function onChange(e) {
                             setHouseProperties(_objectSpread(_objectSpread({}, houseProperties), {}, {
-                              floor: e.target.value
+                              floors: Number(e.target.value)
                             }));
                           },
-                          value: houseProperties.floor
+                          value: houseProperties.floors
                         })]
                       })]
                     })]
@@ -8702,7 +8707,7 @@ function UploadForm() {
                         placeholder: "Nh\u1EADp s\u1ED1 li\u1EC7u (m)",
                         onChange: function onChange(e) {
                           setLandProperties(_objectSpread(_objectSpread({}, landProperties), {}, {
-                            frontage: e.target.value
+                            frontage: Number(e.target.value)
                           }));
                         },
                         value: landProperties.frontage
@@ -8718,7 +8723,7 @@ function UploadForm() {
                         placeholder: "Nh\u1EADp s\u1ED1 li\u1EC7u (m)",
                         onChange: function onChange(e) {
                           setLandProperties(_objectSpread(_objectSpread({}, landProperties), {}, {
-                            road: e.target.value
+                            road: Number(e.target.value)
                           }));
                         },
                         value: landProperties.road
@@ -8735,7 +8740,7 @@ function UploadForm() {
                         className: "w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
                         onChange: function onChange(e) {
                           setLandProperties(_objectSpread(_objectSpread({}, landProperties), {}, {
-                            direction: e.target.value
+                            direction: Number(e.target.value)
                           }));
                         },
                         value: landProperties.direction,
@@ -8834,9 +8839,11 @@ function UploadForm() {
                         cols: "80",
                         className: "w-full border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150",
                         placeholder: "M\xF4 t\u1EA3 b\u1ED5 sung",
-                        value: moreDetails,
+                        value: houseProperties.moreDetails,
                         onChange: function onChange(e) {
-                          setMoreDetails(e.target.value);
+                          setHouseProperties(_objectSpread(_objectSpread({}, houseProperties), {}, {
+                            moreDetails: e.target.value
+                          }));
                         }
                       })]
                     })]
