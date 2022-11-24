@@ -723,9 +723,6 @@ video {
 .mb-16 {
   margin-bottom: 4rem;
 }
-.ml-4 {
-  margin-left: 1rem;
-}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -737,6 +734,9 @@ video {
 }
 .mb-5 {
   margin-bottom: 1.25rem;
+}
+.ml-4 {
+  margin-left: 1rem;
 }
 .mb-8 {
   margin-bottom: 2rem;
@@ -1541,6 +1541,9 @@ video {
 .pt-1 {
   padding-top: 0.25rem;
 }
+.pr-4 {
+  padding-right: 1rem;
+}
 .pl-4 {
   padding-left: 1rem;
 }
@@ -1823,6 +1826,18 @@ video {
 }
 .ease-linear {
   transition-timing-function: linear;
+}
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 .hover\:scale-110:hover {
   --tw-scale-x: 1.1;

@@ -42,6 +42,16 @@ export default function Search() {
     );
     const [bedroom, setBedroom] = useState(searchParams.get("bedroom"));
 
+    const [favorites, setFavorites] = useState([]);
+
+    useEffect(() => {
+        const favoriteList = [];
+        for (let i = 0; i < searchResults.length; i++) {
+            favoriteList.push(false);
+        }
+        setFavorites(favoriteList);
+    }, []);
+
     function useOnClickOutside(ref, handler) {
         useEffect(
             () => {
@@ -1220,33 +1230,32 @@ export default function Search() {
                     {searchResults
                         ? searchResults.map((item, index) => {
                               return (
-                                  <div
-                                      className="flex items-center justify-between mb-10"
-                                      key={index}
-                                  >
-                                      <div className="flex">
-                                          <a href={`/thong-tin/${item.id}`}>
-                                              <img
-                                                  src={
-                                                      index % 6 === 0
-                                                          ? Room1
-                                                          : index % 6 === 1
-                                                          ? Room2
-                                                          : index % 6 === 2
-                                                          ? Room3
-                                                          : index % 6 === 3
-                                                          ? Room4
-                                                          : index % 6 === 4
-                                                          ? Room5
-                                                          : Room6
-                                                  }
-                                                  alt=""
-                                                  className="w-36 h-36 object-cover"
-                                              />
-                                          </a>
-                                          <div className="ml-4">
+                                  <div className="mb-10 shadow-lg" key={index}>
+                                      <div className="flex items-center gap-x-4">
+                                          <div>
                                               <a href={`/thong-tin/${item.id}`}>
-                                                  <p className="text-md text-blue-900 font-semibold mb-1">
+                                                  <img
+                                                      src={
+                                                          index % 6 === 0
+                                                              ? Room1
+                                                              : index % 6 === 1
+                                                              ? Room2
+                                                              : index % 6 === 2
+                                                              ? Room3
+                                                              : index % 6 === 3
+                                                              ? Room4
+                                                              : index % 6 === 4
+                                                              ? Room5
+                                                              : Room6
+                                                      }
+                                                      alt=""
+                                                      className="w-36 h-36 object-cover"
+                                                  />
+                                              </a>
+                                          </div>
+                                          <div className="w-full pr-4">
+                                              <a href={`/thong-tin/${item.id}`}>
+                                                  <p className="text-md text-blue-900 font-semibold mb-1 line-clamp-2">
                                                       {item.title}
                                                   </p>
                                               </a>
@@ -1267,9 +1276,65 @@ export default function Search() {
                                                   </p>
                                               </div>
 
-                                              <p className="text-sm line-clamp-2">
+                                              <p className="mb-2 text-sm line-clamp-2">
                                                   {item.description}
                                               </p>
+
+                                              <div className="mb-2 text-xs text-neutral-500 flex items-center justify-between w-full">
+                                                  <p>
+                                                      {
+                                                          item.created_at.split(
+                                                              " "
+                                                          )[0]
+                                                      }
+                                                  </p>
+
+                                                  <div
+                                                      onClick={() => {
+                                                          let newFav = [
+                                                              ...favorites,
+                                                          ];
+                                                          newFav[index] =
+                                                              !newFav[index];
+                                                          setFavorites(newFav);
+                                                      }}
+                                                  >
+                                                      {favorites[index] ? (
+                                                          <svg
+                                                              style={{
+                                                                  color: "red",
+                                                              }}
+                                                              xmlns="http://www.w3.org/2000/svg"
+                                                              width="16"
+                                                              height="16"
+                                                              fill="currentColor"
+                                                              class="bi bi-heart-fill"
+                                                              viewBox="0 0 16 16"
+                                                          >
+                                                              {" "}
+                                                              <path
+                                                                  fill-rule="evenodd"
+                                                                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                                                                  fill="red"
+                                                              ></path>{" "}
+                                                          </svg>
+                                                      ) : (
+                                                          <svg
+                                                              xmlns="http://www.w3.org/2000/svg"
+                                                              width="14"
+                                                              height="14"
+                                                              fill={
+                                                                  "currentColor"
+                                                              }
+                                                              className="bi bi-heart"
+                                                              viewBox="0 0 16 16"
+                                                          >
+                                                              {" "}
+                                                              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />{" "}
+                                                          </svg>
+                                                      )}
+                                                  </div>
+                                              </div>
                                           </div>
                                       </div>
                                   </div>

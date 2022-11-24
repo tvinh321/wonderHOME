@@ -27,6 +27,7 @@
         "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/inertia-react": "^0.8.1",
         "@inertiajs/progress": "^0.2.7",
+        "@tailwindcss/line-clamp": "^0.4.2",
         "eslint-plugin-react": "^7.31.11",
         "heroicons": "^2.0.13",
         "laravel-echo": "^1.14.1",
