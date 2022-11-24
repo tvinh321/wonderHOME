@@ -406,7 +406,7 @@ export default function Home() {
                                                 </option>
                                                 {citiesList ? (
                                                     citiesList.map(
-                                                        (cityItem, index) => {
+                                                        (cityItem) => {
                                                             return (
                                                                 <option
                                                                     value={
@@ -459,8 +459,7 @@ export default function Home() {
                                                 {districtsList ? (
                                                     districtsList.map(
                                                         (
-                                                            districtItem,
-                                                            index
+                                                            districtItem
                                                         ) => {
                                                             return (
                                                                 <option
@@ -512,7 +511,7 @@ export default function Home() {
                                                 </option>
                                                 {wardsList ? (
                                                     wardsList.map(
-                                                        (wardItem, index) => {
+                                                        (wardItem) => {
                                                             return (
                                                                 <option
                                                                     value={
@@ -944,7 +943,7 @@ export default function Home() {
                                         } z-0 -mt-px px-6 py-8 border border-neutral-400 rounded-md rounded-tl-none bg-gradient-to-b from-white via-gray-100 to-gray-200 transition-all duration-300`}
                                     >
                                         <h1 className="text-amber-500 text-xl font-bold leading-tighter">
-                                            Mang đến bất động sản "thật" cho bạn
+                                            Mang đến bất động sản &quot;thật&quot; cho bạn
                                         </h1>
                                         <p className="mt-4 text-sm leading-relaxed">
                                             Lorem ipsum dolor sit maiores ipsum
@@ -1019,7 +1018,7 @@ export default function Home() {
                         <div className="rounded-lg overflow-hidden shadow-lg bg-white">
                             <div className="h-56">
                                 <p className="text-lg p-4 h-1/2 font-semibold text-center align-middle">
-                                    "Dễ xài"
+                                &quot;Dễ xài&quot;
                                 </p>
                                 <div className="flex justify-center items-center gap-x-1">
                                     <svg
@@ -1107,7 +1106,7 @@ export default function Home() {
                         <div className="rounded-lg overflow-hidden shadow-lg bg-white">
                             <div className="h-56">
                                 <p className="text-lg p-4 h-1/2 font-semibold text-center align-middle">
-                                    "Đội ngũ hỗ trợ rất chuyên nghiệp"
+                                &quot;Đội ngũ hỗ trợ rất chuyên nghiệp&quot;
                                 </p>
                                 <div className="flex justify-center items-center gap-x-1">
                                     <svg
@@ -1209,7 +1208,7 @@ export default function Home() {
                         <div className="rounded-lg overflow-hidden shadow-lg bg-white">
                             <div className="h-56">
                                 <p className="text-lg p-4 h-1/2 font-semibold text-center align-middle">
-                                    "Giúp tôi chọn được ngôi nhà phù hợp"
+                                &quot;Giúp tôi chọn được ngôi nhà phù hợp&quot;
                                 </p>
                                 <div className="flex justify-center items-center gap-x-1">
                                     <svg

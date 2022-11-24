@@ -171,7 +171,11 @@ class PropertiesController extends Controller
     
     public function queryProperties(Request $request)
     {
+        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+
         $title = $request->title;
+        $city = $request->city;
+        $district = $request->district;
         $ward = $request->ward;
         $price = $request->price;
         $area = $request->area;
@@ -179,47 +183,50 @@ class PropertiesController extends Controller
         $bedroom = $request->bedroom;
 
         $properties = DB::table('properties')
-        ->join('juridicals', 'properties.juridicals_id', '=', 'juridicals.id')
-        ->join('property_types', 'properties.property_types_id', '=', 'property_types.id')
-        ->join('wards', 'properties.wards_id', '=', 'wards.id')
-        ->join('districts', 'wards.districts_id', '=', 'districts.id')
-        ->join('cities', 'districts.cities_id', '=', 'cities.id')
-        ->select('properties.id', 'properties.title', 'properties.created_at', 'properties.location', 'properties.description', 'properties.num_of_bedrooms', 'properties.num_of_toilets', 'properties.direction', 'properties.price', 'properties.priority', 'properties.facade', 'properties.area', 'properties.expire_date', 'properties.juridical_status', 'properties.furniture')
-        ->where('properties.expire_date', '>', now())
-        ->where('properties.status', '=', 'active');
+        ->leftJoin('juridicals', 'properties.juridicals_id', '=', 'juridicals.id')
+        ->leftJoin('property_types', 'properties.property_types_id', '=', 'property_types.id')
+        ->leftJoin('wards', 'properties.wards_id', '=', 'wards.id')
+        ->leftJoin('districts', 'wards.districts_id', '=', 'districts.id')
+        ->leftJoin('cities', 'districts.cities_id', '=', 'cities.id')
+        ->select('properties.id', 'properties.title', 'properties.created_at', 'properties.location', 'properties.description', 'properties.num_of_bedrooms', 'properties.num_of_toilets', 'properties.direction', 'properties.price', 'properties.priority', 'properties.facade', 'properties.area', 'properties.expire_date', 'properties.juridical_status', 'properties.furniture');
 
         if ($title) {
+            $output->writeln($title);
             $properties = $properties->where('properties.title', 'like', '%' . $title . '%');
         }
 
         if ($ward) {
+            $output->writeln('Ward: ' . $ward);
             $properties = $properties->where('properties.wards_id', '=', $ward);
         }
 
         if ($district) {
+            $output->writeln('District: ' . $district);
             $properties = $properties->where('districts.id', '=', $district);
         }
 
         if ($city) {
+            $output->writeln('City: ' . $city);
             $properties = $properties->where('cities.id', '=', $city);
         }
 
         if ($price) {
-            $price = explode('-', $price);
+            $output->writeln('Price: ' . $price[0] . ' - ' . $price[1]);
             $properties = $properties->whereBetween('properties.price', [$price[0], $price[1]]);
         }
 
         if ($area) {
-            $area = explode('-', $area);
+            $output->writeln('Area: ' . $area[0] . ' - ' . $area[1]);
             $properties = $properties->whereBetween('properties.area', [$area[0], $area[1]]);
         }
 
         if ($type) {
-            $type = explode(',', $type);
+            $output->writeln('Type: ' . $type[0]);
             $properties = $properties->whereIn('properties.property_types_id', $type);
         }
 
         if ($bedroom) {
+            $output->writeln('Bedroom: ' . $bedroom);
             $properties = $properties->where('properties.num_of_bedrooms', '=', $bedroom);
         }
 

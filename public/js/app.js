@@ -6752,6 +6752,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/ChatBubbleOvalLeftIcon.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -6760,10 +6761,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-
-
 var SERVICES = ["nha-dat-ban", "tim-chuyen-gia", "huong-dan"];
 var NAVLINK_VIE = ["Nhà đất bán", "Tìm chuyên gia", "Hướng dẫn"];
+
+
+
 function Header() {
   // Check if the user is logged in
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
@@ -6864,6 +6866,8 @@ function Header() {
                   d: "m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
                 }), " "]
               })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              className: "hidden md:inline rounded-full p-1 mr-4 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-150 cursor-pointer h-9 w-9"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
               href: isLoggedIn ? "/dang-tin" : "/dang-nhap",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
@@ -10270,7 +10274,7 @@ function Home() {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
                     value: "",
                     children: "T\u1EC9nh/Th\xE0nh ph\u1ED1"
-                  }), citiesList ? citiesList.map(function (cityItem, index) {
+                  }), citiesList ? citiesList.map(function (cityItem) {
                     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
                       value: cityItem.id,
                       children: cityItem.name
@@ -10306,7 +10310,7 @@ function Home() {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
                     value: "",
                     children: "Qu\u1EADn/Huy\u1EC7n"
-                  }), districtsList ? districtsList.map(function (districtItem, index) {
+                  }), districtsList ? districtsList.map(function (districtItem) {
                     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
                       value: districtItem.id,
                       children: districtItem.name
@@ -10341,7 +10345,7 @@ function Home() {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
                     value: "",
                     children: "Ph\u01B0\u1EDDng/X\xE3"
-                  }), wardsList ? wardsList.map(function (wardItem, index) {
+                  }), wardsList ? wardsList.map(function (wardItem) {
                     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
                       value: wardItem.id,
                       children: wardItem.name
@@ -11191,29 +11195,1249 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Search)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/Header */ "./resources/js/Components/Header.jsx");
+/* harmony import */ var _Components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/Footer */ "./resources/js/Components/Footer.jsx");
+/* harmony import */ var _public_assets_images_Room1_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../public/assets/images/Room1.jpg */ "./public/assets/images/Room1.jpg");
+/* harmony import */ var _public_assets_images_Room2_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../public/assets/images/Room2.jpg */ "./public/assets/images/Room2.jpg");
+/* harmony import */ var _public_assets_images_Room3_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../public/assets/images/Room3.jpg */ "./public/assets/images/Room3.jpg");
+/* harmony import */ var _public_assets_images_Room4_jpg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../public/assets/images/Room4.jpg */ "./public/assets/images/Room4.jpg");
+/* harmony import */ var _public_assets_images_Room5_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../public/assets/images/Room5.jpg */ "./public/assets/images/Room5.jpg");
+/* harmony import */ var _public_assets_images_Room6_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../public/assets/images/Room6.jpg */ "./public/assets/images/Room6.jpg");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
 
 
 
 function Search() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    searchResults = _useState2[0],
+    setSearchResults = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
+    _useState4 = _slicedToArray(_useState3, 2),
+    loading = _useState4[0],
+    setLoading = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+    _useState6 = _slicedToArray(_useState5, 2),
+    citiesList = _useState6[0],
+    setCitiesList = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+    _useState8 = _slicedToArray(_useState7, 2),
+    districtsList = _useState8[0],
+    setDistrictsList = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+    _useState10 = _slicedToArray(_useState9, 2),
+    wardsList = _useState10[0],
+    setWardsList = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+    _useState12 = _slicedToArray(_useState11, 2),
+    typesList = _useState12[0],
+    setTypesList = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+    _useState14 = _slicedToArray(_useState13, 2),
+    showPropertyTypes = _useState14[0],
+    setShowPropertyTypes = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    showLocation = _useState16[0],
+    setShowLocation = _useState16[1];
+  var propertyTypesRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var locationRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
   var searchParams = new URLSearchParams(window.location.search);
-  var title = searchParams.get("title");
-  var ward = searchParams.get("ward");
-  var district = searchParams.get("district");
-  var city = searchParams.get("city");
-  var price = searchParams.get("price") ? searchParams.get("price").split('-') : null;
-  var area = searchParams.get("area") ? searchParams.get("area").split('-') : null;
-  var type = searchParams.get("type") ? searchParams.get("type").split(',') : null;
-  var bedroom = searchParams.get("bedroom");
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log(title, ward, district, city, price, area, type, bedroom);
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(searchParams.get("title")),
+    _useState18 = _slicedToArray(_useState17, 2),
+    title = _useState18[0],
+    setTitle = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(searchParams.get("ward")),
+    _useState20 = _slicedToArray(_useState19, 2),
+    ward = _useState20[0],
+    setWard = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(searchParams.get("district")),
+    _useState22 = _slicedToArray(_useState21, 2),
+    district = _useState22[0],
+    setDistrict = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(searchParams.get("city")),
+    _useState24 = _slicedToArray(_useState23, 2),
+    city = _useState24[0],
+    setCity = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(searchParams.get("price") ? searchParams.get("price").split('-') : null),
+    _useState26 = _slicedToArray(_useState25, 2),
+    price = _useState26[0],
+    setPrice = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(searchParams.get("area") ? searchParams.get("area").split('-') : null),
+    _useState28 = _slicedToArray(_useState27, 2),
+    area = _useState28[0],
+    setArea = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(searchParams.get("type") ? searchParams.get("type").split(',') : null),
+    _useState30 = _slicedToArray(_useState29, 2),
+    type = _useState30[0],
+    setType = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(searchParams.get("bedroom")),
+    _useState32 = _slicedToArray(_useState31, 2),
+    bedroom = _useState32[0],
+    setBedroom = _useState32[1];
+  function useOnClickOutside(ref, handler) {
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+      var listener = function listener(event) {
+        // Do nothing if clicking ref's element or descendent elements
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        handler(event);
+      };
+      document.addEventListener("mousedown", listener);
+      document.addEventListener("touchstart", listener);
+      return function () {
+        document.removeEventListener("mousedown", listener);
+        document.removeEventListener("touchstart", listener);
+      };
+    },
+    // Add ref and handler to effect dependencies
+    // It's worth noting that because the passed-in handler is a new ...
+    // ... function on every render that will cause this effect ...
+    // ... callback/cleanup to run every render. It's not a big deal ...
+    // ... but to optimize you can wrap handler in useCallback before ...
+    // ... passing it into this hook.
+    [ref, handler]);
+  }
+  useOnClickOutside(propertyTypesRef, function () {
+    return setShowPropertyTypes(false);
+  });
+  useOnClickOutside(locationRef, function () {
+    return setShowLocation(false);
+  });
+
+  // useEffect(() => {
+  //     setLoading(true);
+
+  //     let postForm = {
+  //         title: title,
+  //         price: price,
+  //         area: area,
+  //         type: type,
+  //         bedroom: bedroom,
+  //     }
+
+  //     if (ward) {
+  //         postForm.ward = ward;
+  //     } else if (district) {
+  //         postForm.district = district;
+  //     } else if (city) {
+  //         postForm.city = city;
+  //     }
+
+  //     axios.post('/api/properties', postForm)
+  //         .then(response => {
+  //             setSearchResults(response.data.properties);
+  //             setLoading(false);
+  //         })
+  //         .catch(error => {
+  //             console.log(error);
+  //             setLoading(false);
+  //         })
+  // }, []);
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    setSearchResults([{
+      "id": "69d402d6-d23e-4f38-893b-c7b38911e147",
+      "title": "Bán căn hộ 2.2 tỷ 150m2",
+      "created_at": "2022-11-12 04:07:19",
+      "location": "234 Nguyễn Trãi, Xã An Đạo, Huyện Phù Ninh, Tỉnh Phú Thọ",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 4,
+      "num_of_toilets": 5,
+      "direction": 3,
+      "price": 2220000000,
+      "priority": 4,
+      "facade": "49",
+      "area": "150",
+      "expire_date": "2023-01-29 04:07:19",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "59d864d6-5774-4ee3-8789-254126daf959",
+      "title": "Bán căn hộ 1.4 tỷ 140m2",
+      "created_at": "2022-11-12 04:07:21",
+      "location": "19 Nguyễn Văn Linh, Thị trấn Sóc Sơn, Huyện Hòn Đất, Tỉnh Kiên Giang",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 4,
+      "num_of_toilets": 5,
+      "direction": 14,
+      "price": 1400000000,
+      "priority": 5,
+      "facade": "37",
+      "area": "140",
+      "expire_date": "2023-01-04 04:07:21",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "15e7aa5b-0784-4cc4-b470-801555e4bdc9",
+      "title": "Bán nhà 2.0 tỷ 110m2",
+      "created_at": "2022-11-12 04:07:23",
+      "location": "65 Nguyễn Văn Cừ, Xã Tân Hội Trung, Huyện Cao Lãnh, Tỉnh Đồng Tháp",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 3,
+      "direction": 7,
+      "price": 2000000000,
+      "priority": 3,
+      "facade": "20",
+      "area": "110",
+      "expire_date": "2023-01-17 04:07:23",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "663407a8-d2bb-4013-886f-4cd6be7d9c48",
+      "title": "Bán căn hộ chung cư 2.0 tỷ 60m2",
+      "created_at": "2022-11-12 04:07:24",
+      "location": "98 Nguyễn Văn Huyên, Xã Phấn Mễ, Huyện Phú Lương, Tỉnh Thái Nguyên",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 4,
+      "num_of_toilets": 4,
+      "direction": 8,
+      "price": 2000000000,
+      "priority": 4,
+      "facade": "97",
+      "area": "60",
+      "expire_date": "2023-01-17 04:07:24",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "c5e3cbc7-136a-4ff3-a3a4-1fbc00c3cd90",
+      "title": "Bán căn hộ 2.0 tỷ 200m2",
+      "created_at": "2022-11-12 04:07:26",
+      "location": "234 Nguyễn Trãi, Phường Kỳ Phương, Thị xã Kỳ Anh, Tỉnh Hà Tĩnh",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 5,
+      "direction": 1,
+      "price": 2000000000,
+      "priority": 3,
+      "facade": "65",
+      "area": "200",
+      "expire_date": "2023-02-20 04:07:26",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "b3e368e6-d2d9-4be6-8f63-db57fdef99eb",
+      "title": "Bán nhà 2.0 tỷ 190m2",
+      "created_at": "2022-11-12 04:07:28",
+      "location": "19 Nguyễn Văn Linh, Xã Tân Minh, Huyện Tràng Định, Tỉnh Lạng Sơn",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 5,
+      "direction": 16,
+      "price": 2000000000,
+      "priority": 4,
+      "facade": "82",
+      "area": "190",
+      "expire_date": "2023-01-28 04:07:28",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "43954059-251a-4bcf-9dd5-eb4c55fdd02d",
+      "title": "Bán nhà 2.0 tỷ 140m2",
+      "created_at": "2022-11-12 04:07:30",
+      "location": "65 Nguyễn Văn Cừ, Xã Kim Thượng, Huyện Tân Sơn, Tỉnh Phú Thọ",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 2,
+      "num_of_toilets": 2,
+      "direction": 10,
+      "price": 2000000000,
+      "priority": 5,
+      "facade": "44",
+      "area": "140",
+      "expire_date": "2023-01-03 04:07:30",
+      "juridical_status": 1,
+      "furniture": 1
+    }, {
+      "id": "f392f229-043c-4fc5-8caf-ba6452c2e8b8",
+      "title": "Bán căn hộ 4.0 tỷ 50m2",
+      "created_at": "2022-11-12 04:07:32",
+      "location": "3 Nguyễn Văn Linh, Xã Trung Tú, Huyện Ứng Hòa, Thành phố Hà Nội",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 1,
+      "direction": 5,
+      "price": 4000000000,
+      "priority": 1,
+      "facade": "97",
+      "area": "50",
+      "expire_date": "2023-01-10 04:07:32",
+      "juridical_status": -1,
+      "furniture": 1
+    }, {
+      "id": "4c5120b9-ee86-446a-ab42-9c03e4a10a20",
+      "title": "Bán căn hộ chung cư 2.2 tỷ 140m2",
+      "created_at": "2022-11-12 04:07:34",
+      "location": "234 Nguyễn Trãi, Phường 12, Thành phố Vũng Tàu, Tỉnh Bà Rịa - Vũng Tàu",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 4,
+      "num_of_toilets": 4,
+      "direction": 7,
+      "price": 2220000000,
+      "priority": 2,
+      "facade": "58",
+      "area": "140",
+      "expire_date": "2023-01-09 04:07:34",
+      "juridical_status": 0,
+      "furniture": 2
+    }, {
+      "id": "f0fbebc3-9554-49d9-9f99-4c0d5404813c",
+      "title": "Bán nhà 2.0 tỷ 170m2",
+      "created_at": "2022-11-12 04:07:35",
+      "location": "12 Nguyễn Trãi, Phường Phổ Quang, Thị xã Đức Phổ, Tỉnh Quảng Ngãi",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 2,
+      "direction": 15,
+      "price": 2000000000,
+      "priority": 2,
+      "facade": "74",
+      "area": "170",
+      "expire_date": "2023-02-04 04:07:35",
+      "juridical_status": -1,
+      "furniture": 1
+    }, {
+      "id": "2a5af0dd-d688-4421-9a27-6971612a0423",
+      "title": "Bán căn hộ chung cư 4.0 tỷ 110m2",
+      "created_at": "2022-11-12 04:07:37",
+      "location": "3 Nguyễn Văn Linh, Phường 11, Quận 11, Thành phố Hồ Chí Minh",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 2,
+      "direction": 10,
+      "price": 4000000000,
+      "priority": 3,
+      "facade": "86",
+      "area": "110",
+      "expire_date": "2023-01-15 04:07:37",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "a1319dae-2284-414f-9d00-0b92de3ea421",
+      "title": "Bán nhà mặt tiền 4.0 tỷ 80m2",
+      "created_at": "2022-11-12 04:07:39",
+      "location": "767 Nguyễn Văn Cừ, Xã Tân Phú, Huyện Châu Thành, Tỉnh Tây Ninh",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 4,
+      "direction": 13,
+      "price": 4000000000,
+      "priority": 4,
+      "facade": "41",
+      "area": "80",
+      "expire_date": "2023-01-28 04:07:39",
+      "juridical_status": 0,
+      "furniture": 2
+    }, {
+      "id": "6ab080d0-7aad-4dac-8ea0-38f9002a2a54",
+      "title": "Bán nhà 1.4 tỷ 150m2",
+      "created_at": "2022-11-12 04:07:41",
+      "location": "234 Nguyễn Trãi, Xã Vĩnh Thanh, Huyện Nhơn Trạch, Tỉnh Đồng Nai",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 2,
+      "direction": 10,
+      "price": 1400000000,
+      "priority": 3,
+      "facade": "76",
+      "area": "150",
+      "expire_date": "2023-01-12 04:07:41",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "6e39055c-397c-4b01-b6fd-ea5ebfc096b7",
+      "title": "Bán nhà mặt tiền 5.0 tỷ 170m2",
+      "created_at": "2022-11-12 04:07:43",
+      "location": "767 Nguyễn Văn Cừ, Xã Nam Giang, Huyện Thọ Xuân, Tỉnh Thanh Hóa",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 1,
+      "direction": 3,
+      "price": 5000000000,
+      "priority": 3,
+      "facade": "77",
+      "area": "170",
+      "expire_date": "2023-01-17 04:07:43",
+      "juridical_status": -1,
+      "furniture": 1
+    }, {
+      "id": "5bdb7b92-b4a1-47b1-b93e-c27ec0fabac7",
+      "title": "Bán căn hộ 2.0 tỷ 160m2",
+      "created_at": "2022-11-12 04:07:45",
+      "location": "3 Nguyễn Văn Linh, Xã Ngũ Thái, Huyện Thuận Thành, Tỉnh Bắc Ninh",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 1,
+      "direction": 7,
+      "price": 2000000000,
+      "priority": 1,
+      "facade": "75",
+      "area": "160",
+      "expire_date": "2023-01-23 04:07:45",
+      "juridical_status": 0,
+      "furniture": 1
+    }, {
+      "id": "91cdc628-0ced-4e60-a50a-4824f1f26c45",
+      "title": "Bán nhà mặt tiền 2.0 tỷ 70m2",
+      "created_at": "2022-11-12 04:07:47",
+      "location": "767 Nguyễn Văn Cừ, Xã Hoàng Nông, Huyện Đại Từ, Tỉnh Thái Nguyên",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 4,
+      "direction": 3,
+      "price": 2000000000,
+      "priority": 3,
+      "facade": "47",
+      "area": "70",
+      "expire_date": "2023-01-19 04:07:47",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "a526a70b-5879-436b-84b3-4571441c64df",
+      "title": "Bán căn hộ 1.4 tỷ 130m2",
+      "created_at": "2022-11-12 04:07:49",
+      "location": "98 Nguyễn Văn Huyên, Xã Nà Tấu, Thành phố Điện Biên Phủ, Tỉnh Điện Biên",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 4,
+      "num_of_toilets": 5,
+      "direction": 1,
+      "price": 1400000000,
+      "priority": 2,
+      "facade": "95",
+      "area": "130",
+      "expire_date": "2023-01-24 04:07:49",
+      "juridical_status": 0,
+      "furniture": 1
+    }, {
+      "id": "219b4b06-1934-4589-8371-b4b4bd5409ab",
+      "title": "Bán căn hộ chung cư 2.0 tỷ 150m2",
+      "created_at": "2022-11-12 04:07:50",
+      "location": "3 Nguyễn Văn Linh, Thị trấn Lấp Vò, Huyện Lấp Vò, Tỉnh Đồng Tháp",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 1,
+      "direction": 7,
+      "price": 2000000000,
+      "priority": 1,
+      "facade": "57",
+      "area": "150",
+      "expire_date": "2023-01-14 04:07:50",
+      "juridical_status": 0,
+      "furniture": 2
+    }, {
+      "id": "a97c333c-8274-49e6-a91d-234c9b8e2f99",
+      "title": "Bán căn hộ chung cư 4.0 tỷ 70m2",
+      "created_at": "2022-11-12 04:07:52",
+      "location": "65 Nguyễn Văn Cừ, Phường Tam Thanh, Thành phố Lạng Sơn, Tỉnh Lạng Sơn",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 4,
+      "direction": 8,
+      "price": 4000000000,
+      "priority": 5,
+      "facade": "78",
+      "area": "70",
+      "expire_date": "2023-01-09 04:07:52",
+      "juridical_status": 0,
+      "furniture": 1
+    }, {
+      "id": "6a613d16-c338-40fd-b794-ba2e084f8071",
+      "title": "Bán căn hộ chung cư 2.2 tỷ 120m2",
+      "created_at": "2022-11-12 04:07:54",
+      "location": "98 Nguyễn Văn Huyên, Xã Nghĩa Lợi, Huyện Nghĩa Đàn, Tỉnh Nghệ An",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 3,
+      "direction": 14,
+      "price": 2220000000,
+      "priority": 2,
+      "facade": "88",
+      "area": "120",
+      "expire_date": "2023-02-12 04:07:54",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "cc04d5ac-5f8e-4fa6-a742-b965d2e12338",
+      "title": "Bán nhà mặt tiền 4.0 tỷ 200m2",
+      "created_at": "2022-11-12 04:07:56",
+      "location": "65 Nguyễn Văn Cừ, Xã Diên Phước, Huyện Diên Khánh, Tỉnh Khánh Hòa",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 1,
+      "direction": 13,
+      "price": 4000000000,
+      "priority": 4,
+      "facade": "48",
+      "area": "200",
+      "expire_date": "2023-01-28 04:07:56",
+      "juridical_status": -1,
+      "furniture": 1
+    }, {
+      "id": "6a0b2e1e-a33a-4a80-b77f-b07b4b0d303f",
+      "title": "Bán nhà 1.4 tỷ 150m2",
+      "created_at": "2022-11-12 04:07:58",
+      "location": "19 Nguyễn Văn Linh, Xã Trà Hiệp, Huyện Trà Bồng, Tỉnh Quảng Ngãi",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 5,
+      "direction": 9,
+      "price": 1400000000,
+      "priority": 1,
+      "facade": "90",
+      "area": "150",
+      "expire_date": "2023-02-18 04:07:58",
+      "juridical_status": 0,
+      "furniture": 2
+    }, {
+      "id": "f0814e3d-a30e-4f50-b9b4-472206e494a6",
+      "title": "Bán căn hộ 2.0 tỷ 120m2",
+      "created_at": "2022-11-12 04:08:00",
+      "location": "767 Nguyễn Văn Cừ, Xã Hải Quế, Huyện Hải Lăng, Tỉnh Quảng Trị",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 1,
+      "direction": 15,
+      "price": 2000000000,
+      "priority": 1,
+      "facade": "27",
+      "area": "120",
+      "expire_date": "2023-01-30 04:08:00",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "1d6c041f-2d6e-4a91-90f4-abf1005ecdd0",
+      "title": "Bán căn hộ 2.2 tỷ 70m2",
+      "created_at": "2022-11-12 04:08:01",
+      "location": "54 Nguyễn Văn Huyên, Phường Cẩm Tây, Thành phố Cẩm Phả, Tỉnh Quảng Ninh",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 4,
+      "num_of_toilets": 3,
+      "direction": 16,
+      "price": 2220000000,
+      "priority": 2,
+      "facade": "70",
+      "area": "70",
+      "expire_date": "2023-01-30 04:08:01",
+      "juridical_status": 0,
+      "furniture": 1
+    }, {
+      "id": "45ac4b22-a1c7-44ac-ba3f-5ed4f7340ac2",
+      "title": "Bán nhà 4.0 tỷ 70m2",
+      "created_at": "2022-11-12 04:08:04",
+      "location": "767 Nguyễn Văn Cừ, Xã Thanh Sơn, Huyện Định Quán, Tỉnh Đồng Nai",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 2,
+      "num_of_toilets": 3,
+      "direction": 15,
+      "price": 4000000000,
+      "priority": 2,
+      "facade": "53",
+      "area": "70",
+      "expire_date": "2023-02-19 04:08:04",
+      "juridical_status": -1,
+      "furniture": 1
+    }, {
+      "id": "1a6a6374-abc3-45a8-b167-cd9c42859020",
+      "title": "Bán nhà 5.0 tỷ 160m2",
+      "created_at": "2022-11-12 04:08:06",
+      "location": "12 Nguyễn Trãi, Xã Cẩm Hoàng, Huyện Cẩm Giàng, Tỉnh Hải Dương",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 4,
+      "direction": 1,
+      "price": 5000000000,
+      "priority": 2,
+      "facade": "97",
+      "area": "160",
+      "expire_date": "2023-01-27 04:08:06",
+      "juridical_status": 1,
+      "furniture": 1
+    }, {
+      "id": "5ea826fd-3ff4-4976-9c1d-59654dc97974",
+      "title": "Bán nhà mặt tiền 2.0 tỷ 90m2",
+      "created_at": "2022-11-12 04:08:07",
+      "location": "65 Nguyễn Văn Cừ, Xã Phong Thạnh Tây B, Huyện Phước Long, Tỉnh Bạc Liêu",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 4,
+      "direction": 8,
+      "price": 2000000000,
+      "priority": 2,
+      "facade": "40",
+      "area": "90",
+      "expire_date": "2023-02-03 04:08:07",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "aaff7fbd-5e18-436d-8041-fc21cb8c8210",
+      "title": "Bán căn hộ chung cư 4.0 tỷ 60m2",
+      "created_at": "2022-11-12 04:08:10",
+      "location": "234 Nguyễn Trãi, Thị trấn Phú Thiện, Huyện Phú Thiện, Tỉnh Gia Lai",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 5,
+      "direction": 9,
+      "price": 4000000000,
+      "priority": 4,
+      "facade": "46",
+      "area": "60",
+      "expire_date": "2023-01-26 04:08:10",
+      "juridical_status": 1,
+      "furniture": 1
+    }, {
+      "id": "02ae0f87-f889-4dbb-9ad9-ddd6c2f6bae0",
+      "title": "Bán căn hộ 4.0 tỷ 200m2",
+      "created_at": "2022-11-12 04:08:12",
+      "location": "3 Nguyễn Văn Linh, Xã Việt Tiến, Huyện Bảo Yên, Tỉnh Lào Cai",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 4,
+      "num_of_toilets": 2,
+      "direction": 12,
+      "price": 4000000000,
+      "priority": 3,
+      "facade": "57",
+      "area": "200",
+      "expire_date": "2023-02-11 04:08:12",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "e25ed5c3-53f9-41ba-b585-47e27aec7462",
+      "title": "Bán nhà 2.0 tỷ 160m2",
+      "created_at": "2022-11-12 04:08:14",
+      "location": "54 Nguyễn Văn Huyên, Xã Thành Công, Thị xã Phổ Yên, Tỉnh Thái Nguyên",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 4,
+      "direction": 3,
+      "price": 2000000000,
+      "priority": 1,
+      "facade": "56",
+      "area": "160",
+      "expire_date": "2023-01-07 04:08:14",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "9b5d7d06-06a2-47f6-b596-823687b55ee1",
+      "title": "Bán nhà 1.4 tỷ 60m2",
+      "created_at": "2022-11-12 04:08:15",
+      "location": "98 Nguyễn Văn Huyên, Xã Hữu Kiên, Huyện Chi Lăng, Tỉnh Lạng Sơn",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 4,
+      "num_of_toilets": 4,
+      "direction": 6,
+      "price": 1400000000,
+      "priority": 3,
+      "facade": "82",
+      "area": "60",
+      "expire_date": "2023-01-22 04:08:15",
+      "juridical_status": 0,
+      "furniture": 2
+    }, {
+      "id": "c56665ec-3697-426c-9ca6-bf951383e044",
+      "title": "Bán căn hộ chung cư 4.0 tỷ 200m2",
+      "created_at": "2022-11-12 04:08:17",
+      "location": "767 Nguyễn Văn Cừ, Xã Đức Hòa Hạ, Huyện Đức Hòa, Tỉnh Long An",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 5,
+      "direction": 13,
+      "price": 4000000000,
+      "priority": 4,
+      "facade": "78",
+      "area": "200",
+      "expire_date": "2023-01-15 04:08:17",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "7c5015a7-b905-42a5-b46c-b08aec60e682",
+      "title": "Bán nhà 2.0 tỷ 100m2",
+      "created_at": "2022-11-12 04:08:19",
+      "location": "12 Nguyễn Trãi, Xã Ba Cụm Nam, Huyện Khánh Sơn, Tỉnh Khánh Hòa",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 2,
+      "num_of_toilets": 3,
+      "direction": 2,
+      "price": 2000000000,
+      "priority": 4,
+      "facade": "37",
+      "area": "100",
+      "expire_date": "2023-01-09 04:08:19",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "8ea80fc4-a55b-4582-b1f2-cc8d7bcb98ff",
+      "title": "Bán căn hộ chung cư 2.0 tỷ 150m2",
+      "created_at": "2022-11-12 04:08:21",
+      "location": "19 Nguyễn Văn Linh, Xã Tam Lư, Huyện Quan Sơn, Tỉnh Thanh Hóa",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 2,
+      "direction": 15,
+      "price": 2000000000,
+      "priority": 4,
+      "facade": "53",
+      "area": "150",
+      "expire_date": "2023-02-03 04:08:21",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "1d572909-6734-4f12-898e-4546fb33e052",
+      "title": "Bán nhà 2.2 tỷ 90m2",
+      "created_at": "2022-11-12 04:08:23",
+      "location": "767 Nguyễn Văn Cừ, Xã Định Thủy, Huyện Mỏ Cày Nam, Tỉnh Bến Tre",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 5,
+      "direction": 5,
+      "price": 2220000000,
+      "priority": 1,
+      "facade": "84",
+      "area": "90",
+      "expire_date": "2023-01-14 04:08:23",
+      "juridical_status": 0,
+      "furniture": 2
+    }, {
+      "id": "f8664358-d06f-415e-b32b-430b141a3b75",
+      "title": "Bán căn hộ 1.4 tỷ 140m2",
+      "created_at": "2022-11-12 04:08:25",
+      "location": "767 Nguyễn Văn Cừ, Xã Long Thuận, Huyện Hồng Ngự, Tỉnh Đồng Tháp",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 2,
+      "num_of_toilets": 1,
+      "direction": 1,
+      "price": 1400000000,
+      "priority": 4,
+      "facade": "29",
+      "area": "140",
+      "expire_date": "2023-01-18 04:08:25",
+      "juridical_status": 0,
+      "furniture": 1
+    }, {
+      "id": "034b5f0d-fc6a-4a10-9275-8c0d35679df8",
+      "title": "Bán căn hộ 1.4 tỷ 50m2",
+      "created_at": "2022-11-12 04:08:27",
+      "location": "12 Nguyễn Trãi, Xã Giao Hương, Huyện Giao Thủy, Tỉnh Nam Định",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 2,
+      "direction": 12,
+      "price": 1400000000,
+      "priority": 4,
+      "facade": "60",
+      "area": "50",
+      "expire_date": "2023-01-19 04:08:27",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "53506b5c-409a-404d-a67b-7180621c5afa",
+      "title": "Bán nhà 2.0 tỷ 130m2",
+      "created_at": "2022-11-12 04:08:29",
+      "location": "234 Nguyễn Trãi, Xã Hiệp Mỹ Đông, Huyện Cầu Ngang, Tỉnh Trà Vinh",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 5,
+      "direction": 2,
+      "price": 2000000000,
+      "priority": 1,
+      "facade": "41",
+      "area": "130",
+      "expire_date": "2023-01-22 04:08:29",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "7bc692ff-1ca9-4627-b98e-f9f198a68474",
+      "title": "Bán căn hộ 1.4 tỷ 130m2",
+      "created_at": "2022-11-12 04:08:30",
+      "location": "19 Nguyễn Văn Linh, Phường Thượng Đình, Quận Thanh Xuân, Thành phố Hà Nội",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 4,
+      "direction": 1,
+      "price": 1400000000,
+      "priority": 1,
+      "facade": "94",
+      "area": "130",
+      "expire_date": "2023-01-22 04:08:30",
+      "juridical_status": 1,
+      "furniture": 1
+    }, {
+      "id": "8697edde-f315-45bd-804c-1205344bc3c4",
+      "title": "Bán căn hộ 5.0 tỷ 180m2",
+      "created_at": "2022-11-12 04:08:32",
+      "location": "65 Nguyễn Văn Cừ, Xã Mai Sơn, Huyện Yên Mô, Tỉnh Ninh Bình",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 2,
+      "num_of_toilets": 3,
+      "direction": 2,
+      "price": 5000000000,
+      "priority": 1,
+      "facade": "72",
+      "area": "180",
+      "expire_date": "2023-02-11 04:08:32",
+      "juridical_status": 0,
+      "furniture": 2
+    }, {
+      "id": "57abb928-5ef8-4b86-8e52-5b4be78c0be1",
+      "title": "Bán nhà mặt tiền 5.0 tỷ 200m2",
+      "created_at": "2022-11-12 04:08:34",
+      "location": "3 Nguyễn Văn Linh, Xã Lâm Tân, Huyện Thạnh Trị, Tỉnh Sóc Trăng",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 5,
+      "direction": 3,
+      "price": 5000000000,
+      "priority": 5,
+      "facade": "96",
+      "area": "200",
+      "expire_date": "2023-01-03 04:08:34",
+      "juridical_status": 1,
+      "furniture": 1
+    }, {
+      "id": "7c409498-22c6-412c-97bf-64ea6742f135",
+      "title": "Bán nhà mặt tiền 1.4 tỷ 130m2",
+      "created_at": "2022-11-12 04:08:36",
+      "location": "3 Nguyễn Văn Linh, Xã Bình An, Huyện Bắc Bình, Tỉnh Bình Thuận",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 2,
+      "num_of_toilets": 2,
+      "direction": 11,
+      "price": 1400000000,
+      "priority": 3,
+      "facade": "26",
+      "area": "130",
+      "expire_date": "2023-01-13 04:08:36",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "810b7c87-4ad1-419d-ad9c-f16a52465315",
+      "title": "Bán căn hộ chung cư 1.4 tỷ 90m2",
+      "created_at": "2022-11-12 04:08:38",
+      "location": "12 Nguyễn Trãi, Xã Yên Bài, Huyện Ba Vì, Thành phố Hà Nội",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 5,
+      "direction": 13,
+      "price": 1400000000,
+      "priority": 2,
+      "facade": "72",
+      "area": "90",
+      "expire_date": "2023-02-09 04:08:38",
+      "juridical_status": 0,
+      "furniture": 1
+    }, {
+      "id": "4872aef7-5637-48b7-aaf3-070dc4bb21b3",
+      "title": "Bán căn hộ chung cư 2.0 tỷ 90m2",
+      "created_at": "2022-11-12 04:08:40",
+      "location": "19 Nguyễn Văn Linh, Xã Lê Lai, Huyện Thạch An, Tỉnh Cao Bằng",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 2,
+      "num_of_toilets": 3,
+      "direction": 16,
+      "price": 2000000000,
+      "priority": 4,
+      "facade": "96",
+      "area": "90",
+      "expire_date": "2023-01-11 04:08:40",
+      "juridical_status": 1,
+      "furniture": 1
+    }, {
+      "id": "9481235a-48a0-4465-9cc0-a0dc24600f26",
+      "title": "Bán căn hộ 1.4 tỷ 130m2",
+      "created_at": "2022-11-12 04:08:42",
+      "location": "98 Nguyễn Văn Huyên, Xã Tà Đảnh, Huyện Tri Tôn, Tỉnh An Giang",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 4,
+      "direction": 8,
+      "price": 1400000000,
+      "priority": 2,
+      "facade": "70",
+      "area": "130",
+      "expire_date": "2023-01-23 04:08:42",
+      "juridical_status": 1,
+      "furniture": 1
+    }, {
+      "id": "582d7631-de70-4c1b-b2ab-b2038c7d5e98",
+      "title": "Bán nhà mặt tiền 2.0 tỷ 180m2",
+      "created_at": "2022-11-12 04:08:43",
+      "location": "12 Nguyễn Trãi, Xã Phúc Hòa, Huyện Tân Yên, Tỉnh Bắc Giang",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 3,
+      "direction": 7,
+      "price": 2000000000,
+      "priority": 2,
+      "facade": "87",
+      "area": "180",
+      "expire_date": "2023-02-10 04:08:43",
+      "juridical_status": 0,
+      "furniture": 2
+    }, {
+      "id": "29034657-7c7f-45b8-9904-5efd2138187b",
+      "title": "Bán căn hộ 1.4 tỷ 60m2",
+      "created_at": "2022-11-12 04:08:45",
+      "location": "767 Nguyễn Văn Cừ, Xã Cát Hưng, Huyện Phù Cát, Tỉnh Bình Định",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 4,
+      "direction": 1,
+      "price": 1400000000,
+      "priority": 4,
+      "facade": "54",
+      "area": "60",
+      "expire_date": "2023-01-16 04:08:45",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "33356b82-4238-488e-b6be-911bedece5b4",
+      "title": "Bán căn hộ 5.0 tỷ 200m2",
+      "created_at": "2022-11-12 04:08:47",
+      "location": "98 Nguyễn Văn Huyên, Xã Muổi Nọi, Huyện Thuận Châu, Tỉnh Sơn La",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 5,
+      "num_of_toilets": 5,
+      "direction": 3,
+      "price": 5000000000,
+      "priority": 3,
+      "facade": "44",
+      "area": "200",
+      "expire_date": "2023-02-04 04:08:47",
+      "juridical_status": 1,
+      "furniture": 2
+    }, {
+      "id": "d375b5e6-6ffd-42f9-baa2-c5ac264a51b2",
+      "title": "Bán căn hộ chung cư 5.0 tỷ 120m2",
+      "created_at": "2022-11-12 04:08:49",
+      "location": "12 Nguyễn Trãi, Thị trấn Long Hồ, Huyện Long Hồ, Tỉnh Vĩnh Long",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 3,
+      "direction": 10,
+      "price": 5000000000,
+      "priority": 4,
+      "facade": "56",
+      "area": "120",
+      "expire_date": "2023-01-22 04:08:49",
+      "juridical_status": -1,
+      "furniture": 2
+    }, {
+      "id": "eecdad68-4ffa-4ae2-87f6-35d7c50ae117",
+      "title": "Bán nhà mặt tiền 1.4 tỷ 150m2",
+      "created_at": "2022-11-12 04:08:51",
+      "location": "234 Nguyễn Trãi, Xã Mỹ Hiệp, Huyện Cao Lãnh, Tỉnh Đồng Tháp",
+      "description": "Đây là mô tả",
+      "num_of_bedrooms": 3,
+      "num_of_toilets": 5,
+      "direction": 6,
+      "price": 1400000000,
+      "priority": 2,
+      "facade": "56",
+      "area": "150",
+      "expire_date": "2023-01-19 04:08:51",
+      "juridical_status": 0,
+      "furniture": 2
+    }, {
+      "id": "b6500117-12f4-4d8c-a7af-e6a2ee426932",
+      "title": "fsdfsdfsd",
+      "created_at": "2022-11-12 07:30:56",
+      "location": "fsdfsdfsd",
+      "description": "fsdfsdfsdfs",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 1,
+      "direction": 2,
+      "price": 100000000,
+      "priority": 2,
+      "facade": "12",
+      "area": "60",
+      "expire_date": "2022-06-23 00:00:00",
+      "juridical_status": 1,
+      "furniture": 1
+    }, {
+      "id": "5769f50f-d93b-4e32-b95d-84432bcdafd0",
+      "title": "fsdfsdfsd",
+      "created_at": "2022-11-12 07:32:57",
+      "location": "fsdfsdfsd",
+      "description": "fsdfsdfsdfs",
+      "num_of_bedrooms": 1,
+      "num_of_toilets": 1,
+      "direction": 2,
+      "price": 100000000,
+      "priority": 2,
+      "facade": "12",
+      "area": "60",
+      "expire_date": "2022-06-23 00:00:00",
+      "juridical_status": 1,
+      "furniture": 1
+    }]);
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
-      children: "Search"
-    })
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+      className: "border-y mt-6 py-2 hidden md:block",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+        className: "grid lg:grid-cols-10 grid-cols-5 mx-24 text-sm font-semibold",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "col-span-3 border-r px-4 py-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+            className: "mb-2",
+            children: "Ti\xEAu \u0111\u1EC1"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("input", {
+            type: "text",
+            className: "w-full border rounded h-8"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "col-span-1 px-4 py-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+            className: "mb-2",
+            children: "Gi\xE1"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("select", {
+            className: "px-1 py-2 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-xs",
+            value: price,
+            onChange: function onChange(e) {
+              setPrice(e.target.value);
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "",
+              selected: true,
+              disabled: true,
+              children: "M\u1EE9c gi\xE1"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "0-1",
+              children: "D\u01B0\u1EDBi 1 t\u1EF7"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "1-2",
+              children: "1 t\u1EF7 - 2 t\u1EF7"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "2-3",
+              children: "2 t\u1EF7 - 3 t\u1EF7"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "3-5",
+              children: "3 t\u1EF7 - 5 t\u1EF7"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "5-7",
+              children: "5 t\u1EF7 - 7 t\u1EF7"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "7-10",
+              children: "7 t\u1EF7 - 10 t\u1EF7"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "10-Infi",
+              children: "Tr\xEAn 10 t\u1EF7"
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "col-span-1 px-4 py-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+            className: "mb-2",
+            children: "Di\u1EC7n t\xEDch"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("select", {
+            className: "px-1 py-2 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-xs",
+            onChange: function onChange(e) {
+              setArea(e.target.value);
+            },
+            value: area,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "",
+              selected: true,
+              disabled: true,
+              children: "Di\u1EC7n t\xEDch"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "0-30",
+              children: "D\u01B0\u1EDBi 30m2"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "30-50",
+              children: "30m2 - 50m2"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "50-80",
+              children: "50m2 - 80m2"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "80-100",
+              children: "80m2 - 100m2"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "100-150",
+              children: "100m2 - 150m2"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "150-Infi",
+              children: "Tr\xEAn 150m2"
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "col-span-1 border-r px-4 py-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+            children: "Lo\u1EA1i"
+          }), showPropertyTypes && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "absolute top-20 z-50 w-44 bg-white rounded divide-gray-100 shadow",
+            ref: propertyTypesRef,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("ul", {
+              className: "py-1 text-sm text-neutral-900",
+              "aria-labelledby": "dropdown-button",
+              children: typesList ? typesList.map(function (typeItem, index) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
+                  className: "w-full rounded-t-lg border-b border-gray-200",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                    className: "flex items-center pl-3",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("input", {
+                      id: "house-checkbox",
+                      type: "checkbox",
+                      value: "",
+                      className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
+                      onClick: function onClick(e) {
+                        if (e.target.checked) {
+                          setType([].concat(_toConsumableArray(type), [typeItem.id]));
+                        } else {
+                          setType(type.filter(function (item) {
+                            return item != typeItem.id;
+                          }));
+                        }
+                      },
+                      checked: type.includes(typeItem.id)
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("label", {
+                      htmlFor: "house-checkbox",
+                      className: "py-3 ml-2 w-full text-sm font-medium text-gray-900",
+                      children: typeItem.name
+                    })]
+                  })
+                }, index);
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                className: "flex items-center justify-center w-full h-20",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("svg", {
+                  className: "animate-spin -ml-1 mr-3 h-5 w-5 text-gray-900",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  fill: "none",
+                  viewBox: "0 0 24 24",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("circle", {
+                    className: "opacity-25",
+                    cx: "12",
+                    cy: "12",
+                    r: "10",
+                    stroke: "currentColor",
+                    strokeWidth: "4"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
+                    className: "opacity-75",
+                    fill: "currentColor",
+                    d: "M4 12a8 8 0 018-8v1a7 7 0 00-7 7h1z"
+                  })]
+                })
+              })
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "col-span-1 px-4 py-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+            className: "mb-2",
+            children: "Ph\xF2ng ng\u1EE7"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("select", {
+            className: "px-1 py-2 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-xs",
+            onChange: function onChange(e) {
+              setBedroom(e.target.value);
+            },
+            value: bedroom,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "",
+              children: "S\u1ED1 ph\xF2ng ng\u1EE7"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "1",
+              children: "1 ph\xF2ng"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "2",
+              children: "2 ph\xF2ng"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "3",
+              children: "3 ph\xF2ng"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "4",
+              children: "4 ph\xF2ng"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: "5",
+              children: "5 ph\xF2ng"
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+          className: "col-span-2 border-r px-4 py-2",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+            children: "T\u1EC9nh/Th\xE0nh ph\u1ED1"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+          className: "col-span-1 px-4 py-2 flex items-center justify-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
+            className: "flex items-center justify-center w-full h-10 bg-amber-400 rounded text-white font-semibold",
+            children: "T\xECm ki\u1EBFm"
+          })
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+      className: "mt-10 mx-56 mb-16 grid grid-cols-4",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+        className: "col-span-3",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
+          className: "font-semibold mb-10",
+          children: ["Hi\u1EC7n t\u1ED5ng c\xF3 ", searchResults === null || searchResults === void 0 ? void 0 : searchResults.length, " b\u1EA5t \u0111\u1ED9ng s\u1EA3n \u0111\u01B0\u1EE3c l\u1ECDc"]
+        }), searchResults ? searchResults.map(function (item, index) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "flex items-center justify-between mb-10",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+              className: "flex",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("a", {
+                href: "/thong-tin/".concat(item.id),
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("img", {
+                  src: index % 6 === 0 ? _public_assets_images_Room1_jpg__WEBPACK_IMPORTED_MODULE_4__["default"] : index % 6 === 1 ? _public_assets_images_Room2_jpg__WEBPACK_IMPORTED_MODULE_5__["default"] : index % 6 === 2 ? _public_assets_images_Room3_jpg__WEBPACK_IMPORTED_MODULE_6__["default"] : index % 6 === 3 ? _public_assets_images_Room4_jpg__WEBPACK_IMPORTED_MODULE_7__["default"] : index % 6 === 4 ? _public_assets_images_Room5_jpg__WEBPACK_IMPORTED_MODULE_8__["default"] : _public_assets_images_Room6_jpg__WEBPACK_IMPORTED_MODULE_9__["default"],
+                  alt: "",
+                  className: " w-56 h-36 object-cover"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                className: "ml-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("a", {
+                  href: "/thong-tin/".concat(item.id),
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+                    className: "text-lg font-semibold",
+                    children: item.title
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
+                  className: "text-sm font-semibold text-gray-500",
+                  children: [(item.price / 1000000000).toFixed(1), " ", "t\u1EF7 - ", item.area, " m", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("sup", {
+                    children: "2"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+                  className: "text-sm text-gray-500",
+                  children: item.location
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+                  className: "text-sm",
+                  children: item.description
+                })]
+              })]
+            })
+          }, index);
+        }) : null]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+        className: "border",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+          children: "ads"
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
   });
 }
 
@@ -13514,6 +14738,96 @@ module.exports = function equal(a, b) {
   return a!==a && b!==b;
 };
 
+
+/***/ }),
+
+/***/ "./public/assets/images/Room1.jpg":
+/*!****************************************!*\
+  !*** ./public/assets/images/Room1.jpg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/Room1.jpg?bdb8eb3e4b0fc82f6c7aeeece3ded8ce");
+
+/***/ }),
+
+/***/ "./public/assets/images/Room2.jpg":
+/*!****************************************!*\
+  !*** ./public/assets/images/Room2.jpg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/Room2.jpg?50892f163c82b1a990f2114fb6c1c17a");
+
+/***/ }),
+
+/***/ "./public/assets/images/Room3.jpg":
+/*!****************************************!*\
+  !*** ./public/assets/images/Room3.jpg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/Room3.jpg?2dc00f2e3004652fafacb6ce89ab13f7");
+
+/***/ }),
+
+/***/ "./public/assets/images/Room4.jpg":
+/*!****************************************!*\
+  !*** ./public/assets/images/Room4.jpg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/Room4.jpg?604b66ae7c5e4bc3d44ff49bd29fb700");
+
+/***/ }),
+
+/***/ "./public/assets/images/Room5.jpg":
+/*!****************************************!*\
+  !*** ./public/assets/images/Room5.jpg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/Room5.jpg?6965b4fca936df02be6803bc67976c18");
+
+/***/ }),
+
+/***/ "./public/assets/images/Room6.jpg":
+/*!****************************************!*\
+  !*** ./public/assets/images/Room6.jpg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/Room6.jpg?d39cd33ff0c4c247495557b049125228");
 
 /***/ }),
 
@@ -71148,6 +72462,48 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/@heroicons/react/24/outline/esm/ChatBubbleOvalLeftIcon.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@heroicons/react/24/outline/esm/ChatBubbleOvalLeftIcon.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+function ChatBubbleOvalLeftIcon({
+  title,
+  titleId,
+  ...props
+}, svgRef) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", Object.assign({
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    strokeWidth: 1.5,
+    stroke: "currentColor",
+    "aria-hidden": "true",
+    ref: svgRef,
+    "aria-labelledby": titleId
+  }, props), title ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("title", {
+    id: titleId
+  }, title) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"
+  }));
+}
+
+const ForwardRef = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(ChatBubbleOvalLeftIcon);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ForwardRef);
 
 /***/ }),
 
