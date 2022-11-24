@@ -32,30 +32,30 @@ export default function Home() {
 
     function useOnClickOutside(ref, handler) {
         useEffect(
-          () => {
-            const listener = (event) => {
-              // Do nothing if clicking ref's element or descendent elements
-              if (!ref.current || ref.current.contains(event.target)) {
-                return;
-              }
-              handler(event);
-            };
-            document.addEventListener("mousedown", listener);
-            document.addEventListener("touchstart", listener);
-            return () => {
-              document.removeEventListener("mousedown", listener);
-              document.removeEventListener("touchstart", listener);
-            };
-          },
-          // Add ref and handler to effect dependencies
-          // It's worth noting that because the passed-in handler is a new ...
-          // ... function on every render that will cause this effect ...
-          // ... callback/cleanup to run every render. It's not a big deal ...
-          // ... but to optimize you can wrap handler in useCallback before ...
-          // ... passing it into this hook.
-          [ref, handler]
+            () => {
+                const listener = (event) => {
+                    // Do nothing if clicking ref's element or descendent elements
+                    if (!ref.current || ref.current.contains(event.target)) {
+                        return;
+                    }
+                    handler(event);
+                };
+                document.addEventListener("mousedown", listener);
+                document.addEventListener("touchstart", listener);
+                return () => {
+                    document.removeEventListener("mousedown", listener);
+                    document.removeEventListener("touchstart", listener);
+                };
+            },
+            // Add ref and handler to effect dependencies
+            // It's worth noting that because the passed-in handler is a new ...
+            // ... function on every render that will cause this effect ...
+            // ... callback/cleanup to run every render. It's not a big deal ...
+            // ... but to optimize you can wrap handler in useCallback before ...
+            // ... passing it into this hook.
+            [ref, handler]
         );
-      }
+    }
 
     useOnClickOutside(propertyTypesRef, () => setShowPropertyTypes(false));
     useOnClickOutside(locationRef, () => setShowLocation(false));
@@ -133,8 +133,7 @@ export default function Home() {
 
         if (url[url.length - 1] === "?") {
             alert("Vui lòng nhập thông tin tìm kiếm");
-        }
-        else {
+        } else {
             url = url.substring(0, url.length - 1);
             window.location.href = url;
         }
@@ -197,13 +196,11 @@ export default function Home() {
                                         className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
                                         type="button"
                                         onClick={() =>
-                                            setShowPropertyTypes(
-                                                (prev) => {
-                                                    if (prev == false) {
-                                                        return true;
-                                                    }
+                                            setShowPropertyTypes((prev) => {
+                                                if (prev == false) {
+                                                    return true;
                                                 }
-                                            )
+                                            })
                                         }
                                     >
                                         Loại nhà đất{" "}
@@ -222,7 +219,10 @@ export default function Home() {
                                         </svg>
                                     </button>
                                     {showPropertyTypes && (
-                                        <div className="absolute top-20 z-50 w-44 bg-white rounded divide-gray-100 shadow" ref={propertyTypesRef}>
+                                        <div
+                                            className="absolute top-20 z-50 w-44 bg-white rounded divide-gray-100 shadow"
+                                            ref={propertyTypesRef}
+                                        >
                                             <ul
                                                 className="py-1 text-sm text-neutral-900"
                                                 aria-labelledby="dropdown-button"
@@ -267,11 +267,9 @@ export default function Home() {
                                                                                     );
                                                                                 }
                                                                             }}
-                                                                            checked={
-                                                                                type.includes(
-                                                                                    typeItem.id
-                                                                                )
-                                                                            }
+                                                                            checked={type.includes(
+                                                                                typeItem.id
+                                                                            )}
                                                                         />
                                                                         <label
                                                                             htmlFor="house-checkbox"
@@ -337,7 +335,9 @@ export default function Home() {
                                             id="search-dropdown"
                                             className="block p-4 pl-10 w-full z-20 text-sm text-gray-900 rounded-r-lg border-l-gray-50 border-l-2 border border-neutral-300"
                                             placeholder="Tìm nhà cho bạn..."
-                                            onChange={(e) => setTitle(e.target.value)}
+                                            onChange={(e) =>
+                                                setTitle(e.target.value)
+                                            }
                                             value={title}
                                         />
                                         <button
@@ -391,7 +391,10 @@ export default function Home() {
                                     </div>
                                     {showLocation && (
                                         // Pick 1 city and 1 district and 1 ward
-                                        <div className="absolute top-[140px] z-50 w-64 bg-white rounded divide-gray-100 shadow" ref={locationRef}>
+                                        <div
+                                            className="absolute top-[140px] z-50 w-64 bg-white rounded divide-gray-100 shadow"
+                                            ref={locationRef}
+                                        >
                                             <select
                                                 onChange={(e) => {
                                                     setCity(e.target.value);
@@ -458,9 +461,7 @@ export default function Home() {
                                                 </option>
                                                 {districtsList ? (
                                                     districtsList.map(
-                                                        (
-                                                            districtItem
-                                                        ) => {
+                                                        (districtItem) => {
                                                             return (
                                                                 <option
                                                                     value={
@@ -553,10 +554,13 @@ export default function Home() {
                                         </div>
                                     )}
 
-                                    <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm" value={price}
-                                            onChange={(e) => {
-                                                setPrice(e.target.value);
-                                            }}>
+                                    <select
+                                        className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
+                                        value={price}
+                                        onChange={(e) => {
+                                            setPrice(e.target.value);
+                                        }}
+                                    >
                                         <option value="" selected disabled>
                                             Mức giá
                                         </option>
@@ -565,11 +569,16 @@ export default function Home() {
                                         <option value="2-3">2 tỷ - 3 tỷ</option>
                                         <option value="3-5">3 tỷ - 5 tỷ</option>
                                         <option value="5-7">5 tỷ - 7 tỷ</option>
-                                        <option value="7-10">7 tỷ - 10 tỷ</option>
-                                        <option value="10-Infi">Trên 10 tỷ</option>
+                                        <option value="7-10">
+                                            7 tỷ - 10 tỷ
+                                        </option>
+                                        <option value="10-Infi">
+                                            Trên 10 tỷ
+                                        </option>
                                     </select>
 
-                                    <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
+                                    <select
+                                        className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
                                         onChange={(e) => {
                                             setArea(e.target.value);
                                         }}
@@ -579,14 +588,25 @@ export default function Home() {
                                             Diện tích
                                         </option>
                                         <option value="0-30">Dưới 30m2</option>
-                                        <option value="30-50">30m2 - 50m2</option>
-                                        <option value="50-80">50m2 - 80m2</option>
-                                        <option value="80-100">80m2 - 100m2</option>
-                                        <option value="100-150">100m2 - 150m2</option>
-                                        <option value="150-Infi">Trên 150m2</option>
+                                        <option value="30-50">
+                                            30m2 - 50m2
+                                        </option>
+                                        <option value="50-80">
+                                            50m2 - 80m2
+                                        </option>
+                                        <option value="80-100">
+                                            80m2 - 100m2
+                                        </option>
+                                        <option value="100-150">
+                                            100m2 - 150m2
+                                        </option>
+                                        <option value="150-Infi">
+                                            Trên 150m2
+                                        </option>
                                     </select>
 
-                                    <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
+                                    <select
+                                        className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
                                         onChange={(e) => {
                                             setBedroom(e.target.value);
                                         }}
@@ -943,7 +963,8 @@ export default function Home() {
                                         } z-0 -mt-px px-6 py-8 border border-neutral-400 rounded-md rounded-tl-none bg-gradient-to-b from-white via-gray-100 to-gray-200 transition-all duration-300`}
                                     >
                                         <h1 className="text-amber-500 text-xl font-bold leading-tighter">
-                                            Mang đến bất động sản &quot;thật&quot; cho bạn
+                                            Mang đến bất động sản
+                                            &quot;thật&quot; cho bạn
                                         </h1>
                                         <p className="mt-4 text-sm leading-relaxed">
                                             Lorem ipsum dolor sit maiores ipsum
@@ -1018,7 +1039,7 @@ export default function Home() {
                         <div className="rounded-lg overflow-hidden shadow-lg bg-white">
                             <div className="h-56">
                                 <p className="text-lg p-4 h-1/2 font-semibold text-center align-middle">
-                                &quot;Dễ xài&quot;
+                                    &quot;Dễ xài&quot;
                                 </p>
                                 <div className="flex justify-center items-center gap-x-1">
                                     <svg
@@ -1106,7 +1127,7 @@ export default function Home() {
                         <div className="rounded-lg overflow-hidden shadow-lg bg-white">
                             <div className="h-56">
                                 <p className="text-lg p-4 h-1/2 font-semibold text-center align-middle">
-                                &quot;Đội ngũ hỗ trợ rất chuyên nghiệp&quot;
+                                    &quot;Đội ngũ hỗ trợ rất chuyên nghiệp&quot;
                                 </p>
                                 <div className="flex justify-center items-center gap-x-1">
                                     <svg
@@ -1208,7 +1229,8 @@ export default function Home() {
                         <div className="rounded-lg overflow-hidden shadow-lg bg-white">
                             <div className="h-56">
                                 <p className="text-lg p-4 h-1/2 font-semibold text-center align-middle">
-                                &quot;Giúp tôi chọn được ngôi nhà phù hợp&quot;
+                                    &quot;Giúp tôi chọn được ngôi nhà phù
+                                    hợp&quot;
                                 </p>
                                 <div className="flex justify-center items-center gap-x-1">
                                     <svg
