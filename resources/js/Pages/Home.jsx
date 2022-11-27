@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../css/home.css";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import ChatBubbleList from "../Components/ChatBubbleList";
 
 export default function Home() {
     const [tab, setTab] = useState(1);
@@ -1332,6 +1333,8 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+
+            <ChatBubbleList />
 
             <Footer />
         </div>
