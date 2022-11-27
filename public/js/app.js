@@ -5965,6 +5965,9 @@ function ChatBubble() {
         username: "Ngoc An",
         id: 2,
         avatarUrl: "https://i.pravatar.cc/150?img=5"
+      },
+      style: {
+        margin: "0 0 70px 0"
       }
     }),
     icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {

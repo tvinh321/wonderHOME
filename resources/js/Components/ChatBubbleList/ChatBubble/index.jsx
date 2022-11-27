@@ -93,6 +93,7 @@ function ChatBubble() {
                         id: 2,
                         avatarUrl: "https://i.pravatar.cc/150?img=5",
                     }}
+                    style={{ margin: "0 0 70px 0" }}
                 />
             }
             icon={
