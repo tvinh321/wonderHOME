@@ -1,60 +1,11 @@
 import React, { useState } from "react";
 import ChatBox, { ChatFrame } from "react-chat-plugin";
 
-function ChatBubble() {
+function ChatBubble({ messages, secondUser, index }) {
     const [attr, setAttr] = useState({
         showChatbox: false,
         showIcon: true,
-        messages: [
-            {
-                text: "Ngoc An has joined the conversation",
-                timestamp: 1578366389250,
-                type: "notification",
-            },
-            {
-                author: {
-                    username: "Van Huy",
-                    id: 1,
-                    avatarUrl: "https://i.pravatar.cc/150?img=7",
-                },
-                text: "Hi",
-                type: "text",
-                timestamp: 1578366393250,
-            },
-            {
-                author: {
-                    username: "Ngoc An",
-                    id: 2,
-                    avatarUrl: "https://i.pravatar.cc/150?img=5",
-                },
-                text: "Show two buttons",
-                type: "text",
-                timestamp: 1578366425250,
-                buttons: [
-                    {
-                        type: "URL",
-                        title: "Yahoo",
-                        payload: "http://www.yahoo.com",
-                    },
-                    {
-                        type: "URL",
-                        title: "Example",
-                        payload: "http://www.example.com",
-                    },
-                ],
-            },
-            {
-                author: {
-                    username: "Van Huy",
-                    id: 1,
-                    avatarUrl: "https://i.pravatar.cc/150?img=7",
-                },
-                text: "What's up?",
-                type: "text",
-                timestamp: 1578366425250,
-                hasError: true,
-            },
-        ],
+        messages: messages,
     });
     const handleClickIcon = () => {
         // toggle showChatbox and showIcon
@@ -88,17 +39,13 @@ function ChatBubble() {
                     messages={attr.messages}
                     width={"300px"}
                     showTypingIndicator={true}
-                    activeAuthor={{
-                        username: "Ngoc An",
-                        id: 2,
-                        avatarUrl: "https://i.pravatar.cc/150?img=5",
-                    }}
-                    style={{ margin: "0 0 70px 0" }}
+                    activeAuthor={secondUser}
+                    style={{ margin: "0 0 65px 0" }}
                 />
             }
             icon={
                 <img
-                    src="https://i.pravatar.cc/150?img=5"
+                    src={secondUser.avatarUrl}
                     style={{
                         width: "50px",
                         height: "50px",
@@ -115,7 +62,7 @@ function ChatBubble() {
                 height: "50px",
                 fill: "white",
                 borderRadius: "50%",
-                margin: "0 0 70px 0",
+                margin: "0 0 65px 0",
             }}
         ></ChatFrame>
     );

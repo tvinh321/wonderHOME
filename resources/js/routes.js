@@ -6,20 +6,25 @@ import LoginRegister from "./Pages/LoginRegister";
 import PostUpload from "./Pages/PostUpload";
 import Chat from "./Pages/Chat";
 import Search from "./Pages/Search";
-import AgentSearch from "./Pages/AgentSearch";
+import Agency from "./Pages/Agency";
+import ChatBubbleList from "./Components/ChatBubbleList";
 
 export function App() {
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/dang-nhap" element={<LoginRegister />} />
-                <Route path="/thong-tin/:id" element={<Details />} />
-                <Route path="/dang-tin" element={<PostUpload />} />
-                <Route path="/chat" element={<Chat />} />
-                <Route path="/tim-kiem" element={<Search />} />
-                <Route path="/tim-chuyen-gia" element={<AgentSearch />} />
-            </Routes>
-        </Router>
+        <>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/dang-nhap" element={<LoginRegister />} />
+                    <Route path="/thong-tin/:id" element={<Details />} />
+                    <Route path="/dang-tin" element={<PostUpload />} />
+                    <Route path="/chat" element={<Chat />} />
+                    <Route path="/tim-kiem" element={<Search />} />
+                    <Route path="/chuyen-gia" element={<Agency />} />
+                </Routes>
+            </Router>
+
+            <ChatBubbleList />
+        </>
     );
 }
