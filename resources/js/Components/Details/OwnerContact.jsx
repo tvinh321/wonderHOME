@@ -188,6 +188,24 @@ export default function OwnerContact() {
                                     </div>
                                 </div>
                             </div>
+
+                            <div className="mb-4">
+                                <p className="block mb-2 font-medium text-neutral-900">Thời gian</p>
+                                <select
+                                className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                id="grid-state"
+                            >
+                                <option>9h-10h</option>
+                                <option>10h-11h</option>
+                                <option>11h-12h</option>
+                                <option>12h-13h</option>
+                                <option>13h-14h</option>
+                                <option>14h-15h</option>
+                                <option>15h-16h</option>
+                                <option>16h-17h</option>
+                            </select>
+                            </div>
+
                             <div className="mb-6">
                                 <div className="mb-4">
                                     <label
@@ -251,7 +269,7 @@ export default function OwnerContact() {
                             </div>
                             <button
                                 type="submit"
-                                className="mt-2 text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg w-full px-5 py-2.5 text-center"
+                                className="mt-2 text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg w-full px-5 py-2.5 text-center mb-6"
                             >
                                 Đặt lịch
                             </button>

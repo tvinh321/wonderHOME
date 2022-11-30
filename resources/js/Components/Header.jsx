@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const SERVICES = ["nha-dat-ban", "tim-chuyen-gia", "huong-dan"];
+const SERVICES = ["tim-kiem", "tim-chuyen-gia", "huong-dan"];
 const NAVLINK_VIE = ["Nhà đất bán", "Tìm chuyên gia", "Hướng dẫn"];
 
 import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";

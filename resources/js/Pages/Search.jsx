@@ -11,6 +11,8 @@ import Room4 from "../../../public/assets/images/Room4.jpg";
 import Room5 from "../../../public/assets/images/Room5.jpg";
 import Room6 from "../../../public/assets/images/Room6.jpg";
 
+import Ad from "../../../public/images/Ad.jpg"
+
 export default function Search() {
     const [searchResults, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -1222,7 +1224,7 @@ export default function Search() {
                 </div>
             </div>
 
-            <div className="mt-10 mx-56 mb-16 flex items-center justify-between">
+            <div className="mt-10 mx-56 mb-16 flex justify-between gap-x-10">
                 <div className="w-3/4 h-full">
                     <p className="font-semibold mb-10">
                         Hiện có {searchResults?.length} bất động sản được lọc
@@ -1249,7 +1251,7 @@ export default function Search() {
                                                               : Room6
                                                       }
                                                       alt=""
-                                                      className="w-36 h-36 object-cover"
+                                                      className="w-48 h-36 object-cover"
                                                   />
                                               </a>
                                           </div>
@@ -1342,7 +1344,9 @@ export default function Search() {
                           })
                         : null}
                 </div>
-                <div className="border w-1/5 h-full"></div>
+                <div className="w-1/4">
+                    <img src={Ad} alt="" className="" />
+                </div>
             </div>
 
             <Footer />

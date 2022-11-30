@@ -6,6 +6,7 @@ import LoginRegister from "./Pages/LoginRegister";
 import PostUpload from "./Pages/PostUpload";
 import Chat from "./Pages/Chat";
 import Search from "./Pages/Search";
+import AgentSearch from "./Pages/AgentSearch";
 
 export function App() {
     return (
@@ -17,6 +18,7 @@ export function App() {
                 <Route path="/dang-tin" element={<PostUpload />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/tim-kiem" element={<Search />} />
+                <Route path="/tim-chuyen-gia" element={<AgentSearch />} />
             </Routes>
         </Router>
     );
