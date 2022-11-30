@@ -1334,8 +1334,6 @@ export default function Home() {
                 </div>
             </div>
 
-            <ChatBubbleList />
-
             <Footer />
         </div>
     );
