@@ -14,17 +14,63 @@ export function App() {
         <>
             <Router>
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/dang-nhap" element={<LoginRegister />} />
-                    <Route path="/thong-tin/:id" element={<Details />} />
-                    <Route path="/dang-tin" element={<PostUpload />} />
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <Home />
+                                <ChatBubbleList />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/dang-nhap"
+                        element={
+                            <>
+                                <LoginRegister />
+                                <ChatBubbleList />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/thong-tin/:id"
+                        element={
+                            <>
+                                <Details />
+                                <ChatBubbleList />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/dang-tin"
+                        element={
+                            <>
+                                <PostUpload />
+                                <ChatBubbleList />
+                            </>
+                        }
+                    />
                     <Route path="/chat" element={<Chat />} />
-                    <Route path="/tim-kiem" element={<Search />} />
-                    <Route path="/chuyen-gia" element={<Agency />} />
+                    <Route
+                        path="/tim-kiem"
+                        element={
+                            <>
+                                <Search />
+                                <ChatBubbleList />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/chuyen-gia"
+                        element={
+                            <>
+                                <Agency />
+                                <ChatBubbleList />
+                            </>
+                        }
+                    />
                 </Routes>
             </Router>
-
-            <ChatBubbleList />
         </>
     );
 }

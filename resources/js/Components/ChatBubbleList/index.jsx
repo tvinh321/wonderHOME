@@ -3,7 +3,7 @@ import ChatBubble from "./ChatBubble";
 import NewChatBubble from "./NewChatBubble";
 
 function ChatBubbleList() {
-    const message1 = [
+    const latestChat = [
         {
             author: {
                 username: "Van Huy",
@@ -49,18 +49,16 @@ function ChatBubbleList() {
         },
     ];
 
+    const latestChatUser = {
+        username: "Ngoc An",
+        id: 2,
+        avatarUrl: "https://i.pravatar.cc/150?img=5",
+    };
+
     return (
         <>
-            <ChatBubble
-                messages={message1}
-                secondUser={{
-                    username: "Ngoc An",
-                    id: 2,
-                    avatarUrl: "https://i.pravatar.cc/150?img=5",
-                }}
-                index={1}
-            />
-
+           {latestChat?.length && <ChatBubble messages={latestChat} secondUser={latestChatUser} />
+}
             <NewChatBubble />
         </>
     );
