@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
+import { BellIcon } from "@heroicons/react/24/outline";
 
 export default function Header() {
     // Check if the user is logged in
@@ -113,7 +113,7 @@ export default function Header() {
                                 </svg>
                             </button>
 
-                            <ChatBubbleOvalLeftIcon className="hidden md:inline rounded-full p-1 mr-4 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-150 cursor-pointer h-9 w-9" />
+                            <BellIcon className="hidden md:inline rounded-full p-1 mr-4 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-150 cursor-pointer h-9 w-9" />
 
                             <a href={isLoggedIn ? "/dang-tin" : "/dang-nhap"}>
                                 <button className="hidden md:flex group mr-4 text-amber-300 border border-amber-300 hover:border-transparent hover:bg-amber-300 font-bold py-2 px-4 rounded items-center">
