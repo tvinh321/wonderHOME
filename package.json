@@ -36,6 +36,7 @@
         "react-accessible-accordion": "^5.0.0",
         "react-chat-plugin": "^0.1.17",
         "react-dom": "^18.2.0",
+        "react-notifications-menu": "^1.0.6",
         "react-pannellum": "^0.2.13",
         "react-responsive-carousel": "^3.2.23",
         "react-router-dom": "^6.4.3",
