@@ -1,72 +1,71 @@
+import Pusher from 'pusher-js/with-encryption';
+import Echo from 'laravel-echo';
+import axios from 'axios';
+
 import React, { useState, useEffect } from "react";
 
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
 import {
-    Cog8ToothIcon,
-    PencilSquareIcon,
     PhotoIcon,
 } from "@heroicons/react/24/outline";
 
 export default function Chat() {
     const [messages, setMessages] = useState([]);
-    const [select, setSelect] = useState("");
-    const [userChatList, setUserChatList] = useState([]);
+    const [message, setMessage] = useState('');
+    const [user, setUser] = useState('');
+    const [chatRoom, setChatRoom] = useState({});
+    const [chatRooms, setChatRooms] = useState([]);
 
     useEffect(() => {
-        const userChatList = [
-            {
-                id: 1,
-                name: "Nguyễn Văn A",
-                avatar: "https://i.pravatar.cc/150?img=5",
-            },
-            {
-                id: 2,
-                name: "Nguyễn Văn B",
-                avatar: "https://i.pravatar.cc/150?img=7",
-            },
-            {
-                id: 3,
-                name: "Nguyễn Văn C",
-                avatar: "https://i.pravatar.cc/150?img=9",
-            },
-        ];
-
-        setUserChatList(userChatList);
-        setSelect(userChatList[0].id);
+        axios.get('/api/chatRoom').then(response => {
+            setChatRooms(response.data.chatRooms);
+        });
     }, []);
 
     useEffect(() => {
-        const messages = [
-            {
-                id: 1,
-                user: 1,
-                message: "Tui muốn coi căn hộ ABC",
-                time: "2022-12-01 12:00:00",
-            },
-            {
-                id: 2,
-                user: 2,
-                message: "Hiện tại giá hấp dẫn lắm ạ, giá 1 tỷ 200 triệu",
-                time: "2022-12-01 12:00:00",
-            },
-            {
-                id: 3,
-                user: 1,
-                message: "Giấy tờ hợp lệ ạ?",
-                time: "2022-12-01 12:00:00",
-            },
-            {
-                id: 4,
-                user: 2,
-                message: "Đã có sổ đỏ, sổ hồng",
-                time: "2022-12-01 12:00:00",
-            },
-        ];
+        if (chatRoom.id) {
+            axios.post('/api/messages', { chatRoomId: chatRoom.id }).then(response => {
+                setMessages(response.data.messages);
+            });
 
-        setMessages(messages);
-    }, [select]);
+            const echo = new Echo({
+                broadcaster: 'pusher',
+                key: '8f966224916b5906d1f6',
+                cluster: 'ap1',
+                forceTLS: true,
+                encrypted: true,
+            });
+
+            const channel = echo.channel('chat-room.' + chatRoom.id);
+
+            channel.listen('.message.sent', e => {
+                setMessages(messages => [...messages, e]);
+            });
+
+            return () => {
+                echo.leave('chat-room.' + chatRoom.id);
+                echo.disconnect();
+            };
+        }
+    }, [chatRoom]);
+
+    const sendMessage = (e) => {
+        e.preventDefault();
+        axios.post('/api/send', {
+            userId: user,
+            message,
+            chatRoomId: chatRoom.id
+        }).then(() => {
+            setMessage('');
+        });
+    };
+
+    useEffect(() => {
+        const chatBox = document.getElementById('chat-box');
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }, [messages]);
 
     return (
         <>
@@ -74,31 +73,29 @@ export default function Chat() {
             <div className="flex pt-4">
                 <div className="w-1/4 border-r">
                     <div className="flex px-3 py-4 items-center cursor-default border-b h-16">
-                        <Cog8ToothIcon className="w-8 h-8 text-amber-400 cursor-pointer" />
                         <h1 className="text-lg font-semibold text-gray-800 w-full text-center">
                             Tin nhắn
                         </h1>
-                        <PencilSquareIcon className="w-8 h-8 text-amber-400 cursor-pointer" />
                     </div>
                     <div className="flex flex-col">
-                        {userChatList.map((user, index) => (
+                        {chatRooms.map((user, index) => (
                             <div
                                 key={index}
                                 className={`flex items-center px-3 py-4 cursor-pointer hover:bg-gray-100 ${
-                                    select === user.id ? "bg-gray-100" : ""
+                                    chatRoom.id === user.id ? "bg-gray-100" : ""
                                 }`}
-                                onClick={() => setSelect(user.id)}
+                                onClick={() => setChatRoom(user)}
                             >
                                 <img
                                     src={
-                                        user.avatar ||
-                                        "https://i.pravatar.cc/150?img=1"
+                                        user.otherUser.avatar ||
+                                        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
                                     }
                                     className="w-14 h-14 rounded-full"
                                 />
                                 <div className="flex flex-col ml-3">
                                     <h1 className="font-semibold text-gray-800">
-                                        {user.name}
+                                        {user.otherUser.email}
                                     </h1>
                                     <p className="text-sm text-gray-600">
                                         Tin nhắn mới
@@ -111,7 +108,7 @@ export default function Chat() {
                 <div className="w-3/4">
                     <div className="flex flex-col h-screen">
                         <div className="flex items-center px-6 h-16 border-b">
-                            {select && (
+                            {chatRoomId && (
                                 <img
                                     src={
                                         userChatList.find(

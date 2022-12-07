@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Events\MessageSent;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class ChatController extends Controller
 {
@@ -37,18 +39,33 @@ class ChatController extends Controller
         return ['status' => 'Message Sent!'];
     }
 
-    public function getChatRoom() {
-        // Get all chat rooms
-        $chatRooms = DB::table('chat_rooms')->get();
+    public function getChatRooms(Request $request) {
+        // Get user ID
+        $userId = $request->user->id;
 
-        // Get all users in chat rooms
-        foreach ($chatRooms as $chatRoom) {
-            $users = DB::table('users_chat_rooms')
+        // Get chat rooms
+        $chatRooms = DB::table('users_chat_rooms')
+            ->where('users_chat_rooms.users_id', $userId)
+            ->select('chat_rooms_id')
+            ->get();
+
+        for ($i = 0; $i < count($chatRooms); $i++) {
+            // Get other user email
+            $otherUser = DB::table('users_chat_rooms')
+                ->where('users_chat_rooms.chat_rooms_id', $chatRooms[$i]->chat_rooms_id)
+                ->where('users_chat_rooms.users_id', '!=', $userId)
                 ->join('users', 'users_chat_rooms.users_id', '=', 'users.id')
-                ->where('users_chat_rooms.chat_rooms_id', $chatRoom->id)
-                ->get();
+                ->select('users.email', 'users.avatar')
+                ->first();
 
-            $chatRoom->users = $users;
+            // Get last message
+            $lastMessage = DB::table('messages')
+                ->where('messages.chat_rooms_id', $chatRooms[$i]->chat_rooms_id)
+                ->orderBy('messages.created_at', 'desc')
+                ->first();
+
+            $chatRooms[$i]->otherUser = $otherUser;
+            $chatRooms[$i]->lastMessage = $lastMessage;
         }
 
         return response()->json([
@@ -59,8 +76,9 @@ class ChatController extends Controller
     // Create new chat room ID
     public function createChatRoom(Request $request)
     {
+        $ownerId = $request->user->id;
+
         $userId = $request->userId;
-        $ownerId = $request->ownerId;
 
         $chatRoom = DB::table('chat_rooms')->insertGetId([]);
 
@@ -76,6 +94,21 @@ class ChatController extends Controller
 
         return response()->json([
             'chatRoom' => $chatRoom
+        ]);
+    }
+
+    public function setSeen(Request $request)
+    {
+        $chatRoomId = $request->chatRoomId;
+        $userId = $request->user->id;
+
+        DB::table('messages')
+            ->where('chat_rooms_id', $chatRoomId)
+            ->where('users_id', '!=', $userId)
+            ->update(['read' => true]);
+
+        return response()->json([
+            'status' => 'Messages seen'
         ]);
     }
 }

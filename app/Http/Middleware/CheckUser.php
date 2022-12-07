@@ -8,25 +8,22 @@ use Illuminate\Support\Facades\DB;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-class CheckUser extends Middleware
+class CheckUser
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     * @return mixed
-     */
     public function handle($request, Closure $next)
     {
+        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
         $token = $request->header('Authorization');
+        $token = str_replace('Bearer ', '', $token);
 
         if ($token) {
             try {
                 $decoded = JWT::decode($token, new Key(env('JWT_KEY'), 'HS256'));
-                $request->user = $decoded->user;
+                $request->user = $decoded->sub;
                 return $next($request);
             } catch (\Exception $e) {
+                $output->writeln($e->getMessage());
+
                 return response()->json([
                     'message' => 'Invalid token'
                 ], 401);

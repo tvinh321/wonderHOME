@@ -8,13 +8,28 @@ use Illuminate\Support\Facades\DB;
 class PropertiesController extends Controller
 {
     // Get 6 highest priority properties
-    public function getHighestPriorityProperties()
+    public function getHighestPriorityProperties(Request $request)
     {
+        $ward = $request->ward;
+
         $properties = DB::table('properties')
-        ->select('properties.id', 'properties.title', 'properties.created_at', 'properties.location', 'properties.description', 'properties.num_of_bedrooms', 'properties.num_of_toilets', 'properties.direction', 'properties.price', 'properties.priority', 'properties.facade', 'properties.area', 'properties.expire_date', 'properties.juridical_status', 'properties.furniture')
+        ->where('properties.status', 1)
         ->orderBy('properties.priority', 'desc')
-        ->limit(6)
-        ->get();
+        ->limit(6);
+
+        if ($ward) {
+            $properties = $properties->where('properties.wards_id', $ward);
+        }
+
+        // Get 6 highest priority properties
+        $properties = $properties->get();
+
+        // Get files for each property
+        foreach ($properties as $property) {
+            $property->files = DB::table('files')
+            ->where('files.properties_id', $property->id)
+            ->get();
+        }
 
         return response()->json($properties);
     }
@@ -25,60 +40,18 @@ class PropertiesController extends Controller
         $id = $request->id;
 
         $property = DB::table('properties')
+        ->select('properties.*')
         ->where('properties.id', $id)
-        ->leftJoin('wards', 'properties.wards_id', '=', 'wards.id')
-        ->leftJoin('districts', 'wards.districts_id', '=', 'districts.id')
-        ->leftJoin('cities', 'districts.cities_id', '=', 'cities.id')
-        ->leftJoin('juridicals', 'properties.juridicals_id', '=', 'juridicals.id')
-        ->leftJoin('property_types', 'properties.property_types_id', '=', 'property_types.id')
-        ->leftJoin('conveniences_properties', 'properties.id', '=', 'conveniences_properties.properties_id')
-        ->leftJoin('files', 'properties.id', '=', 'files.properties_id')
-        ->select('properties.id', 'properties.title', 'properties.created_at', 'properties.location', 'properties.description', 'properties.num_of_bedrooms', 'properties.num_of_toilets', 'properties.direction', 'properties.price', 'properties.priority', 'properties.facade', 'properties.area', 'properties.expire_date', 'properties.juridical_status', 'properties.furniture', 'juridicals.type as juridical_type', 'property_types.name as property_type', 'wards.name as ward', 'districts.name as district', 'cities.name as city')
-        ->selectRaw("string_agg(conveniences_properties.conveniences_id::character varying, ', ') as conveniences")
-        ->groupBy('properties.id', 'properties.title', 'properties.created_at', 'properties.location', 'properties.description', 'properties.num_of_bedrooms', 'properties.num_of_toilets', 'properties.direction', 'properties.price', 'properties.priority', 'properties.facade', 'properties.area', 'properties.expire_date', 'properties.juridical_status', 'properties.furniture', 'juridicals.type', 'property_types.name', 'wards.name', 'districts.name', 'cities.name')
-        ->get();
+        ->get()
+        ->first();
 
-        if ($property->isEmpty()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Property not found'
-            ]);
-        }
-        else {
-            // Get Files
-            $files = DB::table('files')
-            ->where('properties_id', $id)
-            ->select('content', 'type')
+        if ($property) {
+            $property->files = DB::table('files')
+            ->where('files.properties_id', $id)
             ->get();
-
-            // Seperate files by type
-            $images = [];
-            $videos = [];
-
-            foreach ($files as $file) {
-                if ($file->type == 'image') {
-                    array_push($images, $file->content);
-                }
-                else {
-                    array_push($videos, $file->content);
-                }
-            }
-
-            $property[0]->images = $images;
-            $property[0]->videos = $videos;
         }
 
-        return response()->json($property[0]);
-    }
-
-    // Get property types
-    public function getPropertyTypes()
-    {
-        $propertyTypes = DB::table('property_types')
-        ->select('id', 'name')
-        ->get();
-
-        return response()->json($propertyTypes);
+        return response()->json($property);
     }
 
     // Post property
@@ -100,67 +73,10 @@ class PropertiesController extends Controller
             'expire_date' => now()->addDays(30),
             'juridical_status' => $request->juridical_status,
             'furniture' => $request->furniture,
-            'juridicals_id' => $request->juridicals_id,
-            'property_types_id' => $request->property_types_id,
             'wards_id' => $request->wards_id,
             'users_id' => $user,
             'created_at' => now(),
         ]);
-
-        $images = $request->images;
-        $videos = $request->videos;
-        $conveniences = $request->conveniences;
-        $panoramas = $request->panoramas;
-        $juridicals = $request->juridicals;
-
-        if ($images) {
-            foreach ($images as $image) {
-                DB::table('files')->insert([
-                    'content' => $image,
-                    'type' => 'image',
-                    'properties_id' => $id,
-                ]);
-            }
-        }
-
-        if ($videos) {
-            foreach ($videos as $video) {
-                DB::table('files')->insert([
-                    'content' => $video,
-                    'type' => 'video',
-                    'properties_id' => $id,
-                ]);
-            }
-        }
-
-        if ($panoramas) {
-            foreach ($panoramas as $panorama) {
-                DB::table('files')->insert([
-                    'content' => $panorama,
-                    'type' => 'panorama',
-                    'properties_id' => $id,
-                ]);
-            }
-        }
-
-        if ($juridicals) {
-            foreach ($juridicals as $juridical) {
-                DB::table('files')->insert([
-                    'content' => $juridical,
-                    'type' => 'juridical',
-                    'properties_id' => $id,
-                ]);
-            }
-        }
-
-        if ($conveniences) {
-            foreach ($conveniences as $convenience) {
-                DB::table('conveniences_properties')->insert([
-                    'conveniences_id' => $convenience,
-                    'properties_id' => $id,
-                ]);
-            }
-        }
 
         return response()->json([
             'status' => 'success',
@@ -181,14 +97,13 @@ class PropertiesController extends Controller
         $area = $request->area;
         $type = $request->type;
         $bedroom = $request->bedroom;
+        $toilet = $request->toilet;
+        $direction = $request->direction;
 
         $properties = DB::table('properties')
-        ->leftJoin('juridicals', 'properties.juridicals_id', '=', 'juridicals.id')
-        ->leftJoin('property_types', 'properties.property_types_id', '=', 'property_types.id')
         ->leftJoin('wards', 'properties.wards_id', '=', 'wards.id')
         ->leftJoin('districts', 'wards.districts_id', '=', 'districts.id')
-        ->leftJoin('cities', 'districts.cities_id', '=', 'cities.id')
-        ->select('properties.id', 'properties.title', 'properties.created_at', 'properties.location', 'properties.description', 'properties.num_of_bedrooms', 'properties.num_of_toilets', 'properties.direction', 'properties.price', 'properties.priority', 'properties.facade', 'properties.area', 'properties.expire_date', 'properties.juridical_status', 'properties.furniture');
+        ->leftJoin('cities', 'districts.cities_id', '=', 'cities.id');
 
         if ($title) {
             $output->writeln($title);
@@ -199,13 +114,11 @@ class PropertiesController extends Controller
             $output->writeln('Ward: ' . $ward);
             $properties = $properties->where('properties.wards_id', '=', $ward);
         }
-
-        if ($district) {
+        else if ($district) {
             $output->writeln('District: ' . $district);
             $properties = $properties->where('districts.id', '=', $district);
         }
-
-        if ($city) {
+        else if ($city) {
             $output->writeln('City: ' . $city);
             $properties = $properties->where('cities.id', '=', $city);
         }
@@ -222,7 +135,7 @@ class PropertiesController extends Controller
 
         if ($type) {
             $output->writeln('Type: ' . $type[0]);
-            $properties = $properties->whereIn('properties.property_types_id', $type);
+            $properties = $properties->whereIn('properties.type', $type);
         }
 
         if ($bedroom) {
@@ -230,7 +143,32 @@ class PropertiesController extends Controller
             $properties = $properties->where('properties.num_of_bedrooms', '=', $bedroom);
         }
 
+        if ($toilet) {
+            $output->writeln('Toilet: ' . $toilet);
+            $properties = $properties->where('properties.num_of_toilets', '=', $toilet);
+        }
+
+        if ($direction) {
+            $output->writeln('Direction: ' . $direction);
+            $properties = $properties->where('properties.direction', '=', $direction);
+        }
+
         $properties = $properties->get();
+
+        if ($properties->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No properties found'
+            ]);
+        }
+        else {
+            // Get files
+            foreach ($properties as $property) {
+                $property->files = DB::table('files')
+                ->where('properties_id', '=', $property->id)
+                ->get();
+            }
+        }
 
         return response()->json([
             'status' => 'success',

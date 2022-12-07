@@ -12,19 +12,24 @@ class UsersController extends Controller
     // Login with JWT
     public function login(Request $request)
     {
-        $username = $request->username;
+        $email = $request->email;
         $password = $request->password;
 
-        $user = DB::table('users')->where('username', $username)->first();
+        $user = DB::table('users')->where('email', $email)->first();
 
         if ($user) {
             if (password_verify($password, $user->password)) {
-                $token = $this->generateToken($user->id);
+                $token = $this->generateToken(
+                    [
+                        'id' => $user->id,
+                        'email' => $user->email,
+                        'role' => $user->role,
+                    ]
+                );
 
                 return response()->json([
                     'status' => 'success',
                     'token' => $token,
-                    'user' => $user,
                 ]);
             } else {
                 return response()->json([
@@ -41,48 +46,28 @@ class UsersController extends Controller
     // Register
     public function register(Request $request)
     {
-        $firstName = $request->firstName;
-        $lastName = $request->lastName;
-        $gender = $request->gender;
-        $dob = $request->dob;
         $email = $request->email;
-        $phone = $request->phone;
-        $location = $request->location;
-        $username = $request->username;
         $password = $request->password;
 
-        if ($firstName && $lastName && $gender && $dob && $email && $phone && $location && $username && $password) {
+        if ($email && $password) {
             $user = DB::table('users')->where('email', $email)->first();
-            $user2 = DB::table('users')->where('username', $username)->first();
 
             if ($user) {
                 return response()->json([
                     'message' => 'Email already exists'
                 ], 422);
             }
-            elseif ($user2) {
-                return response()->json([
-                    'message' => 'Username already exists'
-                ], 422);
-            }
             else {
                 $password = password_hash($password, PASSWORD_DEFAULT);
 
                 $id = DB::table('users')->insertGetId([
-                    'full_name' => $lastName . ' ' . $firstName,
-                    'username' => $username,
                     'email' => $email,
                     'password' => $password,
-                    'phone' => $phone,
-                    'gender' => $gender,
-                    'dob' => $dob,
-                    'location' => $location,
-                    'register_at' => date('Y-m-d H:i:s'),
-                    'last_active' => date('Y-m-d H:i:s'),
-                    'role' => 1
+                    'register_at' => now(),
+                    'last_active' => now(),
+                    'role' => 0,
+                    'access' => 1
                 ]);
-
-                $user = DB::table('users')->where('id', $id)->first();
 
                 return response()->json([
                     'status' => 'success'

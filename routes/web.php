@@ -50,9 +50,6 @@ Route::post('/api/register', [App\Http\Controllers\UsersController::class, 'regi
 // Login
 Route::post('/api/login', [App\Http\Controllers\UsersController::class, 'login']);
 
-// Get Types
-Route::get('/api/types', [App\Http\Controllers\PropertiesController::class, 'getPropertyTypes']);
-
 Route::get('/', function () {
     return view('app');
 });
@@ -61,10 +58,18 @@ Route::post('/api/messages', [App\Http\Controllers\ChatController::class, 'fetch
 
 Route::post('/api/send', [App\Http\Controllers\ChatController::class, 'sendMessage']);
 
-Route::get('/api/chatRoom', [App\Http\Controllers\ChatController::class, 'getChatRoom']);
+Route::get('/api/chatRoom', [App\Http\Controllers\ChatController::class, 'getChatRooms'])->middleware(CheckUser::class);
 
-Route::post('/api/createChatRoom', [App\Http\Controllers\ChatController::class, 'createChatRoom']);
+Route::post('/api/createChatRoom', [App\Http\Controllers\ChatController::class, 'createChatRoom'])->middleware(CheckUser::class);
 
-// Route::get('/{any}', function () {
-//     return view('app');
-// })->where('any', '^(?!api\/)[\/\w\.-]*');
+Route::post('/api/seen', [App\Http\Controllers\ChatController::class, 'setSeen'])->middleware(CheckUser::class);
+
+Route::get('/api/appointments', [App\Http\Controllers\AppointmentsController::class, 'getAppointments'])->middleware(CheckUser::class);
+
+Route::post('/api/appointments', [App\Http\Controllers\AppointmentsController::class, 'createAppointment'])->middleware(CheckUser::class);
+
+Route::delete('/api/appointments/{id}', [App\Http\Controllers\AppointmentsController::class, 'cancelAppointment'])->middleware(CheckUser::class);
+
+Route::get('/api/18055852-d092774e-eeda-4c94-bc08-8f39f8cc5208', [App\Http\Controllers\SchedulerController::class, 'checkAppointments']);
+
+Route::post('/api/rating/{id}', [App\Http\Controllers\RatingController::class, 'postRating']);

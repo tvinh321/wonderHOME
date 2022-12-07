@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-class CheckAdmin extends Middleware
+
+
+class CheckAdmin
 {
     /**
      * Handle an incoming request.
@@ -20,13 +22,14 @@ class CheckAdmin extends Middleware
     public function handle($request, Closure $next)
     {
         $token = $request->header('Authorization');
-
+        $token = str_replace('Bearer ', '', $token);
+        
         if ($token) {
             try {
                 $decoded = JWT::decode($token, new Key(env('JWT_KEY'), 'HS256'));
                 $request->user = $decoded->user;
 
-                if ($request->user->role == 'admin') {
+                if ($request->user->role == 1) {
                     return $next($request);
                 } else {
                     return response()->json([

@@ -7,24 +7,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-/* $table->uuid('id')->primary()->default(Str::orderedUuid());
-    $table->string('title', 255);
-    $table->timestamp('created_at');
-    $table->string('location', 64);
-    $table->text('description');
-    $table->smallInteger('num_of_bedrooms');
-    $table->smallInteger('num_of_toilets');
-    $table->smallInteger('direction');
-    $table->integer('price');
-    $table->smallInteger('priority');
-    $table->float('facade');
-    $table->float('area');
-    $table->date('expire_date');
-    $table->smallInteger('juridical_status');
-    $table->uuid('Juridicals_id');
-    $table->uuid('Users_id');
-    $table->uuid('Wards_id'); */
-
 class PropertiesSeeder extends Seeder
 {
     /**
@@ -35,9 +17,7 @@ class PropertiesSeeder extends Seeder
     public function run()
     {
         $wards = DB::table('wards')->get();
-        $juridicals = DB::table('juridicals')->get();
         $users = DB::table('users')->get();
-        $property_types = DB::table('property_types')->get();
         $location = [
             '12 Nguyễn Trãi',
             '234 Nguyễn Trãi',
@@ -49,12 +29,12 @@ class PropertiesSeeder extends Seeder
             '98 Nguyễn Văn Huyên',
         ];
 
+        $properties_arr = [];
+
         // For 50 properties
         for ($i = 0; $i < 50; $i++) {
             $ward = $wards->random();
-            $juridical = $juridicals->random();
             $user = $users->random();
-            $property_type = $property_types->random();
             $loc = $location[array_rand($location)];
 
             $price = [1400000000, 2000000000, 2220000000, 4000000000, 5000000000][array_rand([0, 1, 2, 3, 4])];
@@ -65,26 +45,31 @@ class PropertiesSeeder extends Seeder
             $loca = $loc . ', ' . $ward->name . ', ' . $district->name . ', ' . $city->name;
             $title = ['Bán nhà ', 'Bán căn hộ ', 'Bán căn hộ chung cư ', 'Bán nhà mặt tiền '][array_rand([0, 1, 2, 3])];
 
-            DB::table('properties')->insert([
+            $properties_arr->array_push([
                 'title' => $title . (number_format( (float) ($price / 1000000000), 1, '.', '')) . ' tỷ ' . $area . 'm2',
+                'type' => 'nha',
                 'created_at' => now(),
                 'location' => $loca,
                 'description' => 'Đây là mô tả',
-                'num_of_bedrooms' => rand(1, 5),
-                'num_of_toilets' => rand(1, 5),
-                'direction' => rand(1, 16),
                 'price' => $price,
                 'priority' => rand(1, 5),
-                'facade' => rand(20, 100),
                 'area' => $area,
                 'expire_date' => now()->addDays(rand(50, 100)),
                 'juridical_status' => rand(-1, 1),
+                'juridical_type' => 'sodo',
+                'access_count' => rand(0, 100),
+                'conveniences' => 'thucung,wifi,doxe',
+                'num_of_bedrooms' => rand(1, 5),
+                'num_of_toilets' => rand(1, 5),
+                'facade' => rand(20, 100),
+                'floor' => rand(1, 5),
+                'direction' => rand(1, 16),
                 'furniture' => rand(1, 2),
-                'juridicals_id' => $juridical->id,
                 'users_id' => $user->id,
                 'wards_id' => $ward->id,
-                'property_types_id' => $property_type->id,
             ]);
         }
+
+        DB::table('properties')->insert($properties_arr);
     }
 }
