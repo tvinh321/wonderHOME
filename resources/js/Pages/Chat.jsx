@@ -1,51 +1,51 @@
-import Pusher from 'pusher-js/with-encryption';
-import Echo from 'laravel-echo';
-import axios from 'axios';
+import Pusher from "pusher-js/with-encryption";
+import Echo from "laravel-echo";
+import axios from "axios";
 
 import React, { useState, useEffect } from "react";
 
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
-import {
-    PhotoIcon,
-} from "@heroicons/react/24/outline";
+import { PhotoIcon } from "@heroicons/react/24/outline";
 
 export default function Chat() {
     const [messages, setMessages] = useState([]);
-    const [message, setMessage] = useState('');
-    const [user, setUser] = useState('');
+    const [message, setMessage] = useState("");
+    const [user, setUser] = useState("");
     const [chatRoom, setChatRoom] = useState({});
     const [chatRooms, setChatRooms] = useState([]);
 
     useEffect(() => {
-        axios.get('/api/chatRoom').then(response => {
+        axios.get("/api/chatRoom").then((response) => {
             setChatRooms(response.data.chatRooms);
         });
     }, []);
 
     useEffect(() => {
         if (chatRoom.id) {
-            axios.post('/api/messages', { chatRoomId: chatRoom.id }).then(response => {
-                setMessages(response.data.messages);
-            });
+            axios
+                .post("/api/messages", { chatRoomId: chatRoom.id })
+                .then((response) => {
+                    setMessages(response.data.messages);
+                });
 
             const echo = new Echo({
-                broadcaster: 'pusher',
-                key: '8f966224916b5906d1f6',
-                cluster: 'ap1',
+                broadcaster: "pusher",
+                key: "8f966224916b5906d1f6",
+                cluster: "ap1",
                 forceTLS: true,
                 encrypted: true,
             });
 
-            const channel = echo.channel('chat-room.' + chatRoom.id);
+            const channel = echo.channel("chat-room." + chatRoom.id);
 
-            channel.listen('.message.sent', e => {
-                setMessages(messages => [...messages, e]);
+            channel.listen(".message.sent", (e) => {
+                setMessages((messages) => [...messages, e]);
             });
 
             return () => {
-                echo.leave('chat-room.' + chatRoom.id);
+                echo.leave("chat-room." + chatRoom.id);
                 echo.disconnect();
             };
         }
@@ -53,17 +53,19 @@ export default function Chat() {
 
     const sendMessage = (e) => {
         e.preventDefault();
-        axios.post('/api/send', {
-            userId: user,
-            message,
-            chatRoomId: chatRoom.id
-        }).then(() => {
-            setMessage('');
-        });
+        axios
+            .post("/api/send", {
+                userId: user,
+                message,
+                chatRoomId: chatRoom.id,
+            })
+            .then(() => {
+                setMessage("");
+            });
     };
 
     useEffect(() => {
-        const chatBox = document.getElementById('chat-box');
+        const chatBox = document.getElementById("chat-box");
         chatBox.scrollTop = chatBox.scrollHeight;
     }, [messages]);
 
@@ -108,14 +110,15 @@ export default function Chat() {
                 <div className="w-3/4">
                     <div className="flex flex-col h-screen">
                         <div className="flex items-center px-6 h-16 border-b">
-                            {chatRoomId && (
+                            {chatRoom.id && (
                                 <img
                                     src={
                                         userChatList.find(
-                                            (user) => user.id === select
+                                            (user) => user.id === chatRoom.id
                                         ).avatar
                                             ? userChatList.find(
-                                                  (user) => user.id === select
+                                                  (user) =>
+                                                      user.id === chatRoom.id
                                               ).avatar
                                             : "https://i.pravatar.cc/150?img=1"
                                     }
@@ -124,14 +127,14 @@ export default function Chat() {
                             )}
                             <div className="flex flex-col ml-3">
                                 <h1 className="font-semibold text-gray-800">
-                                    {select &&
+                                    {chatRoom.id &&
                                         userChatList.find(
-                                            (user) => user.id === select
+                                            (user) => user.id === chatRoom.id
                                         ).name}
                                 </h1>
                             </div>
                         </div>
-                        <div className="flex-1 overflow-y-auto">
+                        <div className="flex-1 overflow-y-auto" id="chat-box">
                             {messages.map((message, index) => (
                                 <div
                                     key={index}

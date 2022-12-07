@@ -9814,11 +9814,11 @@ function Chat() {
     _useState2 = _slicedToArray(_useState, 2),
     messages = _useState2[0],
     setMessages = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(''),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(""),
     _useState4 = _slicedToArray(_useState3, 2),
     message = _useState4[0],
     setMessage = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(''),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(""),
     _useState6 = _slicedToArray(_useState5, 2),
     user = _useState6[0],
     setUser = _useState6[1];
@@ -9831,48 +9831,48 @@ function Chat() {
     chatRooms = _useState10[0],
     setChatRooms = _useState10[1];
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/chatRoom').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/chatRoom").then(function (response) {
       setChatRooms(response.data.chatRooms);
     });
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
     if (chatRoom.id) {
-      axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/messages', {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/messages", {
         chatRoomId: chatRoom.id
       }).then(function (response) {
         setMessages(response.data.messages);
       });
       var echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        broadcaster: 'pusher',
-        key: '8f966224916b5906d1f6',
-        cluster: 'ap1',
+        broadcaster: "pusher",
+        key: "8f966224916b5906d1f6",
+        cluster: "ap1",
         forceTLS: true,
         encrypted: true
       });
-      var channel = echo.channel('chat-room.' + chatRoom.id);
-      channel.listen('.message.sent', function (e) {
+      var channel = echo.channel("chat-room." + chatRoom.id);
+      channel.listen(".message.sent", function (e) {
         setMessages(function (messages) {
           return [].concat(_toConsumableArray(messages), [e]);
         });
       });
       return function () {
-        echo.leave('chat-room.' + chatRoom.id);
+        echo.leave("chat-room." + chatRoom.id);
         echo.disconnect();
       };
     }
   }, [chatRoom]);
   var sendMessage = function sendMessage(e) {
     e.preventDefault();
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/send', {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/send", {
       userId: user,
       message: message,
       chatRoomId: chatRoom.id
     }).then(function () {
-      setMessage('');
+      setMessage("");
     });
   };
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    var chatBox = document.getElementById('chat-box');
+    var chatBox = document.getElementById("chat-box");
     chatBox.scrollTop = chatBox.scrollHeight;
   }, [messages]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
@@ -9916,24 +9916,25 @@ function Chat() {
           className: "flex flex-col h-screen",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "flex items-center px-6 h-16 border-b",
-            children: [chatRoomId && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+            children: [chatRoom.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
               src: userChatList.find(function (user) {
-                return user.id === select;
+                return user.id === chatRoom.id;
               }).avatar ? userChatList.find(function (user) {
-                return user.id === select;
+                return user.id === chatRoom.id;
               }).avatar : "https://i.pravatar.cc/150?img=1",
               className: "w-14 h-14 rounded-full"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
               className: "flex flex-col ml-3",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
                 className: "font-semibold text-gray-800",
-                children: select && userChatList.find(function (user) {
-                  return user.id === select;
+                children: chatRoom.id && userChatList.find(function (user) {
+                  return user.id === chatRoom.id;
                 }).name
               })
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
             className: "flex-1 overflow-y-auto",
+            id: "chat-box",
             children: messages.map(function (message, index) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 className: "flex items-center px-6 py-4 ".concat(message.user === 1 ? "justify-end" : ""),
