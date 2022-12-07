@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "../Components/LoginRegister/LoginForm";
-import axios from "axios";
-import RegisterForm from "../Components/LoginRegister/RegisterForm";
+import { BasicRegisterForm } from "../Components/LoginRegister/RegisterForm";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
@@ -15,7 +14,7 @@ export default function LoginRegister() {
                 {isLoginForm ? (
                     <LoginForm setIsLoginForm={setIsLoginForm} />
                 ) : (
-                    <RegisterForm setIsLoginForm={setIsLoginForm} />
+                    <BasicRegisterForm setIsLoginForm={setIsLoginForm} />
                 )}
             </div>
 

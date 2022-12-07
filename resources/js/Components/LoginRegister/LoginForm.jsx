@@ -73,8 +73,8 @@ export default function LoginForm({ setIsLoginForm }) {
 
     return (
         <div className="px-6 my-12 flex justify-center">
-            <div className="w-full xl:w-3/4 lg:w-11/12 flex justify-center items-center">
-                <div className="w-full h-auto hidden lg:block lg:w-1/2 bg-cover rounded-l-lg">
+            <div className="w-10/12 flex justify-center items-center">
+                <div className="hidden lg:block lg:w-1/3 bg-cover rounded-l-lg">
                     <img src="/assets/images/login.png" />
                 </div>
                 <div

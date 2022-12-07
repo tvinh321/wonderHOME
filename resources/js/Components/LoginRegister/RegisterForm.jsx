@@ -2,7 +2,125 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PasswordInputStrengthMeter from "./PasswordInputWithStrengthMeter";
 
-export default function RegisterForm({ setIsLoginForm }) {
+export function BasicRegisterForm({ setIsLoginForm }) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setMessage("");
+        const formValue = {
+            email,
+            password,
+        };
+
+        axios.post("/api/register", formValue).catch((err) => {
+            if (err.response) {
+                if (err.response.status === 422) {
+                    if (err.response.data.message === "Email already exists") {
+                        setMessage("Email đã tồn tại");
+                    }
+                } else if (err.response.status === 400) {
+                    setMessage("Vui lòng điền đầy đủ thông tin");
+                } else {
+                    setMessage("Đăng ký thất bại");
+                }
+            }
+        });
+    };
+
+    return (
+        <div className="px-6 my-12 flex justify-center">
+            <div className="w-10/12 flex justify-center items-center">
+                <div className="hidden lg:block lg:w-1/3 bg-cover rounded-l-lg">
+                    <img src="/assets/images/login.png" />
+                </div>
+                <div
+                    id="form-container"
+                    className="w-full lg:w-1/2  p-5 rounded-lg lg:rounded-l-none"
+                >
+                    <h3 className="pt-4 text-md text-center text-neutral-500">
+                        Xin chào bạn mới!
+                    </h3>
+                    <h3 className="pt-1 text-center text-2xl">
+                        Đăng ký để tiếp tục
+                    </h3>
+                    {message && (
+                        <div
+                            className="w-full mt-3"
+                            style={{ background: "#fed3cf" }}
+                        >
+                            <p
+                                className="font-semibold p-4 text-center"
+                                style={{ color: "#ab2830" }}
+                            >
+                                {message}
+                            </p>
+                        </div>
+                    )}
+                    <form
+                        className="md:px-8 pt-6 pb-8 mb-4 rounded"
+                        onSubmit={handleSubmit}
+                    >
+                        <div className="mb-5">
+                            <label
+                                htmlFor="email"
+                                className="block mb-2 text-sm font-bold text-neutral-700"
+                            >
+                                Email đăng ký
+                            </label>
+                            <input
+                                type="email"
+                                required
+                                className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                placeholder=""
+                                name="email"
+                                value={email}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                }}
+                            />
+                        </div>
+
+                        <PasswordInputStrengthMeter
+                            password={password}
+                            setPassword={setPassword}
+                            hr
+                        />
+
+                        <div className="mb-6 text-center">
+                            <button
+                                className={
+                                    "bg-amber-500 hover:bg-amber-700 w-full px-4 py-2 font-bold text-white focus:outline-none focus:shadow-outline rounded-full transition-all duration-200"
+                                }
+                                type="submit"
+                            >
+                                Đăng ký
+                            </button>
+                        </div>
+                        <hr className="mb-6 border-t" />
+                        <div className="text-center my-2">
+                            <div className="inline-block text-sm text-neutral-700 align-baselin">
+                                Đã có tài khoản?{" "}
+                                <a
+                                    onClick={() => {
+                                        setIsLoginForm(true);
+                                    }}
+                                    className="underline text-amber-400 hover:text-amber-800 cursor-pointer"
+                                >
+                                    Đăng nhập
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function FullyRegisterForm({ setIsLoginForm }) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [gender, setGender] = useState(0);
@@ -62,7 +180,18 @@ export default function RegisterForm({ setIsLoginForm }) {
     const handleGoNextStep = () => {
         // Check filled data
         if (registerStep === 1) {
-            if (!firstName || !lastName || !gender || !email || !dob || !phone || !address || !city || !district || !ward) {
+            if (
+                !firstName ||
+                !lastName ||
+                !gender ||
+                !email ||
+                !dob ||
+                !phone ||
+                !address ||
+                !city ||
+                !district ||
+                !ward
+            ) {
                 alert("Please fill all fields");
                 return;
             }
@@ -96,16 +225,19 @@ export default function RegisterForm({ setIsLoginForm }) {
             .catch((err) => {
                 if (err.response) {
                     if (err.response.status === 422) {
-                        if (err.response.data.message === "Email already exists") {
+                        if (
+                            err.response.data.message === "Email already exists"
+                        ) {
                             alert("Email đã tồn tại");
-                        } else if (err.response.data.message === "Username already exists") {
+                        } else if (
+                            err.response.data.message ===
+                            "Username already exists"
+                        ) {
                             alert("Tên đăng nhập đã tồn tại");
                         }
-                    }
-                    else if (err.response.status === 400) {
+                    } else if (err.response.status === 400) {
                         alert("Vui lòng điền đầy đủ thông tin");
-                    }
-                    else {
+                    } else {
                         alert("Đăng ký thất bại");
                     }
                 }
@@ -171,7 +303,7 @@ export default function RegisterForm({ setIsLoginForm }) {
                                     <div className="mb-5 grid md:grid-cols-2 gap-2 items-center md:justify-between gap-x-4">
                                         <div>
                                             <label
-                                                for="lastName"
+                                                htmlFor="lastName"
                                                 className="block mb-2 text-sm font-bold text-neutral-700"
                                             >
                                                 Họ
@@ -190,7 +322,7 @@ export default function RegisterForm({ setIsLoginForm }) {
                                         </div>
                                         <div>
                                             <label
-                                                for="firstName"
+                                                htmlFor="firstName"
                                                 className="block mb-2 text-sm font-bold text-neutral-700"
                                             >
                                                 Tên
@@ -211,7 +343,7 @@ export default function RegisterForm({ setIsLoginForm }) {
 
                                     <div className="mb-5">
                                         <label
-                                            for="gender"
+                                            htmlFor="gender"
                                             className="block mb-2 text-sm font-bold text-neutral-700"
                                         >
                                             Giới tính
@@ -272,7 +404,7 @@ export default function RegisterForm({ setIsLoginForm }) {
 
                                     <div className="mb-5">
                                         <label
-                                            for="dob"
+                                            htmlFor="dob"
                                             className="block mb-2 text-sm font-bold text-neutral-700"
                                         >
                                             Sinh nhật
@@ -294,7 +426,7 @@ export default function RegisterForm({ setIsLoginForm }) {
 
                                     <div className="mb-5">
                                         <label
-                                            for="email"
+                                            htmlFor="email"
                                             className="block mb-2 text-sm font-bold text-neutral-700"
                                         >
                                             Email
@@ -314,7 +446,7 @@ export default function RegisterForm({ setIsLoginForm }) {
 
                                     <div className="mb-5">
                                         <label
-                                            for="phone"
+                                            htmlFor="phone"
                                             className="block mb-2 text-sm font-bold text-neutral-700"
                                         >
                                             Số điện thoại
@@ -334,7 +466,7 @@ export default function RegisterForm({ setIsLoginForm }) {
 
                                     <div className="mb-5">
                                         <label
-                                            for="address"
+                                            htmlFor="address"
                                             className="block mb-2 text-sm font-bold text-neutral-700"
                                         >
                                             Địa chỉ
@@ -450,7 +582,7 @@ export default function RegisterForm({ setIsLoginForm }) {
                                 <div>
                                     <div className="mb-5">
                                         <label
-                                            for="username"
+                                            htmlFor="username"
                                             className="block mb-2 text-sm font-bold text-neutral-700"
                                         >
                                             Tên đăng nhập
@@ -468,7 +600,10 @@ export default function RegisterForm({ setIsLoginForm }) {
                                             }}
                                         />
                                     </div>
-                                    <PasswordInputStrengthMeter password={password} setPassword={setPassword} />
+                                    <PasswordInputStrengthMeter
+                                        password={password}
+                                        setPassword={setPassword}
+                                    />
                                 </div>
                             )}
                             <div className="flex justify-between gap-x-4 mt-6">

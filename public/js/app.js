@@ -5975,6 +5975,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function NewChatBubble() {
+  var isLoggedIn = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return !!localStorage.getItem("wonderHome-token");
+  }, [localStorage.getItem("wonderHome-token")]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_chat_plugin__WEBPACK_IMPORTED_MODULE_1__.ChatFrame, {
     icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_heroicons_react_24_solid__WEBPACK_IMPORTED_MODULE_3__["default"], {
       width: "20px",
@@ -5984,7 +5987,8 @@ function NewChatBubble() {
       }
     }),
     clickIcon: function clickIcon() {
-      window.location.href = "/chat";
+      var path = isLoggedIn ? "/chat" : "/dang-nhap";
+      window.location.href = path;
     },
     showIcon: true,
     iconStyle: {
@@ -7119,7 +7123,7 @@ function Header() {
                   d: "m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
                 }), " "]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            }), isLoggedIn && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
               className: "mt-2 mr-4",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_NotificationMenu__WEBPACK_IMPORTED_MODULE_1__["default"], {})
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
@@ -7388,9 +7392,9 @@ function LoginForm(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "px-6 my-12 flex justify-center",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "w-full xl:w-3/4 lg:w-11/12 flex justify-center items-center",
+      className: "w-10/12 flex justify-center items-center",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "w-full h-auto hidden lg:block lg:w-1/2 bg-cover rounded-l-lg",
+        className: "hidden lg:block lg:w-1/3 bg-cover rounded-l-lg",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
           src: "/assets/images/login.png"
         })
@@ -7538,7 +7542,7 @@ function PasswordInputWithStrengMeter(_ref) {
       strengthText: "",
       strengthColor: "white",
       strengthLength: 0,
-      strengthCharsValid: [false, false, false, false] // digit, lower case, upper case, special char
+      strengthCharsValid: [false, false, false, false, false] // length, digit, lower case, upper case, special char
     }),
     _useState2 = _slicedToArray(_useState, 2),
     passwordValue = _useState2[0],
@@ -7555,7 +7559,19 @@ function PasswordInputWithStrengMeter(_ref) {
     setPassword(passwordValue.password);
   }, [passwordValue]);
   var validatePasswordStrong = function validatePasswordStrong(value) {
-    if (!value) {
+    var conditionCheck = {
+      lengthCheck: value.length >= minLength,
+      digitCheck: digitReg.test(value),
+      lowerCaseCheck: lowerCaseReg.test(value),
+      upperCaseCheck: upperCaseReg.test(value),
+      specialCharCheck: specialCharReg.test(value)
+    };
+    var numbOfPassedConditions = Object.values(conditionCheck).filter(function (cond) {
+      return cond === true;
+    }).length;
+    var strengthTexts = ["Mật khẩu rất yếu", "Mật khẩu yếu", "Mật khẩu trung bình", "Mật khẩu trung bình", "Mật khẩu mạnh"];
+    var strengthColors = ["red", "orange", "#fbbf24", "#fbbf24", "green"];
+    if (!value || numbOfPassedConditions === 0) {
       setPasswordValue({
         password: "",
         strength: 0,
@@ -7563,44 +7579,16 @@ function PasswordInputWithStrengMeter(_ref) {
         strengthColor: "white",
         strengthCharsValid: [false, false, false, false]
       });
-      return;
-    }
-    var digitCheck = digitReg.test(value);
-    var lowerCaseCheck = lowerCaseReg.test(value);
-    var upperCaseCheck = upperCaseReg.test(value);
-    var specialCharCheck = specialCharReg.test(value);
-    if (value.length < minLength) setPasswordValue({
-      password: value,
-      strength: 1,
-      strengthText: "Mật khẩu quá yếu",
-      strengthColor: "red",
-      strengthCharsValid: [digitCheck, lowerCaseCheck, upperCaseCheck, specialCharCheck]
-    });else {
-      if ((digitCheck || lowerCaseCheck || upperCaseCheck) && !(digitCheck && lowerCaseCheck && upperCaseCheck)) {
-        setPasswordValue({
-          password: value,
-          strength: 2,
-          strengthText: "Mật khẩu yếu",
-          strengthColor: "orange",
-          strengthCharsValid: [digitCheck, lowerCaseCheck, upperCaseCheck, specialCharCheck]
-        });
-      } else if (digitCheck && lowerCaseCheck && upperCaseCheck && specialCharCheck) {
-        setPasswordValue({
-          password: value,
-          strength: 4,
-          strengthText: "Mật khẩu mạnh",
-          strengthColor: "green",
-          strengthCharsValid: [digitCheck, lowerCaseCheck, upperCaseCheck, specialCharCheck]
-        });
-      } else {
-        setPasswordValue({
-          password: value,
-          strength: 3,
-          strengthText: "Mật khẩu trung bình",
-          strengthColor: "yellow",
-          strengthCharsValid: [digitCheck, lowerCaseCheck, upperCaseCheck, specialCharCheck]
-        });
-      }
+    } else {
+      setPasswordValue({
+        password: value,
+        strength: numbOfPassedConditions,
+        strengthText: strengthTexts[numbOfPassedConditions - 1],
+        strengthColor: strengthColors[numbOfPassedConditions - 1],
+        strengthCharsValid: Object.values(conditionCheck).map(function (cond) {
+          return cond;
+        })
+      });
     }
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
@@ -7616,22 +7604,27 @@ function PasswordInputWithStrengMeter(_ref) {
         className: "list-disc text-sm ml-4 mt-2",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
           style: {
-            color: "".concat(passwordValue.strengthCharsValid[1] ? "green" : "red")
+            color: "".concat(passwordValue.strengthCharsValid[0] ? "green" : "red")
           },
-          children: "ch\u1EEF th\u01B0\u1EDDng"
+          children: "t\u1ED1i thi\u1EC3u 8 k\xFD t\u1EF1"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
           style: {
             color: "".concat(passwordValue.strengthCharsValid[2] ? "green" : "red")
           },
+          children: "ch\u1EEF th\u01B0\u1EDDng"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          style: {
+            color: "".concat(passwordValue.strengthCharsValid[3] ? "green" : "red")
+          },
           children: "ch\u1EEF in hoa"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
           style: {
-            color: "".concat(passwordValue.strengthCharsValid[0] ? "green" : "red")
+            color: "".concat(passwordValue.strengthCharsValid[1] ? "green" : "red")
           },
           children: "s\u1ED1"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
           style: {
-            color: "".concat(passwordValue.strengthCharsValid[3] ? "green" : "red")
+            color: "".concat(passwordValue.strengthCharsValid[4] ? "green" : "red")
           },
           children: "k\xFD t\u1EF1 \u0111\u1EB7c bi\u1EC7t"
         })]
@@ -7687,11 +7680,13 @@ function PasswordInputWithStrengMeter(_ref) {
       className: "flex justify-between items-center",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "flex gap-x-1 items-center h-1 w-3/4",
-        children: [0, 1, 2, 3, 4].map(function (index) {
+        children: passwordValue.strengthCharsValid.filter(function (cond) {
+          return cond;
+        }).map(function (index) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             className: "w-full px-1 h-1 pl-6 rounded-xl",
             style: {
-              background: " ".concat(index < passwordValue.strength ? passwordValue.strengthColor : "white")
+              background: " ".concat(passwordValue.strengthColor)
             }
           });
         })
@@ -7739,7 +7734,8 @@ function PasswordInputWithStrengMeter(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ RegisterForm)
+/* harmony export */   "BasicRegisterForm": () => (/* binding */ BasicRegisterForm),
+/* harmony export */   "FullyRegisterForm": () => (/* binding */ FullyRegisterForm)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -7758,72 +7754,188 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function RegisterForm(_ref) {
+function BasicRegisterForm(_ref) {
   var setIsLoginForm = _ref.setIsLoginForm;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState2 = _slicedToArray(_useState, 2),
-    firstName = _useState2[0],
-    setFirstName = _useState2[1];
+    email = _useState2[0],
+    setEmail = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState4 = _slicedToArray(_useState3, 2),
-    lastName = _useState4[0],
-    setLastName = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    password = _useState4[0],
+    setPassword = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState6 = _slicedToArray(_useState5, 2),
-    gender = _useState6[0],
-    setGender = _useState6[1];
+    message = _useState6[0],
+    setMessage = _useState6[1];
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    setMessage("");
+    var formValue = {
+      email: email,
+      password: password
+    };
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", formValue)["catch"](function (err) {
+      if (err.response) {
+        if (err.response.status === 422) {
+          if (err.response.data.message === "Email already exists") {
+            setMessage("Email đã tồn tại");
+          }
+        } else if (err.response.status === 400) {
+          setMessage("Vui lòng điền đầy đủ thông tin");
+        } else {
+          setMessage("Đăng ký thất bại");
+        }
+      }
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    className: "px-6 my-12 flex justify-center",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "w-10/12 flex justify-center items-center",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "hidden lg:block lg:w-1/3 bg-cover rounded-l-lg",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+          src: "/assets/images/login.png"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        id: "form-container",
+        className: "w-full lg:w-1/2  p-5 rounded-lg lg:rounded-l-none",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+          className: "pt-4 text-md text-center text-neutral-500",
+          children: "Xin ch\xE0o b\u1EA1n m\u1EDBi!"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+          className: "pt-1 text-center text-2xl",
+          children: "\u0110\u0103ng k\xFD \u0111\u1EC3 ti\u1EBFp t\u1EE5c"
+        }), message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "w-full mt-3",
+          style: {
+            background: "#fed3cf"
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+            className: "font-semibold p-4 text-center",
+            style: {
+              color: "#ab2830"
+            },
+            children: message
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+          className: "md:px-8 pt-6 pb-8 mb-4 rounded",
+          onSubmit: handleSubmit,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "mb-5",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              htmlFor: "email",
+              className: "block mb-2 text-sm font-bold text-neutral-700",
+              children: "Email \u0111\u0103ng k\xFD"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              type: "email",
+              required: true,
+              className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
+              placeholder: "",
+              name: "email",
+              value: email,
+              onChange: function onChange(e) {
+                setEmail(e.target.value);
+              }
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_PasswordInputWithStrengthMeter__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            password: password,
+            setPassword: setPassword,
+            hr: true
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "mb-6 text-center",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              className: "bg-amber-500 hover:bg-amber-700 w-full px-4 py-2 font-bold text-white focus:outline-none focus:shadow-outline rounded-full transition-all duration-200",
+              type: "submit",
+              children: "\u0110\u0103ng k\xFD"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {
+            className: "mb-6 border-t"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "text-center my-2",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "inline-block text-sm text-neutral-700 align-baselin",
+              children: ["\u0110\xE3 c\xF3 t\xE0i kho\u1EA3n?", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+                onClick: function onClick() {
+                  setIsLoginForm(true);
+                },
+                className: "underline text-amber-400 hover:text-amber-800 cursor-pointer",
+                children: "\u0110\u0103ng nh\u1EADp"
+              })]
+            })
+          })]
+        })]
+      })]
+    })
+  });
+}
+function FullyRegisterForm(_ref2) {
+  var setIsLoginForm = _ref2.setIsLoginForm;
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState8 = _slicedToArray(_useState7, 2),
-    email = _useState8[0],
-    setEmail = _useState8[1];
+    firstName = _useState8[0],
+    setFirstName = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState10 = _slicedToArray(_useState9, 2),
-    dob = _useState10[0],
-    setDob = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    lastName = _useState10[0],
+    setLastName = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState12 = _slicedToArray(_useState11, 2),
-    phone = _useState12[0],
-    setPhone = _useState12[1];
+    gender = _useState12[0],
+    setGender = _useState12[1];
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState14 = _slicedToArray(_useState13, 2),
-    address = _useState14[0],
-    setAddress = _useState14[1];
+    email = _useState14[0],
+    setEmail = _useState14[1];
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState16 = _slicedToArray(_useState15, 2),
-    username = _useState16[0],
-    setUsername = _useState16[1];
+    dob = _useState16[0],
+    setDob = _useState16[1];
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState18 = _slicedToArray(_useState17, 2),
-    password = _useState18[0],
-    setPassword = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    phone = _useState18[0],
+    setPhone = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState20 = _slicedToArray(_useState19, 2),
-    registerStep = _useState20[0],
-    setRegisterStep = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    address = _useState20[0],
+    setAddress = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState22 = _slicedToArray(_useState21, 2),
-    citiesList = _useState22[0],
-    setCitiesList = _useState22[1];
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    username = _useState22[0],
+    setUsername = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState24 = _slicedToArray(_useState23, 2),
-    districtsList = _useState24[0],
-    setDistrictsList = _useState24[1];
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    password = _useState24[0],
+    setPassword = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState26 = _slicedToArray(_useState25, 2),
-    wardsList = _useState26[0],
-    setWardsList = _useState26[1];
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    registerStep = _useState26[0],
+    setRegisterStep = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState28 = _slicedToArray(_useState27, 2),
-    city = _useState28[0],
-    setCity = _useState28[1];
-  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    citiesList = _useState28[0],
+    setCitiesList = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState30 = _slicedToArray(_useState29, 2),
-    district = _useState30[0],
-    setDistrict = _useState30[1];
-  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    districtsList = _useState30[0],
+    setDistrictsList = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState32 = _slicedToArray(_useState31, 2),
-    ward = _useState32[0],
-    setWard = _useState32[1];
+    wardsList = _useState32[0],
+    setWardsList = _useState32[1];
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState34 = _slicedToArray(_useState33, 2),
+    city = _useState34[0],
+    setCity = _useState34[1];
+  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState36 = _slicedToArray(_useState35, 2),
+    district = _useState36[0],
+    setDistrict = _useState36[1];
+  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState38 = _slicedToArray(_useState37, 2),
+    ward = _useState38[0],
+    setWard = _useState38[1];
   var lastStep = 3;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/cities").then(function (res) {
@@ -7953,7 +8065,7 @@ function RegisterForm(_ref) {
               className: "mb-5 grid md:grid-cols-2 gap-2 items-center md:justify-between gap-x-4",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                  "for": "lastName",
+                  htmlFor: "lastName",
                   className: "block mb-2 text-sm font-bold text-neutral-700",
                   children: "H\u1ECD"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -7969,7 +8081,7 @@ function RegisterForm(_ref) {
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                  "for": "firstName",
+                  htmlFor: "firstName",
                   className: "block mb-2 text-sm font-bold text-neutral-700",
                   children: "T\xEAn"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -7987,7 +8099,7 @@ function RegisterForm(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "mb-5",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                "for": "gender",
+                htmlFor: "gender",
                 className: "block mb-2 text-sm font-bold text-neutral-700",
                 children: "Gi\u1EDBi t\xEDnh"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -8048,7 +8160,7 @@ function RegisterForm(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "mb-5",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                "for": "dob",
+                htmlFor: "dob",
                 className: "block mb-2 text-sm font-bold text-neutral-700",
                 children: "Sinh nh\u1EADt"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -8068,7 +8180,7 @@ function RegisterForm(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "mb-5",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                "for": "email",
+                htmlFor: "email",
                 className: "block mb-2 text-sm font-bold text-neutral-700",
                 children: "Email"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -8085,7 +8197,7 @@ function RegisterForm(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "mb-5",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                "for": "phone",
+                htmlFor: "phone",
                 className: "block mb-2 text-sm font-bold text-neutral-700",
                 children: "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -8102,7 +8214,7 @@ function RegisterForm(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "mb-5",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                "for": "address",
+                htmlFor: "address",
                 className: "block mb-2 text-sm font-bold text-neutral-700",
                 children: "\u0110\u1ECBa ch\u1EC9"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -8183,7 +8295,7 @@ function RegisterForm(_ref) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "mb-5",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-                "for": "username",
+                htmlFor: "username",
                 className: "block mb-2 text-sm font-bold text-neutral-700",
                 children: "T\xEAn \u0111\u0103ng nh\u1EADp"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -11727,12 +11839,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Components_LoginRegister_LoginForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Components/LoginRegister/LoginForm */ "./resources/js/Components/LoginRegister/LoginForm.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Components_LoginRegister_RegisterForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/LoginRegister/RegisterForm */ "./resources/js/Components/LoginRegister/RegisterForm.jsx");
-/* harmony import */ var _Components_Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/Header */ "./resources/js/Components/Header.jsx");
-/* harmony import */ var _Components_Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/Footer */ "./resources/js/Components/Footer.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Components_LoginRegister_RegisterForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/LoginRegister/RegisterForm */ "./resources/js/Components/LoginRegister/RegisterForm.jsx");
+/* harmony import */ var _Components_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/Header */ "./resources/js/Components/Header.jsx");
+/* harmony import */ var _Components_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/Footer */ "./resources/js/Components/Footer.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -11747,21 +11857,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 function LoginRegister() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState2 = _slicedToArray(_useState, 2),
     isLoginForm = _useState2[0],
     setIsLoginForm = _useState2[1];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       className: "px-6 my-12",
-      children: isLoginForm ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_LoginRegister_LoginForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      children: isLoginForm ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_LoginRegister_LoginForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
         setIsLoginForm: setIsLoginForm
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_LoginRegister_RegisterForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_LoginRegister_RegisterForm__WEBPACK_IMPORTED_MODULE_2__.BasicRegisterForm, {
         setIsLoginForm: setIsLoginForm
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Footer__WEBPACK_IMPORTED_MODULE_5__["default"], {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Components_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], {})]
   });
 }
 

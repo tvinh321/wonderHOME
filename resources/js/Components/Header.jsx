@@ -112,9 +112,11 @@ export default function Header() {
                                 </svg>
                             </button>
 
-                            <div className="mt-2 mr-4">
-                                <NotificationMenu />
-                            </div>
+                            {isLoggedIn && (
+                                <div className="mt-2 mr-4">
+                                    <NotificationMenu />
+                                </div>
+                            )}
 
                             <a href={isLoggedIn ? "/dang-tin" : "/dang-nhap"}>
                                 <button className="hidden md:flex group mr-4 text-amber-300 border border-amber-300 hover:border-transparent hover:bg-amber-300 font-bold py-2 px-4 rounded items-center">

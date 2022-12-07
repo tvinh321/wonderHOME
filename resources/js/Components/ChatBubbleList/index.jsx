@@ -57,8 +57,9 @@ function ChatBubbleList() {
 
     return (
         <>
-           {latestChat?.length && <ChatBubble messages={latestChat} secondUser={latestChatUser} />
-}
+            {latestChat?.length && (
+                <ChatBubble messages={latestChat} secondUser={latestChatUser} />
+            )}
             <NewChatBubble />
         </>
     );

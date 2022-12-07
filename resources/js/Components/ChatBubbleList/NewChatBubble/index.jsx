@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import ChatBox, { ChatFrame } from "react-chat-plugin";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/solid";
 
 function NewChatBubble() {
+    const isLoggedIn = useMemo(
+        () => !!localStorage.getItem("wonderHome-token"),
+        [localStorage.getItem("wonderHome-token")]
+    );
     return (
         <ChatFrame
             icon={
@@ -13,7 +17,8 @@ function NewChatBubble() {
                 />
             }
             clickIcon={() => {
-                window.location.href = "/chat";
+                const path = isLoggedIn ? "/chat" : "/dang-nhap";
+                window.location.href = path;
             }}
             showIcon={true}
             iconStyle={{

@@ -13,7 +13,7 @@ export default function PasswordInputWithStrengMeter({ setPassword }) {
         strengthText: "",
         strengthColor: "white",
         strengthLength: 0,
-        strengthCharsValid: [false, false, false, false], // digit, lower case, upper case, special char
+        strengthCharsValid: [false, false, false, false, false], // length, digit, lower case, upper case, special char
     });
 
     const [showPasswordField, setShowPasswordField] = useState(false);
@@ -24,7 +24,29 @@ export default function PasswordInputWithStrengMeter({ setPassword }) {
     }, [passwordValue]);
 
     const validatePasswordStrong = (value) => {
-        if (!value) {
+        const conditionCheck = {
+            lengthCheck: value.length >= minLength,
+            digitCheck: digitReg.test(value),
+            lowerCaseCheck: lowerCaseReg.test(value),
+            upperCaseCheck: upperCaseReg.test(value),
+            specialCharCheck: specialCharReg.test(value),
+        };
+
+        const numbOfPassedConditions = Object.values(conditionCheck).filter(
+            (cond) => cond === true
+        ).length;
+
+        const strengthTexts = [
+            "Mật khẩu rất yếu",
+            "Mật khẩu yếu",
+            "Mật khẩu trung bình",
+            "Mật khẩu trung bình",
+            "Mật khẩu mạnh",
+        ];
+
+        const strengthColors = ["red", "orange", "#fbbf24", "#fbbf24", "green"];
+
+        if (!value || numbOfPassedConditions === 0) {
             setPasswordValue({
                 password: "",
                 strength: 0,
@@ -32,76 +54,16 @@ export default function PasswordInputWithStrengMeter({ setPassword }) {
                 strengthColor: "white",
                 strengthCharsValid: [false, false, false, false],
             });
-            return;
-        }
-
-        const digitCheck = digitReg.test(value);
-        const lowerCaseCheck = lowerCaseReg.test(value);
-        const upperCaseCheck = upperCaseReg.test(value);
-        const specialCharCheck = specialCharReg.test(value);
-
-        if (value.length < minLength)
+        } else {
             setPasswordValue({
                 password: value,
-                strength: 1,
-                strengthText: "Mật khẩu quá yếu",
-                strengthColor: "red",
-                strengthCharsValid: [
-                    digitCheck,
-                    lowerCaseCheck,
-                    upperCaseCheck,
-                    specialCharCheck,
-                ],
+                strength: numbOfPassedConditions,
+                strengthText: strengthTexts[numbOfPassedConditions - 1],
+                strengthColor: strengthColors[numbOfPassedConditions - 1],
+                strengthCharsValid: Object.values(conditionCheck).map(
+                    (cond) => cond
+                ),
             });
-        else {
-            if (
-                (digitCheck || lowerCaseCheck || upperCaseCheck) &&
-                !(digitCheck && lowerCaseCheck && upperCaseCheck)
-            ) {
-                setPasswordValue({
-                    password: value,
-                    strength: 2,
-                    strengthText: "Mật khẩu yếu",
-                    strengthColor: "orange",
-                    strengthCharsValid: [
-                        digitCheck,
-                        lowerCaseCheck,
-                        upperCaseCheck,
-                        specialCharCheck,
-                    ],
-                });
-            } else if (
-                digitCheck &&
-                lowerCaseCheck &&
-                upperCaseCheck &&
-                specialCharCheck
-            ) {
-                setPasswordValue({
-                    password: value,
-                    strength: 4,
-                    strengthText: "Mật khẩu mạnh",
-                    strengthColor: "green",
-                    strengthCharsValid: [
-                        digitCheck,
-                        lowerCaseCheck,
-                        upperCaseCheck,
-                        specialCharCheck,
-                    ],
-                });
-            } else {
-                setPasswordValue({
-                    password: value,
-                    strength: 3,
-                    strengthText: "Mật khẩu trung bình",
-                    strengthColor: "yellow",
-                    strengthCharsValid: [
-                        digitCheck,
-                        lowerCaseCheck,
-                        upperCaseCheck,
-                        specialCharCheck,
-                    ],
-                });
-            }
         }
     };
 
@@ -120,13 +82,13 @@ export default function PasswordInputWithStrengMeter({ setPassword }) {
                     <li
                         style={{
                             color: `${
-                                passwordValue.strengthCharsValid[1]
+                                passwordValue.strengthCharsValid[0]
                                     ? "green"
                                     : "red"
                             }`,
                         }}
                     >
-                        chữ thường
+                        tối thiểu 8 ký tự
                     </li>
                     <li
                         style={{
@@ -137,12 +99,23 @@ export default function PasswordInputWithStrengMeter({ setPassword }) {
                             }`,
                         }}
                     >
+                        chữ thường
+                    </li>
+                    <li
+                        style={{
+                            color: `${
+                                passwordValue.strengthCharsValid[3]
+                                    ? "green"
+                                    : "red"
+                            }`,
+                        }}
+                    >
                         chữ in hoa
                     </li>
                     <li
                         style={{
                             color: `${
-                                passwordValue.strengthCharsValid[0]
+                                passwordValue.strengthCharsValid[1]
                                     ? "green"
                                     : "red"
                             }`,
@@ -153,7 +126,7 @@ export default function PasswordInputWithStrengMeter({ setPassword }) {
                     <li
                         style={{
                             color: `${
-                                passwordValue.strengthCharsValid[3]
+                                passwordValue.strengthCharsValid[4]
                                     ? "green"
                                     : "red"
                             }`,
@@ -213,20 +186,18 @@ export default function PasswordInputWithStrengMeter({ setPassword }) {
             </div>
             <div className="flex justify-between items-center">
                 <div className="flex gap-x-1 items-center h-1 w-3/4">
-                    {[0, 1, 2, 3, 4].map((index) => {
-                        return (
-                            <div
-                                className="w-full px-1 h-1 pl-6 rounded-xl"
-                                style={{
-                                    background: ` ${
-                                        index < passwordValue.strength
-                                            ? passwordValue.strengthColor
-                                            : "white"
-                                    }`,
-                                }}
-                            ></div>
-                        );
-                    })}
+                    {passwordValue.strengthCharsValid
+                        .filter((cond) => cond)
+                        .map((index) => {
+                            return (
+                                <div
+                                    className="w-full px-1 h-1 pl-6 rounded-xl"
+                                    style={{
+                                        background: ` ${passwordValue.strengthColor}`,
+                                    }}
+                                ></div>
+                            );
+                        })}
                 </div>
 
                 <p style={{ color: `${passwordValue.strengthColor}` }}>
