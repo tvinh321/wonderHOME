@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function LoginForm({ setIsLoginForm }) {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -51,7 +51,7 @@ export default function LoginForm({ setIsLoginForm }) {
         setLoading(true);
         let response = null;
         try {
-            response = await axios.post("/api/login", { username, password });
+            response = await axios.post("/api/login", { email, password });
         } catch (e) {
             response = e.response;
         } finally {
@@ -107,18 +107,18 @@ export default function LoginForm({ setIsLoginForm }) {
                         <div className="mb-4">
                             <label
                                 className="block mb-2 text-sm font-bold text-neutral-700"
-                                htmlFor="username"
+                                htmlFor="email"
                             >
-                                Tên đăng nhập
+                                Email
                             </label>
                             <input
                                 className="w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                id="username"
+                                id="email"
                                 type="text"
                                 required
                                 placeholder=""
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 

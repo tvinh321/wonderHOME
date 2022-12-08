@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Events\MessageSent;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use Illuminate\Support\Facades\Storage;
 
 class ChatController extends Controller
 {
@@ -109,6 +110,17 @@ class ChatController extends Controller
 
         return response()->json([
             'status' => 'Messages seen'
+        ]);
+    }
+
+    public function getFile(Request $request)
+    {
+        $fileName = $request->fileName;
+
+        $file = Storage::url($fileName);
+
+        return response()->json([
+            'file' => $file
         ]);
     }
 }

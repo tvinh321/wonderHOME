@@ -87,8 +87,7 @@ class UsersController extends Controller
         $payload = [
             'iss' => 'lumen-jwt', // Issuer of the token
             'sub' => $user_id, // Subject of the token
-            'iat' => time(), // Time when JWT was issued.
-            'exp' => time() + 60 * 60 // Expiration time
+            'iat' => time() // Time when JWT was issued.
         ];
 
         return JWT::encode($payload, $key, 'HS256');

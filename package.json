@@ -31,6 +31,7 @@
         "eslint-plugin-react": "^7.31.11",
         "heroicons": "^2.0.13",
         "laravel-echo": "^1.14.1",
+        "moment-timezone": "^0.5.39",
         "pusher-js": "^7.5.0",
         "react": "^18.2.0",
         "react-accessible-accordion": "^5.0.0",

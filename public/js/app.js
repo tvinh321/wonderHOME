@@ -7288,8 +7288,8 @@ function LoginForm(_ref) {
   var setIsLoginForm = _ref.setIsLoginForm;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState2 = _slicedToArray(_useState, 2),
-    username = _useState2[0],
-    setUsername = _useState2[1];
+    email = _useState2[0],
+    setEmail = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
     _useState4 = _slicedToArray(_useState3, 2),
     password = _useState4[0],
@@ -7354,7 +7354,7 @@ function LoginForm(_ref) {
               _context.prev = 4;
               _context.next = 7;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/login", {
-                username: username,
+                email: email,
                 password: password
               });
             case 7:
@@ -7426,17 +7426,17 @@ function LoginForm(_ref) {
             className: "mb-4",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
               className: "block mb-2 text-sm font-bold text-neutral-700",
-              htmlFor: "username",
-              children: "T\xEAn \u0111\u0103ng nh\u1EADp"
+              htmlFor: "email",
+              children: "Email"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               className: "w-full px-3 py-2 text-sm leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-              id: "username",
+              id: "email",
               type: "text",
               required: true,
               placeholder: "",
-              value: username,
+              value: email,
               onChange: function onChange(e) {
-                return setUsername(e.target.value);
+                return setEmail(e.target.value);
               }
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -9898,9 +9898,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _Components_Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/Header */ "./resources/js/Components/Header.jsx");
-/* harmony import */ var _Components_Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/Footer */ "./resources/js/Components/Footer.jsx");
 /* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/PhotoIcon.js");
+/* harmony import */ var _heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @heroicons/react/24/outline */ "./node_modules/@heroicons/react/24/outline/esm/XMarkIcon.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -9922,6 +9927,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Chat() {
+  var _chatRoom$otherUser, _chatRoom$otherUser2;
+  var token = localStorage.getItem("wonderHome-token");
+  var base64Url = token.split(".")[1];
+  var base64 = base64Url.replace("-", "+").replace("_", "/");
+  var user = JSON.parse(window.atob(base64)).sub;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     messages = _useState2[0],
@@ -9930,29 +9940,55 @@ function Chat() {
     _useState4 = _slicedToArray(_useState3, 2),
     message = _useState4[0],
     setMessage = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(""),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(),
     _useState6 = _slicedToArray(_useState5, 2),
-    user = _useState6[0],
-    setUser = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({}),
+    chatRoom = _useState6[0],
+    setChatRoom = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
     _useState8 = _slicedToArray(_useState7, 2),
-    chatRoom = _useState8[0],
-    setChatRoom = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
+    chatRooms = _useState8[0],
+    setChatRooms = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false),
     _useState10 = _slicedToArray(_useState9, 2),
-    chatRooms = _useState10[0],
-    setChatRooms = _useState10[1];
+    viewModal = _useState10[0],
+    setViewModal = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null),
+    _useState12 = _slicedToArray(_useState11, 2),
+    image = _useState12[0],
+    setImage = _useState12[1];
+  var handleSeen = function handleSeen() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/seen/".concat(chatRoom.chat_rooms_id), {
+      headers: {
+        authorization: "Bearer ".concat(token)
+      }
+    });
+    setChatRooms(function (chatRooms) {
+      var index = chatRooms.findIndex(function (i) {
+        return i.chat_rooms_id === chatRoom.chat_rooms_id;
+      });
+      if (chatRooms[index].lastMessage) chatRooms[index].lastMessage.read = true;
+      return chatRooms;
+    });
+  };
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/chatRoom").then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/chatRoom", {
+      headers: {
+        'Authorization': "Bearer ".concat(token)
+      }
+    }).then(function (response) {
       setChatRooms(response.data.chatRooms);
     });
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    if (chatRoom.id) {
+    if (chatRoom) {
       axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/messages", {
-        chatRoomId: chatRoom.id
+        chatRoomId: chatRoom.chat_rooms_id
       }).then(function (response) {
-        setMessages(response.data.messages);
+        setMessages(response.data.messages.map(function (i) {
+          i.created_at = moment__WEBPACK_IMPORTED_MODULE_5___default()(i.created_at).add(7, "hours").format("YYYY-MM-DD HH:mm:ss");
+          return i;
+        }));
+        handleSeen();
       });
       var echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
         broadcaster: "pusher",
@@ -9961,14 +9997,26 @@ function Chat() {
         forceTLS: true,
         encrypted: true
       });
-      var channel = echo.channel("chat-room." + chatRoom.id);
+      var channel = echo.channel("chat-room." + chatRoom.chat_rooms_id);
       channel.listen(".message.sent", function (e) {
         setMessages(function (messages) {
-          return [].concat(_toConsumableArray(messages), [e]);
+          return [].concat(_toConsumableArray(messages), [_objectSpread(_objectSpread({}, e), {}, {
+            created_at: moment__WEBPACK_IMPORTED_MODULE_5___default()(e.created_at).format("YYYY-MM-DD HH:mm:ss")
+          })]);
+        });
+        handleSeen();
+        setChatRooms(function (chatRooms) {
+          var index = chatRooms.findIndex(function (i) {
+            return i.chat_rooms_id === chatRoom.chat_rooms_id;
+          });
+          chatRooms[index].lastMessage = e;
+          return chatRooms;
         });
       });
+      console.log(user);
+      console.log(chatRoom);
       return function () {
-        echo.leave("chat-room." + chatRoom.id);
+        echo.leave("chat-room." + chatRoom.chat_rooms_id);
         echo.disconnect();
       };
     }
@@ -9976,12 +10024,26 @@ function Chat() {
   var sendMessage = function sendMessage(e) {
     e.preventDefault();
     axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/send", {
-      userId: user,
+      userId: user.id,
       message: message,
-      chatRoomId: chatRoom.id
+      chatRoomId: chatRoom.chat_rooms_id
     }).then(function () {
       setMessage("");
     });
+  };
+  var handleFiles = function handleFiles(e) {
+    var files = e.target.files;
+    for (var i = 0; i < files.length; i++) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post("/api/chat/uploadFiles", {
+        chatId: chatRoom.chat_rooms_id,
+        file: files[i]
+      }, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": "Bearer ".concat(token)
+        }
+      });
+    }
   };
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
     var chatBox = document.getElementById("chat-box");
@@ -9989,9 +10051,9 @@ function Chat() {
   }, [messages]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-      className: "flex pt-4",
+      className: "flex pt-4 h-[80vh]",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "w-1/4 border-r",
+        className: "w-1/4 border-r h-full",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "flex px-3 py-4 items-center cursor-default border-b h-16",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
@@ -10000,86 +10062,128 @@ function Chat() {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "flex flex-col",
-          children: chatRooms.map(function (user, index) {
+          children: chatRooms.map(function (item, index) {
+            var _item$lastMessage, _item$lastMessage2, _item$lastMessage3;
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-              className: "flex items-center px-3 py-4 cursor-pointer hover:bg-gray-100 ".concat(chatRoom.id === user.id ? "bg-gray-100" : ""),
+              className: "flex items-center px-3 py-4 cursor-pointer hover:bg-gray-100 ".concat(chatRoom && chatRoom.id === item.id ? "bg-gray-100" : ""),
               onClick: function onClick() {
-                return setChatRoom(user);
+                return setChatRoom(item);
               },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-                src: user.otherUser.avatar || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+                src: item.otherUser.avatar ? "http://localhost:8000/api/avatar/".concat(item.otherUser.avatar) : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
                 className: "w-14 h-14 rounded-full"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "flex flex-col ml-3",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
                   className: "font-semibold text-gray-800",
-                  children: user.otherUser.email
+                  children: item.otherUser.email
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-                  className: "text-sm text-gray-600",
-                  children: "Tin nh\u1EAFn m\u1EDBi"
+                  className: "text-sm text-gray-600 " + (((_item$lastMessage = item.lastMessage) === null || _item$lastMessage === void 0 ? void 0 : _item$lastMessage.users_id) == user.id || (_item$lastMessage2 = item.lastMessage) !== null && _item$lastMessage2 !== void 0 && _item$lastMessage2.read ? "" : "font-bold"),
+                  children: (_item$lastMessage3 = item.lastMessage) !== null && _item$lastMessage3 !== void 0 && _item$lastMessage3.content ? item.lastMessage.content.includes("[[file") ? "Đã gửi một tệp tin" : item.lastMessage.content : "Hãy bắt đầu cuộc trò chuyện"
                 })]
               })]
             }, index);
           })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        className: "w-3/4",
+        className: "w-3/4 h-full",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-          className: "flex flex-col h-screen",
+          className: "flex flex-col flex-wrap",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "flex items-center px-6 h-16 border-b",
-            children: [chatRoom.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-              src: userChatList.find(function (user) {
-                return user.id === chatRoom.id;
-              }).avatar ? userChatList.find(function (user) {
-                return user.id === chatRoom.id;
-              }).avatar : "https://i.pravatar.cc/150?img=1",
-              className: "w-14 h-14 rounded-full"
+            children: [chatRoom && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+              src: chatRoom !== null && chatRoom !== void 0 && (_chatRoom$otherUser = chatRoom.otherUser) !== null && _chatRoom$otherUser !== void 0 && _chatRoom$otherUser.avatar ? "http://localhost:8000/api/avatar/".concat(chatRoom.otherUser.avatar) : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+              className: "w-14 h-14 rounded-full object-fill"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
               className: "flex flex-col ml-3",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
                 className: "font-semibold text-gray-800",
-                children: chatRoom.id && userChatList.find(function (user) {
-                  return user.id === chatRoom.id;
-                }).name
+                children: chatRoom === null || chatRoom === void 0 ? void 0 : (_chatRoom$otherUser2 = chatRoom.otherUser) === null || _chatRoom$otherUser2 === void 0 ? void 0 : _chatRoom$otherUser2.email
               })
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            className: "flex-1 overflow-y-auto",
+            className: "flex-1 overflow-y-scroll max-h-full",
             id: "chat-box",
             children: messages.map(function (message, index) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                className: "flex items-center px-6 py-4 ".concat(message.user === 1 ? "justify-end" : ""),
+                className: "flex items-center px-6 py-4 ".concat(message.users_id === user.id ? "justify-end" : ""),
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                  className: "flex flex-col ".concat(message.user === 1 ? "items-end" : "items-start"),
+                  className: "flex flex-col ".concat(message.users_id === user.id ? "items-end" : "items-start"),
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                    className: "flex items-center ".concat(message.user === 1 ? "flex-row-reverse" : ""),
+                    className: "flex items-center ".concat(message.users_id === user.id ? "flex-row-reverse" : ""),
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-                      className: "text-sm px-4 py-2 rounded-lg ".concat(message.user === 1 ? "bg-[#ffb803] text-gray-100" : "bg-gray-200 text-gray-800"),
-                      children: message.message
+                      className: "text-sm px-4 py-2 rounded-lg ".concat(message.users_id === user.id ? "bg-[#ffb803] text-gray-100" : "bg-gray-200 text-gray-800"),
+                      children:
+                      // If content has this form "[[file]]", it's an image
+                      message.content.includes("[[file") ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+                        src: "http://localhost:8000/api/chat/downloadFile/".concat(chatRoom.chat_rooms_id, "/").concat(message.content.split("file:")[1].split("]]")[0]),
+                        className: "w-32 h-32 rounded-lg object-cover cursor-pointer",
+                        onClick: function onClick(e) {
+                          setImage(e.target.src);
+                          setViewModal(true);
+                        }
+                      }) : message.content
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
                       className: "text-xs text-gray-500 mx-2",
-                      children: message.time
+                      children: message.created_at
                     })]
                   })
                 })
               }, index);
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          }), chatRoom && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "flex items-center px-3 py-4 border-t",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
               type: "text",
-              className: "w-full border rounded-full px-3 py-2"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"], {
-              className: "w-6 h-6 text-amber-400 ml-3 cursor-pointer"
+              className: "w-full border rounded-full px-3 py-2",
+              placeholder: "Nh\u1EADp tin nh\u1EAFn",
+              value: message,
+              onChange: function onChange(e) {
+                return setMessage(e.target.value);
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+              type: "file",
+              className: "hidden",
+              id: "file",
+              onChange: function onChange(e) {
+                return handleFiles(e);
+              },
+              multiple: true,
+              accept: "image/*"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+              htmlFor: "file",
+              className: "cursor-pointer",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                className: "h-6 w-6 text-amber-400 ml-4"
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
               className: "bg-amber-400 text-white px-3 py-2 rounded-full ml-3",
+              onClick: function onClick(e) {
+                return sendMessage(e);
+              },
               children: "G\u1EEDi"
             })]
           })]
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Footer__WEBPACK_IMPORTED_MODULE_5__["default"], {})]
+    }), viewModal && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "bg-white rounded-lg shadow-lg p-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+          className: "absolute top-12 right-12",
+          onClick: function onClick() {
+            return setViewModal(false);
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_heroicons_react_24_outline__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            className: "h-12 w-12 text-gray-200"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+          src: image,
+          className: "w-full h-full rounded-lg object-cover"
+        })]
+      })
+    })]
   });
 }
 
@@ -97291,6 +97395,48 @@ function PhotoIcon({
 }
 
 const ForwardRef = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(PhotoIcon);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ForwardRef);
+
+/***/ }),
+
+/***/ "./node_modules/@heroicons/react/24/outline/esm/XMarkIcon.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@heroicons/react/24/outline/esm/XMarkIcon.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+function XMarkIcon({
+  title,
+  titleId,
+  ...props
+}, svgRef) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", Object.assign({
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    strokeWidth: 1.5,
+    stroke: "currentColor",
+    "aria-hidden": "true",
+    ref: svgRef,
+    "aria-labelledby": titleId
+  }, props), title ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("title", {
+    id: titleId
+  }, title) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M6 18L18 6M6 6l12 12"
+  }));
+}
+
+const ForwardRef = react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(XMarkIcon);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ForwardRef);
 
 /***/ }),

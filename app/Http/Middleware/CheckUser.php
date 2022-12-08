@@ -18,6 +18,9 @@ class CheckUser
 
         if ($token) {
             try {
+                $output->writeln('Token: ' . $token);
+                $output->writeln('Key: ' . env('JWT_KEY'));
+
                 $decoded = JWT::decode($token, new Key(env('JWT_KEY'), 'HS256'));
                 $request->user = $decoded->sub;
                 return $next($request);

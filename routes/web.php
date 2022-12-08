@@ -62,7 +62,7 @@ Route::get('/api/chatRoom', [App\Http\Controllers\ChatController::class, 'getCha
 
 Route::post('/api/createChatRoom', [App\Http\Controllers\ChatController::class, 'createChatRoom'])->middleware(CheckUser::class);
 
-Route::post('/api/seen', [App\Http\Controllers\ChatController::class, 'setSeen'])->middleware(CheckUser::class);
+Route::get('/api/seen/{chatRoomId}', [App\Http\Controllers\ChatController::class, 'setSeen'])->middleware(CheckUser::class);
 
 Route::get('/api/appointments', [App\Http\Controllers\AppointmentsController::class, 'getAppointments'])->middleware(CheckUser::class);
 
@@ -73,3 +73,9 @@ Route::delete('/api/appointments/{id}', [App\Http\Controllers\AppointmentsContro
 Route::get('/api/18055852-d092774e-eeda-4c94-bc08-8f39f8cc5208', [App\Http\Controllers\SchedulerController::class, 'checkAppointments']);
 
 Route::post('/api/rating/{id}', [App\Http\Controllers\RatingController::class, 'postRating']);
+
+Route::post('/api/chat/uploadFiles', [App\Http\Controllers\FilesController::class, 'uploadFilesForChat'])->middleware(CheckUser::class);
+
+Route::get('/api/chat/downloadFile/{chatId}/{fileName}', [App\Http\Controllers\FilesController::class, 'getFilesForChat']);
+
+Route::get('/api/avatar/{fileName}', [App\Http\Controllers\FilesController::class, 'getAvatar']);
