@@ -10070,7 +10070,7 @@ function Chat() {
                 return setChatRoom(item);
               },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-                src: item.otherUser.avatar ? "http://localhost:8000/api/avatar/".concat(item.otherUser.avatar) : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+                src: item.otherUser.avatar ? "/api/avatar/".concat(item.otherUser.avatar) : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
                 className: "w-14 h-14 rounded-full"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "flex flex-col ml-3",
@@ -10092,7 +10092,7 @@ function Chat() {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "flex items-center px-6 h-16 border-b",
             children: [chatRoom && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-              src: chatRoom !== null && chatRoom !== void 0 && (_chatRoom$otherUser = chatRoom.otherUser) !== null && _chatRoom$otherUser !== void 0 && _chatRoom$otherUser.avatar ? "http://localhost:8000/api/avatar/".concat(chatRoom.otherUser.avatar) : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+              src: chatRoom !== null && chatRoom !== void 0 && (_chatRoom$otherUser = chatRoom.otherUser) !== null && _chatRoom$otherUser !== void 0 && _chatRoom$otherUser.avatar ? "/api/avatar/".concat(chatRoom.otherUser.avatar) : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
               className: "w-14 h-14 rounded-full object-fill"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
               className: "flex flex-col ml-3",
@@ -10116,7 +10116,7 @@ function Chat() {
                       children:
                       // If content has this form "[[file]]", it's an image
                       message.content.includes("[[file") ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-                        src: "http://localhost:8000/api/chat/downloadFile/".concat(chatRoom.chat_rooms_id, "/").concat(message.content.split("file:")[1].split("]]")[0]),
+                        src: "/api/chat/downloadFile/".concat(chatRoom.chat_rooms_id, "/").concat(message.content.split("file:")[1].split("]]")[0]),
                         className: "w-32 h-32 rounded-lg object-cover cursor-pointer",
                         onClick: function onClick(e) {
                           setImage(e.target.src);

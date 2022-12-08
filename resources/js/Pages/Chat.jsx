@@ -156,7 +156,7 @@ export default function Chat() {
                                 <img
                                     src={
                                         item.otherUser.avatar
-                                        ? `http://localhost:8000/api/avatar/${item.otherUser.avatar}`
+                                        ? `/api/avatar/${item.otherUser.avatar}`
                                         : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
                                     }
                                     className="w-14 h-14 rounded-full"
@@ -184,7 +184,7 @@ export default function Chat() {
                                 <img
                                     src={
                                         chatRoom?.otherUser?.avatar
-                                        ? `http://localhost:8000/api/avatar/${chatRoom.otherUser.avatar}`
+                                        ? `/api/avatar/${chatRoom.otherUser.avatar}`
                                         : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
                                     }
                                     className="w-14 h-14 rounded-full object-fill"
@@ -230,7 +230,7 @@ export default function Chat() {
                                                     message.content.includes("[[file")
                                                     ? (
                                                         <img
-                                                            src={`http://localhost:8000/api/chat/downloadFile/${chatRoom.chat_rooms_id}/${message.content.split("file:")[1].split("]]")[0]}`}
+                                                            src={`/api/chat/downloadFile/${chatRoom.chat_rooms_id}/${message.content.split("file:")[1].split("]]")[0]}`}
                                                             className="w-32 h-32 rounded-lg object-cover cursor-pointer"
                                                             onClick={(e) => {
                                                                 setImage(e.target.src);
