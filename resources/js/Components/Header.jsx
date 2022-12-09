@@ -5,7 +5,7 @@ export default function Header() {
     // Check if the user is logged in
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
-    const SERVICES = ["tim-kiem", "chuyen-gia", "huong-dan"];
+    const SERVICES = ["/tim-kiem", "/chuyen-gia", "/huong-dan"];
     const NAVLINK_VIE = ["Nhà đất bán", "Chuyên gia", "Hướng dẫn"];
 
     // Check if the user is logged in
