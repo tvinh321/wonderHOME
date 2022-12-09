@@ -5,12 +5,16 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Gallery from "../Components/Details/Gallery";
 import OwnerContact from "../Components/Details/OwnerContact";
-import { QuestionMarkCircleIcon } from "@heroicons/react/24/solid";
+import {
+    ExclamationTriangleIcon,
+    QuestionMarkCircleIcon,
+} from "@heroicons/react/24/solid";
 
 export default function Details() {
     const houseId = useParams();
     const [house, setHouse] = useState({});
-    const [modalRequest, setModalReuqest] = useState(false);
+    const [modalRequest, setModalRequest] = useState(false);
+    const [modalReport, setModalReport] = useState(false);
 
     useEffect(() => {
         axios
@@ -46,6 +50,7 @@ export default function Details() {
                             price={house.price}
                             bedNumb={house.num_of_bedrooms}
                             area={house.area}
+                            setModalReport={setModalReport}
                         />
                     </div>
 
@@ -280,7 +285,7 @@ export default function Details() {
                                             <span
                                                 className="underline text-amber-500"
                                                 onClick={() => {
-                                                    setModalReuqest(true);
+                                                    setModalRequest(true);
                                                 }}
                                             >
                                                 yêu cầu cung cấp giấy tờ pháp lý
@@ -378,19 +383,17 @@ export default function Details() {
                                     </h1>
 
                                     <div className="mx-auto md:mt-6 mt-4">
-                                        {
-                                            house.location && (
-                                                <iframe
-                                                    className="w-full h-96"
-                                                    frameborder="0"
-                                                    marginheight="0"
-                                                    marginwidth="0"
-                                                    title="map"
-                                                    scrolling="no"
-                                                    src={`https://maps.google.com/maps?width=100%&height=600&hl=vi&q=${house.location}&ie=UTF8&t=&z=14&iwloc=B&output=embed`}
-                                                />
-                                            )
-                                        } 
+                                        {house.location && (
+                                            <iframe
+                                                className="w-full h-96"
+                                                frameborder="0"
+                                                marginheight="0"
+                                                marginwidth="0"
+                                                title="map"
+                                                scrolling="no"
+                                                src={`https://maps.google.com/maps?width=100%&height=600&hl=vi&q=${house.location}&ie=UTF8&t=&z=14&iwloc=B&output=embed`}
+                                            />
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -463,7 +466,7 @@ export default function Details() {
                                         height="20"
                                     />
                                 </div>
-                                <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <div className="mt-3  sm:mt-0 sm:ml-4 text-left">
                                     <h3
                                         className="text-lg leading-6 font-medium text-gray-900"
                                         id="modal-headline"
@@ -481,7 +484,7 @@ export default function Details() {
                         </div>
                         <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex items-center justify-between">
                             <button
-                                onClick={() => setModalReuqest(false)}
+                                onClick={() => setModalRequest(false)}
                                 type="button"
                                 className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 border-amber-600 text-base font-medium text-neutral-700 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 sm:ml-3 sm:w-auto sm:text-sm"
                             >
@@ -490,10 +493,82 @@ export default function Details() {
 
                             <button
                                 type="button"
-                                onClick={() => setModalReuqest(false)}
+                                onClick={() => setModalRequest(false)}
                                 className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-amber-500 text-base font-medium text-white hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                             >
                                 Gửi yêu cầu
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                className={`fixed inset-0 z-50 overflow-y-auto ${
+                    modalReport ? "block" : "hidden"
+                }`}
+            >
+                <div className="flex items-end justify-center min-h-screen pt-8 px-8 pb-32 text-center sm:block sm:p-0">
+                    <div
+                        className="fixed inset-0 transition-opacity"
+                        aria-hidden="true"
+                    >
+                        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                    </div>
+
+                    <span
+                        className="hidden sm:inline-block sm:align-middle sm:h-screen"
+                        aria-hidden="true"
+                    >
+                        &#8203;
+                    </span>
+
+                    <div
+                        className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="modal-headline"
+                    >
+                        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div className="sm:flex sm:items-start">
+                                <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full sm:mx-0 sm:h-10 sm:w-10">
+                                    <ExclamationTriangleIcon
+                                        className="h-6 w-6 text-amber-400"
+                                        aria-hidden="true"
+                                        width="20"
+                                        height="20"
+                                    />
+                                </div>
+                                <div className="mt-3 sm:mt-0 sm:ml-4 text-left">
+                                    <h3
+                                        className="text-lg leading-6 font-medium text-gray-900"
+                                        id="modal-headline"
+                                    >
+                                        Báo cáo tin đăng có thông tin không đúng
+                                    </h3>
+                                    <div className="mt-2">
+                                        <p className="text-sm text-gray-500">
+                                            Danh sách báo xấu
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex items-center justify-between">
+                            <button
+                                onClick={() => setModalReport(false)}
+                                type="button"
+                                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 border-amber-600 text-base font-medium text-neutral-700 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 sm:ml-3 sm:w-auto sm:text-sm"
+                            >
+                                Hủy
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => setModalReport(false)}
+                                className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-amber-500 text-base font-medium text-white hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                            >
+                                Gửi báo cáo
                             </button>
                         </div>
                     </div>
