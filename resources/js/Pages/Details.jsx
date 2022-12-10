@@ -46,6 +46,7 @@ export default function Details() {
 
                         {/* Image gallery */}
                         <Gallery
+                            title={house.title}
                             files={house.files}
                             price={house.price}
                             bedNumb={house.num_of_bedrooms}

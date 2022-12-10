@@ -27,6 +27,7 @@
         "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/inertia-react": "^0.8.1",
         "@inertiajs/progress": "^0.2.7",
+        "@szhsin/react-menu": "^3.3.0",
         "@tailwindcss/line-clamp": "^0.4.2",
         "eslint-plugin-react": "^7.31.11",
         "heroicons": "^2.0.13",
@@ -41,6 +42,7 @@
         "react-pannellum": "^0.2.13",
         "react-responsive-carousel": "^3.2.23",
         "react-router-dom": "^6.4.3",
+        "react-share": "^4.4.1",
         "react-youtube": "^10.0.0"
     }
 }
