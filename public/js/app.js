@@ -10822,12 +10822,105 @@ function Details() {
                   className: "text-lg leading-6 font-medium text-gray-900",
                   id: "modal-headline",
                   children: "B\xE1o c\xE1o tin \u0111\u0103ng c\xF3 th\xF4ng tin kh\xF4ng \u0111\xFAng"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                   className: "mt-2",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-                    className: "text-sm text-gray-500",
-                    children: "Danh s\xE1ch b\xE1o x\u1EA5u"
-                  })
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "flex items-center my-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                      id: "location-checkbox",
+                      type: "checkbox",
+                      value: "",
+                      className: "w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                      htmlFor: "location-checkbox",
+                      className: "ml-2 text-sm text-neutral-900 ",
+                      children: "\u0110\u1ECBa ch\u1EC9/V\u1ECB tr\xED c\u1EE7a b\u1EA5t \u0111\u1ED9ng s\u1EA3n"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "flex items-center my-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                      id: "info-checkbox",
+                      type: "checkbox",
+                      value: "",
+                      className: "w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                      htmlFor: "info-checkbox",
+                      className: "ml-2 text-sm text-neutral-900 ",
+                      children: "Th\xF4ng tin c\u1EE7a b\u1EA5t \u0111\u1ED9ng s\u1EA3n: gi\xE1, di\u1EC7n t\xEDch, m\xF4 t\u1EA3,..."
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "flex items-center my-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                      id: "image-checkbox",
+                      type: "checkbox",
+                      value: "",
+                      className: "w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                      htmlFor: "image-checkbox",
+                      className: "ml-2 text-sm text-neutral-900 ",
+                      children: "H\xECnh \u1EA3nh v\xE0 video"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "flex items-center my-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                      id: "duplicate-checkbox",
+                      type: "checkbox",
+                      value: "",
+                      className: "w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                      htmlFor: "duplicate-checkbox",
+                      className: "ml-2 text-sm text-neutral-900 ",
+                      children: "Tin \u0111\u0103ng b\u1ECB tr\xF9ng l\u1EB7p"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "flex items-center my-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                      id: "fake-checkbox",
+                      type: "checkbox",
+                      value: "",
+                      className: "w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                      htmlFor: "fake-checkbox",
+                      className: "ml-2 text-sm text-neutral-900 ",
+                      children: "Tin \u0111\u0103ng kh\xF4ng c\xF3 th\u1EADt"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "flex items-center my-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                      id: "sold-checkbox",
+                      type: "checkbox",
+                      value: "",
+                      className: "w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                      htmlFor: "sold-checkbox",
+                      className: "ml-2 text-sm text-neutral-900 ",
+                      children: "B\u1EA5t \u0111\u1ED9ng s\u1EA3n \u0111\xE3 b\xE1n/cho thu\xEA"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "flex items-center my-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                      id: "contact-checkbox",
+                      type: "checkbox",
+                      value: "",
+                      className: "w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                      htmlFor: "contact-checkbox",
+                      className: "ml-2 text-sm text-neutral-900 ",
+                      children: "Kh\xF4ng li\xEAn l\u1EA1c \u0111\u01B0\u1EE3c"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "my-4",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                      htmlFor: "report-content",
+                      className: "text-sm text-neutral-900",
+                      children: "Ph\u1EA3n h\u1ED3i kh\xE1c"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("textarea", {
+                      id: "report-content",
+                      rows: "4",
+                      className: "bg-gray-50 block p-2.5 w-full text-sm text-neutral-900 rounded-lg border border-gray-300 focus:ring-amber-500 focus:border-blue-500",
+                      placeholder: "N\u1ED9i dung b\xE1o c\xE1o"
+                    })]
+                  })]
                 })]
               })]
             })

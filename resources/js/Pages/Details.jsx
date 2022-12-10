@@ -547,9 +547,126 @@ export default function Details() {
                                         Báo cáo tin đăng có thông tin không đúng
                                     </h3>
                                     <div className="mt-2">
-                                        <p className="text-sm text-gray-500">
-                                            Danh sách báo xấu
-                                        </p>
+                                        <div className="flex items-center my-4">
+                                            <input
+                                                id="location-checkbox"
+                                                type="checkbox"
+                                                value=""
+                                                className="w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                                            />
+                                            <label
+                                                htmlFor="location-checkbox"
+                                                className="ml-2 text-sm text-neutral-900 "
+                                            >
+                                                Địa chỉ/Vị trí của bất động sản
+                                            </label>
+                                        </div>
+
+                                        <div className="flex items-center my-4">
+                                            <input
+                                                id="info-checkbox"
+                                                type="checkbox"
+                                                value=""
+                                                className="w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                                            />
+                                            <label
+                                                htmlFor="info-checkbox"
+                                                className="ml-2 text-sm text-neutral-900 "
+                                            >
+                                                Thông tin của bất động sản: giá,
+                                                diện tích, mô tả,...
+                                            </label>
+                                        </div>
+
+                                        <div className="flex items-center my-4">
+                                            <input
+                                                id="image-checkbox"
+                                                type="checkbox"
+                                                value=""
+                                                className="w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                                            />
+                                            <label
+                                                htmlFor="image-checkbox"
+                                                className="ml-2 text-sm text-neutral-900 "
+                                            >
+                                                Hình ảnh và video
+                                            </label>
+                                        </div>
+
+                                        <div className="flex items-center my-4">
+                                            <input
+                                                id="duplicate-checkbox"
+                                                type="checkbox"
+                                                value=""
+                                                className="w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                                            />
+                                            <label
+                                                htmlFor="duplicate-checkbox"
+                                                className="ml-2 text-sm text-neutral-900 "
+                                            >
+                                                Tin đăng bị trùng lặp
+                                            </label>
+                                        </div>
+
+                                        <div className="flex items-center my-4">
+                                            <input
+                                                id="fake-checkbox"
+                                                type="checkbox"
+                                                value=""
+                                                className="w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                                            />
+                                            <label
+                                                htmlFor="fake-checkbox"
+                                                className="ml-2 text-sm text-neutral-900 "
+                                            >
+                                                Tin đăng không có thật
+                                            </label>
+                                        </div>
+
+                                        <div className="flex items-center my-4">
+                                            <input
+                                                id="sold-checkbox"
+                                                type="checkbox"
+                                                value=""
+                                                className="w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                                            />
+                                            <label
+                                                htmlFor="sold-checkbox"
+                                                className="ml-2 text-sm text-neutral-900 "
+                                            >
+                                                Bất động sản đã bán/cho thuê
+                                            </label>
+                                        </div>
+
+                                        <div className="flex items-center my-4">
+                                            <input
+                                                id="contact-checkbox"
+                                                type="checkbox"
+                                                value=""
+                                                className="w-4 h-4 text-amber-600  rounded border-gray-300 focus:ring-amber-500  focus:ring-2 "
+                                            />
+                                            <label
+                                                htmlFor="contact-checkbox"
+                                                className="ml-2 text-sm text-neutral-900 "
+                                            >
+                                                Không liên lạc được
+                                            </label>
+                                        </div>
+
+                                        <div className="my-4">
+                                            <label
+                                                htmlFor="report-content"
+                                                className="text-sm text-neutral-900"
+                                            >
+                                                Phản hồi khác
+                                            </label>
+                                            <textarea
+                                                id="report-content"
+                                                rows="4"
+                                                className="bg-gray-50 block p-2.5 w-full text-sm text-neutral-900 rounded-lg border border-gray-300 focus:ring-amber-500 focus:border-blue-500"
+                                                placeholder="Nội dung báo cáo"
+                                            ></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
