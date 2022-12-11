@@ -153,7 +153,7 @@ class PropertiesController extends Controller
             $properties = $properties->where('properties.direction', '=', $direction);
         }
 
-        $properties = $properties->get();
+        $properties = $properties->select('properties.*', 'wards.name as ward_name', 'districts.name as district_name', 'cities.name as city_name')->get();
 
         if ($properties->isEmpty()) {
             return response()->json([
