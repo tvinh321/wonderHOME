@@ -30,7 +30,7 @@ export default function ReportModal({ isShow, setIsShow, houseId }) {
             })
             .catch((err) => {
                 setReportFail("Báo cáo thất bại! Vui lòng thử lại sau!");
-                console.log(err);
+                console.log(err.response.data);
             });
     };
 
