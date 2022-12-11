@@ -79,3 +79,7 @@ Route::post('/api/chat/uploadFiles', [App\Http\Controllers\FilesController::clas
 Route::get('/api/chat/downloadFile/{chatId}/{fileName}', [App\Http\Controllers\FilesController::class, 'getFilesForChat']);
 
 Route::get('/api/avatar/{fileName}', [App\Http\Controllers\FilesController::class, 'getAvatar']);
+
+Route::get('/api/reports', [App\Http\Controllers\ReportController::class, 'getReports'])->middleware(CheckUser::class);
+
+Route::post('/api/reports', [App\Http\Controllers\ReportController::class, 'postReport']);
