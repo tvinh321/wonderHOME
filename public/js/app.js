@@ -9131,7 +9131,7 @@ function ReportModal(_ref) {
   var handleReport = function handleReport(e) {
     e.preventDefault();
     var requestParam = {
-      propertyId: houseId,
+      propertyId: parseInt(houseId),
       reason: reportContent.reason.join(),
       content: reportContent.content
     };
