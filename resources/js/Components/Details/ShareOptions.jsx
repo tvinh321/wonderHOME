@@ -43,6 +43,9 @@ export default function ShareOptions({ title }) {
                 <EmailShareButton
                     subject={`wonderHome - ${title}`}
                     body={`Bất động sản tốt tại wonderHome nè!`}
+                    onClick={() => {}}
+                    openShareDialogOnClick
+                    url={url}
                 >
                     <div className="flex items-center gap-x-2">
                         <EmailIcon size={20} round />
