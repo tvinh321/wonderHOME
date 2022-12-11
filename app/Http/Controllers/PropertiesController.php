@@ -125,7 +125,7 @@ class PropertiesController extends Controller
 
         if ($price) {
             $output->writeln('Price: ' . $price[0] . ' - ' . $price[1]);
-            $properties = $properties->whereBetween('properties.price', [$price[0], $price[1]]);
+            $properties = $properties->whereBetween('properties.price', [$price[0]*1000000000, $price[1]*1000000000]);
         }
 
         if ($area) {
