@@ -12,7 +12,7 @@ export default function ReportModal({ isShow, setIsShow, houseId }) {
     const handleReport = (e) => {
         e.preventDefault();
         const requestParam = {
-            propertyId: houseId,
+            propertyId: parseInt(houseId),
             reason: reportContent.reason.join(),
             content: reportContent.content,
         };
