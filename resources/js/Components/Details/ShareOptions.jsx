@@ -1,8 +1,8 @@
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-import { FacebookShareButton } from "react-share";
-import { FacebookIcon } from "react-share";
+import { FacebookShareButton, EmailShareButton } from "react-share";
+import { FacebookIcon, EmailIcon } from "react-share";
 
 export default function ShareOptions({ title }) {
     const url = window.location.href;
@@ -37,6 +37,18 @@ export default function ShareOptions({ title }) {
                         <p className="text-sm">Facebook</p>
                     </div>
                 </FacebookShareButton>
+            </MenuItem>
+
+            <MenuItem>
+                <EmailShareButton
+                    subject={`wonderHome - ${title}`}
+                    body={`Bất động sản tốt tại wonderHome nè!`}
+                >
+                    <div className="flex items-center gap-x-2">
+                        <EmailIcon size={20} round />
+                        <p className="text-sm">Email</p>
+                    </div>
+                </EmailShareButton>
             </MenuItem>
         </Menu>
     );
