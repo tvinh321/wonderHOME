@@ -44,7 +44,6 @@ export default function ShareOptions({ title }) {
                     subject={`wonderHome - ${title}`}
                     body={`Bất động sản tốt tại wonderHome nè!`}
                     onClick={() => {}}
-                    openShareDialogOnClick
                     url={url}
                 >
                     <div className="flex items-center gap-x-2">

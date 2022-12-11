@@ -9497,7 +9497,6 @@ function ShareOptions(_ref) {
         subject: "wonderHome - ".concat(title),
         body: "B\u1EA5t \u0111\u1ED9ng s\u1EA3n t\u1ED1t t\u1EA1i wonderHome n\xE8!",
         onClick: function onClick() {},
-        openShareDialogOnClick: true,
         url: url,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "flex items-center gap-x-2",
