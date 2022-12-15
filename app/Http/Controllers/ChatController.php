@@ -15,7 +15,10 @@ class ChatController extends Controller
     {
         $chatId = $request->chatRoomId;
 
-        $messages = DB::table('messages')->where('chat_rooms_id', $chatId)->get();
+        $messages = DB::table('messages')
+        ->where('chat_rooms_id', $chatId)
+        ->orderBy('created_at', 'asc')
+        ->get();
 
         return response()->json([
             'messages' => $messages
