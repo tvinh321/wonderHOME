@@ -3,7 +3,6 @@ import axios from "axios";
 import "../../css/home.css";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-import ChatBubbleList from "../Components/ChatBubbleList";
 
 export default function Home() {
     const [tab, setTab] = useState(1);
@@ -11,7 +10,13 @@ export default function Home() {
     const [citiesList, setCitiesList] = useState();
     const [districtsList, setDistrictsList] = useState();
     const [wardsList, setWardsList] = useState();
-    const [typesList, setTypesList] = useState();
+    const [typesList, setTypesList] = useState([
+        { id: 1, name: "Nhà", value: "nha" },
+        { id: 2, name: "Chung cư/Căn hộ", value: "chungcu" },
+        { id: 3, name: "Đất", value: "dat" },
+        { id: 4, name: "Văn phòng", value: "vanphong" },
+        { id: 5, name: "Khác", value: "khac" },
+    ]);
 
     const [title, setTitle] = useState("");
     const [city, setCity] = useState("");
@@ -30,36 +35,6 @@ export default function Home() {
     const locationRef = useRef();
 
     const [houseList, setHouseList] = React.useState();
-
-    function useOnClickOutside(ref, handler) {
-        useEffect(
-            () => {
-                const listener = (event) => {
-                    // Do nothing if clicking ref's element or descendent elements
-                    if (!ref.current || ref.current.contains(event.target)) {
-                        return;
-                    }
-                    handler(event);
-                };
-                document.addEventListener("mousedown", listener);
-                document.addEventListener("touchstart", listener);
-                return () => {
-                    document.removeEventListener("mousedown", listener);
-                    document.removeEventListener("touchstart", listener);
-                };
-            },
-            // Add ref and handler to effect dependencies
-            // It's worth noting that because the passed-in handler is a new ...
-            // ... function on every render that will cause this effect ...
-            // ... callback/cleanup to run every render. It's not a big deal ...
-            // ... but to optimize you can wrap handler in useCallback before ...
-            // ... passing it into this hook.
-            [ref, handler]
-        );
-    }
-
-    useOnClickOutside(propertyTypesRef, () => setShowPropertyTypes(false));
-    useOnClickOutside(locationRef, () => setShowLocation(false));
 
     useEffect(() => {
         axios
@@ -198,9 +173,7 @@ export default function Home() {
                                         type="button"
                                         onClick={() =>
                                             setShowPropertyTypes((prev) => {
-                                                if (prev == false) {
-                                                    return true;
-                                                }
+                                                return !prev;
                                             })
                                         }
                                     >
@@ -253,7 +226,7 @@ export default function Home() {
                                                                                     setType(
                                                                                         [
                                                                                             ...type,
-                                                                                            typeItem.id,
+                                                                                            typeItem.value,
                                                                                         ]
                                                                                     );
                                                                                 } else {
@@ -263,13 +236,13 @@ export default function Home() {
                                                                                                 item
                                                                                             ) =>
                                                                                                 item !=
-                                                                                                typeItem.id
+                                                                                                typeItem.value
                                                                                         )
                                                                                     );
                                                                                 }
                                                                             }}
                                                                             checked={type.includes(
-                                                                                typeItem.id
+                                                                                typeItem.value
                                                                             )}
                                                                         />
                                                                         <label
