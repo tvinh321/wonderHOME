@@ -8,6 +8,7 @@ import Chat from "./Pages/Chat";
 import Search from "./Pages/Search";
 import Agency from "./Pages/Agency";
 import ChatBubbleList from "./Components/ChatBubbleList";
+import Guidance from "./Pages/Guidance";
 
 export function App() {
     return (
@@ -69,6 +70,7 @@ export function App() {
                             </>
                         }
                     />
+                    <Route path="/huong-dan" element={<Guidance />} />
                 </Routes>
             </Router>
         </>
