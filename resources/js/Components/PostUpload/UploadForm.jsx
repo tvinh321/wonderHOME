@@ -3,21 +3,39 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 
+const direction = [
+    "Đông",
+    "Tây",
+    "Nam",
+    "Bắc",
+    "Đông Bắc",
+    "Đông Nam",
+    "Tây Nam",
+    "Tây Bắc",
+];
+
+const interior = ["Trống", "Đầy đủ"];
+
 export default function UploadForm() {
     const [citiesList, setCitiesList] = useState();
     const [districtsList, setDistrictsList] = useState();
     const [wardsList, setWardsList] = useState();
     const [typesList, setTypesList] = React.useState();
-    const [city, setCity] = useState("");
-    const [district, setDistrict] = useState("");
-    const [ward, setWard] = useState("");
-    const [address, setAddress] = useState("");
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
+    const [city, setCity] = useState(0);
+    const [district, setDistrict] = useState(0);
+    const [ward, setWard] = useState(0);
 
-    const [type, setType] = useState(0);
-    const [price, setPrice] = useState("");
-    const [area, setArea] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const [commonProperties, setCommonProperties] = useState({
+        address: "",
+        title: "",
+        description: "",
+        type: 0,
+        price: "",
+        area: "",
+    });
+
     const [conveniences, setConveniences] = useState([]);
 
     const [houseProperties, setHouseProperties] = useState({
@@ -33,36 +51,28 @@ export default function UploadForm() {
         road: "",
         frontage: "",
     });
-    const [images, setImages] = useState([]);
-    const [video, setVideo] = useState("");
-    const [panoramas, setPanoramas] = useState([]);
-    const [juridicalStatus, setJuridicalStatus] = useState(1);
-    const [juridicalImages, setJuridicalImages] = useState([]);
+
+    const [gallery, setGallery] = useState({
+        images: [],
+        video: "",
+        panoramas: [],
+    }); // [image, video, panorama
+
+    const [juridical, setJuridical] = useState({
+        juridicalStatus: 1,
+        juridicalImages: [],
+    });
 
     const [registerStep, setRegisterStep] = useState(1);
     const lastStep = 3;
-
-    const direction = [
-        "Đông",
-        "Tây",
-        "Nam",
-        "Bắc",
-        "Đông Bắc",
-        "Đông Nam",
-        "Tây Nam",
-        "Tây Bắc",
-    ];
-
-    const interior = [
-        "Trống",
-        "Đầy đủ"
-    ];
 
     useEffect(() => {
         axios
             .get("/api/cities")
             .then((res) => {
-                setCitiesList(res.data?.sort((a, b) => a.name.localeCompare(b.name)));
+                setCitiesList(
+                    res.data?.sort((a, b) => a.name.localeCompare(b.name))
+                );
             })
             .catch((err) => {
                 console.log(err);
@@ -73,7 +83,9 @@ export default function UploadForm() {
         axios
             .get("/api/districts/" + city)
             .then((res) => {
-                setDistrictsList(res.data?.sort((a, b) => a.name.localeCompare(b.name)));
+                setDistrictsList(
+                    res.data?.sort((a, b) => a.name.localeCompare(b.name))
+                );
             })
             .catch((err) => {
                 console.log(err);
@@ -84,7 +96,9 @@ export default function UploadForm() {
         axios
             .get("/api/wards/" + district)
             .then((res) => {
-                setWardsList(res.data?.sort((a, b) => a.name.localeCompare(b.name)));
+                setWardsList(
+                    res.data?.sort((a, b) => a.name.localeCompare(b.name))
+                );
             })
             .catch((err) => {
                 console.log(err);
@@ -103,7 +117,9 @@ export default function UploadForm() {
     }, []);
 
     const handleDisplayAddress = useMemo(() => {
-        const addressShow = address ? address + ", " : "";
+        const addressShow = commonProperties.address
+            ? commonProperties.address + ", "
+            : "";
         const wardShow = ward
             ? wardsList?.filter((item) => item.id === ward)[0].name + ", "
             : "";
@@ -115,7 +131,7 @@ export default function UploadForm() {
             ? citiesList?.filter((item) => item.id === city)[0].name
             : "";
         return addressShow + wardShow + districtShow + cityShow;
-    }, [city, district, ward, address]);
+    }, [city, district, ward, commonProperties.address]);
 
     const handleImages = (e) => {
         const files = e.target.files;
@@ -123,7 +139,7 @@ export default function UploadForm() {
         for (let i = 0; i < files.length; i++) {
             images.push(files[i]);
         }
-        setImages(images);
+        setGallery({ ...gallery, images: images });
     };
 
     const handlePanomaras = (e) => {
@@ -132,7 +148,7 @@ export default function UploadForm() {
         for (let i = 0; i < files.length; i++) {
             panoramas.push(files[i]);
         }
-        setPanoramas(panoramas);
+        setGallery({ ...gallery, panoramas: panoramas });
     };
 
     const handleJuridicalImages = (e) => {
@@ -141,76 +157,72 @@ export default function UploadForm() {
         for (let i = 0; i < files.length; i++) {
             juridicalImages.push(files[i]);
         }
-        setJuridicalImages(juridicalImages);
+        setJuridical({ ...juridical, juridicalImages: juridicalImages });
     };
 
-    const handleUpload = (e) => {
+    const handleUpload = async (e) => {
         e.preventDefault();
-        console.log(city);
-        console.log(district);
-        console.log(ward);
-        console.log(address);
-        console.log(title);
-        console.log(description);
-        console.log(type);
-        console.log(price);
-        console.log(area);
-        console.log(conveniences);
-        console.log(images);
-        console.log(video);
-        console.log(juridicalStatus);
-        console.log(juridicalImages);
-        console.log(panoramas);
-
-        console.log(houseProperties);
-        console.log(landProperties);
 
         const formData = new FormData();
         formData.append("ward", ward);
-        formData.append("address", address);
-        formData.append("title", title);
-        formData.append("description", description);
-        formData.append("type", type);
-        formData.append("price", price);
-        formData.append("area", area);
-        formData.append("conveniences", conveniences);
-        formData.append("video", video);
-        formData.append("juridicalStatus", juridicalStatus);
-        formData.append("panoramas", panoramas);
-
-        if (type === 2) {
-            formData.append("direction", landProperties.direction);
-            formData.append("road", landProperties.road);
-            formData.append("frontage", landProperties.frontage);
-        }
-        else {
-            formData.append("bedroom", houseProperties.bedroom);
-            formData.append("bathroom", houseProperties.bathroom);
-            formData.append("floors", houseProperties.floors);
-            formData.append("interior", houseProperties.interior);
-            formData.append("moreDetails", houseProperties.moreDetails);
+        const commonKeys = Object.keys(commonProperties);
+        for (let i = 0; i < commonKeys.length; i++) {
+            formData.append(commonKeys[i], commonProperties[commonKeys[i]]);
         }
 
-        for (let i = 0; i < images.length; i++) {
-            formData.append("images", images[i]);
+        formData.append("video", gallery.video);
+        formData.append("juridicalStatus", juridical.juridicalStatus);
+        formData.append("panoramas", gallery.panoramas);
+
+        if (commonProperties.type === 2) {
+            const landKeys = Object.keys(landProperties);
+            for (let i = 0; i < landKeys.length; i++) {
+                formData.append(landKeys[i], landProperties[landKeys[i]]);
+            }
+        } else {
+            const houseKeys = Object.keys(houseProperties);
+            for (let i = 0; i < houseKeys.length; i++) {
+                formData.append(houseKeys[i], houseProperties[houseKeys[i]]);
+            }
         }
 
-        for (let i = 0; i < juridicalImages.length; i++) {
-            formData.append("juridicalImages", juridicalImages[i]);
+        for (let i = 0; i < gallery.images.length; i++) {
+            formData.append("images", gallery.images[i]);
         }
 
-        for (let i = 0; i < panoramas.length; i++) {
-            formData.append("panoramas", panoramas[i]);
+        for (let i = 0; i < juridical.juridicalImages.length; i++) {
+            formData.append("juridicalImages", juridical.juridicalImages[i]);
         }
 
-        axios
-            .post("/api/properties", formData)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        for (let i = 0; i < gallery.panoramas.length; i++) {
+            formData.append("panoramas", gallery.panoramas[i]);
+        }
+
+        // console.log("formData", formData.values());
+
+        setLoading(true);
+
+        console.log("commonProperties", commonProperties);
+        console.log("conveniences", conveniences);
+        console.log("landProperties", landProperties);
+        console.log("houseProperties", houseProperties);
+        console.log("gallery", gallery);
+        console.log("juridical", juridical);
+
+        let response = null;
+        try {
+            response = await axios.post("/api/properties", formData);
+        } catch (e) {
+            response = e.response;
+        } finally {
+            if (response.data.status === "success") {
+                window.alert("Đăng tin thành công");
+                window.location.href = "/";
+            } else {
+                window.alert("Đăng tin thất bại");
+            }
+            setLoading(false);
+        }
     };
 
     return (
@@ -272,15 +284,17 @@ export default function UploadForm() {
                                                         <select
                                                             onChange={(e) => {
                                                                 setCity(
-                                                                    e.target
-                                                                        .value
+                                                                    Number(
+                                                                        e.target
+                                                                            .value
+                                                                    )
                                                                 );
-                                                                setDistrict("");
-                                                                setWard("");
+                                                                setDistrict(0);
+                                                                setWard(0);
                                                             }}
                                                             className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
                                                         >
-                                                            <option value="">
+                                                            <option value={0}>
                                                                 Tỉnh/Thành phố
                                                             </option>
                                                             {citiesList ? (
@@ -338,14 +352,16 @@ export default function UploadForm() {
                                                         <select
                                                             onChange={(e) => {
                                                                 setDistrict(
-                                                                    e.target
-                                                                        .value
+                                                                    Number(
+                                                                        e.target
+                                                                            .value
+                                                                    )
                                                                 );
-                                                                setWard("");
+                                                                setWard(0);
                                                             }}
                                                             className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
                                                         >
-                                                            <option value="">
+                                                            <option value={0}>
                                                                 Quận/Huyện
                                                             </option>
                                                             {districtsList ? (
@@ -401,13 +417,15 @@ export default function UploadForm() {
                                                         <select
                                                             onChange={(e) => {
                                                                 setWard(
-                                                                    e.target
-                                                                        .value
+                                                                    Number(
+                                                                        e.target
+                                                                            .value
+                                                                    )
                                                                 );
                                                             }}
                                                             className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
                                                         >
-                                                            <option value="">
+                                                            <option value={0}>
                                                                 Phường/Xã
                                                             </option>
                                                             {wardsList ? (
@@ -465,9 +483,14 @@ export default function UploadForm() {
                                                             className="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                             placeholder="Số nhà, đường..."
                                                             onChange={(e) => {
-                                                                setAddress(
-                                                                    e.target
-                                                                        .value
+                                                                setCommonProperties(
+                                                                    {
+                                                                        ...commonProperties,
+                                                                        address:
+                                                                            e
+                                                                                .target
+                                                                                .value,
+                                                                    }
                                                                 );
                                                             }}
                                                         />
@@ -501,11 +524,15 @@ export default function UploadForm() {
                                                     rows="1"
                                                     placeholder="Vd: Bán căn hộ 3PN dự án COSMO CITY"
                                                     onChange={(e) => {
-                                                        setTitle(
-                                                            e.target.value
-                                                        );
+                                                        setCommonProperties({
+                                                            ...commonProperties,
+                                                            title: e.target
+                                                                .value,
+                                                        });
                                                     }}
-                                                    value={title}
+                                                    value={
+                                                        commonProperties.title
+                                                    }
                                                 />
                                             </div>
 
@@ -519,11 +546,15 @@ export default function UploadForm() {
                                                     rows="4"
                                                     placeholder="Nhập mô tả chung về bất động sản của bạn. Ví dụ: Nhà gần công viên, trường học ..."
                                                     onChange={(e) => {
-                                                        setDescription(
-                                                            e.target.value
-                                                        );
+                                                        setCommonProperties({
+                                                            ...commonProperties,
+                                                            description:
+                                                                e.target.value,
+                                                        });
                                                     }}
-                                                    value={description}
+                                                    value={
+                                                        commonProperties.description
+                                                    }
                                                 />
                                             </div>
                                         </form>
@@ -548,9 +579,15 @@ export default function UploadForm() {
                                                     id="propertyType"
                                                     className="w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
                                                     onChange={(e) => {
-                                                        setType(e.target.value);
+                                                        setCommonProperties({
+                                                            ...commonProperties,
+                                                            type: e.target
+                                                                .value,
+                                                        });
                                                     }}
-                                                    value={type}
+                                                    value={
+                                                        commonProperties.type
+                                                    }
                                                 >
                                                     <option value={0} disabled>
                                                         Vui lòng chọn loại bất
@@ -589,9 +626,15 @@ export default function UploadForm() {
                                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     placeholder="Nhập diện tích (m2)"
                                                     onChange={(e) => {
-                                                        setArea(e.target.value);
+                                                        setCommonProperties({
+                                                            ...commonProperties,
+                                                            area: e.target
+                                                                .value,
+                                                        });
                                                     }}
-                                                    value={area}
+                                                    value={
+                                                        commonProperties.area
+                                                    }
                                                 />
                                             </div>
                                             <div className="relative w-full mb-8 px-4">
@@ -603,38 +646,23 @@ export default function UploadForm() {
                                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     placeholder="Nhập mức giá"
                                                     onChange={(e) => {
-                                                        setPrice(
-                                                            e.target.value
-                                                        );
+                                                        setCommonProperties({
+                                                            ...commonProperties,
+                                                            price: e.target
+                                                                .value,
+                                                        });
                                                     }}
-                                                    value={price}
+                                                    value={
+                                                        commonProperties.price
+                                                    }
                                                 />
                                             </div>
-                                            {type != 2 ? (
+                                            {commonProperties.type != 2 ? (
                                                 <div>
                                                     <div className="relative w-full mb-8 px-4">
                                                         <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                                             Nội thất
                                                         </label>
-                                                        {/* <input
-                                                            type="text"
-                                                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                            placeholder="Nhập thông tin về nội thất"
-                                                            onChange={(e) => {
-                                                                setHouseProperties(
-                                                                    {
-                                                                        ...houseProperties,
-                                                                        interior:
-                                                                            e
-                                                                                .target
-                                                                                .value,
-                                                                    }
-                                                                );
-                                                            }}
-                                                            value={
-                                                                houseProperties.interior
-                                                            }
-                                                        /> */}
                                                         <select
                                                             defaultValue={0}
                                                             required
@@ -645,9 +673,11 @@ export default function UploadForm() {
                                                                     {
                                                                         ...houseProperties,
                                                                         interior:
-                                                                            Number(e
-                                                                                .target
-                                                                                .value),
+                                                                            Number(
+                                                                                e
+                                                                                    .target
+                                                                                    .value
+                                                                            ),
                                                                     }
                                                                 );
                                                             }}
@@ -664,20 +694,26 @@ export default function UploadForm() {
                                                             </option>
                                                             {interior &&
                                                                 interior.map(
-                                                                    (interior, index) => (
+                                                                    (
+                                                                        interior,
+                                                                        index
+                                                                    ) => (
                                                                         <option
                                                                             value={
-                                                                                index + 1
+                                                                                index +
+                                                                                1
                                                                             }
                                                                             key={
                                                                                 interior.id
                                                                             }
                                                                         >
-                                                                            {interior}
+                                                                            {
+                                                                                interior
+                                                                            }
                                                                         </option>
                                                                     )
                                                                 )}
-                                                        </select>      
+                                                        </select>
                                                     </div>
 
                                                     <div className="relative w-full mb-8 px-4">
@@ -702,9 +738,11 @@ export default function UploadForm() {
                                                                         {
                                                                             ...houseProperties,
                                                                             bedroom:
-                                                                                Number(e
-                                                                                    .target
-                                                                                    .value),
+                                                                                Number(
+                                                                                    e
+                                                                                        .target
+                                                                                        .value
+                                                                                ),
                                                                         }
                                                                     );
                                                                 }}
@@ -734,9 +772,11 @@ export default function UploadForm() {
                                                                         {
                                                                             ...houseProperties,
                                                                             bathroom:
-                                                                                Number(e
-                                                                                    .target
-                                                                                    .value),
+                                                                                Number(
+                                                                                    e
+                                                                                        .target
+                                                                                        .value
+                                                                                ),
                                                                         }
                                                                     );
                                                                 }}
@@ -765,9 +805,11 @@ export default function UploadForm() {
                                                                     setHouseProperties(
                                                                         {
                                                                             ...houseProperties,
-                                                                            floors: Number(e
-                                                                                .target
-                                                                                .value),
+                                                                            floors: Number(
+                                                                                e
+                                                                                    .target
+                                                                                    .value
+                                                                            ),
                                                                         }
                                                                     );
                                                                 }}
@@ -793,9 +835,11 @@ export default function UploadForm() {
                                                                     {
                                                                         ...landProperties,
                                                                         frontage:
-                                                                            Number(e
-                                                                                .target
-                                                                                .value),
+                                                                            Number(
+                                                                                e
+                                                                                    .target
+                                                                                    .value
+                                                                            ),
                                                                     }
                                                                 );
                                                             }}
@@ -817,9 +861,11 @@ export default function UploadForm() {
                                                                 setLandProperties(
                                                                     {
                                                                         ...landProperties,
-                                                                        road: Number(e
-                                                                            .target
-                                                                            .value),
+                                                                        road: Number(
+                                                                            e
+                                                                                .target
+                                                                                .value
+                                                                        ),
                                                                     }
                                                                 );
                                                             }}
@@ -843,9 +889,11 @@ export default function UploadForm() {
                                                                     {
                                                                         ...landProperties,
                                                                         direction:
-                                                                            Number(e
-                                                                                .target
-                                                                                .value),
+                                                                            Number(
+                                                                                e
+                                                                                    .target
+                                                                                    .value
+                                                                            ),
                                                                     }
                                                                 );
                                                             }}
@@ -892,7 +940,8 @@ export default function UploadForm() {
                                                 Thông tin khác
                                             </h6>
                                             <div className="relative w-full mb-8 px-4">
-                                                {type !== 2 && (
+                                                {commonProperties.type !==
+                                                    2 && (
                                                     <div className="relative w-full mb-8 px-4">
                                                         <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                                             Tiện ích
@@ -928,6 +977,7 @@ export default function UploadForm() {
                                                                 />
                                                                 <label
                                                                     htmlFor="house-checkbox"
+                                                                    setConveniences
                                                                     className="py-3 ml-2 w-full text-neutral-900"
                                                                 >
                                                                     Wifi
@@ -1016,11 +1066,15 @@ export default function UploadForm() {
                                                         cols="80"
                                                         className="w-full border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
                                                         placeholder="Mô tả bổ sung"
-                                                        value={houseProperties.moreDetails}
+                                                        value={
+                                                            houseProperties.moreDetails
+                                                        }
                                                         onChange={(e) => {
                                                             setHouseProperties({
                                                                 ...houseProperties,
-                                                                moreDetails: e.target.value,
+                                                                moreDetails:
+                                                                    e.target
+                                                                        .value,
                                                             });
                                                         }}
                                                     ></textarea>
@@ -1105,9 +1159,13 @@ export default function UploadForm() {
                                                     maxlength="100"
                                                     placeholder="VD: https://www.youtube.com/watch?v=Y-Dw0NpfRug"
                                                     type="text"
-                                                    value={video}
+                                                    value={gallery.video}
                                                     onChange={(e) =>
-                                                        setVideo(e.target.value)
+                                                        setGallery({
+                                                            ...gallery,
+                                                            video: e.target
+                                                                .value,
+                                                        })
                                                     }
                                                 />
                                             </div>
@@ -1187,11 +1245,15 @@ export default function UploadForm() {
                                                     id="jurisdiction"
                                                     className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
                                                     onChange={(e) =>
-                                                        setJuridicalStatus(
-                                                            e.target.value
-                                                        )
+                                                        setJuridical({
+                                                            ...juridical,
+                                                            juridicalStatus:
+                                                                e.target.value,
+                                                        })
                                                     }
-                                                    value={juridicalStatus}
+                                                    value={
+                                                        juridical.juridicalStatus
+                                                    }
                                                 >
                                                     <option value={1}>
                                                         Không cung cấp
@@ -1363,8 +1425,9 @@ export default function UploadForm() {
                                 onClick={(e) => {
                                     handleUpload(e);
                                 }}
+                                disabled={loading}
                             >
-                                Đăng tin
+                                {loading ? "Đang tải lên..." : "Đăng tin"}
                             </button>
                         )}
                     </div>

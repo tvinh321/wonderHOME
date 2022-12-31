@@ -220,7 +220,7 @@ export function FullyRegisterForm({ setIsLoginForm }) {
         axios
             .post("/api/register", formValue)
             .then(() => {
-                setRegisterStep(lastStep + 1);
+                alert("Đăng ký thành công");
             })
             .catch((err) => {
                 if (err.response) {

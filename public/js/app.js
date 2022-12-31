@@ -10765,7 +10765,7 @@ function FullyRegisterForm(_ref2) {
       password: password
     };
     axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/register", formValue).then(function () {
-      setRegisterStep(lastStep + 1);
+      alert("Đăng ký thành công");
     })["catch"](function (err) {
       if (err.response) {
         if (err.response.status === 422) {
@@ -11222,10 +11222,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -11241,6 +11245,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var direction = ["Đông", "Tây", "Nam", "Bắc", "Đông Bắc", "Đông Nam", "Tây Nam", "Tây Bắc"];
+var interior = ["Trống", "Đầy đủ"];
 function UploadForm() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
     _useState2 = _slicedToArray(_useState, 2),
@@ -11258,91 +11264,76 @@ function UploadForm() {
     _React$useState2 = _slicedToArray(_React$useState, 2),
     typesList = _React$useState2[0],
     setTypesList = _React$useState2[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState8 = _slicedToArray(_useState7, 2),
     city = _useState8[0],
     setCity = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState10 = _slicedToArray(_useState9, 2),
     district = _useState10[0],
     setDistrict = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState12 = _slicedToArray(_useState11, 2),
     ward = _useState12[0],
     setWard = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState14 = _slicedToArray(_useState13, 2),
-    address = _useState14[0],
-    setAddress = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    loading = _useState14[0],
+    setLoading = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      address: "",
+      title: "",
+      description: "",
+      type: 0,
+      price: "",
+      area: ""
+    }),
     _useState16 = _slicedToArray(_useState15, 2),
-    title = _useState16[0],
-    setTitle = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    commonProperties = _useState16[0],
+    setCommonProperties = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState18 = _slicedToArray(_useState17, 2),
-    description = _useState18[0],
-    setDescription = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-    _useState20 = _slicedToArray(_useState19, 2),
-    type = _useState20[0],
-    setType = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState22 = _slicedToArray(_useState21, 2),
-    price = _useState22[0],
-    setPrice = _useState22[1];
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState24 = _slicedToArray(_useState23, 2),
-    area = _useState24[0],
-    setArea = _useState24[1];
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState26 = _slicedToArray(_useState25, 2),
-    conveniences = _useState26[0],
-    setConveniences = _useState26[1];
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    conveniences = _useState18[0],
+    setConveniences = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       bedroom: 0,
       bathroom: 0,
       floors: 0,
       interior: 0,
       moreDetails: ""
     }),
-    _useState28 = _slicedToArray(_useState27, 2),
-    houseProperties = _useState28[0],
-    setHouseProperties = _useState28[1];
-  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    _useState20 = _slicedToArray(_useState19, 2),
+    houseProperties = _useState20[0],
+    setHouseProperties = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       direction: 0,
       road: "",
       frontage: ""
     }),
-    _useState30 = _slicedToArray(_useState29, 2),
-    landProperties = _useState30[0],
-    setLandProperties = _useState30[1];
-  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState32 = _slicedToArray(_useState31, 2),
-    images = _useState32[0],
-    setImages = _useState32[1];
-  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState34 = _slicedToArray(_useState33, 2),
-    video = _useState34[0],
-    setVideo = _useState34[1];
-  var _useState35 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState36 = _slicedToArray(_useState35, 2),
-    panoramas = _useState36[0],
-    setPanoramas = _useState36[1];
-  var _useState37 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
-    _useState38 = _slicedToArray(_useState37, 2),
-    juridicalStatus = _useState38[0],
-    setJuridicalStatus = _useState38[1];
-  var _useState39 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState40 = _slicedToArray(_useState39, 2),
-    juridicalImages = _useState40[0],
-    setJuridicalImages = _useState40[1];
-  var _useState41 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
-    _useState42 = _slicedToArray(_useState41, 2),
-    registerStep = _useState42[0],
-    setRegisterStep = _useState42[1];
+    _useState22 = _slicedToArray(_useState21, 2),
+    landProperties = _useState22[0],
+    setLandProperties = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      images: [],
+      video: "",
+      panoramas: []
+    }),
+    _useState24 = _slicedToArray(_useState23, 2),
+    gallery = _useState24[0],
+    setGallery = _useState24[1]; // [image, video, panorama
+
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      juridicalStatus: 1,
+      juridicalImages: []
+    }),
+    _useState26 = _slicedToArray(_useState25, 2),
+    juridical = _useState26[0],
+    setJuridical = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState28 = _slicedToArray(_useState27, 2),
+    registerStep = _useState28[0],
+    setRegisterStep = _useState28[1];
   var lastStep = 3;
-  var direction = ["Đông", "Tây", "Nam", "Bắc", "Đông Bắc", "Đông Nam", "Tây Nam", "Tây Bắc"];
-  var interior = ["Trống", "Đầy đủ"];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/cities").then(function (res) {
       var _res$data;
@@ -11381,7 +11372,7 @@ function UploadForm() {
     });
   }, []);
   var handleDisplayAddress = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
-    var addressShow = address ? address + ", " : "";
+    var addressShow = commonProperties.address ? commonProperties.address + ", " : "";
     var wardShow = ward ? (wardsList === null || wardsList === void 0 ? void 0 : wardsList.filter(function (item) {
       return item.id === ward;
     })[0].name) + ", " : "";
@@ -11392,14 +11383,16 @@ function UploadForm() {
       return item.id === city;
     })[0].name : "";
     return addressShow + wardShow + districtShow + cityShow;
-  }, [city, district, ward, address]);
+  }, [city, district, ward, commonProperties.address]);
   var handleImages = function handleImages(e) {
     var files = e.target.files;
     var images = [];
     for (var i = 0; i < files.length; i++) {
       images.push(files[i]);
     }
-    setImages(images);
+    setGallery(_objectSpread(_objectSpread({}, gallery), {}, {
+      images: images
+    }));
   };
   var handlePanomaras = function handlePanomaras(e) {
     var files = e.target.files;
@@ -11407,7 +11400,9 @@ function UploadForm() {
     for (var i = 0; i < files.length; i++) {
       panoramas.push(files[i]);
     }
-    setPanoramas(panoramas);
+    setGallery(_objectSpread(_objectSpread({}, gallery), {}, {
+      panoramas: panoramas
+    }));
   };
   var handleJuridicalImages = function handleJuridicalImages(e) {
     var files = e.target.files;
@@ -11415,65 +11410,90 @@ function UploadForm() {
     for (var i = 0; i < files.length; i++) {
       juridicalImages.push(files[i]);
     }
-    setJuridicalImages(juridicalImages);
+    setJuridical(_objectSpread(_objectSpread({}, juridical), {}, {
+      juridicalImages: juridicalImages
+    }));
   };
-  var handleUpload = function handleUpload(e) {
-    e.preventDefault();
-    console.log(city);
-    console.log(district);
-    console.log(ward);
-    console.log(address);
-    console.log(title);
-    console.log(description);
-    console.log(type);
-    console.log(price);
-    console.log(area);
-    console.log(conveniences);
-    console.log(images);
-    console.log(video);
-    console.log(juridicalStatus);
-    console.log(juridicalImages);
-    console.log(panoramas);
-    console.log(houseProperties);
-    console.log(landProperties);
-    var formData = new FormData();
-    formData.append("ward", ward);
-    formData.append("address", address);
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("type", type);
-    formData.append("price", price);
-    formData.append("area", area);
-    formData.append("conveniences", conveniences);
-    formData.append("video", video);
-    formData.append("juridicalStatus", juridicalStatus);
-    formData.append("panoramas", panoramas);
-    if (type === 2) {
-      formData.append("direction", landProperties.direction);
-      formData.append("road", landProperties.road);
-      formData.append("frontage", landProperties.frontage);
-    } else {
-      formData.append("bedroom", houseProperties.bedroom);
-      formData.append("bathroom", houseProperties.bathroom);
-      formData.append("floors", houseProperties.floors);
-      formData.append("interior", houseProperties.interior);
-      formData.append("moreDetails", houseProperties.moreDetails);
-    }
-    for (var i = 0; i < images.length; i++) {
-      formData.append("images", images[i]);
-    }
-    for (var _i2 = 0; _i2 < juridicalImages.length; _i2++) {
-      formData.append("juridicalImages", juridicalImages[_i2]);
-    }
-    for (var _i3 = 0; _i3 < panoramas.length; _i3++) {
-      formData.append("panoramas", panoramas[_i3]);
-    }
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/properties", formData).then(function (res) {
-      console.log(res);
-    })["catch"](function (err) {
-      console.log(err);
-    });
-  };
+  var handleUpload = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
+      var formData, commonKeys, i, landKeys, _i2, houseKeys, _i3, _i4, _i5, _i6, response;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              formData = new FormData();
+              formData.append("ward", ward);
+              commonKeys = Object.keys(commonProperties);
+              for (i = 0; i < commonKeys.length; i++) {
+                formData.append(commonKeys[i], commonProperties[commonKeys[i]]);
+              }
+              formData.append("video", gallery.video);
+              formData.append("juridicalStatus", juridical.juridicalStatus);
+              formData.append("panoramas", gallery.panoramas);
+              if (commonProperties.type === 2) {
+                landKeys = Object.keys(landProperties);
+                for (_i2 = 0; _i2 < landKeys.length; _i2++) {
+                  formData.append(landKeys[_i2], landProperties[landKeys[_i2]]);
+                }
+              } else {
+                houseKeys = Object.keys(houseProperties);
+                for (_i3 = 0; _i3 < houseKeys.length; _i3++) {
+                  formData.append(houseKeys[_i3], houseProperties[houseKeys[_i3]]);
+                }
+              }
+              for (_i4 = 0; _i4 < gallery.images.length; _i4++) {
+                formData.append("images", gallery.images[_i4]);
+              }
+              for (_i5 = 0; _i5 < juridical.juridicalImages.length; _i5++) {
+                formData.append("juridicalImages", juridical.juridicalImages[_i5]);
+              }
+              for (_i6 = 0; _i6 < gallery.panoramas.length; _i6++) {
+                formData.append("panoramas", gallery.panoramas[_i6]);
+              }
+
+              // console.log("formData", formData.values());
+
+              setLoading(true);
+              console.log("commonProperties", commonProperties);
+              console.log("conveniences", conveniences);
+              console.log("landProperties", landProperties);
+              console.log("houseProperties", houseProperties);
+              console.log("gallery", gallery);
+              console.log("juridical", juridical);
+              response = null;
+              _context.prev = 20;
+              _context.next = 23;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/properties", formData);
+            case 23:
+              response = _context.sent;
+              _context.next = 29;
+              break;
+            case 26:
+              _context.prev = 26;
+              _context.t0 = _context["catch"](20);
+              response = _context.t0.response;
+            case 29:
+              _context.prev = 29;
+              if (response.data.status === "success") {
+                window.alert("Đăng tin thành công");
+                window.location.href = "/";
+              } else {
+                window.alert("Đăng tin thất bại");
+              }
+              setLoading(false);
+              return _context.finish(29);
+            case 33:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[20, 26, 29, 33]]);
+    }));
+    return function handleUpload(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "px-8 pt-6 mb-8 rounded w-3/4 mx-auto",
@@ -11540,13 +11560,13 @@ function UploadForm() {
                           children: "T\u1EC9nh, Th\xE0nh ph\u1ED1"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
                           onChange: function onChange(e) {
-                            setCity(e.target.value);
-                            setDistrict("");
-                            setWard("");
+                            setCity(Number(e.target.value));
+                            setDistrict(0);
+                            setWard(0);
                           },
                           className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                            value: "",
+                            value: 0,
                             children: "T\u1EC9nh/Th\xE0nh ph\u1ED1"
                           }), citiesList ? citiesList.map(function (cityItem) {
                             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
@@ -11588,12 +11608,12 @@ function UploadForm() {
                           children: "Qu\u1EADn, Huy\u1EC7n"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
                           onChange: function onChange(e) {
-                            setDistrict(e.target.value);
-                            setWard("");
+                            setDistrict(Number(e.target.value));
+                            setWard(0);
                           },
                           className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                            value: "",
+                            value: 0,
                             children: "Qu\u1EADn/Huy\u1EC7n"
                           }), districtsList ? districtsList.map(function (districtItem) {
                             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
@@ -11632,11 +11652,11 @@ function UploadForm() {
                           children: "Ph\u01B0\u1EDDng, X\xE3"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
                           onChange: function onChange(e) {
-                            setWard(e.target.value);
+                            setWard(Number(e.target.value));
                           },
                           className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                            value: "",
+                            value: 0,
                             children: "Ph\u01B0\u1EDDng/X\xE3"
                           }), wardsList ? wardsList.map(function (wardItem) {
                             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
@@ -11678,7 +11698,9 @@ function UploadForm() {
                           className: "border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
                           placeholder: "S\u1ED1 nh\xE0, \u0111\u01B0\u1EDDng...",
                           onChange: function onChange(e) {
-                            setAddress(e.target.value);
+                            setCommonProperties(_objectSpread(_objectSpread({}, commonProperties), {}, {
+                              address: e.target.value
+                            }));
                           }
                         })]
                       })
@@ -11711,9 +11733,11 @@ function UploadForm() {
                       rows: "1",
                       placeholder: "Vd: B\xE1n c\u0103n h\u1ED9 3PN d\u1EF1 \xE1n COSMO CITY",
                       onChange: function onChange(e) {
-                        setTitle(e.target.value);
+                        setCommonProperties(_objectSpread(_objectSpread({}, commonProperties), {}, {
+                          title: e.target.value
+                        }));
                       },
-                      value: title
+                      value: commonProperties.title
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     className: "px-4",
@@ -11726,9 +11750,11 @@ function UploadForm() {
                       rows: "4",
                       placeholder: "Nh\u1EADp m\xF4 t\u1EA3 chung v\u1EC1 b\u1EA5t \u0111\u1ED9ng s\u1EA3n c\u1EE7a b\u1EA1n. V\xED d\u1EE5: Nh\xE0 g\u1EA7n c\xF4ng vi\xEAn, tr\u01B0\u1EDDng h\u1ECDc ...",
                       onChange: function onChange(e) {
-                        setDescription(e.target.value);
+                        setCommonProperties(_objectSpread(_objectSpread({}, commonProperties), {}, {
+                          description: e.target.value
+                        }));
                       },
-                      value: description
+                      value: commonProperties.description
                     })]
                   })]
                 })
@@ -11755,9 +11781,11 @@ function UploadForm() {
                       id: "propertyType",
                       className: "w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
                       onChange: function onChange(e) {
-                        setType(e.target.value);
+                        setCommonProperties(_objectSpread(_objectSpread({}, commonProperties), {}, {
+                          type: e.target.value
+                        }));
                       },
-                      value: type,
+                      value: commonProperties.type,
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                         value: 0,
                         disabled: true,
@@ -11784,9 +11812,11 @@ function UploadForm() {
                       className: "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
                       placeholder: "Nh\u1EADp di\u1EC7n t\xEDch (m2)",
                       onChange: function onChange(e) {
-                        setArea(e.target.value);
+                        setCommonProperties(_objectSpread(_objectSpread({}, commonProperties), {}, {
+                          area: e.target.value
+                        }));
                       },
-                      value: area
+                      value: commonProperties.area
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     className: "relative w-full mb-8 px-4",
@@ -11798,11 +11828,13 @@ function UploadForm() {
                       className: "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
                       placeholder: "Nh\u1EADp m\u1EE9c gi\xE1",
                       onChange: function onChange(e) {
-                        setPrice(e.target.value);
+                        setCommonProperties(_objectSpread(_objectSpread({}, commonProperties), {}, {
+                          price: e.target.value
+                        }));
                       },
-                      value: price
+                      value: commonProperties.price
                     })]
-                  }), type != 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  }), commonProperties.type != 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                       className: "relative w-full mb-8 px-4",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
@@ -11962,7 +11994,7 @@ function UploadForm() {
                     children: "Th\xF4ng tin kh\xE1c"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     className: "relative w-full mb-8 px-4",
-                    children: [type !== 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                    children: [commonProperties.type !== 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                       className: "relative w-full mb-8 px-4",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
                         className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
@@ -11985,6 +12017,7 @@ function UploadForm() {
                             }
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
                             htmlFor: "house-checkbox",
+                            setConveniences: true,
                             className: "py-3 ml-2 w-full text-neutral-900",
                             children: "Wifi"
                           })]
@@ -12119,9 +12152,11 @@ function UploadForm() {
                       maxlength: "100",
                       placeholder: "VD: https://www.youtube.com/watch?v=Y-Dw0NpfRug",
                       type: "text",
-                      value: video,
+                      value: gallery.video,
                       onChange: function onChange(e) {
-                        return setVideo(e.target.value);
+                        return setGallery(_objectSpread(_objectSpread({}, gallery), {}, {
+                          video: e.target.value
+                        }));
                       }
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -12186,9 +12221,11 @@ function UploadForm() {
                       id: "jurisdiction",
                       className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
                       onChange: function onChange(e) {
-                        return setJuridicalStatus(e.target.value);
+                        return setJuridical(_objectSpread(_objectSpread({}, juridical), {}, {
+                          juridicalStatus: e.target.value
+                        }));
                       },
-                      value: juridicalStatus,
+                      value: juridical.juridicalStatus,
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                         value: 1,
                         children: "Kh\xF4ng cung c\u1EA5p"
@@ -12280,7 +12317,8 @@ function UploadForm() {
             onClick: function onClick(e) {
               handleUpload(e);
             },
-            children: "\u0110\u0103ng tin"
+            disabled: loading,
+            children: loading ? "Đang tải lên..." : "Đăng tin"
           })]
         })]
       })]
