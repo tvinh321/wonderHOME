@@ -4,9 +4,10 @@ import NotificationMenu from "./NotificationMenu";
 export default function Header() {
     // Check if the user is logged in
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [showDropdown, setShowDropdown] = useState(false);
-    const SERVICES = ["/tim-kiem", "/chuyen-gia", "/huong-dan"];
-    const NAVLINK_VIE = ["Nhà đất bán", "Chuyên gia", "Hướng dẫn"];
+    const [showUserDropdown, setShowUserDropdown] = useState(false);
+    const [showGuidancerDropdown, setShowGuidanceDropdown] = useState(false);
+    const SERVICES = ["/tim-kiem", "/chuyen-gia"];
+    const NAVLINK_VIE = ["Nhà đất bán", "Chuyên gia"];
 
     // Check if the user is logged in
     useEffect(() => {
@@ -82,6 +83,46 @@ export default function Header() {
                                             </a>
                                         );
                                     })}
+                                    <a
+                                        onClick={() => {
+                                            setShowGuidanceDropdown(
+                                                !showGuidancerDropdown
+                                            );
+                                        }}
+                                        className="text-neutral-900 hover:bg-neutral-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-all duration-150"
+                                    >
+                                        Hướng dẫn
+                                    </a>
+                                    <div
+                                        className="absolute left-96 top-12 z-10 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                        role="menu"
+                                        aria-orientation="vertical"
+                                        aria-labelledby="guidance-menu-button"
+                                        style={{
+                                            display: `${
+                                                showGuidancerDropdown
+                                                    ? "block"
+                                                    : "none"
+                                            }`,
+                                        }}
+                                    >
+                                        <a
+                                            href="/phap-ly"
+                                            className="block px-4 py-2 text-sm text-gray-700"
+                                            role="menuitem"
+                                            id="guidance-menu-item-0"
+                                        >
+                                            Pháp lý
+                                        </a>
+                                        <a
+                                            href="/hop-dong"
+                                            className="block px-4 py-2 text-sm text-gray-700"
+                                            role="menuitem"
+                                            id="guidance-menu-item-1"
+                                        >
+                                            Hợp đồng
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -158,7 +199,9 @@ export default function Header() {
                                             aria-expanded="false"
                                             aria-haspopup="true"
                                             onClick={() => {
-                                                setShowDropdown(!showDropdown);
+                                                setShowUserDropdown(
+                                                    !showUserDropdown
+                                                );
                                             }}
                                         >
                                             <img
@@ -176,7 +219,9 @@ export default function Header() {
                                         aria-labelledby="user-menu-button"
                                         style={{
                                             display: `${
-                                                showDropdown ? "block" : "none"
+                                                showUserDropdown
+                                                    ? "block"
+                                                    : "none"
                                             }`,
                                         }}
                                     >

@@ -8,7 +8,7 @@ import Chat from "./Pages/Chat";
 import Search from "./Pages/Search";
 import Agency from "./Pages/Agency";
 import ChatBubbleList from "./Components/ChatBubbleList";
-import Guidance from "./Pages/Guidance";
+import ContractGuidance from "./Pages/ContractGuidance";
 
 export function App() {
     return (
@@ -70,7 +70,7 @@ export function App() {
                             </>
                         }
                     />
-                    <Route path="/huong-dan" element={<Guidance />} />
+                    <Route path="/hop-dong" element={<ContractGuidance />} />
                 </Routes>
             </Router>
         </>
