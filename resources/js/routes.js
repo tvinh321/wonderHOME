@@ -9,6 +9,7 @@ import Search from "./Pages/Search";
 import Agency from "./Pages/Agency";
 import ChatBubbleList from "./Components/ChatBubbleList";
 import ContractGuidance from "./Pages/ContractGuidance";
+import JuridicalGuidance from "./Pages/JuridicalGuidance";
 
 export function App() {
     return (
@@ -71,6 +72,7 @@ export function App() {
                         }
                     />
                     <Route path="/hop-dong" element={<ContractGuidance />} />
+                    <Route path="/phap-ly" element={<JuridicalGuidance />} />
                 </Routes>
             </Router>
         </>
