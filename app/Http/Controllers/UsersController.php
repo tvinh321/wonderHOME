@@ -80,6 +80,14 @@ class UsersController extends Controller
         }
     }
 
+    // Update User Info
+    public function update(Request $request)
+    {
+        $id = $request->user->id;
+        
+        
+    }
+
     // Generate token
     public function generateToken($user_id)
     {

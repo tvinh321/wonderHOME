@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PropertiesController extends Controller
 {
@@ -57,26 +58,106 @@ class PropertiesController extends Controller
     // Post property
     public function postProperty(Request $request)
     {
-        $user = $request->user;
+        $userId = $request->user->id;
+
+        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
 
         $id = DB::table('properties')->insertGetId([
             'title' => $request->title,
             'location' => $request->location,
             'description' => $request->description,
-            'num_of_bedrooms' => $request->bedrooms,
-            'num_of_toilets' => $request->bathrooms,
+            'type' => $request->type,
+            'num_of_bedrooms' => $request->bedroom,
+            'num_of_toilets' => $request->bathroom,
             'direction' => $request->direction,
             'price' => $request->price,
             'priority' => 10,
             'facade' => $request->facade,
             'area' => $request->area,
+            'floor' => $request->floors,
             'expire_date' => now()->addDays(30),
-            'juridical_status' => $request->juridical_status,
-            'furniture' => $request->furniture,
-            'wards_id' => $request->wards_id,
-            'users_id' => $user,
+            'juridical_status' => $request->juridicalStatus,
+            'juridical_type' => 'sohong',
+            'furniture' => $request->interior,
+            'wards_id' => $request->ward,
+            'users_id' => $userId,
             'created_at' => now(),
+            'access_count' => 0,
+            'conveniences' => $request->conveniences,
+            'direction' => $request->direction,
+            'status' => 0
         ]);
+
+        if ($request->video) {
+            DB::table('files')->insert([
+                'content' => $request->video,
+                'properties_id' => $id,
+                'type' => 'video',
+                'permission' => 'public',
+            ]);
+        }
+
+        if ($request->has('images')) {
+            // Print
+            $output->writeln('Has images');
+
+            foreach ($request->images as $image) {
+                // Print
+                $output->writeln('Image: ' . $image->getClientOriginalName());
+
+                $fileName = 'image_' . $image->getClientOriginalName();
+
+                Storage::putFileAs('public/properties/' . $id, $image, $fileName);
+
+                DB::table('files')->insert([
+                    'content' => $fileName,
+                    'properties_id' => $id,
+                    'type' => 'image',
+                    'permission' => 'public',
+                ]);
+            }
+        }
+
+        if ($request->has('panoramas')) {
+            // Print
+            $output->writeln('Has panoramas');
+
+            foreach ($request->panoramas as $panorama) {
+                // Print
+                $output->writeln('Panorama: ' . $panorama->getClientOriginalName());
+
+                $fileName = 'pano_' . $panorama->getClientOriginalName();
+
+                Storage::putFileAs('public/properties/' . $id, $panorama, $fileName);
+
+                DB::table('files')->insert([
+                    'content' => $fileName,
+                    'properties_id' => $id,
+                    'type' => 'pano',
+                    'permission' => 'public',
+                ]);
+            }
+        }
+
+        if ($request->has('juridicalImages')) {
+            // Print
+            $output->writeln('Has juridical images');
+
+            foreach ($request->juridicalImages as $juridicalImage) {
+                // Print
+                $output->writeln('Juridical image: ' . $juridicalImage->getClientOriginalName());
+                $fileName = 'juridical_' . $juridicalImage->getClientOriginalName();
+
+                Storage::putFileAs('public/properties/' . $id, $juridicalImage, $fileName);
+
+                DB::table('files')->insert([
+                    'content' => $fileName,
+                    'properties_id' => $id,
+                    'type' => 'juridical',
+                    'permission' => 'public',
+                ]);
+            }
+        }
 
         return response()->json([
             'status' => 'success',

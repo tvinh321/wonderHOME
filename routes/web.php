@@ -83,3 +83,7 @@ Route::get('/api/avatar/{fileName}', [App\Http\Controllers\FilesController::clas
 Route::get('/api/reports', [App\Http\Controllers\ReportController::class, 'getReports'])->middleware(CheckUser::class);
 
 Route::post('/api/reports', [App\Http\Controllers\ReportController::class, 'postReport']);
+
+Route::get('/api/property/{id}/{fileName}', [App\Http\Controllers\FilesController::class, 'getFilesForProperty']);
+
+Route::post('/api/uploadAvatar', [App\Http\Controllers\FilesController::class, 'uploadAvatar'])->middleware(CheckUser::class);

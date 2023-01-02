@@ -17,10 +17,18 @@ const direction = [
 const interior = ["Trống", "Đầy đủ"];
 
 export default function UploadForm() {
+    const token = localStorage.getItem("wonderHome-token");
+
     const [citiesList, setCitiesList] = useState();
     const [districtsList, setDistrictsList] = useState();
     const [wardsList, setWardsList] = useState();
-    const [typesList, setTypesList] = React.useState();
+    const [typesList] = useState([
+        { id: 1, name: "Nhà", value: "nha" },
+        { id: 2, name: "Chung cư/Căn hộ", value: "chungcu" },
+        { id: 3, name: "Đất", value: "dat" },
+        { id: 4, name: "Văn phòng", value: "vanphong" },
+        { id: 5, name: "Khác", value: "khac" },
+    ]);
     const [city, setCity] = useState(0);
     const [district, setDistrict] = useState(0);
     const [ward, setWard] = useState(0);
@@ -105,17 +113,6 @@ export default function UploadForm() {
             });
     }, [district]);
 
-    useEffect(() => {
-        axios
-            .get("/api/types")
-            .then((res) => {
-                setTypesList(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
-
     const handleDisplayAddress = useMemo(() => {
         const addressShow = commonProperties.address
             ? commonProperties.address + ", "
@@ -172,7 +169,7 @@ export default function UploadForm() {
 
         formData.append("video", gallery.video);
         formData.append("juridicalStatus", juridical.juridicalStatus);
-        formData.append("panoramas", gallery.panoramas);
+        formData.append("location", handleDisplayAddress)
 
         if (commonProperties.type === 2) {
             const landKeys = Object.keys(landProperties);
@@ -187,31 +184,29 @@ export default function UploadForm() {
         }
 
         for (let i = 0; i < gallery.images.length; i++) {
-            formData.append("images", gallery.images[i]);
-        }
-
-        for (let i = 0; i < juridical.juridicalImages.length; i++) {
-            formData.append("juridicalImages", juridical.juridicalImages[i]);
+            formData.append("images[]", gallery.images[i]);
         }
 
         for (let i = 0; i < gallery.panoramas.length; i++) {
-            formData.append("panoramas", gallery.panoramas[i]);
+            formData.append("panoramas[]", gallery.panoramas[i]);
         }
 
-        // console.log("formData", formData.values());
+        for (let i = 0; i < juridical.juridicalImages.length; i++) {
+            formData.append("juridicalImages[]", juridical.juridicalImages[i]);
+        }
+
+        formData.append("conveniences", conveniences.join(","));
 
         setLoading(true);
 
-        console.log("commonProperties", commonProperties);
-        console.log("conveniences", conveniences);
-        console.log("landProperties", landProperties);
-        console.log("houseProperties", houseProperties);
-        console.log("gallery", gallery);
-        console.log("juridical", juridical);
-
         let response = null;
         try {
-            response = await axios.post("/api/properties", formData);
+            response = await axios.post("/api/property", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": "Bearer " + token
+                },
+            });
         } catch (e) {
             response = e.response;
         } finally {
@@ -579,6 +574,9 @@ export default function UploadForm() {
                                                     id="propertyType"
                                                     className="w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
                                                     onChange={(e) => {
+                                                        console.log(e.target);
+                                                        console.log(e.target.value);
+
                                                         setCommonProperties({
                                                             ...commonProperties,
                                                             type: e.target
@@ -595,11 +593,10 @@ export default function UploadForm() {
                                                     </option>
                                                     {typesList &&
                                                         typesList.map(
-                                                            (type, index) => (
+                                                            (type) => (
                                                                 <option
                                                                     value={
-                                                                        index +
-                                                                        1
+                                                                        type.value
                                                                     }
                                                                     key={
                                                                         type.id
@@ -657,7 +654,7 @@ export default function UploadForm() {
                                                     }
                                                 />
                                             </div>
-                                            {commonProperties.type != 2 ? (
+                                            {commonProperties.type != "dat" ? (
                                                 <div>
                                                     <div className="relative w-full mb-8 px-4">
                                                         <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
@@ -920,7 +917,7 @@ export default function UploadForm() {
                                                                                 1
                                                                             }
                                                                             key={
-                                                                                type.id
+                                                                                index + 1
                                                                             }
                                                                         >
                                                                             {

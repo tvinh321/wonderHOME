@@ -72,11 +72,11 @@ CREATE TABLE districts (
 CREATE TABLE files (
     id int  NOT NULL,
     type varchar(16)  NOT NULL,
-    content bytea  NOT NULL,
+    content text  NOT NULL,
     permission text  NOT NULL,
-    properties_id int  NOT NULL,
-    blogs_id int  NOT NULL,
-    messages_id int  NOT NULL,
+    properties_id int,
+    blogs_id int,
+    messages_id int,
     CONSTRAINT files_pk PRIMARY KEY (id)
 );
 

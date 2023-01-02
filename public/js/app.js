@@ -11425,6 +11425,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var direction = ["Đông", "Tây", "Nam", "Bắc", "Đông Bắc", "Đông Nam", "Tây Nam", "Tây Bắc"];
 var interior = ["Trống", "Đầy đủ"];
 function UploadForm() {
+  var token = localStorage.getItem("wonderHome-token");
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
     _useState2 = _slicedToArray(_useState, 2),
     citiesList = _useState2[0],
@@ -11437,27 +11438,46 @@ function UploadForm() {
     _useState6 = _slicedToArray(_useState5, 2),
     wardsList = _useState6[0],
     setWardsList = _useState6[1];
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(),
-    _React$useState2 = _slicedToArray(_React$useState, 2),
-    typesList = _React$useState2[0],
-    setTypesList = _React$useState2[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-    _useState8 = _slicedToArray(_useState7, 2),
-    city = _useState8[0],
-    setCity = _useState8[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+      id: 1,
+      name: "Nhà",
+      value: "nha"
+    }, {
+      id: 2,
+      name: "Chung cư/Căn hộ",
+      value: "chungcu"
+    }, {
+      id: 3,
+      name: "Đất",
+      value: "dat"
+    }, {
+      id: 4,
+      name: "Văn phòng",
+      value: "vanphong"
+    }, {
+      id: 5,
+      name: "Khác",
+      value: "khac"
+    }]),
+    _useState8 = _slicedToArray(_useState7, 1),
+    typesList = _useState8[0];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState10 = _slicedToArray(_useState9, 2),
-    district = _useState10[0],
-    setDistrict = _useState10[1];
+    city = _useState10[0],
+    setCity = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState12 = _slicedToArray(_useState11, 2),
-    ward = _useState12[0],
-    setWard = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    district = _useState12[0],
+    setDistrict = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState14 = _slicedToArray(_useState13, 2),
-    loading = _useState14[0],
-    setLoading = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    ward = _useState14[0],
+    setWard = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    loading = _useState16[0],
+    setLoading = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       address: "",
       title: "",
       description: "",
@@ -11465,51 +11485,51 @@ function UploadForm() {
       price: "",
       area: ""
     }),
-    _useState16 = _slicedToArray(_useState15, 2),
-    commonProperties = _useState16[0],
-    setCommonProperties = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState18 = _slicedToArray(_useState17, 2),
-    conveniences = _useState18[0],
-    setConveniences = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    commonProperties = _useState18[0],
+    setCommonProperties = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState20 = _slicedToArray(_useState19, 2),
+    conveniences = _useState20[0],
+    setConveniences = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       bedroom: 0,
       bathroom: 0,
       floors: 0,
       interior: 0,
       moreDetails: ""
     }),
-    _useState20 = _slicedToArray(_useState19, 2),
-    houseProperties = _useState20[0],
-    setHouseProperties = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    _useState22 = _slicedToArray(_useState21, 2),
+    houseProperties = _useState22[0],
+    setHouseProperties = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       direction: 0,
       road: "",
       frontage: ""
     }),
-    _useState22 = _slicedToArray(_useState21, 2),
-    landProperties = _useState22[0],
-    setLandProperties = _useState22[1];
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    _useState24 = _slicedToArray(_useState23, 2),
+    landProperties = _useState24[0],
+    setLandProperties = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       images: [],
       video: "",
       panoramas: []
     }),
-    _useState24 = _slicedToArray(_useState23, 2),
-    gallery = _useState24[0],
-    setGallery = _useState24[1]; // [image, video, panorama
+    _useState26 = _slicedToArray(_useState25, 2),
+    gallery = _useState26[0],
+    setGallery = _useState26[1]; // [image, video, panorama
 
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       juridicalStatus: 1,
       juridicalImages: []
     }),
-    _useState26 = _slicedToArray(_useState25, 2),
-    juridical = _useState26[0],
-    setJuridical = _useState26[1];
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
     _useState28 = _slicedToArray(_useState27, 2),
-    registerStep = _useState28[0],
-    setRegisterStep = _useState28[1];
+    juridical = _useState28[0],
+    setJuridical = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+    _useState30 = _slicedToArray(_useState29, 2),
+    registerStep = _useState30[0],
+    setRegisterStep = _useState30[1];
   var lastStep = 3;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/cities").then(function (res) {
@@ -11541,13 +11561,6 @@ function UploadForm() {
       console.log(err);
     });
   }, [district]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/types").then(function (res) {
-      setTypesList(res.data);
-    })["catch"](function (err) {
-      console.log(err);
-    });
-  }, []);
   var handleDisplayAddress = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
     var addressShow = commonProperties.address ? commonProperties.address + ", " : "";
     var wardShow = ward ? (wardsList === null || wardsList === void 0 ? void 0 : wardsList.filter(function (item) {
@@ -11607,7 +11620,7 @@ function UploadForm() {
               }
               formData.append("video", gallery.video);
               formData.append("juridicalStatus", juridical.juridicalStatus);
-              formData.append("panoramas", gallery.panoramas);
+              formData.append("location", handleDisplayAddress);
               if (commonProperties.type === 2) {
                 landKeys = Object.keys(landProperties);
                 for (_i2 = 0; _i2 < landKeys.length; _i2++) {
@@ -11620,38 +11633,35 @@ function UploadForm() {
                 }
               }
               for (_i4 = 0; _i4 < gallery.images.length; _i4++) {
-                formData.append("images", gallery.images[_i4]);
+                formData.append("images[]", gallery.images[_i4]);
               }
-              for (_i5 = 0; _i5 < juridical.juridicalImages.length; _i5++) {
-                formData.append("juridicalImages", juridical.juridicalImages[_i5]);
+              for (_i5 = 0; _i5 < gallery.panoramas.length; _i5++) {
+                formData.append("panoramas[]", gallery.panoramas[_i5]);
               }
-              for (_i6 = 0; _i6 < gallery.panoramas.length; _i6++) {
-                formData.append("panoramas", gallery.panoramas[_i6]);
+              for (_i6 = 0; _i6 < juridical.juridicalImages.length; _i6++) {
+                formData.append("juridicalImages[]", juridical.juridicalImages[_i6]);
               }
-
-              // console.log("formData", formData.values());
-
+              formData.append("conveniences", conveniences.join(","));
               setLoading(true);
-              console.log("commonProperties", commonProperties);
-              console.log("conveniences", conveniences);
-              console.log("landProperties", landProperties);
-              console.log("houseProperties", houseProperties);
-              console.log("gallery", gallery);
-              console.log("juridical", juridical);
               response = null;
-              _context.prev = 20;
-              _context.next = 23;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/properties", formData);
-            case 23:
+              _context.prev = 15;
+              _context.next = 18;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/property", formData, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  "Authorization": "Bearer " + token
+                }
+              });
+            case 18:
               response = _context.sent;
-              _context.next = 29;
+              _context.next = 24;
               break;
-            case 26:
-              _context.prev = 26;
-              _context.t0 = _context["catch"](20);
+            case 21:
+              _context.prev = 21;
+              _context.t0 = _context["catch"](15);
               response = _context.t0.response;
-            case 29:
-              _context.prev = 29;
+            case 24:
+              _context.prev = 24;
               if (response.data.status === "success") {
                 window.alert("Đăng tin thành công");
                 window.location.href = "/";
@@ -11659,13 +11669,13 @@ function UploadForm() {
                 window.alert("Đăng tin thất bại");
               }
               setLoading(false);
-              return _context.finish(29);
-            case 33:
+              return _context.finish(24);
+            case 28:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[20, 26, 29, 33]]);
+      }, _callee, null, [[15, 21, 24, 28]]);
     }));
     return function handleUpload(_x) {
       return _ref.apply(this, arguments);
@@ -11958,6 +11968,8 @@ function UploadForm() {
                       id: "propertyType",
                       className: "w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
                       onChange: function onChange(e) {
+                        console.log(e.target);
+                        console.log(e.target.value);
                         setCommonProperties(_objectSpread(_objectSpread({}, commonProperties), {}, {
                           type: e.target.value
                         }));
@@ -11967,9 +11979,9 @@ function UploadForm() {
                         value: 0,
                         disabled: true,
                         children: "Vui l\xF2ng ch\u1ECDn lo\u1EA1i b\u1EA5t \u0111\u1ED9ng s\u1EA3n..."
-                      }), typesList && typesList.map(function (type, index) {
+                      }), typesList && typesList.map(function (type) {
                         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                          value: index + 1,
+                          value: type.value,
                           children: type.name
                         }, type.id);
                       })]
@@ -12011,7 +12023,7 @@ function UploadForm() {
                       },
                       value: commonProperties.price
                     })]
-                  }), commonProperties.type != 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  }), commonProperties.type != "dat" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                       className: "relative w-full mb-8 px-4",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
@@ -12160,7 +12172,7 @@ function UploadForm() {
                           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                             value: index + 1,
                             children: dir
-                          }, type.id);
+                          }, index + 1);
                         })]
                       })]
                     })]

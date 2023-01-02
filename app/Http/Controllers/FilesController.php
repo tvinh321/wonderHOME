@@ -71,4 +71,33 @@ class FilesController extends Controller
 
         return response($file, 200)->header('Content-Type', 'application/octet-stream');
     }
+
+    public function uploadAvatar(Request $request)
+    {
+        $file = $request->file;
+        $userId = $request->user->id;
+
+        if ($file) {
+            $fileName = $userId . '.' . $file->getClientOriginalExtension();
+            Storage::putFileAs('public/avatar', $file, $fileName);
+
+            DB::table('users')->where('id', $userId)->update([
+                'avatar' => $fileName,
+            ]);
+
+            return response()->json([
+                'message' => 'Avatar uploaded successfully'
+            ]);
+        }
+    }
+
+    public function getFilesForProperty(Request $request)
+    {
+        $propertyId = $request->id;
+        $fileName = $request->fileName;
+
+        $file = Storage::get('public/properties/' . $propertyId . '/' . $fileName);
+
+        return response($file, 200)->header('Content-Type', 'application/octet-stream');
+    }
 }
