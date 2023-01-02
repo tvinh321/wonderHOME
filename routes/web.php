@@ -78,7 +78,9 @@ Route::post('/api/chat/uploadFiles', [App\Http\Controllers\FilesController::clas
 
 Route::get('/api/chat/downloadFile/{chatId}/{fileName}', [App\Http\Controllers\FilesController::class, 'getFilesForChat']);
 
-Route::get('/api/avatar/{fileName}', [App\Http\Controllers\FilesController::class, 'getAvatar']);
+Route::get('/api/avatar/{id}', [App\Http\Controllers\FilesController::class, 'getAvatar']);
+
+Route::post('/api/uploadAvatar', [App\Http\Controllers\FilesController::class, 'uploadAvatar'])->middleware(CheckUser::class);
 
 Route::get('/api/reports', [App\Http\Controllers\ReportController::class, 'getReports'])->middleware(CheckUser::class);
 
@@ -86,4 +88,4 @@ Route::post('/api/reports', [App\Http\Controllers\ReportController::class, 'post
 
 Route::get('/api/property/{id}/{fileName}', [App\Http\Controllers\FilesController::class, 'getFilesForProperty']);
 
-Route::post('/api/uploadAvatar', [App\Http\Controllers\FilesController::class, 'uploadAvatar'])->middleware(CheckUser::class);
+Route::post('/api/userInfo', [App\Http\Controllers\UsersController::class, 'update'])->middleware(CheckUser::class);

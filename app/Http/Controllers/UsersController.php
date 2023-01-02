@@ -85,7 +85,29 @@ class UsersController extends Controller
     {
         $id = $request->user->id;
         
-        
+        $fullname = $request->fullName;
+        $identity = $request->identityNumber;
+        $gender = $request->gender;
+        $location = $request->location;
+        $dob = $request->dob;
+        $description = $request->description;
+        $facebook = $request->facebook;
+        $phone = $request->phone;
+
+        DB::table('users')->where('id', $id)->update([
+            'full_name' => $fullname,
+            'identity_number' => $identity,
+            'gender' => $gender,
+            'location' => $location,
+            'dob' => $dob,
+            'description' => $description,
+            'facebook' => $facebook,
+            'phone' => $phone
+        ]);
+
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 
     // Generate token

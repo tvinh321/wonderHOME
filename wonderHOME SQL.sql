@@ -185,7 +185,7 @@ CREATE TABLE users (
     identity_number varchar(12)  NULL,
     avatar text  NULL,
     gender smallint  NULL,
-    location int  NULL,
+    location text  NULL,
     dob date  NULL,
     description text  NULL,
     facebook text  NULL,

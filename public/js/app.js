@@ -9802,24 +9802,47 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Header() {
   // Check if the user is logged in
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
-    isLoggedIn = _useState2[0],
-    setIsLoggedIn = _useState2[1];
+    user = _useState2[0],
+    setUser = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState4 = _slicedToArray(_useState3, 2),
-    showUserDropdown = _useState4[0],
-    setShowUserDropdown = _useState4[1];
+    isLoggedIn = _useState4[0],
+    setIsLoggedIn = _useState4[1];
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState6 = _slicedToArray(_useState5, 2),
-    showGuidancerDropdown = _useState6[0],
-    setShowGuidanceDropdown = _useState6[1];
+    showUserDropdown = _useState6[0],
+    setShowUserDropdown = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    showGuidancerDropdown = _useState8[0],
+    setShowGuidanceDropdown = _useState8[1];
   var SERVICES = ["/tim-kiem", "/chuyen-gia"];
   var NAVLINK_VIE = ["Nhà đất bán", "Chuyên gia"];
 
   // Check if the user is logged in
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    localStorage.getItem("wonderHome-token") ? setIsLoggedIn(true) : setIsLoggedIn(false);
+    var token = localStorage.getItem("wonderHome-token");
+    if (token) {
+      setIsLoggedIn(true);
+
+      // Decode the token to get user's information
+      var base64Url = token.split(".")[1];
+      var base64 = base64Url.replace("-", "+").replace("_", "/");
+      var decodedToken = JSON.parse(window.atob(base64));
+
+      // Check if the token is expired
+      var currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        localStorage.removeItem("wonderHome-token");
+        setIsLoggedIn(false);
+      } else {
+        setUser(decodedToken === null || decodedToken === void 0 ? void 0 : decodedToken.sub);
+      }
+    } else {
+      setIsLoggedIn(false);
+    }
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("header", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("nav", {
@@ -9881,7 +9904,7 @@ function Header() {
                   onClick: function onClick() {
                     setShowGuidanceDropdown(!showGuidancerDropdown);
                   },
-                  className: "text-neutral-900 hover:bg-neutral-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-all duration-150",
+                  className: "text-neutral-900 hover:bg-neutral-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-all duration-150 cursor-pointer",
                   children: "H\u01B0\u1EDBng d\u1EABn"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                   className: "absolute left-96 top-12 z-10 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none",
@@ -9982,7 +10005,7 @@ function Header() {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
                     className: "h-12 w-12 rounded-full",
-                    src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+                    src: "/api/avatar/".concat(user.id),
                     alt: ""
                   })
                 })

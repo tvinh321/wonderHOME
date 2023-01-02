@@ -65,11 +65,20 @@ class FilesController extends Controller
 
     public function getAvatar(Request $request)
     {
-        $fileName = $request->fileName;
+        $userId = $request->id;
 
-        $file = Storage::get('public/avatar/' . $fileName);
+        // Get avatar from database
+        $avatar = DB::table('users')->where('id', $userId)->first()->avatar;
 
-        return response($file, 200)->header('Content-Type', 'application/octet-stream');
+        if (!$avatar) {
+            $avatar = 'default.png';
+        }
+
+        // Get file from storage
+        $file = Storage::get('public/avatar/' . $avatar);
+
+        // Return file with correct extension
+        return response($file, 200)->header('Content-Type', 'image/' . pathinfo($avatar, PATHINFO_EXTENSION));
     }
 
     public function uploadAvatar(Request $request)
@@ -78,6 +87,12 @@ class FilesController extends Controller
         $userId = $request->user->id;
 
         if ($file) {
+            $oldAvatar = DB::table('users')->where('id', $userId)->first()->avatar;
+
+            if ($oldAvatar) {
+                Storage::delete('public/avatar/' . $oldAvatar);
+            }
+
             $fileName = $userId . '.' . $file->getClientOriginalExtension();
             Storage::putFileAs('public/avatar', $file, $fileName);
 

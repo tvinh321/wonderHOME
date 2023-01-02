@@ -3,6 +3,7 @@ import NotificationMenu from "./NotificationMenu";
 
 export default function Header() {
     // Check if the user is logged in
+    const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     const [showGuidancerDropdown, setShowGuidanceDropdown] = useState(false);
@@ -11,9 +12,27 @@ export default function Header() {
 
     // Check if the user is logged in
     useEffect(() => {
-        localStorage.getItem("wonderHome-token")
-            ? setIsLoggedIn(true)
-            : setIsLoggedIn(false);
+        const token = localStorage.getItem("wonderHome-token")
+
+        if (token) {
+            setIsLoggedIn(true);
+
+            // Decode the token to get user's information
+            const base64Url = token.split(".")[1];
+            const base64 = base64Url.replace("-", "+").replace("_", "/");
+            const decodedToken = JSON.parse(window.atob(base64));
+
+            // Check if the token is expired
+            const currentTime = Date.now() / 1000;
+            if (decodedToken.exp < currentTime) {
+                localStorage.removeItem("wonderHome-token");
+                setIsLoggedIn(false);
+            } else {
+                setUser(decodedToken?.sub);
+            }
+        } else {
+            setIsLoggedIn(false);
+        }
     }, []);
 
     return (
@@ -89,7 +108,7 @@ export default function Header() {
                                                 !showGuidancerDropdown
                                             );
                                         }}
-                                        className="text-neutral-900 hover:bg-neutral-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-all duration-150"
+                                        className="text-neutral-900 hover:bg-neutral-900 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-all duration-150 cursor-pointer"
                                     >
                                         Hướng dẫn
                                     </a>
@@ -206,7 +225,7 @@ export default function Header() {
                                         >
                                             <img
                                                 className="h-12 w-12 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                src={`/api/avatar/${user.id}`}
                                                 alt=""
                                             />
                                         </button>
