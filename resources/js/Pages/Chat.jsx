@@ -135,9 +135,9 @@ export default function Chat() {
     }, [messages]);
 
     return (
-        <>
+        <div className="flex flex-col h-screen">
             <Header />
-            <div className="flex pt-4 h-[80vh]">
+            <div className="flex flex-grow pt-4">
                 <div className="w-1/4 border-r h-full">
                     <div className="flex px-3 py-4 items-center cursor-default border-b h-16">
                         <h1 className="text-lg font-semibold text-gray-800 w-full text-center">
@@ -177,26 +177,26 @@ export default function Chat() {
                         ))}
                     </div>
                 </div>
-                <div className="w-3/4 h-full">
-                    <div className="flex flex-col flex-wrap">
-                        <div className="flex items-center px-6 h-16 border-b">
-                            {chatRoom && (
-                                <img
-                                    src={
+                <div className="flex flex-col w-3/4 h-full">
+                    <div className="flex items-center px-6 h-16 border-b">
+                        {chatRoom && (
+                            <img
+                                src={
                                         chatRoom?.otherUser?.avatar
                                         ? `/api/avatar/${chatRoom.otherUser.avatar}`
-                                        : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
-                                    }
-                                    className="w-14 h-14 rounded-full object-fill"
-                                />
-                            )}
-                            <div className="flex flex-col ml-3">
-                                <h1 className="font-semibold text-gray-800">
-                                    {chatRoom?.otherUser?.email}
-                                </h1>
-                            </div>
+                                    : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                                }
+                                className="w-14 h-14 rounded-full object-fill"
+                            />
+                        )}
+                        <div className="flex flex-col ml-3">
+                            <h1 className="font-semibold text-gray-800">
+                                {chatRoom?.otherUser?.email}
+                            </h1>
                         </div>
-                        <div className="flex-1 overflow-y-scroll max-h-full" id="chat-box">
+                    </div>
+                    <div className="flex flex-grow flex-col">
+                        <div className="overflow-y-scroll h-[68vh]" id="chat-box">
                             {messages.map((message, index) => (
                                 <div
                                     key={index}
@@ -295,6 +295,6 @@ export default function Chat() {
                     </div>
                 )
             }
-        </>
+        </div>
     );
 }

@@ -80,7 +80,7 @@ export default function Gallery({
                 {(images || ["", "", "", "", ""]).map((image, index) => {
                     return (
                         <img
-                            className="rounded-xl px-4"
+                            className="rounded-xl px-4 object-cover h-full"
                             src={
                                 image
                                     ? image

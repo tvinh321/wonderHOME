@@ -59,7 +59,7 @@ class ChatController extends Controller
                 ->where('users_chat_rooms.chat_rooms_id', $chatRooms[$i]->chat_rooms_id)
                 ->where('users_chat_rooms.users_id', '!=', $userId)
                 ->join('users', 'users_chat_rooms.users_id', '=', 'users.id')
-                ->select('users.email', 'users.avatar')
+                ->select('users.email', 'users.id')
                 ->first();
 
             // Get last message

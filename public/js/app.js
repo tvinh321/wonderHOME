@@ -8450,7 +8450,7 @@ function Gallery(_ref) {
         }
       }), (images || ["", "", "", "", ""]).map(function (image, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-          className: "rounded-xl px-4",
+          className: "rounded-xl px-4 object-cover h-full",
           src: image ? image : "/assets/images/Room".concat(index + 1, ".jpg"),
           alt: "Room ".concat(index + 1)
         });
@@ -12981,7 +12981,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 function Chat() {
   var _chatRoom$otherUser, _chatRoom$otherUser2;
   var token = localStorage.getItem("wonderHome-token");
@@ -13105,9 +13104,10 @@ function Chat() {
     var chatBox = document.getElementById("chat-box");
     chatBox.scrollTop = chatBox.scrollHeight;
   }, [messages]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    className: "flex flex-col h-screen",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-      className: "flex pt-4 h-[80vh]",
+      className: "flex flex-grow pt-4",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "w-1/4 border-r h-full",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -13141,24 +13141,24 @@ function Chat() {
             }, index);
           })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        className: "w-3/4 h-full",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-          className: "flex flex-col flex-wrap",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-            className: "flex items-center px-6 h-16 border-b",
-            children: [chatRoom && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-              src: chatRoom !== null && chatRoom !== void 0 && (_chatRoom$otherUser = chatRoom.otherUser) !== null && _chatRoom$otherUser !== void 0 && _chatRoom$otherUser.avatar ? "/api/avatar/".concat(chatRoom.otherUser.avatar) : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
-              className: "w-14 h-14 rounded-full object-fill"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-              className: "flex flex-col ml-3",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
-                className: "font-semibold text-gray-800",
-                children: chatRoom === null || chatRoom === void 0 ? void 0 : (_chatRoom$otherUser2 = chatRoom.otherUser) === null || _chatRoom$otherUser2 === void 0 ? void 0 : _chatRoom$otherUser2.email
-              })
-            })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "flex flex-col w-3/4 h-full",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "flex items-center px-6 h-16 border-b",
+          children: [chatRoom && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+            src: chatRoom !== null && chatRoom !== void 0 && (_chatRoom$otherUser = chatRoom.otherUser) !== null && _chatRoom$otherUser !== void 0 && _chatRoom$otherUser.avatar ? "/api/avatar/".concat(chatRoom.otherUser.avatar) : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+            className: "w-14 h-14 rounded-full object-fill"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            className: "flex-1 overflow-y-scroll max-h-full",
+            className: "flex flex-col ml-3",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
+              className: "font-semibold text-gray-800",
+              children: chatRoom === null || chatRoom === void 0 ? void 0 : (_chatRoom$otherUser2 = chatRoom.otherUser) === null || _chatRoom$otherUser2 === void 0 ? void 0 : _chatRoom$otherUser2.email
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "flex flex-grow flex-col",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            className: "overflow-y-scroll h-[68vh]",
             id: "chat-box",
             children: messages.map(function (message, index) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -13220,7 +13220,7 @@ function Chat() {
               children: "G\u1EEDi"
             })]
           })]
-        })
+        })]
       })]
     }), viewModal && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center",
