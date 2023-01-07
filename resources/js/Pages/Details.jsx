@@ -7,6 +7,12 @@ import Gallery from "../Components/Details/Gallery";
 import OwnerContact from "../Components/Details/OwnerContact";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/solid";
 import ReportModal from "../Components/Details/ReportModal";
+import {
+    Direction,
+    Furniture,
+    JuridicalPaper,
+    JuridicalStatus,
+} from "../../constants/common";
 
 export default function Details() {
     const houseId = useParams();
@@ -25,6 +31,8 @@ export default function Details() {
                 console.log(err);
             });
     }, []);
+
+    console.log("house", house);
 
     return (
         <>
@@ -122,7 +130,7 @@ export default function Details() {
                                                 <span>Ban công</span>
                                             </div>
                                             <p className="w-1/2 text-right">
-                                                Đông-Bắc
+                                                {Direction[house.direction - 1]}
                                             </p>
                                         </div>
                                         <div className="flex items-center justify-between">
@@ -256,7 +264,7 @@ export default function Details() {
                                                 <span>Nội thất</span>
                                             </div>
                                             <p className="w-1/2 text-right">
-                                                Mới 100% chưa qua sử dụng
+                                                {Furniture[house.furniture - 1]}
                                             </p>
                                         </div>
                                     </div>
@@ -266,31 +274,70 @@ export default function Details() {
                                             <h5 className="font-bold text-lg">
                                                 Hồ sơ pháp lý
                                             </h5>
-                                            <span className="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline bg-green-500 text-white rounded-full">
-                                                Đã xác minh
-                                            </span>
-                                        </div>
-                                        <div className="leading-7 mt-3">
-                                            <p>Các loại giấy tờ đã xác minh:</p>
-                                            <ul className="list-disc pl-6">
-                                                <li>
-                                                    Căn cước công dân chủ sở hữu
-                                                </li>
-                                                <li>Sổ đỏ</li>
-                                                <li>Sổ hồng</li>
-                                            </ul>
-                                            Để biết thêm thông tin về giấy tờ
-                                            pháp lý, quý khách có thể{" "}
                                             <span
-                                                className="underline text-amber-500"
-                                                onClick={() => {
-                                                    setModalRequest(true);
+                                                className={`text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline text-white rounded-full`}
+                                                style={{
+                                                    backgroundColor:
+                                                        JuridicalStatus.find(
+                                                            (item) =>
+                                                                item.id ===
+                                                                house.juridical_status
+                                                        )?.color,
                                                 }}
                                             >
-                                                yêu cầu cung cấp giấy tờ pháp lý
-                                            </span>{" "}
-                                            từ người đăng tin.
+                                                {
+                                                    JuridicalStatus.find(
+                                                        (item) =>
+                                                            item.id ===
+                                                            house.juridical_status
+                                                    )?.name
+                                                }
+                                            </span>
                                         </div>
+                                        {house.juridical_status !== undefined &&
+                                        house.juridical_status !== 2 ? (
+                                            <div className="leading-7 mt-3">
+                                                <p>
+                                                    Các loại giấy tờ{" "}
+                                                    {JuridicalStatus.find(
+                                                        (item) =>
+                                                            item.id ===
+                                                            house.juridical_status
+                                                    )?.name.toLowerCase()}
+                                                    :
+                                                </p>
+                                                <ul className="list-disc pl-6">
+                                                    {Object.keys(
+                                                        JuridicalPaper
+                                                    ).map(
+                                                        (item) =>
+                                                            house.juridical_type?.includes(
+                                                                item
+                                                            ) && (
+                                                                <li>
+                                                                    {
+                                                                        JuridicalPaper[
+                                                                            item
+                                                                        ]
+                                                                    }
+                                                                </li>
+                                                            )
+                                                    )}
+                                                </ul>
+                                                Để biết thêm thông tin về giấy
+                                                tờ pháp lý, quý khách có thể{" "}
+                                                <span
+                                                    className="underline text-amber-500"
+                                                    onClick={() => {
+                                                        setModalRequest(true);
+                                                    }}
+                                                >
+                                                    yêu cầu cung cấp giấy tờ
+                                                    pháp lý
+                                                </span>{" "}
+                                                từ người đăng tin.
+                                            </div>
+                                        ) : null}
                                     </div>
                                 </div>
 
@@ -303,73 +350,85 @@ export default function Details() {
 
                                     <div className="mx-auto mt-6">
                                         <div className="flex space-x-2 ">
-                                            <span className="w-12 h-12 flex items-center justify-center py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border border-neutral-400 rounded-md">
-                                                <svg
-                                                    width="20"
-                                                    height="20"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    {" "}
-                                                    <g>
+                                            {house.conveniences?.includes(
+                                                "doxe"
+                                            ) && (
+                                                <span className="w-12 h-12 flex items-center justify-center py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border border-neutral-400 rounded-md">
+                                                    <svg
+                                                        width="20"
+                                                        height="20"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        {" "}
+                                                        <g>
+                                                            {" "}
+                                                            <path
+                                                                fill="none"
+                                                                d="M0 0h24v24H0z"
+                                                            />{" "}
+                                                            <path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h14V5H5zm4 2h3.5a3.5 3.5 0 0 1 0 7H11v3H9V7zm2 2v3h1.5a1.5 1.5 0 0 0 0-3H11z" />{" "}
+                                                        </g>{" "}
+                                                    </svg>
+                                                </span>
+                                            )}
+                                            {house.conveniences?.includes(
+                                                "wifi"
+                                            ) && (
+                                                <span className="w-12 h-12 flex items-center justify-center py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border border-neutral-400 rounded-md">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="20"
+                                                        height="20"
+                                                        fill="currentColor"
+                                                        className="bi bi-wifi"
+                                                        viewBox="0 0 16 16"
+                                                    >
+                                                        {" "}
+                                                        <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z" />{" "}
+                                                        <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z" />{" "}
+                                                    </svg>
+                                                </span>
+                                            )}
+                                            {house.conveniences?.includes(
+                                                "thucung"
+                                            ) && (
+                                                <span className="w-12 h-12 flex items-center justify-center py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border border-neutral-400 rounded-md">
+                                                    <svg
+                                                        width="20"
+                                                        height="20"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 512 512"
+                                                    >
                                                         {" "}
                                                         <path
-                                                            fill="none"
-                                                            d="M0 0h24v24H0z"
+                                                            fill="var(--ci-primary-color, currentColor)"
+                                                            d="M382.825,304.576a131.562,131.562,0,0,0-253.65,0l-18.248,66.15A80,80,0,0,0,188.046,472H323.954a80,80,0,0,0,77.119-101.274Zm-20.682,116.5A47.638,47.638,0,0,1,323.954,440H188.046a48,48,0,0,1-46.272-60.765l18.248-66.149a99.563,99.563,0,0,1,191.956,0l18.248,66.149A47.636,47.636,0,0,1,362.143,421.08Z"
+                                                            className="ci-primary"
                                                         />{" "}
-                                                        <path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h14V5H5zm4 2h3.5a3.5 3.5 0 0 1 0 7H11v3H9V7zm2 2v3h1.5a1.5 1.5 0 0 0 0-3H11z" />{" "}
-                                                    </g>{" "}
-                                                </svg>
-                                            </span>
-                                            <span className="w-12 h-12 flex items-center justify-center py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border border-neutral-400 rounded-md">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    width="20"
-                                                    height="20"
-                                                    fill="currentColor"
-                                                    className="bi bi-wifi"
-                                                    viewBox="0 0 16 16"
-                                                >
-                                                    {" "}
-                                                    <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z" />{" "}
-                                                    <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z" />{" "}
-                                                </svg>
-                                            </span>
-                                            <span className="w-12 h-12 flex items-center justify-center py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline border border-neutral-400 rounded-md">
-                                                <svg
-                                                    width="20"
-                                                    height="20"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 512 512"
-                                                >
-                                                    {" "}
-                                                    <path
-                                                        fill="var(--ci-primary-color, currentColor)"
-                                                        d="M382.825,304.576a131.562,131.562,0,0,0-253.65,0l-18.248,66.15A80,80,0,0,0,188.046,472H323.954a80,80,0,0,0,77.119-101.274Zm-20.682,116.5A47.638,47.638,0,0,1,323.954,440H188.046a48,48,0,0,1-46.272-60.765l18.248-66.149a99.563,99.563,0,0,1,191.956,0l18.248,66.149A47.636,47.636,0,0,1,362.143,421.08Z"
-                                                        className="ci-primary"
-                                                    />{" "}
-                                                    <path
-                                                        fill="var(--ci-primary-color, currentColor)"
-                                                        d="M146.1,230.31c2.784-17.4-.908-36.027-10.4-52.463S111.92,148.9,95.463,142.611c-17.624-6.731-35.6-5.659-50.634,3.017C14.942,162.884,7.077,205.413,27.3,240.433c9.489,16.436,23.778,28.95,40.235,35.236a64.058,64.058,0,0,0,22.863,4.371,55.133,55.133,0,0,0,27.771-7.389C133.194,263.974,143.114,248.937,146.1,230.31Zm-31.6-5.058c-1.43,8.929-5.81,15.92-12.333,19.686S87.4,249,78.95,245.775c-9.613-3.671-18.115-11.251-23.941-21.342-11.2-19.4-8.538-42.8,5.82-51.092a23.483,23.483,0,0,1,11.847-3.058A31.951,31.951,0,0,1,84.044,172.5c9.613,3.673,18.115,11.252,23.941,21.343S116.124,215.091,114.5,225.252Z"
-                                                        className="ci-primary"
-                                                    />{" "}
-                                                    <path
-                                                        fill="var(--ci-primary-color, currentColor)"
-                                                        d="M149.566,164.017c11.362,9.083,24.337,13.813,37.458,13.812a54.965,54.965,0,0,0,11.689-1.261c33.723-7.331,54.17-45.443,45.58-84.958h0c-4.03-18.546-13.828-34.817-27.588-45.818-14.735-11.78-32.189-16.239-49.147-12.551-33.722,7.33-54.169,45.442-45.58,84.957C126.009,136.745,135.807,153.016,149.566,164.017Zm24.788-99.506a22.258,22.258,0,0,1,4.732-.5c5.948,0,12.066,2.327,17.637,6.781,8.037,6.425,13.826,16.234,16.3,27.621h0c4.76,21.895-4.906,43.368-21.107,46.89-7.361,1.6-15.305-.628-22.367-6.275-8.037-6.426-13.826-16.235-16.3-27.621C148.488,89.506,158.154,68.033,174.354,64.511Z"
-                                                        className="ci-primary"
-                                                    />{" "}
-                                                    <path
-                                                        fill="var(--ci-primary-color, currentColor)"
-                                                        d="M467.171,145.628c-15.028-8.676-33.013-9.748-50.634-3.017-16.457,6.287-30.746,18.8-40.235,35.236s-13.182,35.067-10.4,52.463c2.982,18.627,12.9,33.664,27.931,42.341a55.123,55.123,0,0,0,27.771,7.389,64.054,64.054,0,0,0,22.863-4.371c16.457-6.286,30.746-18.8,40.235-35.236C504.923,205.413,497.058,162.884,467.171,145.628Zm-10.18,78.805c-5.826,10.091-14.328,17.671-23.941,21.342-8.446,3.228-16.692,2.931-23.215-.837s-10.9-10.757-12.333-19.686c-1.626-10.161.686-21.314,6.513-31.4s14.328-17.67,23.941-21.343a31.955,31.955,0,0,1,11.368-2.221,23.483,23.483,0,0,1,11.847,3.058C465.529,181.631,468.194,205.028,456.991,224.433Z"
-                                                        className="ci-primary"
-                                                    />{" "}
-                                                    <path
-                                                        fill="var(--ci-primary-color, currentColor)"
-                                                        d="M313.287,176.568a54.965,54.965,0,0,0,11.689,1.261c13.12,0,26.1-4.729,37.458-13.812,13.759-11,23.557-27.272,27.588-45.818,8.589-39.515-11.858-77.627-45.58-84.957-16.957-3.686-34.412.77-49.147,12.551-13.76,11-23.558,27.272-27.588,45.817C259.117,131.125,279.564,169.237,313.287,176.568Zm-14.31-78.16h0c2.474-11.387,8.263-21.2,16.3-27.621,5.572-4.454,11.689-6.781,17.637-6.781a22.258,22.258,0,0,1,4.732.5c16.2,3.522,25.866,25,21.107,46.89-2.476,11.387-8.265,21.2-16.3,27.622-7.061,5.646-15,7.874-22.367,6.275C303.883,141.776,294.217,120.3,298.977,98.408Z"
-                                                        className="ci-primary"
-                                                    />{" "}
-                                                </svg>
-                                            </span>
+                                                        <path
+                                                            fill="var(--ci-primary-color, currentColor)"
+                                                            d="M146.1,230.31c2.784-17.4-.908-36.027-10.4-52.463S111.92,148.9,95.463,142.611c-17.624-6.731-35.6-5.659-50.634,3.017C14.942,162.884,7.077,205.413,27.3,240.433c9.489,16.436,23.778,28.95,40.235,35.236a64.058,64.058,0,0,0,22.863,4.371,55.133,55.133,0,0,0,27.771-7.389C133.194,263.974,143.114,248.937,146.1,230.31Zm-31.6-5.058c-1.43,8.929-5.81,15.92-12.333,19.686S87.4,249,78.95,245.775c-9.613-3.671-18.115-11.251-23.941-21.342-11.2-19.4-8.538-42.8,5.82-51.092a23.483,23.483,0,0,1,11.847-3.058A31.951,31.951,0,0,1,84.044,172.5c9.613,3.673,18.115,11.252,23.941,21.343S116.124,215.091,114.5,225.252Z"
+                                                            className="ci-primary"
+                                                        />{" "}
+                                                        <path
+                                                            fill="var(--ci-primary-color, currentColor)"
+                                                            d="M149.566,164.017c11.362,9.083,24.337,13.813,37.458,13.812a54.965,54.965,0,0,0,11.689-1.261c33.723-7.331,54.17-45.443,45.58-84.958h0c-4.03-18.546-13.828-34.817-27.588-45.818-14.735-11.78-32.189-16.239-49.147-12.551-33.722,7.33-54.169,45.442-45.58,84.957C126.009,136.745,135.807,153.016,149.566,164.017Zm24.788-99.506a22.258,22.258,0,0,1,4.732-.5c5.948,0,12.066,2.327,17.637,6.781,8.037,6.425,13.826,16.234,16.3,27.621h0c4.76,21.895-4.906,43.368-21.107,46.89-7.361,1.6-15.305-.628-22.367-6.275-8.037-6.426-13.826-16.235-16.3-27.621C148.488,89.506,158.154,68.033,174.354,64.511Z"
+                                                            className="ci-primary"
+                                                        />{" "}
+                                                        <path
+                                                            fill="var(--ci-primary-color, currentColor)"
+                                                            d="M467.171,145.628c-15.028-8.676-33.013-9.748-50.634-3.017-16.457,6.287-30.746,18.8-40.235,35.236s-13.182,35.067-10.4,52.463c2.982,18.627,12.9,33.664,27.931,42.341a55.123,55.123,0,0,0,27.771,7.389,64.054,64.054,0,0,0,22.863-4.371c16.457-6.286,30.746-18.8,40.235-35.236C504.923,205.413,497.058,162.884,467.171,145.628Zm-10.18,78.805c-5.826,10.091-14.328,17.671-23.941,21.342-8.446,3.228-16.692,2.931-23.215-.837s-10.9-10.757-12.333-19.686c-1.626-10.161.686-21.314,6.513-31.4s14.328-17.67,23.941-21.343a31.955,31.955,0,0,1,11.368-2.221,23.483,23.483,0,0,1,11.847,3.058C465.529,181.631,468.194,205.028,456.991,224.433Z"
+                                                            className="ci-primary"
+                                                        />{" "}
+                                                        <path
+                                                            fill="var(--ci-primary-color, currentColor)"
+                                                            d="M313.287,176.568a54.965,54.965,0,0,0,11.689,1.261c13.12,0,26.1-4.729,37.458-13.812,13.759-11,23.557-27.272,27.588-45.818,8.589-39.515-11.858-77.627-45.58-84.957-16.957-3.686-34.412.77-49.147,12.551-13.76,11-23.558,27.272-27.588,45.817C259.117,131.125,279.564,169.237,313.287,176.568Zm-14.31-78.16h0c2.474-11.387,8.263-21.2,16.3-27.621,5.572-4.454,11.689-6.781,17.637-6.781a22.258,22.258,0,0,1,4.732.5c16.2,3.522,25.866,25,21.107,46.89-2.476,11.387-8.265,21.2-16.3,27.622-7.061,5.646-15,7.874-22.367,6.275C303.883,141.776,294.217,120.3,298.977,98.408Z"
+                                                            className="ci-primary"
+                                                        />{" "}
+                                                    </svg>
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -389,7 +448,6 @@ export default function Details() {
                                                 marginheight="0"
                                                 marginwidth="0"
                                                 title="map"
-                                                scrolling="no"
                                                 src={`https://maps.google.com/maps?width=100%&height=600&hl=vi&q=${house.location}&ie=UTF8&t=&z=14&iwloc=B&output=embed`}
                                             />
                                         )}

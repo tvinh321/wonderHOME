@@ -2,19 +2,7 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
-
-const direction = [
-    "Đông",
-    "Tây",
-    "Nam",
-    "Bắc",
-    "Đông Bắc",
-    "Đông Nam",
-    "Tây Nam",
-    "Tây Bắc",
-];
-
-const interior = ["Trống", "Đầy đủ"];
+import { Direction, Furniture } from "../../../constants/common";
 
 export default function UploadForm() {
     const token = localStorage.getItem("wonderHome-token");
@@ -50,7 +38,7 @@ export default function UploadForm() {
         bedroom: 0,
         bathroom: 0,
         floors: 0,
-        interior: 0,
+        furniture: 0,
         moreDetails: "",
     });
 
@@ -169,7 +157,7 @@ export default function UploadForm() {
 
         formData.append("video", gallery.video);
         formData.append("juridicalStatus", juridical.juridicalStatus);
-        formData.append("location", handleDisplayAddress)
+        formData.append("location", handleDisplayAddress);
 
         if (commonProperties.type === 2) {
             const landKeys = Object.keys(landProperties);
@@ -204,7 +192,7 @@ export default function UploadForm() {
             response = await axios.post("/api/property", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    "Authorization": "Bearer " + token
+                    Authorization: "Bearer " + token,
                 },
             });
         } catch (e) {
@@ -575,7 +563,9 @@ export default function UploadForm() {
                                                     className="w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
                                                     onChange={(e) => {
                                                         console.log(e.target);
-                                                        console.log(e.target.value);
+                                                        console.log(
+                                                            e.target.value
+                                                        );
 
                                                         setCommonProperties({
                                                             ...commonProperties,
@@ -663,13 +653,13 @@ export default function UploadForm() {
                                                         <select
                                                             defaultValue={0}
                                                             required
-                                                            id="interior"
+                                                            id="furniture"
                                                             className="w-full py-2 px-3 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
                                                             onChange={(e) => {
                                                                 setHouseProperties(
                                                                     {
                                                                         ...houseProperties,
-                                                                        interior:
+                                                                        furniture:
                                                                             Number(
                                                                                 e
                                                                                     .target
@@ -679,7 +669,7 @@ export default function UploadForm() {
                                                                 );
                                                             }}
                                                             value={
-                                                                houseProperties.interior
+                                                                houseProperties.furniture
                                                             }
                                                         >
                                                             <option
@@ -689,27 +679,26 @@ export default function UploadForm() {
                                                                 Vui lòng chọn
                                                                 nội thất...
                                                             </option>
-                                                            {interior &&
-                                                                interior.map(
-                                                                    (
-                                                                        interior,
-                                                                        index
-                                                                    ) => (
-                                                                        <option
-                                                                            value={
-                                                                                index +
-                                                                                1
-                                                                            }
-                                                                            key={
-                                                                                interior.id
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                interior
-                                                                            }
-                                                                        </option>
-                                                                    )
-                                                                )}
+                                                            {Furniture.map(
+                                                                (
+                                                                    furniture,
+                                                                    index
+                                                                ) => (
+                                                                    <option
+                                                                        value={
+                                                                            index +
+                                                                            1
+                                                                        }
+                                                                        key={
+                                                                            furniture.id
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            furniture
+                                                                        }
+                                                                    </option>
+                                                                )
+                                                            )}
                                                         </select>
                                                     </div>
 
@@ -905,27 +894,25 @@ export default function UploadForm() {
                                                                 Vui lòng chọn
                                                                 hướng nhà...
                                                             </option>
-                                                            {direction &&
-                                                                direction.map(
-                                                                    (
-                                                                        dir,
-                                                                        index
-                                                                    ) => (
-                                                                        <option
-                                                                            value={
-                                                                                index +
-                                                                                1
-                                                                            }
-                                                                            key={
-                                                                                index + 1
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                dir
-                                                                            }
-                                                                        </option>
-                                                                    )
-                                                                )}
+                                                            {Direction.map(
+                                                                (
+                                                                    dir,
+                                                                    index
+                                                                ) => (
+                                                                    <option
+                                                                        value={
+                                                                            index +
+                                                                            1
+                                                                        }
+                                                                        key={
+                                                                            index +
+                                                                            1
+                                                                        }
+                                                                    >
+                                                                        {dir}
+                                                                    </option>
+                                                                )
+                                                            )}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -1098,7 +1085,12 @@ export default function UploadForm() {
                                                 tối đa 15 MB. Số lượng ảnh tối
                                                 đa tuỳ theo loại tin.
                                             </p>
+
                                             <div className="px-4 mb-6">
+                                                <p className="text-neutral-700 text-sm mb-2">
+                                                    Số ảnh đã đăng:{" "}
+                                                    {gallery.images.length}
+                                                </p>
                                                 <div className="flex justify-center items-center w-full">
                                                     <label
                                                         for="dropzone-image"
@@ -1122,14 +1114,16 @@ export default function UploadForm() {
                                                             </svg>
                                                             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                                                                 <span className="font-semibold">
-                                                                    Click to
-                                                                    upload
+                                                                    Nhấn để đăng
+                                                                    ảnh
                                                                 </span>{" "}
-                                                                or drag and drop
+                                                                hoặc kéo thả ảnh
+                                                                vào đây
                                                             </p>
                                                             <p className="text-xs text-gray-500 dark:text-gray-400">
                                                                 SVG, PNG, JPG or
-                                                                GIF (MAX.
+                                                                GIF (Kích thước
+                                                                tối đa:
                                                                 800x400px)
                                                             </p>
                                                         </div>
@@ -1170,6 +1164,10 @@ export default function UploadForm() {
                                                 <p className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                                     Đăng ảnh 360°
                                                 </p>
+                                                <p className="text-neutral-700 text-sm mb-2">
+                                                    Số ảnh đã đăng:{" "}
+                                                    {gallery.panoramas.length}
+                                                </p>
                                                 <label
                                                     for="dropzone-pano"
                                                     className="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer "
@@ -1192,13 +1190,15 @@ export default function UploadForm() {
                                                         </svg>
                                                         <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                                                             <span className="font-semibold">
-                                                                Click to upload
+                                                                Nhấn để đăng ảnh
                                                             </span>{" "}
-                                                            or drag and drop
+                                                            hoặc kéo thả ảnh vào
+                                                            đây
                                                         </p>
                                                         <p className="text-xs text-gray-500 dark:text-gray-400">
-                                                            SVG, PNG, JPG or GIF
-                                                            (MAX. 800x400px)
+                                                            SVG, PNG, JPG hoặc
+                                                            GIF (Kích thước tối
+                                                            đa: 800x400px)
                                                         </p>
                                                     </div>
                                                     <input
@@ -1367,8 +1367,9 @@ export default function UploadForm() {
                                                                 </p>
                                                                 <p className="text-xs text-gray-500 dark:text-gray-400">
                                                                     SVG, PNG,
-                                                                    JPG or GIF
-                                                                    (MAX.
+                                                                    JPG hoặc GIF
+                                                                    (Kích thước
+                                                                    tối đa:
                                                                     800x400px)
                                                                 </p>
                                                             </div>

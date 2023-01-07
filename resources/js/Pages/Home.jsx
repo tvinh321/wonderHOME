@@ -34,7 +34,7 @@ export default function Home() {
     const propertyTypesRef = useRef();
     const locationRef = useRef();
 
-    const [houseList, setHouseList] = React.useState();
+    const [houseList, setHouseList] = useState();
 
     useEffect(() => {
         axios

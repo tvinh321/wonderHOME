@@ -78,7 +78,7 @@ class PropertiesController extends Controller
             'expire_date' => now()->addDays(30),
             'juridical_status' => $request->juridicalStatus,
             'juridical_type' => 'sohong',
-            'furniture' => $request->interior,
+            'furniture' => $request->furniture,
             'wards_id' => $request->ward,
             'users_id' => $userId,
             'created_at' => now(),
