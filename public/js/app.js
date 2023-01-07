@@ -13126,7 +13126,7 @@ function Chat() {
                 return setChatRoom(item);
               },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-                src: item.otherUser.avatar ? "/api/avatar/".concat(item.otherUser.avatar) : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+                src: item.otherUser.id && "/api/avatar/".concat(item.otherUser.id),
                 className: "w-14 h-14 rounded-full"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "flex flex-col ml-3",
@@ -13146,7 +13146,7 @@ function Chat() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "flex items-center px-6 h-16 border-b",
           children: [chatRoom && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-            src: chatRoom !== null && chatRoom !== void 0 && (_chatRoom$otherUser = chatRoom.otherUser) !== null && _chatRoom$otherUser !== void 0 && _chatRoom$otherUser.avatar ? "/api/avatar/".concat(chatRoom.otherUser.avatar) : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+            src: (chatRoom === null || chatRoom === void 0 ? void 0 : (_chatRoom$otherUser = chatRoom.otherUser) === null || _chatRoom$otherUser === void 0 ? void 0 : _chatRoom$otherUser.id) && "/api/avatar/".concat(chatRoom.otherUser.id),
             className: "w-14 h-14 rounded-full object-fill"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
             className: "flex flex-col ml-3",

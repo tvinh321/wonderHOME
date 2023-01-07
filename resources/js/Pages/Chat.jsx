@@ -155,9 +155,7 @@ export default function Chat() {
                             >
                                 <img
                                     src={
-                                        item.otherUser.id
-                                        ? `/api/avatar/${item.otherUser.id}`
-                                        : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                                        item.otherUser.id && `/api/avatar/${item.otherUser.id}`
                                     }
                                     className="w-14 h-14 rounded-full"
                                 />
@@ -182,9 +180,7 @@ export default function Chat() {
                         {chatRoom && (
                             <img
                                 src={
-                                        chatRoom?.otherUser?.id
-                                        ? `/api/avatar/${chatRoom.otherUser.id}`
-                                    : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                                        chatRoom?.otherUser?.id && `/api/avatar/${chatRoom.otherUser.id}`
                                 }
                                 className="w-14 h-14 rounded-full object-fill"
                             />
