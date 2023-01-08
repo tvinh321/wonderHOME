@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactPannellum from "react-pannellum";
 import YouTube from "react-youtube";
 import { Carousel } from "react-responsive-carousel";
 import { Menu, MenuItem, MenuButton, SubMenu } from "@szhsin/react-menu";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ShareOptions from "./ShareOptions";
+import { useParams } from "react-router-dom";
 
 export default function Gallery({
     title,
@@ -14,12 +15,31 @@ export default function Gallery({
     area,
     setModalReport,
 }) {
-    const { images, panaromas } = files || {};
-    const videoURL = "https://www.youtube.com/shorts/7iwkESlek3k";
+    const { id } = useParams();
+    const [propertyGallery, setPropertyGallery] = useState({
+        imageLinks: [],
+        videoLinks: [],
+        panaromaLinks: [],
+    });
+
+    useEffect(() => {
+        setPropertyGallery({
+            imageLinks: (files || [])
+                ?.filter((item) => item.type === "image")
+                .map((item) => item.content),
+            videoLinks: (files || [])
+                ?.filter((item) => item.type === "video")
+                .map((item) => item.content),
+            panaromaLinks: (files || [])
+                ?.filter((item) => item.type === "pano")
+                .map((item) => item.content),
+        });
+    }, [files]);
+
     const videoCode = (url) => {
-        return url.includes("watch")
-            ? url.split("v=")[1].split("&")[0]
-            : url.split("shorts/")[1];
+        return url?.includes("watch")
+            ? url?.split("v=")[1].split("&")[0]
+            : url?.split("shorts/")[1];
     };
     return (
         <>
@@ -55,38 +75,35 @@ export default function Gallery({
                 centerSlidePercentage={window.screen.width > 768 ? 50 : 100}
                 swipeable={false}
             >
-                <ReactPannellum
-                    id="1"
-                    className="rounded-xl h-full w-full"
-                    sceneId="firstScene"
-                    imageSource={
-                        panaromas
-                            ? panaromas[0].url
-                            : "/assets/images/panoram.jpg"
-                    }
-                    config={{ autoLoad: true }}
-                    style={{
-                        background: "#171717",
-                    }}
-                />
                 <YouTube
-                    videoId={videoCode(videoURL)}
+                    videoId={videoCode(propertyGallery?.videoLinks[0])}
                     className="rounded-xl h-full w-full"
                     containerClassName="embed embed-youtube"
                     opts={{
                         height: "100%",
                     }}
                 />
-                {(images || ["", "", "", "", ""]).map((image, index) => {
+                {(propertyGallery?.panaromaLinks).map((pano, index) => {
+                    return (
+                        <ReactPannellum
+                            id="1"
+                            className="rounded-xl h-full w-full"
+                            sceneId="firstScene"
+                            imageSource={"/api/property/" + id + "/" + pano}
+                            config={{ autoLoad: true }}
+                            style={{
+                                background: "#171717",
+                            }}
+                        />
+                    );
+                })}
+
+                {(propertyGallery?.imageLinks).map((image, index) => {
                     return (
                         <img
                             className="rounded-xl px-4 object-cover h-full"
-                            src={
-                                image
-                                    ? image
-                                    : `/assets/images/Room${index + 1}.jpg`
-                            }
-                            alt={`Room ${index + 1}`}
+                            src={"/api/property/" + id + "/" + image}
+                            alt={`Image ${index + 1}`}
                         />
                     );
                 })}
@@ -247,7 +264,7 @@ export default function Gallery({
 
                 <div className="flex items-center gap-x-6">
                     <div>
-                        <ShareOptions title={title}/>
+                        <ShareOptions title={title} />
                     </div>
 
                     <div
