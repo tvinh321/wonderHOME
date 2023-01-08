@@ -105,7 +105,7 @@ export default function Gallery({
                 {(propertyGallery?.imageLinks).map((image, index) => {
                     return (
                         <img
-                            className="rounded-xl px-4 object-cover h-full"
+                            className="rounded-xl px-4 object-cover h-full max-h-96"
                             src={"/api/property/" + id + "/" + image}
                             alt={`Image ${index + 1}`}
                         />

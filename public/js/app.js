@@ -8537,7 +8537,7 @@ function Gallery(_ref) {
         });
       }), (propertyGallery === null || propertyGallery === void 0 ? void 0 : propertyGallery.imageLinks).map(function (image, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-          className: "rounded-xl px-4 object-cover h-full",
+          className: "rounded-xl px-4 object-cover h-full max-h-96",
           src: "/api/property/" + id + "/" + image,
           alt: "Image ".concat(index + 1)
         });
