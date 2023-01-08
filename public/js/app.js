@@ -14624,19 +14624,22 @@ function Home() {
                     className: "h-48",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
                       className: "object-cover h-full w-full",
-                      src: "assets/images/Room".concat(index + 1, ".jpg"),
+                      src: "/api/property/".concat(house.id, "/").concat(house.image.content),
                       alt: "Sunset in the mountains"
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                     className: "px-6 py-4",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                      className: "font-bold text-lg leading-relaxed mt-2",
+                      className: "font-bold leading-relaxed mt-2 truncate",
                       children: house.title
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
                       className: "text-gray-700 text-sm",
                       children: [(house.price / 1000000000).toFixed(1), " ", "t\u1EF7 - ", house.area, " m", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("sup", {
                         children: "2"
                       })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                      className: "mt-4 text-gray-700 text-sm",
+                      children: house.location
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                     className: "grid grid-cols-3 h-10 absolute bottom-0 w-full",

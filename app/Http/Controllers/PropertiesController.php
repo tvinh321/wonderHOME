@@ -26,9 +26,10 @@ class PropertiesController extends Controller
 
         // Get files for each property
         foreach ($properties as $property) {
-            $property->files = DB::table('files')
+            $property->image = DB::table('files')
             ->where('files.properties_id', $property->id)
-            ->get();
+            ->where('files.type', 'image')
+            ->first();
         }
 
         return response()->json($properties);
