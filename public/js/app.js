@@ -12310,13 +12310,13 @@ function UploadForm() {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                             id: "",
                             type: "checkbox",
-                            value: 1,
+                            value: "wifi",
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
-                                return prev.includes(1) ? prev.filter(function (item) {
-                                  return item !== 1;
-                                }) : [].concat(_toConsumableArray(prev), [1]);
+                                return prev.includes("wifi") ? prev.filter(function (item) {
+                                  return item !== "wifi";
+                                }) : [].concat(_toConsumableArray(prev), ["wifi"]);
                               });
                             }
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
@@ -12334,9 +12334,9 @@ function UploadForm() {
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
-                                return prev.includes(2) ? prev.filter(function (item) {
-                                  return item !== 2;
-                                }) : [].concat(_toConsumableArray(prev), [2]);
+                                return prev.includes("doxe") ? prev.filter(function (item) {
+                                  return item !== "doxe";
+                                }) : [].concat(_toConsumableArray(prev), ["doxe"]);
                               });
                             }
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
@@ -12349,13 +12349,13 @@ function UploadForm() {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                             id: "",
                             type: "checkbox",
-                            value: 3,
+                            value: "thucung",
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
-                                return prev.includes(3) ? prev.filter(function (item) {
-                                  return item !== 3;
-                                }) : [].concat(_toConsumableArray(prev), [3]);
+                                return prev.includes("thucung") ? prev.filter(function (item) {
+                                  return item !== "thucung";
+                                }) : [].concat(_toConsumableArray(prev), ["thucung"]);
                               });
                             }
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {

@@ -935,7 +935,7 @@ export default function UploadForm() {
                                                                 <input
                                                                     id=""
                                                                     type="checkbox"
-                                                                    value={1}
+                                                                    value={"wifi"}
                                                                     className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
                                                                     onChange={() => {
                                                                         setConveniences(
@@ -943,18 +943,18 @@ export default function UploadForm() {
                                                                                 prev
                                                                             ) =>
                                                                                 prev.includes(
-                                                                                    1
+                                                                                    "wifi"
                                                                                 )
                                                                                     ? prev.filter(
                                                                                           (
                                                                                               item
                                                                                           ) =>
                                                                                               item !==
-                                                                                              1
+                                                                                              "wifi"
                                                                                       )
                                                                                     : [
                                                                                           ...prev,
-                                                                                          1,
+                                                                                          "wifi",
                                                                                       ]
                                                                         );
                                                                     }}
@@ -979,18 +979,18 @@ export default function UploadForm() {
                                                                                 prev
                                                                             ) =>
                                                                                 prev.includes(
-                                                                                    2
+                                                                                    "doxe"
                                                                                 )
                                                                                     ? prev.filter(
                                                                                           (
                                                                                               item
                                                                                           ) =>
                                                                                               item !==
-                                                                                              2
+                                                                                                "doxe"
                                                                                       )
                                                                                     : [
                                                                                           ...prev,
-                                                                                          2,
+                                                                                          "doxe",
                                                                                       ]
                                                                         );
                                                                     }}
@@ -1006,7 +1006,7 @@ export default function UploadForm() {
                                                                 <input
                                                                     id=""
                                                                     type="checkbox"
-                                                                    value={3}
+                                                                    value={"thucung"}
                                                                     className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
                                                                     onChange={() => {
                                                                         setConveniences(
@@ -1014,18 +1014,18 @@ export default function UploadForm() {
                                                                                 prev
                                                                             ) =>
                                                                                 prev.includes(
-                                                                                    3
+                                                                                    "thucung"
                                                                                 )
                                                                                     ? prev.filter(
                                                                                           (
                                                                                               item
                                                                                           ) =>
                                                                                               item !==
-                                                                                              3
+                                                                                                "thucung"
                                                                                       )
                                                                                     : [
                                                                                           ...prev,
-                                                                                          3,
+                                                                                          "thucung",
                                                                                       ]
                                                                         );
                                                                     }}
