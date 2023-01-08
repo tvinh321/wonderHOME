@@ -7,7 +7,7 @@ import {
     AccordionItemPanel,
 } from "react-accessible-accordion";
 
-export default function OwnerContact() {
+export default function OwnerContact({ owner }) {
     const AccordionRender = () => {
         return (
             <Accordion allowZeroExpanded>
@@ -451,17 +451,19 @@ export default function OwnerContact() {
         <div className="max-w-sm w-full h-auto md:pl-6">
             <div className="h-fit rounded-lg bg-white border border-gray-200 shadow-md py-8">
                 <div className="flex items-center justify-center md:flex-col md:gap-0 flex-row gap-x-10 md:mb-0 mb-6">
-                    <img
-                        className="w-16 h-16 rounded-full"
-                        src="/assets/images/Avatar Image.png"
-                        alt="Avatar of Jonathan Reinink"
-                    />
+                    {owner && owner.id && (
+                        <img
+                            className="w-16 h-16 rounded-full"
+                            src={"/api/avatar/" + owner.id}
+                            alt="Avatar of Jonathan Reinink"
+                        />
+                    )}
                     <div className="max-w-fit text-center mt-1">
                         <p className="text-neutral-500 text-sm">
                             Được đăng bởi
                         </p>
                         <h1 className="text-neutral-900 font-bold text-lg leading-none">
-                            Nguyễn Thị Thuý Loan
+                            {owner && (owner.full_name || owner.email)}
                         </h1>
                     </div>
                 </div>

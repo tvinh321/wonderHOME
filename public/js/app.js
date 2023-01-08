@@ -8669,7 +8669,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function OwnerContact() {
+function OwnerContact(_ref) {
+  var owner = _ref.owner;
   var AccordionRender = function AccordionRender() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_accessible_accordion__WEBPACK_IMPORTED_MODULE_1__.Accordion, {
       allowZeroExpanded: true,
@@ -9097,9 +9098,9 @@ function OwnerContact() {
       className: "h-fit rounded-lg bg-white border border-gray-200 shadow-md py-8",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "flex items-center justify-center md:flex-col md:gap-0 flex-row gap-x-10 md:mb-0 mb-6",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        children: [owner && owner.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
           className: "w-16 h-16 rounded-full",
-          src: "/assets/images/Avatar Image.png",
+          src: "/api/avatar/" + owner.id,
           alt: "Avatar of Jonathan Reinink"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "max-w-fit text-center mt-1",
@@ -9108,7 +9109,7 @@ function OwnerContact() {
             children: "\u0110\u01B0\u1EE3c \u0111\u0103ng b\u1EDFi"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
             className: "text-neutral-900 font-bold text-lg leading-none",
-            children: "Nguy\u1EC5n Th\u1ECB Thu\xFD Loan"
+            children: owner && (owner.full_name || owner.email)
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -13814,7 +13815,9 @@ function Details() {
                 })
               })]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Details_OwnerContact__WEBPACK_IMPORTED_MODULE_5__["default"], {})]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Details_OwnerContact__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            owner: house === null || house === void 0 ? void 0 : house.owner
+          })]
         })
       })]
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {

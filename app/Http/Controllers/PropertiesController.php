@@ -50,6 +50,11 @@ class PropertiesController extends Controller
             $property->files = DB::table('files')
             ->where('files.properties_id', $id)
             ->get();
+
+            $property->owner = DB::table('users')
+            ->select('users.id' ,'users.full_name', 'users.phone', 'users.email', 'users.facebook')
+            ->where('users.id', $property->users_id)
+            ->first();
         }
 
         return response()->json($property);

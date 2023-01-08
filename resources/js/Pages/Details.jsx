@@ -455,7 +455,7 @@ export default function Details() {
                                 </div>
                             </div>
 
-                            <OwnerContact />
+                            <OwnerContact owner={house?.owner} />
                         </div>
                     </div>
                 </body>
