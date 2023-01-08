@@ -955,7 +955,7 @@ export default function UploadForm() {
                                                                     type="checkbox"
                                                                     value={1}
                                                                     checked={conveniences.includes(
-                                                                        1
+                                                                        "wifi"
                                                                     )}
                                                                     className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
                                                                     onChange={() => {
@@ -994,7 +994,7 @@ export default function UploadForm() {
                                                                     type="checkbox"
                                                                     value={2}
                                                                     checked={conveniences.includes(
-                                                                        2
+                                                                        "doxe"
                                                                     )}
                                                                     className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
                                                                     onChange={() => {
@@ -1010,7 +1010,7 @@ export default function UploadForm() {
                                                                                               item
                                                                                           ) =>
                                                                                               item !==
-                                                                                                "doxe"
+                                                                                              "doxe"
                                                                                       )
                                                                                     : [
                                                                                           ...prev,
@@ -1032,7 +1032,7 @@ export default function UploadForm() {
                                                                     type="checkbox"
                                                                     value={3}
                                                                     checked={conveniences.includes(
-                                                                        3
+                                                                        "thucung"
                                                                     )}
                                                                     className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
                                                                     onChange={() => {
@@ -1048,7 +1048,7 @@ export default function UploadForm() {
                                                                                               item
                                                                                           ) =>
                                                                                               item !==
-                                                                                                "thucung"
+                                                                                              "thucung"
                                                                                       )
                                                                                     : [
                                                                                           ...prev,

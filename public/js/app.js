@@ -12323,7 +12323,7 @@ function UploadForm() {
                             id: "",
                             type: "checkbox",
                             value: 1,
-                            checked: conveniences.includes(1),
+                            checked: conveniences.includes("wifi"),
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
@@ -12344,7 +12344,7 @@ function UploadForm() {
                             id: "",
                             type: "checkbox",
                             value: 2,
-                            checked: conveniences.includes(2),
+                            checked: conveniences.includes("doxe"),
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
@@ -12364,7 +12364,7 @@ function UploadForm() {
                             id: "",
                             type: "checkbox",
                             value: 3,
-                            checked: conveniences.includes(3),
+                            checked: conveniences.includes("thucung"),
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
