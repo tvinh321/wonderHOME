@@ -14,7 +14,6 @@ class PropertiesController extends Controller
         $ward = $request->ward;
 
         $properties = DB::table('properties')
-        ->where('properties.status', 1)
         ->orderBy('properties.priority', 'desc')
         ->limit(6);
 
