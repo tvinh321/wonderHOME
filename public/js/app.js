@@ -8434,6 +8434,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Gallery(_ref) {
+  var _propertyGallery$vide, _propertyGallery$pana, _propertyGallery$imag;
   var title = _ref.title,
     files = _ref.files,
     bedNumb = _ref.bedNumb,
@@ -8484,14 +8485,16 @@ function Gallery(_ref) {
           var _child$props, _child$props2, _child$props3;
           if ((_child$props = child.props) !== null && _child$props !== void 0 && _child$props.videoId) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-              src: "https://img.youtube.com/vi/".concat(child.props.videoId, "/1.jpg"),
-              alt: ""
+              src: "https://img.youtube.com/vi/".concat(child.props.videoId, "/hqdefault.jpg"),
+              alt: "",
+              className: "h-12 object-cover"
             });
           }
           if ((_child$props2 = child.props) !== null && _child$props2 !== void 0 && _child$props2.imageSource) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
               src: child.props.imageSource,
-              alt: ""
+              alt: "",
+              className: "h-12 object-cover"
             });
           }
 
@@ -8499,7 +8502,8 @@ function Gallery(_ref) {
           if ((_child$props3 = child.props) !== null && _child$props3 !== void 0 && _child$props3.src) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
               src: child.props.src,
-              alt: ""
+              alt: "",
+              className: "h-12 object-cover"
             });
           }
         });
@@ -8509,14 +8513,20 @@ function Gallery(_ref) {
       ,
       centerSlidePercentage: window.screen.width > 768 ? 50 : 100,
       swipeable: false,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_youtube__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        videoId: videoCode(propertyGallery === null || propertyGallery === void 0 ? void 0 : propertyGallery.videoLinks[0]),
-        className: "rounded-xl h-full w-full",
-        containerClassName: "embed embed-youtube",
-        opts: {
-          height: "100%"
-        }
-      }), (propertyGallery === null || propertyGallery === void 0 ? void 0 : propertyGallery.panaromaLinks).map(function (pano, index) {
+      children: [propertyGallery === null || propertyGallery === void 0 ? void 0 : (_propertyGallery$vide = propertyGallery.videoLinks) === null || _propertyGallery$vide === void 0 ? void 0 : _propertyGallery$vide.map(function (video, index) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_youtube__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          videoId: videoCode(video),
+          className: "rounded-xl h-full w-full",
+          containerClassName: "embed embed-youtube",
+          onStateChange: function onStateChange(e) {
+            return checkElapsedTime(e);
+          },
+          opts: {
+            width: "100%",
+            height: "100%"
+          }
+        });
+      }), propertyGallery === null || propertyGallery === void 0 ? void 0 : (_propertyGallery$pana = propertyGallery.panaromaLinks) === null || _propertyGallery$pana === void 0 ? void 0 : _propertyGallery$pana.map(function (pano, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_pannellum__WEBPACK_IMPORTED_MODULE_1__["default"], {
           id: "1",
           className: "rounded-xl h-full w-full",
@@ -8529,9 +8539,9 @@ function Gallery(_ref) {
             background: "#171717"
           }
         });
-      }), (propertyGallery === null || propertyGallery === void 0 ? void 0 : propertyGallery.imageLinks).map(function (image, index) {
+      }), propertyGallery === null || propertyGallery === void 0 ? void 0 : (_propertyGallery$imag = propertyGallery.imageLinks) === null || _propertyGallery$imag === void 0 ? void 0 : _propertyGallery$imag.map(function (image, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-          className: "rounded-xl px-4 object-cover h-full",
+          className: "rounded-xl px-4 object-cover h-full max-h-96",
           src: "/api/property/" + id + "/" + image,
           alt: "Image ".concat(index + 1)
         });
@@ -12317,9 +12327,9 @@ function UploadForm() {
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
-                                return prev.includes(1) ? prev.filter(function (item) {
-                                  return item !== 1;
-                                }) : [].concat(_toConsumableArray(prev), [1]);
+                                return prev.includes("wifi") ? prev.filter(function (item) {
+                                  return item !== "wifi";
+                                }) : [].concat(_toConsumableArray(prev), ["wifi"]);
                               });
                             }
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
@@ -12338,9 +12348,9 @@ function UploadForm() {
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
-                                return prev.includes(2) ? prev.filter(function (item) {
-                                  return item !== 2;
-                                }) : [].concat(_toConsumableArray(prev), [2]);
+                                return prev.includes("doxe") ? prev.filter(function (item) {
+                                  return item !== "doxe";
+                                }) : [].concat(_toConsumableArray(prev), ["doxe"]);
                               });
                             }
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
@@ -12358,9 +12368,9 @@ function UploadForm() {
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
-                                return prev.includes(3) ? prev.filter(function (item) {
-                                  return item !== 3;
-                                }) : [].concat(_toConsumableArray(prev), [3]);
+                                return prev.includes("thucung") ? prev.filter(function (item) {
+                                  return item !== "thucung";
+                                }) : [].concat(_toConsumableArray(prev), ["thucung"]);
                               });
                             }
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
@@ -14738,19 +14748,22 @@ function Home() {
                     className: "h-48",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
                       className: "object-cover h-full w-full",
-                      src: "assets/images/Room".concat(index + 1, ".jpg"),
+                      src: "/api/property/".concat(house.id, "/").concat(house.image.content),
                       alt: "Sunset in the mountains"
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                     className: "px-6 py-4",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                      className: "font-bold text-lg leading-relaxed mt-2",
+                      className: "font-bold leading-relaxed mt-2 truncate",
                       children: house.title
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
                       className: "text-gray-700 text-sm",
                       children: [(house.price / 1000000000).toFixed(1), " ", "t\u1EF7 - ", house.area, " m", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("sup", {
                         children: "2"
                       })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                      className: "mt-4 text-gray-700 text-sm",
+                      children: house.location
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                     className: "grid grid-cols-3 h-10 absolute bottom-0 w-full",
@@ -15646,7 +15659,7 @@ function Search() {
     } else if (city) {
       postForm.city = city;
     }
-    axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/properties', postForm).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/properties", postForm).then(function (response) {
       setSearchResults(response.data.properties);
       setLoading(false);
     })["catch"](function (error) {
@@ -15669,6 +15682,7 @@ function Search() {
           className: "font-semibold mb-10",
           children: searchResults ? " Hi\u1EC7n c\xF3 ".concat(searchResults.length, " b\u1EA5t \u0111\u1ED9ng s\u1EA3n \u0111\u01B0\u1EE3c l\u1ECDc") : "Danh sách bất động sản"
         }), (searchResults || itemList).map(function (item, index) {
+          var _item$image;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
             className: "mb-10 shadow-lg",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
@@ -15677,13 +15691,13 @@ function Search() {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
                   href: "/thong-tin/".concat(item.id),
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("img", {
-                    src: index % 6 === 0 ? _public_assets_images_Room1_jpg__WEBPACK_IMPORTED_MODULE_4__["default"] : index % 6 === 1 ? _public_assets_images_Room2_jpg__WEBPACK_IMPORTED_MODULE_5__["default"] : index % 6 === 2 ? _public_assets_images_Room3_jpg__WEBPACK_IMPORTED_MODULE_6__["default"] : index % 6 === 3 ? _public_assets_images_Room4_jpg__WEBPACK_IMPORTED_MODULE_7__["default"] : index % 6 === 4 ? _public_assets_images_Room5_jpg__WEBPACK_IMPORTED_MODULE_8__["default"] : _public_assets_images_Room6_jpg__WEBPACK_IMPORTED_MODULE_9__["default"],
+                    src: "/api/property/".concat(item.id, "/").concat((_item$image = item.image) === null || _item$image === void 0 ? void 0 : _item$image.content),
                     alt: "",
-                    className: "w-48 h-36 object-cover"
+                    className: "w-48 h-48 object-cover"
                   })
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-                className: "w-full pr-4",
+                className: "w-full h-48 pt-2 pr-4",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
                   href: "/thong-tin/".concat(item.id),
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("p", {
@@ -15709,7 +15723,7 @@ function Search() {
                   className: "mb-2 text-sm line-clamp-2",
                   children: item.description
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-                  className: "mb-2 text-xs text-neutral-500 flex items-center justify-between w-full",
+                  className: "mb-2 mt-2 text-xs text-neutral-500 flex items-center justify-between w-full",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("p", {
                     children: item.created_at.split(" ")[0]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {

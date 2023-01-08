@@ -95,7 +95,7 @@ export default function Search() {
             area: area,
             type: type,
             bedroom: bedroom,
-        }
+        };
 
         if (ward) {
             postForm.ward = ward;
@@ -105,15 +105,16 @@ export default function Search() {
             postForm.city = city;
         }
 
-        axios.post('/api/properties', postForm)
-            .then(response => {
+        axios
+            .post("/api/properties", postForm)
+            .then((response) => {
                 setSearchResults(response.data.properties);
                 setLoading(false);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.log(error);
                 setLoading(false);
-            })
+            });
     }, []);
 
     const handleSearchItem = () => {
@@ -142,25 +143,13 @@ export default function Search() {
                                     <div>
                                         <a href={`/thong-tin/${item.id}`}>
                                             <img
-                                                src={
-                                                    index % 6 === 0
-                                                        ? Room1
-                                                        : index % 6 === 1
-                                                        ? Room2
-                                                        : index % 6 === 2
-                                                        ? Room3
-                                                        : index % 6 === 3
-                                                        ? Room4
-                                                        : index % 6 === 4
-                                                        ? Room5
-                                                        : Room6
-                                                }
+                                                src={`/api/property/${item.id}/${item.image?.content}`}
                                                 alt=""
-                                                className="w-48 h-36 object-cover"
+                                                className="w-48 h-48 object-cover"
                                             />
                                         </a>
                                     </div>
-                                    <div className="w-full pr-4">
+                                    <div className="w-full h-48 pt-2 pr-4">
                                         <a href={`/thong-tin/${item.id}`}>
                                             <p className="text-md text-blue-900 font-semibold mb-1 line-clamp-2">
                                                 {item.title}
@@ -186,7 +175,7 @@ export default function Search() {
                                             {item.description}
                                         </p>
 
-                                        <div className="mb-2 text-xs text-neutral-500 flex items-center justify-between w-full">
+                                        <div className="mb-2 mt-2 text-xs text-neutral-500 flex items-center justify-between w-full">
                                             <p>
                                                 {item.created_at.split(" ")[0]}
                                             </p>

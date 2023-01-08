@@ -54,19 +54,20 @@ export default function Gallery({
                         if (child.props?.videoId) {
                             return (
                                 <img
-                                    src={`https://img.youtube.com/vi/${child.props.videoId}/1.jpg`}
+                                    src={`https://img.youtube.com/vi/${child.props.videoId}/hqdefault.jpg`}
                                     alt=""
+                                    className="h-12 object-cover"
                                 />
                             );
                         }
 
                         if (child.props?.imageSource) {
-                            return <img src={child.props.imageSource} alt="" />;
+                            return <img src={child.props.imageSource} alt="" className="h-12 object-cover" />;
                         }
 
                         // If child is image
                         if (child.props?.src) {
-                            return <img src={child.props.src} alt="" />;
+                            return <img src={child.props.src} alt="" className="h-12 object-cover" />;
                         }
                     });
                 }}
@@ -75,15 +76,19 @@ export default function Gallery({
                 centerSlidePercentage={window.screen.width > 768 ? 50 : 100}
                 swipeable={false}
             >
-                <YouTube
-                    videoId={videoCode(propertyGallery?.videoLinks[0])}
-                    className="rounded-xl h-full w-full"
-                    containerClassName="embed embed-youtube"
-                    opts={{
-                        height: "100%",
-                    }}
-                />
-                {(propertyGallery?.panaromaLinks).map((pano, index) => {
+                {propertyGallery?.videoLinks?.map((video, index) => {
+                    return (
+                        <YouTube
+                            videoId={videoCode(video)}
+                            className="rounded-xl h-full w-full"
+                            containerClassName="embed embed-youtube"
+                            onStateChange={(e) => checkElapsedTime(e)}
+                            opts={{ width: "100%", height: "100%" }}
+                        />
+                    );
+                })}
+
+                {propertyGallery?.panaromaLinks?.map((pano, index) => {
                     return (
                         <ReactPannellum
                             id="1"
@@ -98,10 +103,10 @@ export default function Gallery({
                     );
                 })}
 
-                {(propertyGallery?.imageLinks).map((image, index) => {
+                {propertyGallery?.imageLinks?.map((image, index) => {
                     return (
                         <img
-                            className="rounded-xl px-4 object-cover h-full"
+                            className="rounded-xl px-4 object-cover h-full max-h-96"
                             src={"/api/property/" + id + "/" + image}
                             alt={`Image ${index + 1}`}
                         />

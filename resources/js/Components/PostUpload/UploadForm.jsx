@@ -964,18 +964,18 @@ export default function UploadForm() {
                                                                                 prev
                                                                             ) =>
                                                                                 prev.includes(
-                                                                                    1
+                                                                                    "wifi"
                                                                                 )
                                                                                     ? prev.filter(
                                                                                           (
                                                                                               item
                                                                                           ) =>
                                                                                               item !==
-                                                                                              1
+                                                                                              "wifi"
                                                                                       )
                                                                                     : [
                                                                                           ...prev,
-                                                                                          1,
+                                                                                          "wifi",
                                                                                       ]
                                                                         );
                                                                     }}
@@ -1003,18 +1003,18 @@ export default function UploadForm() {
                                                                                 prev
                                                                             ) =>
                                                                                 prev.includes(
-                                                                                    2
+                                                                                    "doxe"
                                                                                 )
                                                                                     ? prev.filter(
                                                                                           (
                                                                                               item
                                                                                           ) =>
                                                                                               item !==
-                                                                                              2
+                                                                                                "doxe"
                                                                                       )
                                                                                     : [
                                                                                           ...prev,
-                                                                                          2,
+                                                                                          "doxe",
                                                                                       ]
                                                                         );
                                                                     }}
@@ -1041,18 +1041,18 @@ export default function UploadForm() {
                                                                                 prev
                                                                             ) =>
                                                                                 prev.includes(
-                                                                                    3
+                                                                                    "thucung"
                                                                                 )
                                                                                     ? prev.filter(
                                                                                           (
                                                                                               item
                                                                                           ) =>
                                                                                               item !==
-                                                                                              3
+                                                                                                "thucung"
                                                                                       )
                                                                                     : [
                                                                                           ...prev,
-                                                                                          3,
+                                                                                          "thucung",
                                                                                       ]
                                                                         );
                                                                     }}

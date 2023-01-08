@@ -679,14 +679,12 @@ export default function Home() {
                                                 <div className="h-48">
                                                     <img
                                                         className="object-cover h-full w-full"
-                                                        src={`assets/images/Room${
-                                                            index + 1
-                                                        }.jpg`}
+                                                        src={`/api/property/${house.id}/${house.image.content}`}
                                                         alt="Sunset in the mountains"
                                                     />
                                                 </div>
                                                 <div className="px-6 py-4">
-                                                    <div className="font-bold text-lg leading-relaxed mt-2">
+                                                    <div className="font-bold leading-relaxed mt-2 truncate">
                                                         {house.title}
                                                     </div>
                                                     <p className="text-gray-700 text-sm">
@@ -696,6 +694,9 @@ export default function Home() {
                                                         ).toFixed(1)}{" "}
                                                         tỷ - {house.area} m
                                                         <sup>2</sup>
+                                                    </p>
+                                                    <p className="mt-4 text-gray-700 text-sm">
+                                                        {house.location}
                                                     </p>
                                                 </div>
                                                 <div className="grid grid-cols-3 h-10 absolute bottom-0 w-full">
