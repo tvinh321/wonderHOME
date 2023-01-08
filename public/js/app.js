@@ -8434,6 +8434,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Gallery(_ref) {
+  var _propertyGallery$vide, _propertyGallery$pana, _propertyGallery$imag;
   var title = _ref.title,
     files = _ref.files,
     bedNumb = _ref.bedNumb,
@@ -8485,13 +8486,15 @@ function Gallery(_ref) {
           if ((_child$props = child.props) !== null && _child$props !== void 0 && _child$props.videoId) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
               src: "https://img.youtube.com/vi/".concat(child.props.videoId, "/hqdefault.jpg"),
-              alt: ""
+              alt: "",
+              className: "h-12 object-cover"
             });
           }
           if ((_child$props2 = child.props) !== null && _child$props2 !== void 0 && _child$props2.imageSource) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
               src: child.props.imageSource,
-              alt: ""
+              alt: "",
+              className: "h-12 object-cover"
             });
           }
 
@@ -8499,7 +8502,8 @@ function Gallery(_ref) {
           if ((_child$props3 = child.props) !== null && _child$props3 !== void 0 && _child$props3.src) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
               src: child.props.src,
-              alt: ""
+              alt: "",
+              className: "h-12 object-cover"
             });
           }
         });
@@ -8509,7 +8513,7 @@ function Gallery(_ref) {
       ,
       centerSlidePercentage: window.screen.width > 768 ? 50 : 100,
       swipeable: false,
-      children: [(propertyGallery === null || propertyGallery === void 0 ? void 0 : propertyGallery.videoLinks).map(function (video, index) {
+      children: [propertyGallery === null || propertyGallery === void 0 ? void 0 : (_propertyGallery$vide = propertyGallery.videoLinks) === null || _propertyGallery$vide === void 0 ? void 0 : _propertyGallery$vide.map(function (video, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_youtube__WEBPACK_IMPORTED_MODULE_7__["default"], {
           videoId: videoCode(video),
           className: "rounded-xl h-full w-full",
@@ -8522,7 +8526,7 @@ function Gallery(_ref) {
             height: "100%"
           }
         });
-      }), (propertyGallery === null || propertyGallery === void 0 ? void 0 : propertyGallery.panaromaLinks).map(function (pano, index) {
+      }), propertyGallery === null || propertyGallery === void 0 ? void 0 : (_propertyGallery$pana = propertyGallery.panaromaLinks) === null || _propertyGallery$pana === void 0 ? void 0 : _propertyGallery$pana.map(function (pano, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_pannellum__WEBPACK_IMPORTED_MODULE_1__["default"], {
           id: "1",
           className: "rounded-xl h-full w-full",
@@ -8535,7 +8539,7 @@ function Gallery(_ref) {
             background: "#171717"
           }
         });
-      }), (propertyGallery === null || propertyGallery === void 0 ? void 0 : propertyGallery.imageLinks).map(function (image, index) {
+      }), propertyGallery === null || propertyGallery === void 0 ? void 0 : (_propertyGallery$imag = propertyGallery.imageLinks) === null || _propertyGallery$imag === void 0 ? void 0 : _propertyGallery$imag.map(function (image, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
           className: "rounded-xl px-4 object-cover h-full max-h-96",
           src: "/api/property/" + id + "/" + image,

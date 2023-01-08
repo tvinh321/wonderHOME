@@ -56,17 +56,18 @@ export default function Gallery({
                                 <img
                                     src={`https://img.youtube.com/vi/${child.props.videoId}/hqdefault.jpg`}
                                     alt=""
+                                    className="h-12 object-cover"
                                 />
                             );
                         }
 
                         if (child.props?.imageSource) {
-                            return <img src={child.props.imageSource} alt="" />;
+                            return <img src={child.props.imageSource} alt="" className="h-12 object-cover" />;
                         }
 
                         // If child is image
                         if (child.props?.src) {
-                            return <img src={child.props.src} alt="" />;
+                            return <img src={child.props.src} alt="" className="h-12 object-cover" />;
                         }
                     });
                 }}
@@ -75,7 +76,7 @@ export default function Gallery({
                 centerSlidePercentage={window.screen.width > 768 ? 50 : 100}
                 swipeable={false}
             >
-                {(propertyGallery?.videoLinks).map((video, index) => {
+                {propertyGallery?.videoLinks?.map((video, index) => {
                     return (
                         <YouTube
                             videoId={videoCode(video)}
@@ -87,7 +88,7 @@ export default function Gallery({
                     );
                 })}
 
-                {(propertyGallery?.panaromaLinks).map((pano, index) => {
+                {propertyGallery?.panaromaLinks?.map((pano, index) => {
                     return (
                         <ReactPannellum
                             id="1"
@@ -102,7 +103,7 @@ export default function Gallery({
                     );
                 })}
 
-                {(propertyGallery?.imageLinks).map((image, index) => {
+                {propertyGallery?.imageLinks?.map((image, index) => {
                     return (
                         <img
                             className="rounded-xl px-4 object-cover h-full max-h-96"
