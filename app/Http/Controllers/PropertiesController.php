@@ -192,8 +192,9 @@ class PropertiesController extends Controller
         ->leftJoin('cities', 'districts.cities_id', '=', 'cities.id');
 
         if ($title) {
-            $output->writeln($title);
-            $properties = $properties->where('properties.title', 'like', '%' . $title . '%');
+            // Case insensitive query
+            $output->writeln('Title: ' . mb_strtolower($title, 'UTF-8'));
+            $properties = $properties->whereRaw('LOWER(properties.title) LIKE ?', ['%' . mb_strtolower($title) . '%']);
         }
 
         if ($ward) {
@@ -250,9 +251,10 @@ class PropertiesController extends Controller
         else {
             // Get files
             foreach ($properties as $property) {
-                $property->files = DB::table('files')
+                $property->image = DB::table('files')
                 ->where('properties_id', '=', $property->id)
-                ->get();
+                ->where('type', '=', 'image')
+                ->first();
             }
         }
 

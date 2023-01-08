@@ -15558,6 +15558,7 @@ function Search() {
           className: "font-semibold mb-10",
           children: searchResults ? " Hi\u1EC7n c\xF3 ".concat(searchResults.length, " b\u1EA5t \u0111\u1ED9ng s\u1EA3n \u0111\u01B0\u1EE3c l\u1ECDc") : "Danh sách bất động sản"
         }), (searchResults || itemList).map(function (item, index) {
+          var _item$image;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
             className: "mb-10 shadow-lg",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
@@ -15566,9 +15567,9 @@ function Search() {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
                   href: "/thong-tin/".concat(item.id),
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("img", {
-                    src: index % 6 === 0 ? _public_assets_images_Room1_jpg__WEBPACK_IMPORTED_MODULE_4__["default"] : index % 6 === 1 ? _public_assets_images_Room2_jpg__WEBPACK_IMPORTED_MODULE_5__["default"] : index % 6 === 2 ? _public_assets_images_Room3_jpg__WEBPACK_IMPORTED_MODULE_6__["default"] : index % 6 === 3 ? _public_assets_images_Room4_jpg__WEBPACK_IMPORTED_MODULE_7__["default"] : index % 6 === 4 ? _public_assets_images_Room5_jpg__WEBPACK_IMPORTED_MODULE_8__["default"] : _public_assets_images_Room6_jpg__WEBPACK_IMPORTED_MODULE_9__["default"],
+                    src: "/api/property/".concat(item.id, "/").concat((_item$image = item.image) === null || _item$image === void 0 ? void 0 : _item$image.content),
                     alt: "",
-                    className: "w-48 h-36 object-cover"
+                    className: "w-48 h-full object-cover"
                   })
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {

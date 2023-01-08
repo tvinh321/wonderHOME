@@ -142,21 +142,9 @@ export default function Search() {
                                     <div>
                                         <a href={`/thong-tin/${item.id}`}>
                                             <img
-                                                src={
-                                                    index % 6 === 0
-                                                        ? Room1
-                                                        : index % 6 === 1
-                                                        ? Room2
-                                                        : index % 6 === 2
-                                                        ? Room3
-                                                        : index % 6 === 3
-                                                        ? Room4
-                                                        : index % 6 === 4
-                                                        ? Room5
-                                                        : Room6
-                                                }
+                                                src={`/api/property/${item.id}/${item.image?.content}`}
                                                 alt=""
-                                                className="w-48 h-36 object-cover"
+                                                className="w-48 h-full object-cover"
                                             />
                                         </a>
                                     </div>
