@@ -8484,7 +8484,7 @@ function Gallery(_ref) {
           var _child$props, _child$props2, _child$props3;
           if ((_child$props = child.props) !== null && _child$props !== void 0 && _child$props.videoId) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-              src: "https://img.youtube.com/vi/".concat(child.props.videoId, "/1.jpg"),
+              src: "https://img.youtube.com/vi/".concat(child.props.videoId, "/hqdefault.jpg"),
               alt: ""
             });
           }
@@ -8509,13 +8509,19 @@ function Gallery(_ref) {
       ,
       centerSlidePercentage: window.screen.width > 768 ? 50 : 100,
       swipeable: false,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_youtube__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        videoId: videoCode(propertyGallery === null || propertyGallery === void 0 ? void 0 : propertyGallery.videoLinks[0]),
-        className: "rounded-xl h-full w-full",
-        containerClassName: "embed embed-youtube",
-        opts: {
-          height: "100%"
-        }
+      children: [(propertyGallery === null || propertyGallery === void 0 ? void 0 : propertyGallery.videoLinks).map(function (video, index) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_youtube__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          videoId: videoCode(video),
+          className: "rounded-xl h-full w-full",
+          containerClassName: "embed embed-youtube",
+          onStateChange: function onStateChange(e) {
+            return checkElapsedTime(e);
+          },
+          opts: {
+            width: "100%",
+            height: "100%"
+          }
+        });
       }), (propertyGallery === null || propertyGallery === void 0 ? void 0 : propertyGallery.panaromaLinks).map(function (pano, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_pannellum__WEBPACK_IMPORTED_MODULE_1__["default"], {
           id: "1",

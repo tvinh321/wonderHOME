@@ -54,7 +54,7 @@ export default function Gallery({
                         if (child.props?.videoId) {
                             return (
                                 <img
-                                    src={`https://img.youtube.com/vi/${child.props.videoId}/1.jpg`}
+                                    src={`https://img.youtube.com/vi/${child.props.videoId}/hqdefault.jpg`}
                                     alt=""
                                 />
                             );
@@ -75,14 +75,18 @@ export default function Gallery({
                 centerSlidePercentage={window.screen.width > 768 ? 50 : 100}
                 swipeable={false}
             >
-                <YouTube
-                    videoId={videoCode(propertyGallery?.videoLinks[0])}
-                    className="rounded-xl h-full w-full"
-                    containerClassName="embed embed-youtube"
-                    opts={{
-                        height: "100%",
-                    }}
-                />
+                {(propertyGallery?.videoLinks).map((video, index) => {
+                    return (
+                        <YouTube
+                            videoId={videoCode(video)}
+                            className="rounded-xl h-full w-full"
+                            containerClassName="embed embed-youtube"
+                            onStateChange={(e) => checkElapsedTime(e)}
+                            opts={{ width: "100%", height: "100%" }}
+                        />
+                    );
+                })}
+
                 {(propertyGallery?.panaromaLinks).map((pano, index) => {
                     return (
                         <ReactPannellum
