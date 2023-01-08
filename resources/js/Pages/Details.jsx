@@ -294,16 +294,19 @@ export default function Details() {
                                                 }
                                             </span>
                                         </div>
-                                        {house.juridical_status !== undefined &&
-                                        house.juridical_status !== 2 ? (
+                                        {house.juridical_status !==
+                                            undefined && (
                                             <div className="leading-7 mt-3">
                                                 <p>
                                                     Các loại giấy tờ{" "}
-                                                    {JuridicalStatus.find(
-                                                        (item) =>
-                                                            item.id ===
-                                                            house.juridical_status
-                                                    )?.name.toLowerCase()}
+                                                    {house.juridical_status ===
+                                                    2
+                                                        ? "đã gửi nhưng không yêu cầu xác thực"
+                                                        : JuridicalStatus.find(
+                                                              (item) =>
+                                                                  item.id ===
+                                                                  house.juridical_status
+                                                          )?.name.toLowerCase()}
                                                     :
                                                 </p>
                                                 <ul className="list-disc pl-6">
@@ -337,7 +340,7 @@ export default function Details() {
                                                 </span>{" "}
                                                 từ người đăng tin.
                                             </div>
-                                        ) : null}
+                                        )}
                                     </div>
                                 </div>
 

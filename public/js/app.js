@@ -11786,6 +11786,7 @@ function UploadForm() {
       return _ref.apply(this, arguments);
     };
   }();
+  var digitReg = new RegExp("[0-9]+");
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "px-8 pt-6 mb-8 rounded w-3/4 mx-auto",
@@ -11857,6 +11858,7 @@ function UploadForm() {
                             setWard(0);
                           },
                           className: "w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm",
+                          value: city,
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
                             value: 0,
                             children: "T\u1EC9nh/Th\xE0nh ph\u1ED1"
@@ -11899,6 +11901,7 @@ function UploadForm() {
                           className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
                           children: "Qu\u1EADn, Huy\u1EC7n"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                          value: district,
                           onChange: function onChange(e) {
                             setDistrict(Number(e.target.value));
                             setWard(0);
@@ -11943,6 +11946,7 @@ function UploadForm() {
                           className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
                           children: "Ph\u01B0\u1EDDng, X\xE3"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                          value: ward,
                           onChange: function onChange(e) {
                             setWard(Number(e.target.value));
                           },
@@ -11987,6 +11991,7 @@ function UploadForm() {
                           children: "S\u1ED1 nh\xE0, \u0111\u01B0\u1EDDng"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                           type: "text",
+                          value: commonProperties.address,
                           className: "border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
                           placeholder: "S\u1ED1 nh\xE0, \u0111\u01B0\u1EDDng...",
                           onChange: function onChange(e) {
@@ -12098,13 +12103,18 @@ function UploadForm() {
                     children: "Th\xF4ng tin chi ti\u1EBFt"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                     className: "relative w-full mb-8 px-4",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
                       className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
-                      children: "Di\u1EC7n t\xEDch"
+                      children: ["Di\u1EC7n t\xEDch", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+                        className: "lowercase",
+                        children: ["(m", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("sup", {
+                          children: "2"
+                        }), ")"]
+                      })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                       type: "text",
                       className: "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
-                      placeholder: "Nh\u1EADp di\u1EC7n t\xEDch (m2)",
+                      placeholder: "Nh\u1EADp di\u1EC7n t\xEDch",
                       onChange: function onChange(e) {
                         setCommonProperties(_objectSpread(_objectSpread({}, commonProperties), {}, {
                           area: e.target.value
@@ -12116,15 +12126,17 @@ function UploadForm() {
                     className: "relative w-full mb-8 px-4",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
                       className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
-                      children: "M\u1EE9c gi\xE1"
+                      children: "M\u1EE9c gi\xE1 (VN\u0110)"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                       type: "text",
                       className: "border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150",
                       placeholder: "Nh\u1EADp m\u1EE9c gi\xE1",
                       onChange: function onChange(e) {
-                        setCommonProperties(_objectSpread(_objectSpread({}, commonProperties), {}, {
-                          price: e.target.value
-                        }));
+                        if (digitReg.test(e.target.value)) {
+                          setCommonProperties(_objectSpread(_objectSpread({}, commonProperties), {}, {
+                            price: e.target.value
+                          }));
+                        }
                       },
                       value: commonProperties.price
                     })]
@@ -12301,6 +12313,7 @@ function UploadForm() {
                             id: "",
                             type: "checkbox",
                             value: 1,
+                            checked: conveniences.includes(1),
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
@@ -12321,6 +12334,7 @@ function UploadForm() {
                             id: "",
                             type: "checkbox",
                             value: 2,
+                            checked: conveniences.includes(2),
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
@@ -12340,6 +12354,7 @@ function UploadForm() {
                             id: "",
                             type: "checkbox",
                             value: 3,
+                            checked: conveniences.includes(3),
                             className: "w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2",
                             onChange: function onChange() {
                               setConveniences(function (prev) {
@@ -12395,9 +12410,43 @@ function UploadForm() {
                     children: "H\xE3y d\xF9ng \u1EA3nh th\u1EADt, kh\xF4ng tr\xF9ng, kh\xF4ng ch\xE8n s\u1ED1 \u0111i\u1EC7n tho\u1EA1i. M\u1ED7i \u1EA3nh k\xEDch th\u01B0\u1EDBc t\u1ED1i thi\u1EC3u100x100, t\u1ED1i \u0111a 15 MB. S\u1ED1 l\u01B0\u1EE3ng \u1EA3nh t\u1ED1i \u0111a tu\u1EF3 theo lo\u1EA1i tin."
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                     className: "px-4 mb-6",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-                      className: "text-neutral-700 text-sm mb-2",
-                      children: ["S\u1ED1 \u1EA3nh \u0111\xE3 \u0111\u0103ng:", " ", gallery.images.length]
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                      className: "flex justify-between item-center mb-2",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                        className: "text-neutral-700 text-sm",
+                        children: ["S\u1ED1 \u1EA3nh \u0111\xE3 \u0111\u0103ng:", " ", gallery.images.length]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        className: "flex items-center gap-x-2 cursor-pointer",
+                        onClick: function onClick() {
+                          setGallery(function (prevState) {
+                            return _objectSpread(_objectSpread({}, prevState), {}, {
+                              images: []
+                            });
+                          });
+                        },
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("svg", {
+                          style: {
+                            color: "red"
+                          },
+                          xmlns: "http://www.w3.org/2000/svg",
+                          width: "16",
+                          height: "16",
+                          fill: "currentColor",
+                          "class": "bi bi-trash",
+                          viewBox: "0 0 16 16",
+                          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                            d: "M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z",
+                            fill: "red"
+                          }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                            "fill-rule": "evenodd",
+                            d: "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z",
+                            fill: "red"
+                          }), " "]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+                          className: "text-xs text-red",
+                          children: "X\xF3a"
+                        })]
+                      })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                       className: "flex justify-center items-center w-full",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
@@ -12461,9 +12510,43 @@ function UploadForm() {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
                       className: "block uppercase text-blueGray-600 text-xs font-bold mb-2",
                       children: "\u0110\u0103ng \u1EA3nh 360\xB0"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-                      className: "text-neutral-700 text-sm mb-2",
-                      children: ["S\u1ED1 \u1EA3nh \u0111\xE3 \u0111\u0103ng:", " ", gallery.panoramas.length]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                      className: "flex justify-between item-center mb-2",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                        className: "text-neutral-700 text-sm",
+                        children: ["S\u1ED1 \u1EA3nh \u0111\xE3 \u0111\u0103ng:", " ", gallery.panoramas.length]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        className: "flex items-center gap-x-2 cursor-pointer",
+                        onClick: function onClick() {
+                          setGallery(function (prevState) {
+                            return _objectSpread(_objectSpread({}, prevState), {}, {
+                              panoramas: []
+                            });
+                          });
+                        },
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("svg", {
+                          style: {
+                            color: "red"
+                          },
+                          xmlns: "http://www.w3.org/2000/svg",
+                          width: "16",
+                          height: "16",
+                          fill: "currentColor",
+                          "class": "bi bi-trash",
+                          viewBox: "0 0 16 16",
+                          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                            d: "M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z",
+                            fill: "red"
+                          }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                            "fill-rule": "evenodd",
+                            d: "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z",
+                            fill: "red"
+                          }), " "]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+                          className: "text-xs text-red",
+                          children: "X\xF3a"
+                        })]
+                      })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
                       "for": "dropzone-pano",
                       className: "flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer ",
@@ -12545,6 +12628,43 @@ function UploadForm() {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
                       className: "mb-6 block uppercase text-blueGray-600 text-xs font-bold",
                       children: "H\xECnh \u1EA3nh gi\u1EA5y t\u1EDD"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                      className: "flex justify-between item-center mb-2",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+                        className: "text-neutral-700 text-sm",
+                        children: ["S\u1ED1 \u1EA3nh \u0111\xE3 \u0111\u0103ng:", " ", juridical.juridicalImages.length]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                        className: "flex items-center gap-x-2 cursor-pointer",
+                        onClick: function onClick() {
+                          setJuridical(function (prevState) {
+                            return _objectSpread(_objectSpread({}, prevState), {}, {
+                              juridicalImages: []
+                            });
+                          });
+                        },
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("svg", {
+                          style: {
+                            color: "red"
+                          },
+                          xmlns: "http://www.w3.org/2000/svg",
+                          width: "16",
+                          height: "16",
+                          fill: "currentColor",
+                          "class": "bi bi-trash",
+                          viewBox: "0 0 16 16",
+                          children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                            d: "M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z",
+                            fill: "red"
+                          }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+                            "fill-rule": "evenodd",
+                            d: "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z",
+                            fill: "red"
+                          }), " "]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+                          className: "text-xs text-red",
+                          children: "X\xF3a"
+                        })]
+                      })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                       className: "mb-6",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -13735,10 +13855,10 @@ function Details() {
                       return item.id === house.juridical_status;
                     })) === null || _JuridicalStatus$find2 === void 0 ? void 0 : _JuridicalStatus$find2.name
                   })]
-                }), house.juridical_status !== undefined && house.juridical_status !== 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                }), house.juridical_status !== undefined && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                   className: "leading-7 mt-3",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
-                    children: ["C\xE1c lo\u1EA1i gi\u1EA5y t\u1EDD", " ", (_JuridicalStatus$find3 = _constants_common__WEBPACK_IMPORTED_MODULE_7__.JuridicalStatus.find(function (item) {
+                    children: ["C\xE1c lo\u1EA1i gi\u1EA5y t\u1EDD", " ", house.juridical_status === 2 ? "đã gửi nhưng không yêu cầu xác thực" : (_JuridicalStatus$find3 = _constants_common__WEBPACK_IMPORTED_MODULE_7__.JuridicalStatus.find(function (item) {
                       return item.id === house.juridical_status;
                     })) === null || _JuridicalStatus$find3 === void 0 ? void 0 : _JuridicalStatus$find3.name.toLowerCase(), ":"]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("ul", {
@@ -13756,7 +13876,7 @@ function Details() {
                     },
                     children: "y\xEAu c\u1EA7u cung c\u1EA5p gi\u1EA5y t\u1EDD ph\xE1p l\xFD"
                   }), " ", "t\u1EEB ng\u01B0\u1EDDi \u0111\u0103ng tin."]
-                }) : null]
+                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
               className: "mb-10 lg:mb-20",

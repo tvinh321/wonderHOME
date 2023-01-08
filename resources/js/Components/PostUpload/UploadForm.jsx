@@ -207,7 +207,7 @@ export default function UploadForm() {
             setLoading(false);
         }
     };
-
+    const digitReg = new RegExp("[0-9]+");
     return (
         <div>
             <div className="px-8 pt-6 mb-8 rounded w-3/4 mx-auto">
@@ -276,6 +276,7 @@ export default function UploadForm() {
                                                                 setWard(0);
                                                             }}
                                                             className="w-full px-3 py-2 leading-tight text-neutral-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline text-sm"
+                                                            value={city}
                                                         >
                                                             <option value={0}>
                                                                 Tỉnh/Thành phố
@@ -333,6 +334,7 @@ export default function UploadForm() {
                                                             Quận, Huyện
                                                         </label>
                                                         <select
+                                                            value={district}
                                                             onChange={(e) => {
                                                                 setDistrict(
                                                                     Number(
@@ -398,6 +400,7 @@ export default function UploadForm() {
                                                             Phường, Xã
                                                         </label>
                                                         <select
+                                                            value={ward}
                                                             onChange={(e) => {
                                                                 setWard(
                                                                     Number(
@@ -463,6 +466,9 @@ export default function UploadForm() {
                                                         </label>
                                                         <input
                                                             type="text"
+                                                            value={
+                                                                commonProperties.address
+                                                            }
                                                             className="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                             placeholder="Số nhà, đường..."
                                                             onChange={(e) => {
@@ -606,12 +612,15 @@ export default function UploadForm() {
                                             </h6>
                                             <div className="relative w-full mb-8 px-4">
                                                 <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
-                                                    Diện tích
+                                                    Diện tích{" "}
+                                                    <span className="lowercase">
+                                                        (m<sup>2</sup>)
+                                                    </span>
                                                 </label>
                                                 <input
                                                     type="text"
                                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                    placeholder="Nhập diện tích (m2)"
+                                                    placeholder="Nhập diện tích"
                                                     onChange={(e) => {
                                                         setCommonProperties({
                                                             ...commonProperties,
@@ -626,18 +635,27 @@ export default function UploadForm() {
                                             </div>
                                             <div className="relative w-full mb-8 px-4">
                                                 <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
-                                                    Mức giá
+                                                    Mức giá (VNĐ)
                                                 </label>
                                                 <input
                                                     type="text"
                                                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     placeholder="Nhập mức giá"
                                                     onChange={(e) => {
-                                                        setCommonProperties({
-                                                            ...commonProperties,
-                                                            price: e.target
-                                                                .value,
-                                                        });
+                                                        if (
+                                                            digitReg.test(
+                                                                e.target.value
+                                                            )
+                                                        ) {
+                                                            setCommonProperties(
+                                                                {
+                                                                    ...commonProperties,
+                                                                    price: e
+                                                                        .target
+                                                                        .value,
+                                                                }
+                                                            );
+                                                        }
                                                     }}
                                                     value={
                                                         commonProperties.price
@@ -936,6 +954,9 @@ export default function UploadForm() {
                                                                     id=""
                                                                     type="checkbox"
                                                                     value={1}
+                                                                    checked={conveniences.includes(
+                                                                        1
+                                                                    )}
                                                                     className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
                                                                     onChange={() => {
                                                                         setConveniences(
@@ -972,6 +993,9 @@ export default function UploadForm() {
                                                                     id=""
                                                                     type="checkbox"
                                                                     value={2}
+                                                                    checked={conveniences.includes(
+                                                                        2
+                                                                    )}
                                                                     className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
                                                                     onChange={() => {
                                                                         setConveniences(
@@ -1007,6 +1031,9 @@ export default function UploadForm() {
                                                                     id=""
                                                                     type="checkbox"
                                                                     value={3}
+                                                                    checked={conveniences.includes(
+                                                                        3
+                                                                    )}
                                                                     className="w-4 h-4 text-neutral-600 bg-gray-100 rounded border-gray-300 focus:ring-neutral-500focus:ring-2"
                                                                     onChange={() => {
                                                                         setConveniences(
@@ -1087,10 +1114,51 @@ export default function UploadForm() {
                                             </p>
 
                                             <div className="px-4 mb-6">
-                                                <p className="text-neutral-700 text-sm mb-2">
-                                                    Số ảnh đã đăng:{" "}
-                                                    {gallery.images.length}
-                                                </p>
+                                                <div className="flex justify-between item-center mb-2">
+                                                    <p className="text-neutral-700 text-sm">
+                                                        Số ảnh đã đăng:{" "}
+                                                        {gallery.images.length}
+                                                    </p>
+                                                    <div
+                                                        className="flex items-center gap-x-2 cursor-pointer"
+                                                        onClick={() => {
+                                                            setGallery(
+                                                                (
+                                                                    prevState
+                                                                ) => ({
+                                                                    ...prevState,
+                                                                    images: [],
+                                                                })
+                                                            );
+                                                        }}
+                                                    >
+                                                        <svg
+                                                            style={{
+                                                                color: "red",
+                                                            }}
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="16"
+                                                            height="16"
+                                                            fill="currentColor"
+                                                            class="bi bi-trash"
+                                                            viewBox="0 0 16 16"
+                                                        >
+                                                            {" "}
+                                                            <path
+                                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                                                                fill="red"
+                                                            ></path>{" "}
+                                                            <path
+                                                                fill-rule="evenodd"
+                                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                                                fill="red"
+                                                            ></path>{" "}
+                                                        </svg>
+                                                        <p className="text-xs text-red">
+                                                            Xóa
+                                                        </p>
+                                                    </div>
+                                                </div>
                                                 <div className="flex justify-center items-center w-full">
                                                     <label
                                                         for="dropzone-image"
@@ -1164,10 +1232,55 @@ export default function UploadForm() {
                                                 <p className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                                     Đăng ảnh 360°
                                                 </p>
-                                                <p className="text-neutral-700 text-sm mb-2">
-                                                    Số ảnh đã đăng:{" "}
-                                                    {gallery.panoramas.length}
-                                                </p>
+                                                <div className="flex justify-between item-center mb-2">
+                                                    <p className="text-neutral-700 text-sm">
+                                                        Số ảnh đã đăng:{" "}
+                                                        {
+                                                            gallery.panoramas
+                                                                .length
+                                                        }
+                                                    </p>
+                                                    <div
+                                                        className="flex items-center gap-x-2 cursor-pointer"
+                                                        onClick={() => {
+                                                            setGallery(
+                                                                (
+                                                                    prevState
+                                                                ) => ({
+                                                                    ...prevState,
+                                                                    panoramas:
+                                                                        [],
+                                                                })
+                                                            );
+                                                        }}
+                                                    >
+                                                        <svg
+                                                            style={{
+                                                                color: "red",
+                                                            }}
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="16"
+                                                            height="16"
+                                                            fill="currentColor"
+                                                            class="bi bi-trash"
+                                                            viewBox="0 0 16 16"
+                                                        >
+                                                            {" "}
+                                                            <path
+                                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                                                                fill="red"
+                                                            ></path>{" "}
+                                                            <path
+                                                                fill-rule="evenodd"
+                                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                                                fill="red"
+                                                            ></path>{" "}
+                                                        </svg>
+                                                        <p className="text-xs text-red">
+                                                            Xóa
+                                                        </p>
+                                                    </div>
+                                                </div>
                                                 <label
                                                     for="dropzone-pano"
                                                     className="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer "
@@ -1335,6 +1448,56 @@ export default function UploadForm() {
                                                 <label className="mb-6 block uppercase text-blueGray-600 text-xs font-bold">
                                                     Hình ảnh giấy tờ
                                                 </label>
+                                                <div className="flex justify-between item-center mb-2">
+                                                    <p className="text-neutral-700 text-sm">
+                                                        Số ảnh đã đăng:{" "}
+                                                        {
+                                                            juridical
+                                                                .juridicalImages
+                                                                .length
+                                                        }
+                                                    </p>
+                                                    <div
+                                                        className="flex items-center gap-x-2 cursor-pointer"
+                                                        onClick={() => {
+                                                            setJuridical(
+                                                                (
+                                                                    prevState
+                                                                ) => ({
+                                                                    ...prevState,
+                                                                    juridicalImages:
+                                                                        [],
+                                                                })
+                                                            );
+                                                        }}
+                                                    >
+                                                        <svg
+                                                            style={{
+                                                                color: "red",
+                                                            }}
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="16"
+                                                            height="16"
+                                                            fill="currentColor"
+                                                            class="bi bi-trash"
+                                                            viewBox="0 0 16 16"
+                                                        >
+                                                            {" "}
+                                                            <path
+                                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                                                                fill="red"
+                                                            ></path>{" "}
+                                                            <path
+                                                                fill-rule="evenodd"
+                                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                                                fill="red"
+                                                            ></path>{" "}
+                                                        </svg>
+                                                        <p className="text-xs text-red">
+                                                            Xóa
+                                                        </p>
+                                                    </div>
+                                                </div>
                                                 <div className="mb-6">
                                                     <div className="flex justify-center items-center w-full">
                                                         <label

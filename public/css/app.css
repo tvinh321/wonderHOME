@@ -1698,8 +1698,14 @@ video {
 .font-normal {
   font-weight: 400;
 }
+.font-thin {
+  font-weight: 100;
+}
 .uppercase {
   text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
 }
 .leading-normal {
   line-height: 1.5;
